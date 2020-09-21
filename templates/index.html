@@ -1,15 +1,18 @@
+{% extends 'Navbar.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Index Page</title>
-    <link href="{% static '/css/index_style.css' %}" rel="stylesheet">
+
 </head>
 <body>
-<div class="super-class">
- <h1>Hello This is The Index Page</h1>
-</div>
+{% block content %}
+    <h1>Hello World</h1>
+{% endblock %}
+
+
 
 </body>
 </html>

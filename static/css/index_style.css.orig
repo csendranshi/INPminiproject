@@ -1,6 +1,9 @@
 body {
+<<<<<<< HEAD
     background-color:#303841 ;
-
+=======
+    background-color: #3a4750;
+>>>>>>> c8f82bea3040613d62b0d02bd590445bc69ff1ca
 }
 h1 {
     color: #eeeeee;

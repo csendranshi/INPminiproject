@@ -1,44 +1,49 @@
+{% extends 'Navbar.html' %}
 {% load static %}
+{% block content %}
+
 <html>
 <head>
      <link href="{% static '/css/css_login_form.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="">
 </head>
-<body>
-<h2>
+<body class="auth-form-body">
+
+
+<h2 class="auth-form-h2">
     <div>Welcome Back Peeps,</div>
     <div>Catch our latest Spilled Tea!</div>
 </h2>
 <div class="container" id="container">
     <div class="form-container sign-up-container">
-        <form action="#">
-            <h1>Create Account</h1>
-            <input type="text" placeholder="Name"/>
-            <input type="email" placeholder="Email"/>
-            <input type="password" placeholder="Password"/>
-            <button>Sign Up</button>
+        <form class="auth-form-form" action="#">
+            <h1 class="auth-form-h1">Create Account</h1>
+            <input class="auth-form-input" type="text" placeholder="Name"/>
+            <input class="auth-form-input" type="email" placeholder="Email"/>
+            <input class="auth-form-input" type="password" placeholder="Password"/>
+            <button class="auth-form-button">Sign Up</button>
         </form>
     </div>
     <div class="form-container sign-in-container">
-        <form action="#">
+        <form class="auth-form-form" action="#">
             <div style="color: #3a4750; font-size: 25px">Login for updates on our latest news</div>
-            <input  type="email" placeholder="Email"/>
-            <input  type="password" placeholder="Password"/>
-            <a href="#">Forgot your password?</a>
-            <button>Login in</button>
+            <input class="auth-form-input" type="email" placeholder="Email"/>
+            <input  class="auth-form-input" type="password" placeholder="Password"/>
+            <a class="auth-form-a" href="#">Forgot your password?</a>
+            <button class="auth-form-button">Login in</button>
         </form>
     </div>
     <div class="overlay-container">
         <div class="overlay">
             <div class="overlay-panel overlay-left">
-                <h1>Welcome Back!</h1>
-                <p>To catch our latest news please login with your personal info</p>
-                <button class="ghost" id="signIn">Sign In</button>
+                <h1 class="auth-form-h1">Welcome Back!</h1>
+                <p class="auth-form-p">To catch our latest news please login with your personal info</p>
+                <button class="auth-form-button ghost" id="signIn">Sign In</button>
             </div>
             <div class="overlay-panel overlay-right">
-                <h1>Hello, Friend!</h1>
-                <p>Enter your personal details and start your journey with the journalist</p>
-                <button class="ghost" id="signUp">Sign Up</button>
+                <h1 class="auth-form-h1">Hello, Friend!</h1>
+                <p class="auth-form-p">Enter your personal details and start your journey with the journalist</p>
+                <button class="auth-form-button ghost" id="signUp">Sign Up</button>
             </div>
         </div>
     </div>
@@ -59,3 +64,4 @@
 </script>
 </body>
 </html>
+{% endblock %}
