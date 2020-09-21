@@ -2,16 +2,14 @@
 * {
 	box-sizing: border-box;
 }
-
 .auth-form-body {
 	background: #303841;
-	display: flex;
-	justify-content: center;
+
 	align-items: center;
 	flex-direction: column;
 	font-family: 'Inter', sans-serif;
 	height: 100vh;
-	margin: -20px 0 50px;
+
 }
 
 .auth-form-h1 {
@@ -110,6 +108,7 @@
 	width: 768px;
 	max-width: 100%;
 	min-height: 550px;
+	margin: 10px auto;
 }
 
 .form-container {
