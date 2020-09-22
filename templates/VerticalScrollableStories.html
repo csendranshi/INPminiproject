@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static 'css/VerticalScrollableStories.css' %}">
-  </head>
-<body>
+{% extends 'Navbar.html' %}
+{% block content %}
 
 <div class="table-box-for-scrollable">
     <label class="table-box-for-scrollable-text-main">Top Stories</label>
@@ -163,5 +157,5 @@
 </div>
 </div>
 
-</body>
-</html>
+{% endblock %}
+

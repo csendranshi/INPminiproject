@@ -1,8 +1,9 @@
-.table-box-for-scrollable-text-main{
-   padding-left: 160px;
+.table-box-for-scrollable-text-main {
+    padding-left: 160px;
 }
+
 .table-box-for-scrollable {
-    background: wheat;
+    background: rgba(255, 255, 255, 0.13);
     border-radius: 20px;
     height: 620px;
     width: 440px;
@@ -13,7 +14,7 @@
 }
 
 .box-for-scrollable {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.13);
 
     height: 530px;
     width: 400px;
@@ -39,12 +40,13 @@
 
 
 .box-for-scrollable::-webkit-scrollbar-track {
-    background: wheat;        /* color of the tracking area */
+    background: wheat; /* color of the tracking area */
 }
+
 .box-for-scrollable::-webkit-scrollbar-thumb {
-    background-color: beige;    /* color of the scroll thumb */
-    border-radius: 20px;       /* roundness of the scroll thumb */
-    border: 3px solid wheat;  /* creates padding around scroll thumb */
+    background-color: beige; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    border: 3px solid wheat; /* creates padding around scroll thumb */
 }
 
 .image-for-row {
@@ -56,7 +58,6 @@
 .image-position-each-row {
     margin: 10px 2px;
 }
-
 
 
 .news-post-text-for-top-stories {
