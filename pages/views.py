@@ -10,7 +10,6 @@ def home_view(request, *args, **kwargs):
     # 95c4ed43f7644dc8a05175665cd04b7a - api key
     r = requests.get(top_stories).json()
     top = []
-    print(r['articles'])
     for i in r['articles']:
         top_story = {
             'image': i['urlToImage'],
