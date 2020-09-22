@@ -3,7 +3,7 @@
 }
 
 .table-box-for-scrollable {
-    background: rgba(255, 255, 255, 0.13);
+    background:red;
     border-radius: 20px;
     height: 620px;
     width: 440px;
@@ -28,7 +28,7 @@
     height: 93px;
     display: block;
     padding: 10px;
-    background: beige;
+    background: #f5f5dc;
     border-radius: 20px;
     margin: 10px;
 
