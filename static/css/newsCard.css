@@ -15,14 +15,14 @@
 
 .news-post {
     width: 300px;
-    height: 400px;
+    height: 350px;
     padding: 50px 40px 40px;
     background-color: rgba(255, 255, 255, 0.13);
-    box-shadow: 0 1.4rem 8rem rgba(0, 0, 0, .2);
     display: inline-grid;
     align-items: center;
     border-radius: 20px;
-    margin: 50px;
+    margin: 50px auto;
+
 }
 
 .news-post-info {
@@ -30,13 +30,13 @@
 }
 
 .news-post-img {
-    min-width: 33rem;
-    height: 40rem;
+    min-width: 20rem;
+    height: 25rem;
     align-items: center;
-    /*justify-content: center;*/
-    transform: translateY(-9rem);
-    position: relative;
-    padding: 2px 0px;
+    justify-content: center;
+    transform: translateY(-5rem);
+    position: absolute;
+
     /*padding-bottom: 10px;*/
 }
 
@@ -89,7 +89,7 @@
     color: white;
     font-size: 1.6rem;
     font-weight: 600;
-    margin: 160px 180px;
+    margin: 190px 180px;
     z-index: 2;
     position: absolute;
 }
