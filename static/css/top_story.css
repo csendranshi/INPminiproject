@@ -50,9 +50,10 @@
 }
 
 .image-for-row {
-    border-radius: 50px;
-    width: 75px;
+    border-radius: 10px;
+    width: 85px;
     position: relative;
+    height: 75px;
 }
 
 .image-position-each-row {
@@ -67,11 +68,11 @@
     display: -webkit-box;
     -webkit-line-clamp: 4; /* number of lines to show */
     -webkit-box-orient: vertical;
-    margin: -80px 0px 0px 80px;
+    margin: -80px 0px 0px 100px;
     /*display: inline-block;*/
     position: relative;
     font-size: 14px;
-    width: 280px;
+    width: 250px;
 font-family: 'Lato', Sans Serif;
     color: #eeeeee;
 }
