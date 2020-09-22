@@ -17,4 +17,4 @@ def card_view(request, *args, **kwargs):
 
 
 def scroll_view(request, *args, **kwargs):
-    return render(request, "VerticalScrollableStories.html", {})
+    return render(request, "top_stories.html", {})

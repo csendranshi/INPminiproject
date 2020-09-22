@@ -1,20 +1,20 @@
 .table-box-for-scrollable-text-main {
-    padding-left: 160px;
+    padding-left: 170px;
+    color: #eeeeee;
+    font-family: 'Cinzel', serif;
+
 }
 
 .table-box-for-scrollable {
-    background:red;
+    background:rgba(255, 255, 255, 0.13);
     border-radius: 20px;
     height: 620px;
     width: 440px;
-
     padding: 5px;
     margin: 20px;
-
 }
 
 .box-for-scrollable {
-    background: rgba(255, 255, 255, 0.13);
 
     height: 530px;
     width: 400px;
@@ -28,7 +28,7 @@
     height: 93px;
     display: block;
     padding: 10px;
-    background: #f5f5dc;
+    background: #303841;
     border-radius: 20px;
     margin: 10px;
 
@@ -40,13 +40,13 @@
 
 
 .box-for-scrollable::-webkit-scrollbar-track {
-    background: wheat; /* color of the tracking area */
+    background: rgba(255, 255, 255, 0.13);/* color of the tracking area */
 }
 
 .box-for-scrollable::-webkit-scrollbar-thumb {
-    background-color: beige; /* color of the scroll thumb */
+    background-color: rgba(255, 255, 255, 0.13); /* color of the scroll thumb */
     border-radius: 20px; /* roundness of the scroll thumb */
-    border: 3px solid wheat; /* creates padding around scroll thumb */
+    border: 3px solid transparent; /* creates padding around scroll thumb */
 }
 
 .image-for-row {
@@ -70,9 +70,9 @@
     margin: -80px 0px 0px 80px;
     /*display: inline-block;*/
     position: relative;
-    font-size: 15px;
+    font-size: 14px;
     width: 280px;
-
-    color: rgba(0, 0, 0, 0.7);
+font-family: 'Lato', Sans Serif;
+    color: #eeeeee;
 }
 

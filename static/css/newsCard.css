@@ -2,15 +2,14 @@
 .aarr-html {
     font-family: 'Robota', sans-serif;
     font-size: 10px;
+     display: inline-block;
 }
 
 .aarr-body {
-    display: block;
     flex-wrap: wrap;
     background-color: transparent;
     padding: 0 1.5rem;
     margin-bottom: 10rem;
-
 }
 
 .news-post {
