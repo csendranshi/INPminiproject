@@ -33,10 +33,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="topnav" id="myTopnav">
-    <a href="#home" >Home</a>
-    <a href="#news">News</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">About</a>
+    <a href="{% url 'home' %}">Latest</a>
+   <a href="#India">India</a>
+    <a href="#Education">Education</a>
+    <a href="#Business" >Business</a>
+     <a href="#World">World</a>
+    <a href="#Technology">Technology</a>
+    <a href="#Health">Health</a>
+    <a href="#Country">Country</a>
+    <a href="{% url 'auth' %}">Sign In/Up</a>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
     </a>
@@ -44,7 +49,6 @@
 {% block content %}
 
 {% endblock %}
-
 <script src="{% static '/js/script.js' %}"></script>
 </body>
 </html>

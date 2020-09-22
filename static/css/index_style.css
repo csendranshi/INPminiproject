@@ -7,6 +7,7 @@
     background-color: #303841;
     overflow: hidden;
     width: 100%;
+    display: flex;
 
 }
 
@@ -24,7 +25,7 @@
     border-radius: 10px !important;
     transition: all .2s ease-in-out;
     height: 50px;
-    width: 100px;
+    width: 30%;
 }
 
 /* Change the color of links on hover */
