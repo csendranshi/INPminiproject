@@ -10,3 +10,7 @@ def home_view(request, *args, **kwargs):
 
 def auth_view(request, *args, **kwargs):
     return render(request, "authform.html", {})
+
+
+def card_view(request, *args, **kwargs):
+    return render(request, "newsCard.html", {})
