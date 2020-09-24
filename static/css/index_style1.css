@@ -34,7 +34,9 @@
     border-radius: 10px !important;
     color: #eeeeee;
     transform: scale(0.9);
+     font-size: 20px;
 }
+
 
 /* Add an active class to highlight the current page */
 .topnav a.active {
