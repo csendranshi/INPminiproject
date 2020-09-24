@@ -31,3 +31,19 @@ def card_view(request, *args, **kwargs):
 
 def scroll_view(request, *args, **kwargs):
     return render(request, "top_stories.html", {})
+
+
+def business_view(request, *args, **kwargs):
+    return render(request, "Business.html", {})
+
+
+def india_view(request, *args, **kwargs):
+    return render(request, "India.html", {})
+
+
+def education_view(request, *args, **kwargs):
+    return render(request, "Education.html", {})
+
+
+def world_view(request, *args, **kwargs):
+    return render(request, "World.html", {})
