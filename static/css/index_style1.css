@@ -22,7 +22,8 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-    border-radius: 10px !important;
+   border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
     transition: all .2s ease-in-out;
     height: 50px;
     width: 30%;
@@ -31,7 +32,8 @@
 /* Change the color of links on hover */
 .topnav a:hover {
     background-color: rgba(255, 255, 255, 0.13);
-    border-radius: 10px !important;
+   border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
     color: #eeeeee;
     transform: scale(0.9);
      font-size: 20px;
@@ -41,7 +43,8 @@
 /* Add an active class to highlight the current page */
 .topnav a.active {
     background-color: #d72323;
-    border-radius: 10px !important;
+  border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
     color: white;
 }
 
