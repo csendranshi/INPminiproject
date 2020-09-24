@@ -2,7 +2,7 @@
 .aarr-html {
     font-family: 'Robota', sans-serif;
     font-size: 10px;
-     display: inline-block;
+    display: inline-block;
 }
 
 .aarr-body {
@@ -14,13 +14,15 @@
 
 .news-post {
     width: 300px;
-    height: 350px;
+    height: 400px;
     padding: 50px 40px 40px;
     background-color: rgba(255, 255, 255, 0.13);
     display: inline-grid;
     align-items: center;
-    border-radius: 20px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
     margin: 50px auto;
+
 
 }
 
@@ -30,21 +32,19 @@
 
 .news-post-img {
     min-width: 20rem;
-    height: 25rem;
-    align-items: center;
-    justify-content: center;
-    transform: translateY(-5rem);
+    height: 20rem;
     position: absolute;
 
-    /*padding-bottom: 10px;*/
 }
 
 .news-post-img img {
-    width: 65%;
+    width: 68%;
     height: 60%;
     object-fit: cover;
     display: block;
-    border-radius: 25px;
+   border: 1px solid #eeeeee;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
     position: absolute;
 }
 
@@ -71,7 +71,7 @@
     position: absolute;
     /*padding:25px;*/
     font-size: 15px;
-    margin: 200px 0px 0px 0px;
+    margin: 170px 0px 0px 0px;
     color: #eeeeee;
     width: 75%;
     text-decoration: none;

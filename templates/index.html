@@ -10,23 +10,54 @@
 </head>
 <body>
 {% block content %}
-        <div class="table-box-for-scrollable">
-        <label class="table-box-for-scrollable-text-main">Top Stories</label>
-        <div class="box-for-scrollable">
 
-            <table>
-                <tr>
-                    {% for top_story in top_stories %}
-                    <div class="row-for-each-story">
-                        <span class="image-position-each-row"><img class="image-for-row"
-                                                                   src="{{ top_story.image }}" alt=""></span>
-                        <span class="news-post-text-for-top-stories">{{top_story.title}}</span>
-                    </div>
-                    {% endfor %}
-                </tr>
-            </table>
-            <div id="bottom"></div>
+{#    The Below is The Top Stories Scrollabel#}
+
+{#        <div class="table-box-for-scrollable">#}
+{#        <label class="table-box-for-scrollable-text-main">Top Stories</label>#}
+{#        <div class="box-for-scrollable">#}
+{##}
+{#            <table>#}
+{#                <tr>#}
+{#                    {% for top_story in top_stories %}#}
+{#                    <div class="row-for-each-story">#}
+{#                        <span class="image-position-each-row"><img class="image-for-row"#}
+{#                                                                   src="{{ top_story.image }}" alt=""></span>#}
+{#                        <span class="news-post-text-for-top-stories">{{top_story.title}}</span>#}
+{#                    </div>#}
+{#                    {% endfor %}#}
+{#                </tr>#}
+{#            </table>#}
+{#            <div id="bottom"></div>#}
+{#        </div>#}
+{#    </div>#}
+
+ {#    The Above is The Top Stories Scrollabel#}
+
+     <div class="aarr-html">
+    <div class="aarr-body">
+    <div class="news-post">
+        <div class="news-post-img">
+{#            <div class="news-post-date">#}
+{#                <span class="news-date-size-day">30</span>#}
+{#                <span class="news-date-size-month">September</span>#}
+{#                <span class="news-date-size-year">2020</span>#}
+{#            </div>#}
+            <img src="{% static 'css/Jake.jpg' %}" alt=""/>
+            <div class="news-post-info">
+                <a href="#about" class="news-post-title">Bobcat Fire: Fire Burns Through More Than 106K Acres; Flames
+                    Again Threaten Mt. Wilson - LAist
+                Bobcat Fire: Fire Burns Through More Than 106K Acres; Flames
+                    Again Threaten Mt. Wilson - LAistBobcat Fire: Fire Burns Through More Than 106K Acres; Flames
+                    Again Threaten Mt. Wilson - LAist
+                </a>
+
+            </div>
         </div>
+
+    </div>
+
+    </div>
     </div>
 {% endblock %}
 
