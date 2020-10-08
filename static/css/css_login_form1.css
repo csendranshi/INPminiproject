@@ -42,7 +42,8 @@
 }
 
 .auth-form-button {
-	border-radius: 20px;
+  border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
 	border: 1px solid #eeeeee;
 	background-color: #3a4750;
 	color: #eeeeee;
@@ -84,7 +85,8 @@
 .auth-form-input {
 	background-color: #eee;
 	border: 1px solid #3a4750;
-    border-radius:10px ;
+     border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
 	padding: 12px 15px;
 	margin: 10px;
 	width: 100%;
@@ -99,7 +101,8 @@
 }
 .container {
 	background-color: #eeeeee;
-	border-radius: 20px;
+	  border-top-right-radius: 35px;
+    border-bottom-left-radius: 35px;
     border: 1px solid ;
   	box-shadow: 0 14px 28px rgba(0,0,0,0.25),
 			0 10px 10px rgba(0,0,0,0.22);
