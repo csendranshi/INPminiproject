@@ -11,7 +11,7 @@ class PersonalDetails(forms.ModelForm):
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'auth-form-input'}))
     date_of_birth = forms.DateField(
-        widget=forms.DateInput(attrs={'placeholder': 'Date Of Birth', 'class': 'auth-form-input'}))
+        widget=forms.DateInput(attrs={ 'class': 'auth-form-input'}))
 
     class Meta:
         model = PersonalDetails

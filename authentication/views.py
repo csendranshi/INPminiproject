@@ -5,12 +5,13 @@ from authentication.form import PersonalDetails
 
 
 # Create your views here.
-def auth(response):
+def auth(request):
     Registerform = PersonalDetails()
-    if response.method == 'POST':
-        form = PersonalDetails(response.POST)
+    if request.method == 'POST':
+        form = PersonalDetails(request.POST)
+        print(form)
         if form.is_valid():
             form.save()
         return redirect('/')
     context = {"form": Registerform}
-    return render(response, 'authentication.html', context)
+    return render(request, 'authentication.html', context)
