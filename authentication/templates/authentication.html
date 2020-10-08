@@ -19,19 +19,19 @@
                 {% csrf_token %}
                 {{ form.first_name }}
                 {{ form.last_name }}
-                {{ form.email_id }}
-                {{ form.password }}
+                    {{ form.email_id }}
+                    {{ form.password }}
                 {{ form.date_of_birth }}
 
                 <input type="submit" class="auth-form-button" value="Register"/>
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form class="auth-form-form" method="GET" >
+            <form class="auth-form-form" method="POST" >
                 <div style="color: #3a4750; font-size: 25px">Login for updates on our latest news</div>
                 {% csrf_token %}
-                {{ form.email_id }}
-                {{ form.password }}
+                <input class="auth-form-input" type="text" name="username" placeholder="Email ID">
+                 <input class="auth-form-input" type="password" name="password" placeholder="Password">
 {#                <a class="auth-form-a" href="#">Forgot your password?</a>#}
                 <button type="submit" class="auth-form-button">Login in</button>
             </form>
