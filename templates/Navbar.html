@@ -6,8 +6,8 @@
     <title>Title</title>
     <link href="{% static '/css/css_login_form.css' %}" rel="stylesheet">
     <link href="{% static '/css/index_style1.css' %}" rel="stylesheet">
-     <link href="{% static '/css/newsCard1.css' %}" rel="stylesheet">
-    <link href="{% static '/css/top_story.css' %}" rel="stylesheet">
+    <link href="{% static '/css/newsCard1.css' %}" rel="stylesheet">
+    <link href="{% static '/css/top_story1.css' %}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
 </head>
@@ -15,15 +15,15 @@
  background-color: #303841;
  ">
 
-<div   style="
+<div style="
         width: 100%;
         height:50px;
         padding: 20px;
         border-radius: 10px;
         margin-bottom: 20px;
         text-align: center;" class="header-class">
-<h1
-        style="margin-top: -12px;
+    <h1
+            style="margin-top: -12px;
         font-family: 'Cinzel', serif;
         color:  #eeeeee;
         ">The Journalist</h1>
@@ -33,10 +33,10 @@
 
 <div class="topnav" id="myTopnav">
     <a href="{% url 'home' %}">Latest</a>
-   <a href="{% url 'india' %}">India</a>
+    <a href="{% url 'india' %}">India</a>
     <a href="{% url 'education' %}">Education</a>
-    <a href="{% url 'business' %}" >Business</a>
-     <a href="{% url 'world' %}">World</a>
+    <a href="{% url 'business' %}">Business</a>
+    <a href="{% url 'world' %}">World</a>
     <a href="{% url 'home' %}">Technology</a>
     <a href="{% url 'home' %}">Health</a>
     <a href="{% url 'home' %}">Country</a>
@@ -49,5 +49,31 @@
 
 {% endblock %}
 <script src="{% static '/js/script.js' %}"></script>
-</body>
-</html>
+<script>
+
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>

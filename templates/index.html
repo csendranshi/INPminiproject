@@ -13,24 +13,26 @@
 
 {#    The Below is The Top Stories Scrollabel#}
 
-{#        <div class="table-box-for-scrollable">#}
-{#        <label class="table-box-for-scrollable-text-main">Top Stories</label>#}
-{#        <div class="box-for-scrollable">#}
-{##}
-{#            <table>#}
-{#                <tr>#}
-{#                    {% for top_story in top_stories %}#}
-{#                    <div class="row-for-each-story">#}
-{#                        <span class="image-position-each-row"><img class="image-for-row"#}
-{#                                                                   src="{{ top_story.image }}" alt=""></span>#}
-{#                        <span class="news-post-text-for-top-stories">{{top_story.title}}</span>#}
-{#                    </div>#}
-{#                    {% endfor %}#}
-{#                </tr>#}
-{#            </table>#}
-{#            <div id="bottom"></div>#}
-{#        </div>#}
-{#    </div>#}
+        <div class="table-box-for-scrollable">
+        <label class="table-box-for-scrollable-text-main">Top Stories</label>
+        <div class="box-for-scrollable">
+
+            <table>
+                <tr>
+                    {% for top_story in top_stories %}
+                    <div id="myBtn" class="row-for-each-story">
+                        <span class="image-position-each-row"><img class="image-for-row"
+                                                                   src="{{ top_story.image }}" alt=""></span>
+                        <span class="news-post-text-for-top-stories">{{top_story.title}}</span>
+                    </div>
+
+
+                    {% endfor %}
+                </tr>
+            </table>
+            <div id="bottom"></div>
+        </div>
+    </div>
 
  {#    The Above is The Top Stories Scrollabel#}
 

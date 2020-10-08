@@ -6,8 +6,10 @@
 }
 
 .table-box-for-scrollable {
-    background:rgba(255, 255, 255, 0.13);
-    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.13);
+
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
     height: 620px;
     width: 440px;
     padding: 5px;
@@ -16,11 +18,9 @@
 
 .box-for-scrollable {
 
-    height: 530px;
-    width: 400px;
-    margin: 20px;
-    align-content: center;
-
+    height: 90%;
+    width: 95%;
+    margin: 10px auto;
     overflow-y: scroll;
 }
 
@@ -29,18 +29,19 @@
     display: block;
     padding: 10px;
     background: #303841;
-    border-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
     margin: 10px;
 
 }
 
 .box-for-scrollable::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
 }
 
 
 .box-for-scrollable::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.13);/* color of the tracking area */
+    background: rgba(255, 255, 255, 0.13); /* color of the tracking area */
 }
 
 .box-for-scrollable::-webkit-scrollbar-thumb {
@@ -50,7 +51,8 @@
 }
 
 .image-for-row {
-    border-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
     width: 85px;
     position: relative;
     height: 75px;
@@ -73,7 +75,7 @@
     position: relative;
     font-size: 14px;
     width: 250px;
-font-family: 'Lato', Sans Serif;
+    font-family: 'Lato', Sans Serif;
     color: #eeeeee;
 }
 
