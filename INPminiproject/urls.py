@@ -15,17 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from pages.views import home_view, auth_view, card_view, scroll_view
-from pages.views import business_view, education_view, india_view, world_view
-from authentication import views as view_auth
+from pages.views import   card_view, scroll_view
 
+from homepage import views as view_homepage
+from authentication import views as view_auth
+from education import views as view_education
+from business import views as view_business
+from india import views as view_india
+from World import views as view_world
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_view, name='home'),
-    path('india/', india_view, name='india'),
-    path('education/', education_view, name='education'),
-    path('business/', business_view, name='business'),
-    path('world/', world_view, name='world'),
+    path('', view_homepage.home_view, name='home'),
+    path('india/', view_india.india_view, name='india'),
+    path('education/', view_education.education_view, name='education'),
+    path('business/', view_business.business_view, name='business'),
+    path('world/', view_world.world_view, name='world'),
+
     path('card/', card_view, name='card'),
     path('scroll/', scroll_view, name='scroll'),
     path('auth/', view_auth.auth, name="auth")

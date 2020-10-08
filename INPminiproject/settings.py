@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'education',
     'india',
     'World',
+    'homepage'
 ]
 
 MIDDLEWARE = [
