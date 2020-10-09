@@ -4,7 +4,7 @@
 
     <html>
     <head>
-        <link href="{% static '/css/css_login_form12.css' %}" rel="stylesheet">
+        <link href="{% static '/css/css_login_form1.css' %}" rel="stylesheet">
 
     </head>
     <body class="auth-form-body">
@@ -34,6 +34,32 @@
             </div>
         </div>
     </div>
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h1>Registration Successful</h1>
+        </div>
+    </div>
+    {% if registration_success %}
+        <script>
+            let modalBtn = document.getElementById("modal-btn")
+            let modal = document.querySelector(".modal")
+            let closeBtn = document.querySelector(".close-btn")
+            window.onload = function () {
+                modal.style.display = "block"
+            };
+
+            closeBtn.onclick = function () {
+                modal.style.display = "none"
+            }
+            window.onclick = function (e) {
+                if (e.target == modal) {
+                    modal.style.display = "none"
+                }
+            }
+        </script>
+
+    {% endif %}
 
     </body>
     </html>

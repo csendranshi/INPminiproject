@@ -15,22 +15,24 @@ def email_id_status(email_id):
 
 
 def auth(request):
-    username = request.POST.get('username')
-    password = request.POST.get('password')
     register_firstname = request.POST.get('reg_firstname')
     register_lastname = request.POST.get('reg_lastname')
     register_emailId = request.POST.get('reg_emailId')
     register_password = request.POST.get('reg_password')
     register_date = request.POST.get('dateofbirth')
-    status = ""
     if request.method == 'POST':
-        if register_emailId != "" and register_firstname != "" and register_lastname != "" and register_password != "":
+        if register_emailId != "" and register_firstname != "" and register_lastname != "" and register_password != "" and register_date != "":
             status = email_id_status(register_emailId)
             if status == 'EMAIL ID TAKEN':
                 messages.info(request, "Email Id is Already Registered")
             else:
-                print(register_firstname, register_lastname, register_emailId, register_password, register_date)
-
+                with connection.cursor() as cursor:
+                    print(register_firstname, register_lastname, register_emailId, register_password, register_date)
+                    cursor.callproc('insert_personal_details',
+                                    [register_firstname, register_lastname, register_emailId, register_password,
+                                     register_date])
+                    context = {"registration_success": True}
+                    return render(request, 'login.html', context)
 
     return render(request, 'Register.html')
 
