@@ -13,6 +13,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .custom-icon-class-style {
+            margin-right: 5px;
+            margin-bottom: -2px;
+        }
+    </style>
+
 </head>
 <body style="
  background-color: #303841;
@@ -34,16 +42,14 @@
 
 
 <div class="topnav" id="myTopnav">
-    <a href="{% url 'home' %}">Latest</a>
-    <a href="{% url 'india' %}">India</a>
-    <a href="{% url 'education' %}">Education</a>
-    <a href="{% url 'business' %}">Business</a>
-    <a href="{% url 'world' %}">World</a>
-    <a href="{% url 'home' %}">Technology</a>
-    <a href="{% url 'home' %}">Health</a>
-    <a href="{% url 'home' %}">Country</a>
-
-    <a href="{% url 'login' %}">Sign In/Up</a>
+    <a href="{% url 'home' %}"><img class="custom-icon-class-style" src="{% static '/assets/current.png' %}" alt="">Latest</a>
+    <a href="{% url 'india' %}"><img class="custom-icon-class-style" src="{% static '/assets/india.png' %}" alt="">India</a>
+    <a href="{% url 'education' %}"><img class="custom-icon-class-style" src="{% static '/assets/education.png' %}" alt="">Education</a>
+    <a href="{% url 'business' %}"><img class="custom-icon-class-style" src="{% static '/assets/business.png' %}" alt="">Business</a>
+    <a href="{% url 'world' %}"><img class="custom-icon-class-style" src="{% static '/assets/world.png' %}" alt="">World</a>
+    <a href="{% url 'home' %}"><img class="custom-icon-class-style" src="{% static '/assets/connect.png' %}" alt="">Technology</a>
+    <a href="{% url 'home' %}"><img class="custom-icon-class-style" src="{% static '/assets/hospital.png' %}" alt="">Health</a>
+    <a href="{% url 'login' %}"><img class="custom-icon-class-style" src="{% static '/assets/pen.png' %}" alt="">Sign In/Up</a>
 
 
     <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
