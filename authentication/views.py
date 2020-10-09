@@ -20,6 +20,7 @@ def auth(request):
     register_emailId = request.POST.get('reg_emailId')
     register_password = request.POST.get('reg_password')
     register_date = request.POST.get('dateofbirth')
+    auth_details = [register_firstname, register_lastname, register_emailId, register_password, register_date]
     if request.method == 'POST':
         if register_emailId != "" and register_firstname != "" and register_lastname != "" and register_password != "" and register_date != "":
             status = email_id_status(register_emailId)
@@ -27,7 +28,7 @@ def auth(request):
                 messages.info(request, "Email Id is Already Registered")
             else:
                 with connection.cursor() as cursor:
-                    print(register_firstname, register_lastname, register_emailId, register_password, register_date)
+                    print()
                     cursor.callproc('insert_personal_details',
                                     [register_firstname, register_lastname, register_emailId, register_password,
                                      register_date])
