@@ -1,34 +1,49 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate
-# Create your views here.
-from authentication.form import PersonalDetails
-from django.contrib.auth.models import auth
+from django.contrib import messages
+
 from django.db import connection
 
 
 # Create your views here.
 # def my_custom_sql(self):
+def email_id_status(email_id):
+    with connection.cursor() as cursor:
+        cursor.execute("CALL verify_email_id(%s,@level)", [email_id])
+        cursor.execute("SELECT @level")
+        row = cursor.fetchone()[0]
+        return row
 
 
 def auth(request):
     username = request.POST.get('username')
     password = request.POST.get('password')
+    register_firstname = request.POST.get('reg_firstname')
+    register_lastname = request.POST.get('reg_lastname')
+    register_emailId = request.POST.get('reg_emailId')
+    register_password = request.POST.get('reg_password')
+    register_date = request.POST.get('dateofbirth')
+    status = ""
+    if request.method == 'POST':
+        if register_emailId != "" and register_firstname != "" and register_lastname != "" and register_password != "":
+            status = email_id_status(register_emailId)
+            if status == 'EMAIL ID TAKEN':
+                messages.info(request, "Email Id is Already Registered")
+            else:
+                print(register_firstname, register_lastname, register_emailId, register_password, register_date)
 
+
+    return render(request, 'Register.html')
+
+
+def Login(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
     if username != "" and password != "":
-        print(username, password)
         with connection.cursor() as cursor:
             cursor.execute("SELECT email_id,password FROM authentication_personaldetails WHERE email_id = %s",
                            [username])
             row = cursor.fetchone()
-            print(row)
-    # else:
-    Registerform = PersonalDetails()
-    if request.method == 'POST':
 
-        form = PersonalDetails(request.POST)
-        if form.is_valid():
-            form.save()
-        redirect('auth/')
-
-    context = {"form": Registerform}
-    return render(request, 'authentication.html', context)
+            if row == None:
+                print("Invalid Credentials")
+    return render(request, 'Login.html')

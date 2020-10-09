@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from pages.views import   card_view, scroll_view
+from pages.views import card_view, scroll_view
 
 from homepage import views as view_homepage
 from authentication import views as view_auth
@@ -23,6 +23,7 @@ from education import views as view_education
 from business import views as view_business
 from india import views as view_india
 from World import views as view_world
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', view_homepage.home_view, name='home'),
@@ -33,6 +34,7 @@ urlpatterns = [
 
     path('card/', card_view, name='card'),
     path('scroll/', scroll_view, name='scroll'),
-    path('auth/', view_auth.auth, name="auth")
+    path('register/', view_auth.auth, name="register"),
+    path('login/', view_auth.Login, name="login")
 
 ]

@@ -1,0 +1,44 @@
+{% extends 'Navbar.html' %}
+{% load static %}
+{% block content %}
+    <html>
+    <head>
+        <link href="{% static '/css/css_login_form1.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="">
+    </head>
+    <body class="auth-form-body">
+    <h2 class="auth-form-h2">
+        <div>Welcome Back Peeps,</div>
+        <div>Catch our latest Spilled Tea!</div>
+    </h2>
+    <div class="container right-panel-active" id="container">
+        <div class="form-container sign-up-container">
+            <form class="auth-form-form" method="POST">
+                <h1 class="auth-form-h1">Create Account</h1>
+                {% csrf_token %}
+                <input class="auth-form-input" type="text" name="reg_firstname" placeholder="First Name" required>
+                <input class="auth-form-input" type="text" name="reg_lastname" placeholder="Last Name" required>
+                <input class="auth-form-input" type="email" name="reg_emailId" placeholder="Email ID" required>
+                <input class="auth-form-input" type="password" name="reg_password" placeholder="Password" required>
+                <input class="auth-form-input" type="Date" name="dateofbirth" placeholder="Date Of Birth" required>
+
+                <input type="submit" class="auth-form-button" value="Register"/>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1 class="auth-form-h1">Welcome Back!</h1>
+                    <p class="auth-form-p">To catch our latest news please login with your personal info</p>
+                    {% for message in messages %}
+                        <h5>{{ message }}</h5>
+                    {% endfor %}
+                    <a href="{% url 'login' %}" class="auth-form-button ghost" id="signIn">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>
+
+{% endblock %}
