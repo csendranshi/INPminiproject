@@ -18,6 +18,9 @@
                 <input class="auth-form-input" type="password" name="password" placeholder="Password">
                 {#                <a class="auth-form-a" href="#">Forgot your password?</a>#}
                 <button type="submit" class="auth-form-button">Login in</button>
+                      {% for message in messages %}
+                        <h5>{{ message }}</h5>
+                    {% endfor %}
             </form>
         </div>
         <div class="overlay-container">
@@ -25,6 +28,7 @@
                 <div class="overlay-panel overlay-right">
                     <h1 class="auth-form-h1">Hello, Friend!</h1>
                     <p class="auth-form-p">Enter your personal details and start your journey with the journalist</p>
+
                     <a href="{% url 'register' %}" class="auth-form-button ghost" id="signUp">Sign Up</a>
                 </div>
             </div>
