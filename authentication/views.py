@@ -33,7 +33,7 @@ def auth(request):
                                     [register_firstname, register_lastname, register_emailId, hashed_password,
                                      register_date])
                     context = {"registration_success": True}
-                    return render(request, 'login.html', context)
+                    return render(request, 'Login.html', context)
 
     return render(request, 'Register.html')
 
