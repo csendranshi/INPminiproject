@@ -76,14 +76,15 @@ WSGI_APPLICATION = 'INPminiproject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+#
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'theJournalist',
-        'USERNAME': 'root',
-        'PASSWORD': 'Reuben@21',
-        'PORT': 3306
+        'NAME': 'thejournalist',
+        'USER': 'rhea',
+        'PASSWORD': 'rhea',
+        'PORT': '3306',
+        'HOST':'127.0.0.1'
     }
 }
 
