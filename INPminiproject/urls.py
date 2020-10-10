@@ -24,6 +24,7 @@ from business import views as view_business
 from india import views as view_india
 from World import views as view_world
 from technology import views as view_tech
+from health import views as view_health
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', view_homepage.home_view, name='home'),
@@ -32,10 +33,10 @@ urlpatterns = [
     path('business/', view_business.business_view, name='business'),
     path('world/', view_world.world_view, name='world'),
     path('technology/', view_tech.Technology_view, name='technology'),
-
+    path('health/', view_health.health_view, name='health'),
     path('card/', card_view, name='card'),
     path('scroll/', scroll_view, name='scroll'),
     path('register/', view_auth.auth, name="register"),
-    path('login/', view_auth.Login, name="login")
+    path('login/', view_auth.Login, name="login"),
 
 ]
