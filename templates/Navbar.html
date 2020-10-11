@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Journalist</title>
     <link href="{% static '/css/css_login_form.css' %}" rel="stylesheet">
-    <link href="{% static '/css/index_style.css' %}" rel="stylesheet">
+    <link href="{% static '/css/index_style12.css' %}" rel="stylesheet">
     <link href="{% static '/css/newsCard1.css' %}" rel="stylesheet">
     <link href="{% static '/css/top_story1.css' %}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
@@ -39,20 +39,39 @@
         color:  #eeeeee;
         ">The Journalist</h1>
 </div>
-
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeDrawer()">&times;</a>
+        <a style="margin-top:25px " href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="{% url 'logout' %}">Log Out</a>
+    </div>
 
 <div class="topnav" id="myTopnav">
     <a href="{% url 'home' %}"><img class="custom-icon-class-style" src="{% static '/assets/current.png' %}" alt="">Latest</a>
     <a href="{% url 'india' %}"><img class="custom-icon-class-style" src="{% static '/assets/india.png' %}" alt="">India</a>
-    <a href="{% url 'education' %}"><img class="custom-icon-class-style" src="{% static '/assets/education.png' %}" alt="">Education</a>
-    <a href="{% url 'business' %}"><img class="custom-icon-class-style" src="{% static '/assets/business.png' %}" alt="">Business</a>
+    <a href="{% url 'education' %}"><img class="custom-icon-class-style" src="{% static '/assets/education.png' %}"
+                                         alt="">Education</a>
+    <a href="{% url 'business' %}"><img class="custom-icon-class-style" src="{% static '/assets/business.png' %}"
+                                        alt="">Business</a>
     <a href="{% url 'world' %}"><img class="custom-icon-class-style" src="{% static '/assets/world.png' %}" alt="">World</a>
-    <a href="{% url 'technology' %}"><img class="custom-icon-class-style" src="{% static '/assets/connect.png' %}" alt="">Technology</a>
+    <a href="{% url 'technology' %}"><img class="custom-icon-class-style" src="{% static '/assets/connect.png' %}"
+                                          alt="">Technology</a>
     <a href="{% url 'health' %}"><img class="custom-icon-class-style" src="{% static '/assets/hospital.png' %}" alt="">Health</a>
-    <a href="{% url 'login' %}"><img class="custom-icon-class-style" src="{% static '/assets/pen.png' %}" alt="">Sign In/Up</a>
+    {% if user.journal_access %}
+        <a href="javascript:void(0)" onclick="openDrawer()"><img class="custom-icon-class-style"
+                                                               src="{% static '/assets/profile.png' %}"
+                                                               alt="">Profile</a>
+    {% else %}
+        <a href="{% url 'login' %}"><img class="custom-icon-class-style" src="{% static '/assets/pen.png' %}" alt="">Sign
+            In/Up</a>
+    {% endif %}
+
 
 
     <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+
+
 </div>
 
 
@@ -73,4 +92,11 @@
     }
 
 
+    function openDrawer() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeDrawer() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
 </script>

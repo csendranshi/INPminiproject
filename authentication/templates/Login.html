@@ -11,7 +11,7 @@
     <div class="container" id="container">
 
         <div class="form-container sign-in-container">
-            <form class="auth-form-form" method="POST" action="{% url 'login' %}">
+            <form class="auth-form-form" method="POST" action="{% url 'login' %}" >
                 <div style="color: #3a4750; font-size: 25px">Login for updates on our latest news</div>
                 {% csrf_token %}
                 <input class="auth-form-input" type="text" name="username" placeholder="Email ID">

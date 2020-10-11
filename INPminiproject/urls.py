@@ -38,5 +38,6 @@ urlpatterns = [
     path('scroll/', scroll_view, name='scroll'),
     path('register/', view_auth.auth, name="register"),
     path('login/', view_auth.Login, name="login"),
+    path('logout/', view_auth.Logout, name="logout"),
 
 ]
