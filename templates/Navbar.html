@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Journalist</title>
     <link href="{% static '/css/css_login_form.css' %}" rel="stylesheet">
-    <link href="{% static '/css/index_style12.css' %}" rel="stylesheet">
+    <link href="{% static '/css/index_style1.css' %}" rel="stylesheet">
     <link href="{% static '/css/newsCard1.css' %}" rel="stylesheet">
     <link href="{% static '/css/top_story1.css' %}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
@@ -40,7 +40,7 @@
         ">The Journalist</h1>
 </div>
 <div id="mySidenav" class="sidenav">
-    <div style="text-align: center">
+    <div style="text-align: start;">
         <div style="
     background: rgba(255,255,255,0.3);
     width: 200px;
@@ -51,19 +51,25 @@
     padding: 70px 0;
     font-family: 'Inter', sans-serif;
     font-size: 20px;
+    color:#eeeeee;
 ">
-            Reuben
-            <br/>
-            Coutinho
+
+                {{ user.first_name }}
+                <br/>
+                {{ user.last_name }}
+
 
 
         </div>
         <hr>
         <a href="javascript:void(0)" class="closebtn" onclick="closeDrawer()">&times;</a>
-        <a style="margin-top:25px " href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="{% url 'logout' %}">Log Out</a>
+        <a style="margin-top:25px " href="#"><img class="custom-icon-class-style"
+                                                  src="{% static '/assets/account.png' %}" alt="">Profile</a>
+        <a href="#"><img class="custom-icon-class-style" src="{% static '/assets/postnews.png' %}" alt="">Post
+            Article</a>
+        <a href="#"><img class="custom-icon-class-style" src="{% static '/assets/journal.png' %}" alt="">Previous Posts</a>
+        <a href="{% url 'logout' %}"><img class="custom-icon-class-style" src="{% static '/assets/logout.png' %}"
+                                          alt="">Log Out</a>
     </div>
 
 </div>

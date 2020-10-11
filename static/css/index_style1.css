@@ -133,7 +133,7 @@
 }
 
 .sidenav a {
-    padding: 8px 8px 8px 32px;
+    padding: 8px 8px 8px 8px;
     font-family: 'Lato', serif;
     text-decoration: none;
     font-size: 20px;
@@ -154,7 +154,7 @@
 .sidenav .closebtn {
     position: absolute;
     top: 0;
-    left: -70px;
+    left: -30px;
     font-size: 36px;
     margin-left: 50px;
 }

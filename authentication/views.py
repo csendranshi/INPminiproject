@@ -21,6 +21,8 @@ def email_id_status(email_id):
 
 
 def auth(request):
+    if request.session.has_key('logged_in'):
+        redirect('/')
     register_firstname = request.POST.get('reg_firstname')
     register_lastname = request.POST.get('reg_lastname')
     register_emailId = request.POST.get('reg_emailId')
@@ -65,12 +67,17 @@ def Login(request):
                     request.session['logged_in'] = True
                     request.session['journal_access'] = True
                     request.session['admin_access'] = True
+                    request.session['first_name'] = row[1]
+                    request.session['last_name'] = row[2]
                     dict_of_user_details = {
                         'admin_access': request.session['admin_access'],
                         'journal_access': request.session['journal_access'],
-                        'logged_in': request.session['logged_in']
+                        'logged_in': request.session['logged_in'],
+                        'first_name': request.session['first_name'],
+                        'last_name': request.session['last_name']
+
                     }
-                    print(dict_of_user_details, request.session)
+                    print(dict_of_user_details)
                     context = {"registration_success": False, 'user': dict_of_user_details}
                     return redirect('/')
                 else:
@@ -87,7 +94,9 @@ def Logout(request):
     dict_of_user_details = {
         'admin_access': request.session['admin_access'],
         'journal_access': request.session['journal_access'],
-        'logged_in': request.session['logged_in']
+        'logged_in': request.session['logged_in'],
+        'first_name': "",
+        'last_name': ""
     }
     context = {'user': dict_of_user_details}
     return render(request, 'Login.html', context)
