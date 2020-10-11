@@ -82,11 +82,11 @@ WSGI_APPLICATION = 'INPminiproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'news_database',
+        'NAME': 'thejournalist',
         'USER': 'root',
         'PASSWORD': 'Reuben@21',
         'PORT': '3306',
-        'HOST':'127.0.0.1'
+        'HOST': '127.0.0.1'
 
     }
 }
