@@ -39,13 +39,34 @@
         color:  #eeeeee;
         ">The Journalist</h1>
 </div>
-    <div id="mySidenav" class="sidenav">
+<div id="mySidenav" class="sidenav">
+    <div style="text-align: center">
+        <div style="
+    background: rgba(255,255,255,0.3);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 10px auto;
+    text-align: center;
+    padding: 70px 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+">
+            Reuben
+            <br/>
+            Coutinho
+
+
+        </div>
+        <hr>
         <a href="javascript:void(0)" class="closebtn" onclick="closeDrawer()">&times;</a>
         <a style="margin-top:25px " href="#">About</a>
         <a href="#">Services</a>
         <a href="#">Clients</a>
         <a href="{% url 'logout' %}">Log Out</a>
     </div>
+
+</div>
 
 <div class="topnav" id="myTopnav">
     <a href="{% url 'home' %}"><img class="custom-icon-class-style" src="{% static '/assets/current.png' %}" alt="">Latest</a>
@@ -59,9 +80,11 @@
                                           alt="">Technology</a>
     <a href="{% url 'health' %}"><img class="custom-icon-class-style" src="{% static '/assets/hospital.png' %}" alt="">Health</a>
     {% if user.journal_access %}
-        <a href="javascript:void(0)" onclick="openDrawer()"><img
-                                                               src="{% static '/assets/profile.png' %}"
-                                                               alt="">Profile</a>
+        <a style="justify-content:flex-end;" href="javascript:void(0)" onclick="openDrawer()"><img style="margin-right: 5px;
+
+            margin-bottom: -5px;"
+                                                                                                   src="{% static '/assets/profile.png' %}"
+                                                                                                   alt="">Profile</a>
     {% else %}
         <a href="{% url 'login' %}"><img class="custom-icon-class-style" src="{% static '/assets/pen.png' %}" alt="">Sign
             In/Up</a>
