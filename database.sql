@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.21, for macos10.15 (x86_64)
 --
--- Host: 127.0.0.1    Database: theJournalist
+-- Host: 127.0.0.1    Database: news_database
 -- ------------------------------------------------------
 -- Server version	8.0.21
 
@@ -82,7 +82,7 @@ CREATE TABLE `auth_permission` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
   CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +91,7 @@ CREATE TABLE `auth_permission` (
 
 LOCK TABLES `auth_permission` WRITE;
 /*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
-INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can view log entry',1,'view_logentry'),(5,'Can add permission',2,'add_permission'),(6,'Can change permission',2,'change_permission'),(7,'Can delete permission',2,'delete_permission'),(8,'Can view permission',2,'view_permission'),(9,'Can add group',3,'add_group'),(10,'Can change group',3,'change_group'),(11,'Can delete group',3,'delete_group'),(12,'Can view group',3,'view_group'),(13,'Can add user',4,'add_user'),(14,'Can change user',4,'change_user'),(15,'Can delete user',4,'delete_user'),(16,'Can view user',4,'view_user'),(17,'Can add content type',5,'add_contenttype'),(18,'Can change content type',5,'change_contenttype'),(19,'Can delete content type',5,'delete_contenttype'),(20,'Can view content type',5,'view_contenttype'),(21,'Can add session',6,'add_session'),(22,'Can change session',6,'change_session'),(23,'Can delete session',6,'delete_session'),(24,'Can view session',6,'view_session'),(25,'Can add personal details',7,'add_personaldetails'),(26,'Can change personal details',7,'change_personaldetails'),(27,'Can delete personal details',7,'delete_personaldetails'),(28,'Can view personal details',7,'view_personaldetails');
+INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can view log entry',1,'view_logentry'),(5,'Can add permission',2,'add_permission'),(6,'Can change permission',2,'change_permission'),(7,'Can delete permission',2,'delete_permission'),(8,'Can view permission',2,'view_permission'),(9,'Can add group',3,'add_group'),(10,'Can change group',3,'change_group'),(11,'Can delete group',3,'delete_group'),(12,'Can view group',3,'view_group'),(13,'Can add user',4,'add_user'),(14,'Can change user',4,'change_user'),(15,'Can delete user',4,'delete_user'),(16,'Can view user',4,'view_user'),(17,'Can add content type',5,'add_contenttype'),(18,'Can change content type',5,'change_contenttype'),(19,'Can delete content type',5,'delete_contenttype'),(20,'Can view content type',5,'view_contenttype'),(21,'Can add session',6,'add_session'),(22,'Can change session',6,'change_session'),(23,'Can delete session',6,'delete_session'),(24,'Can view session',6,'view_session');
 /*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,34 +185,6 @@ LOCK TABLES `auth_user_user_permissions` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `authentication_personaldetails`
---
-
-DROP TABLE IF EXISTS `authentication_personaldetails`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `authentication_personaldetails` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(100) NOT NULL,
-  `last_name` varchar(100) NOT NULL,
-  `email_id` varchar(200) NOT NULL,
-  `password` varchar(500) NOT NULL,
-  `date_of_birth` date NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `authentication_personaldetails`
---
-
-LOCK TABLES `authentication_personaldetails` WRITE;
-/*!40000 ALTER TABLE `authentication_personaldetails` DISABLE KEYS */;
-INSERT INTO `authentication_personaldetails` VALUES (1,'Reuben','Coutinho','reuben211999@gmail.com','sha256$TlXvbx1Q$f01c606cce5918675091711c16d994898a118e5c8dbd6e90217d8e0f60683ca0','2020-10-21');
-/*!40000 ALTER TABLE `authentication_personaldetails` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `django_admin_log`
 --
 
@@ -259,7 +231,7 @@ CREATE TABLE `django_content_type` (
   `model` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -268,7 +240,7 @@ CREATE TABLE `django_content_type` (
 
 LOCK TABLES `django_content_type` WRITE;
 /*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
-INSERT INTO `django_content_type` VALUES (1,'admin','logentry'),(3,'auth','group'),(2,'auth','permission'),(4,'auth','user'),(7,'authentication','personaldetails'),(5,'contenttypes','contenttype'),(6,'sessions','session');
+INSERT INTO `django_content_type` VALUES (1,'admin','logentry'),(3,'auth','group'),(2,'auth','permission'),(4,'auth','user'),(5,'contenttypes','contenttype'),(6,'sessions','session');
 /*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -285,7 +257,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -294,7 +266,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2020-10-08 17:36:05.660893'),(2,'auth','0001_initial','2020-10-08 17:36:05.724433'),(3,'admin','0001_initial','2020-10-08 17:36:05.861196'),(4,'admin','0002_logentry_remove_auto_add','2020-10-08 17:36:05.905609'),(5,'admin','0003_logentry_add_action_flag_choices','2020-10-08 17:36:05.912230'),(6,'contenttypes','0002_remove_content_type_name','2020-10-08 17:36:05.947833'),(7,'auth','0002_alter_permission_name_max_length','2020-10-08 17:36:05.969442'),(8,'auth','0003_alter_user_email_max_length','2020-10-08 17:36:05.985368'),(9,'auth','0004_alter_user_username_opts','2020-10-08 17:36:05.991756'),(10,'auth','0005_alter_user_last_login_null','2020-10-08 17:36:06.011137'),(11,'auth','0006_require_contenttypes_0002','2020-10-08 17:36:06.012431'),(12,'auth','0007_alter_validators_add_error_messages','2020-10-08 17:36:06.018553'),(13,'auth','0008_alter_user_username_max_length','2020-10-08 17:36:06.041568'),(14,'auth','0009_alter_user_last_name_max_length','2020-10-08 17:36:06.063347'),(15,'auth','0010_alter_group_name_max_length','2020-10-08 17:36:06.075591'),(16,'auth','0011_update_proxy_permissions','2020-10-08 17:36:06.082020'),(17,'auth','0012_alter_user_first_name_max_length','2020-10-08 17:36:06.105467'),(18,'authentication','0001_initial','2020-10-08 17:36:06.121363'),(19,'authentication','0002_auto_20201008_0840','2020-10-08 17:36:06.143271'),(20,'authentication','0003_auto_20201008_0844','2020-10-08 17:36:06.146092'),(21,'authentication','0004_auto_20201008_0852','2020-10-08 17:36:06.161216'),(22,'authentication','0005_auto_20201008_0912','2020-10-08 17:36:06.163694'),(23,'authentication','0006_auto_20201008_0912','2020-10-08 17:36:06.166243'),(24,'authentication','0007_auto_20201008_0917','2020-10-08 17:36:06.178683'),(25,'sessions','0001_initial','2020-10-08 17:36:06.186057'),(26,'authentication','0008_auto_20201009_0419','2020-10-09 04:24:02.585016');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2020-10-11 05:47:25.603271'),(2,'auth','0001_initial','2020-10-11 05:47:25.661342'),(3,'admin','0001_initial','2020-10-11 05:47:25.766608'),(4,'admin','0002_logentry_remove_auto_add','2020-10-11 05:47:25.799281'),(5,'admin','0003_logentry_add_action_flag_choices','2020-10-11 05:47:25.805855'),(6,'contenttypes','0002_remove_content_type_name','2020-10-11 05:47:25.844520'),(7,'auth','0002_alter_permission_name_max_length','2020-10-11 05:47:25.864586'),(8,'auth','0003_alter_user_email_max_length','2020-10-11 05:47:25.879395'),(9,'auth','0004_alter_user_username_opts','2020-10-11 05:47:25.885960'),(10,'auth','0005_alter_user_last_login_null','2020-10-11 05:47:25.905218'),(11,'auth','0006_require_contenttypes_0002','2020-10-11 05:47:25.907055'),(12,'auth','0007_alter_validators_add_error_messages','2020-10-11 05:47:25.913668'),(13,'auth','0008_alter_user_username_max_length','2020-10-11 05:47:25.936121'),(14,'auth','0009_alter_user_last_name_max_length','2020-10-11 05:47:25.958117'),(15,'auth','0010_alter_group_name_max_length','2020-10-11 05:47:25.972216'),(16,'auth','0011_update_proxy_permissions','2020-10-11 05:47:25.979128'),(17,'auth','0012_alter_user_first_name_max_length','2020-10-11 05:47:26.001386'),(18,'authentication','0001_initial','2020-10-11 05:47:26.018104'),(19,'authentication','0002_auto_20201008_0840','2020-10-11 05:47:26.037166'),(20,'authentication','0003_auto_20201008_0844','2020-10-11 05:47:26.040123'),(21,'authentication','0004_auto_20201008_0852','2020-10-11 05:47:26.055145'),(22,'authentication','0005_auto_20201008_0912','2020-10-11 05:47:26.058273'),(23,'authentication','0006_auto_20201008_0912','2020-10-11 05:47:26.060940'),(24,'authentication','0007_auto_20201008_0917','2020-10-11 05:47:26.073631'),(25,'authentication','0008_auto_20201009_0419','2020-10-11 05:47:26.079668'),(26,'authentication','0009_delete_personaldetails','2020-10-11 05:47:26.084091'),(27,'sessions','0001_initial','2020-10-11 05:47:26.091800');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -320,11 +292,42 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
+INSERT INTO `django_session` VALUES ('q2thhkkzuef0er7mrfvdruqkogukvf48','.eJyrVsrJT09PTYnPzFOyKikqTdVRysovLcpLzIlPTE5OLS6GiSam5GbmoYjVAgCj7hZZ:1kRYsO:KjroPBXGKKlmmQoEahSzGvcn3uCMg678G-amCDDO8ek','2020-10-25 10:46:52.690992');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping routines for database 'theJournalist'
+-- Table structure for table `personal_details`
+--
+
+DROP TABLE IF EXISTS `personal_details`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `personal_details` (
+  `idpersonal_details` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(100) DEFAULT NULL,
+  `last_name` varchar(100) DEFAULT NULL,
+  `email_id` varchar(100) DEFAULT NULL,
+  `safe_password` varchar(100) DEFAULT NULL,
+  `date_of_birth` varchar(100) DEFAULT NULL,
+  `admin_priority` tinyint DEFAULT '0',
+  `journalist_priority` tinyint DEFAULT '0',
+  PRIMARY KEY (`idpersonal_details`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `personal_details`
+--
+
+LOCK TABLES `personal_details` WRITE;
+/*!40000 ALTER TABLE `personal_details` DISABLE KEYS */;
+INSERT INTO `personal_details` VALUES (6,'Reuben','Coutinho','reuben211999@gmail.com','12345','2020-10-21',0,0),(7,NULL,NULL,NULL,NULL,NULL,0,0),(8,'Reuben','Coutinho','reuben@gmail.com','12345','2020-10-21',0,0);
+/*!40000 ALTER TABLE `personal_details` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'news_database'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `insert_personal_details` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -356,11 +359,11 @@ BEGIN
     END;
 
     START TRANSACTION;
-INSERT INTO authentication_personaldetails (
+INSERT INTO personal_details (
 first_name,
 last_name,
 email_id,
-password,
+safe_password,
 date_of_birth)
     VALUES (first_name1
     , last_name1
@@ -394,7 +397,7 @@ OUT STATUS1 varchar(100)
 BEGIN
 	DECLARE email varchar(100) DEFAULT '';
 	select email_id INTO email
-    from authentication_personaldetails 
+    from personal_details 
     where email_id=email_id_in;
     
     IF email_id_in = email THEN
@@ -419,4 +422,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-10 14:26:24
+-- Dump completed on 2020-10-11 16:23:44
