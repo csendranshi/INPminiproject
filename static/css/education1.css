@@ -16,7 +16,7 @@
 
 
 .grid-main {
-    background: rgba(255,255,255,0.13);
+    background: rgba(255, 255, 255, 0.13);
     grid-area: main;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
@@ -151,4 +151,3 @@ footer {
     font-family: 'Lato', Sans Serif;
     color: #eeeeee;
 }
-
