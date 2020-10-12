@@ -1,84 +1,157 @@
 :root {
-  --main-radius: 5px;
-  --main-padding: 5px;
+    --main-radius: 5px;
+    --main-padding: 5px;
 }
 
 .grid-container {
-  display: grid;
-  height: 100vh;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 0.2fr 1.5fr 1.2fr 0.8fr;
-  grid-template-areas:
-    "sidebar main main main"
-    "sidebar content1 content2 content3"
-    "sidebar footer footer footer";
-  grid-gap: 0.2rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  font-size: 12px;
-  color: #004d40;
-  text-align: center;
-}
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 1.5fr 1.2fr 0.8fr;
+    grid-template-areas: "sidebar main main main" "sidebar content1 content2 content3" "sidebar footer footer footer";
+    grid-gap: 0.2rem;
 
+    font-size: 12px;
+    color: #004d40;
+    column-gap: 10px;
+    row-gap: 15px;
+}
 
 
 .grid-main {
-  background: #84ffff;
-  grid-area: main;
-  border-radius: var(--main-radius);
-  padding-top: var(--main-padding);
-  height: 300px;
+    background: rgba(255,255,255,0.13);
+    grid-area: main;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+    height: 300px;
 }
 
 #sidebar {
-  background: #18ffff;
-  grid-area: sidebar;
-  border-radius: var(--main-radius);
-  padding-top: var(--main-padding);
+    grid-area: sidebar;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
 }
 
 #content1 {
-  background: #6fffd2;
-  grid-area: content1;
-  border-radius: var(--main-radius);
-  padding-top: var(--main-padding);
+
+    grid-area: content1;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+    height: 100%;
+    max-height: 400px;
 }
 
 #content2 {
-  background: #64ffda;
-  grid-area: content2;
-  border-radius: var(--main-radius);
-  padding-top: var(--main-padding);
+
+    grid-area: content2;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
 }
 
 #content3 {
-  background: #73ffba;
-  grid-area: content3;
-  border-radius: var(--main-radius);
-  padding-top: var(--main-padding);
+    grid-area: content3;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
 }
 
 footer {
-  background: rgba(255,255,255,0.13);
-  grid-area: footer;
-  border-radius: var(--main-radius);
-  padding-top: var(--main-padding);
-  height: 100%;
-  max-height: 100px;
+    background: rgba(255, 255, 255, 0.13);
+    grid-area: footer;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+    height: 100%;
+    max-height: 100px;
 }
 
 
 @media only screen and (max-width: 550px) {
-  .grid-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.4fr 0.4fr 2.2fr 1.2fr 1.2fr 1.2fr 1fr;
-    grid-template-areas:
-      "nav"
-      "sidebar"
-      "main"
-      "content1"
-      "content2"
-      "content3"
-      "footer";
-  }
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.4fr 0.4fr 2.2fr 1.2fr 1.2fr 1.2fr 1fr;
+        grid-template-areas: "nav" "sidebar" "main" "content1" "content2" "content3" "footer";
+    }
 }
+
+.education-table-box-for-scrollable-text-main {
+
+    color: #eeeeee;
+    font-family: 'Cinzel', serif;
+    display: flex;
+    justify-content: center;
+    padding: inherit;
+
+}
+
+.education-table-box-for-scrollable {
+    background: rgba(255, 255, 255, 0.13);
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 620px;
+    width: 440px;
+
+}
+
+.education-box-for-scrollable {
+
+    height: 90%;
+    width: 95%;
+    margin: 10px auto;
+    overflow-y: scroll;
+}
+
+.education-row-for-each-story {
+    height: 93px;
+    display: block;
+    padding: 10px;
+    background: #303841;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin: 10px;
+
+}
+
+.education-box-for-scrollable::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+.education-box-for-scrollable::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.13); /* color of the tracking area */
+}
+
+.education-box-for-scrollable::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.13); /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    border: 3px solid transparent; /* creates padding around scroll thumb */
+}
+
+.education-image-for-row {
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 85px;
+    position: relative;
+    height: 75px;
+    margin: -1px 5px 1px -271px;
+}
+
+.education-image-position-each-row {
+    margin: 10px 2px;
+}
+
+
+.education-news-post-text-for-top-stories {
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    margin: -80px 0px 0px 116px;
+    /*display: inline-block;*/
+    position: relative;
+    font-size: 14px;
+    width: 250px;
+    font-family: 'Lato', Sans Serif;
+    color: #eeeeee;
+}
+
