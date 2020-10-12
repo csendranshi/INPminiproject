@@ -64,16 +64,20 @@ def Login(request):
                 if check_password_hash(row[4], password):
                     messages.info(request, "Valid Credentials")
                     request.session['logged_in'] = True
-                    request.session['journal_access'] = True
-                    request.session['admin_access'] = True
+                    request.session['journal_access'] = boolean_function(row[7])
+                    request.session['admin_access'] = boolean_function(row[6])
+                    request.session['suscriber_priority'] = boolean_function(row[8])
                     request.session['first_name'] = row[1]
                     request.session['last_name'] = row[2]
+                    request.session['email_id'] = row[3]
                     dict_of_user_details = {
                         'admin_access': request.session['admin_access'],
                         'journal_access': request.session['journal_access'],
                         'logged_in': request.session['logged_in'],
                         'first_name': request.session['first_name'],
-                        'last_name': request.session['last_name']
+                        'last_name': request.session['last_name'],
+                        'email_id': request.session['email_id'],
+                        'suscriber_access': request.session['suscriber_priority']
 
                     }
                     print(dict_of_user_details)

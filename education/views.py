@@ -22,7 +22,9 @@ def education_view(request, *args, **kwargs):
             'journal_access': request.session['journal_access'],
             'logged_in': request.session['logged_in'],
             'first_name': request.session['first_name'],
-            'last_name': request.session['last_name']
+            'last_name': request.session['last_name'],
+            'email_id': request.session['email_id'],
+            'suscriber_access': request.session['suscriber_priority']
 
         }
         context_of_top_stories = {'top_stories': top, 'user': dict_of_user_details}

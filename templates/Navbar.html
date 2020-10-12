@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Journalist</title>
-    <link href="{% static '/css/css_login_form.css' %}" rel="stylesheet">
+    <link href="{% static '/css/css_login_form1.css' %}" rel="stylesheet">
     <link rel="icon" href="{% static '/assets/news.png' %}"/>
     <link href="{% static '/css/index_style1.css' %}" rel="stylesheet">
     <link href="{% static '/css/newsCard.css' %}" rel="stylesheet">
@@ -67,9 +67,11 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeDrawer()">&times;</a>
         <a style="margin-top:25px " href="{% url 'profile' %}"><img class="custom-icon-class-style"
                                                   src="{% static '/assets/account.png' %}" alt="">Profile</a>
+         {% if user.journal_access %}
         <a href="#"><img class="custom-icon-class-style" src="{% static '/assets/postnews.png' %}" alt="">Post
             Article</a>
         <a href="#"><img class="custom-icon-class-style" src="{% static '/assets/journal.png' %}" alt="">Previous Posts</a>
+         {% endif %}
         <a href="{% url 'logout' %}"><img class="custom-icon-class-style" src="{% static '/assets/logout.png' %}"
                                           alt="">Log Out</a>
     </div>
@@ -88,7 +90,7 @@
     <a href="{% url 'technology' %}"><img class="custom-icon-class-style" src="{% static '/assets/connect.png' %}"
                                           alt="">Technology</a>
     <a href="{% url 'health' %}"><img class="custom-icon-class-style" src="{% static '/assets/hospital.png' %}" alt="">Health</a>
-    {% if user.journal_access %}
+    {% if user.suscriber_access %}
         <a style="justify-content:flex-end;" href="javascript:void(0)" onclick="openDrawer()"><img style="margin-right: 5px;
 
             margin-bottom: -5px;"

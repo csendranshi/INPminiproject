@@ -21,23 +21,11 @@
 
             .main {
                 width: 90%;
-                height: 800px;
-                background-color: #eee;
+                height: 900px;
+                background-color: rgba(255, 255, 255, 0.13);
                 margin: 50px auto;
                 border-bottom-left-radius: 20px;
                 border-top-right-radius: 20px;
-            }
-
-            .head {
-                width: 100%;
-                font-family: 'Lato', serif;
-                height: 40px;
-                border-radius: 20px 20px 0 0;
-                line-height: 40px;
-                text-align: center;
-                font-size: 20px;
-                font-weight: bold;
-                color: #3a4750;
             }
 
             .form {
@@ -48,8 +36,9 @@
             }
 
             .name {
+                display: block;
                 font-size: 16px;
-                color: #3a4750;
+                color: #eee;
                 margin: 15px 0 0 2%;
                 font-family: 'Lato', serif;
             }
@@ -76,19 +65,19 @@
             }
 
             .profile-auth-form-input {
-                background-color: #eee;
-                border: 1px solid #3a4750;
+                background-color: #3a4750;
+                border: 1px solid #cccccc;
                 border-top-right-radius: 15px;
                 border-bottom-left-radius: 15px;
                 padding: 12px 15px;
                 margin: 10px;
                 width: 90%;
                 font-size: 20px;
-                color: #3a4750;
+                color: #cccccc;
             }
 
             .profile-auth-form-input::placeholder {
-                color: #3a4750;
+                color: #cccccc;
             }
 
             .profile-auth-form-input:focus {
@@ -118,49 +107,173 @@
                 outline: none;
             }
 
+
+            /* The container */
+            .profile-container {
+                display: block;
+                position: relative;
+                padding-left: 35px;
+                margin-bottom: 12px;
+                cursor: pointer;
+                font-size: 22px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            /* Hide the browser's default checkbox */
+            .profile-container input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+            }
+
+            /* Create a custom checkbox */
+            .checkmark {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 25px;
+                width: 25px;
+
+                background-color: #eee;
+                border: 1px solid #3a4750;
+                border-top-right-radius: 15px;
+                border-bottom-left-radius: 15px;
+
+            }
+
+            /* On mouse-over, add a grey background color */
+            .profile-container:hover input ~ .checkmark {
+                background-color: #ccc;
+            }
+
+            /* When the checkbox is checked, add a blue background */
+            .profile-container input:checked ~ .checkmark {
+                background-color: #d72323;
+            }
+
+            /* Create the checkmark/indicator (hidden when not checked) */
+            .checkmark:after {
+                content: "";
+                position: absolute;
+                display: none;
+                background-color: #eee;
+                border: 1px solid #3a4750;
+                border-top-right-radius: 15px;
+                border-bottom-left-radius: 15px;
+
+            }
+
+            /* Show the checkmark when checked */
+            .profile-container input:checked ~ .checkmark:after {
+                display: block;
+            }
+
+            /* Style the checkmark/indicator */
+            .profile-container .checkmark:after {
+                left: 9px;
+                top: 5px;
+                width: 5px;
+                height: 10px;
+
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+                background-color: #eee;
+
+
+            }
+
+
         </style>
     </head>
     <body>
 
     <div class="wrapper">
         <div class="main">
-            <div class="head">
-                <label>
-                    <h1 align="center">PROFILE</h1></label>
-            </div>
+
+
+            <h1 class="auth-form-h1" style="margin: 10px auto;color: #cccccc;font-family: 'Lato', serif;"
+                align="center"> Your Profile</h1>
+
 
             <form class="form" method="POST">
 
-                <input type="text" name="fname" value="First Name: " readonly class="profile-auth-form-input"></label>
+                <input type="text" name="fname" value="First Name:{{ profile_details.first_name }}" readonly
+                       class="profile-auth-form-input"></label>
 
-                <input type="text" name="lname" value="Last Name: " readonly class="profile-auth-form-input"></label>
+                <input type="text" name="lname" value="Last Name:{{ profile_details.last_name }} " readonly
+                       class="profile-auth-form-input"></label>
 
-                <input type="email" name="uid" value="Email Id: " readonly class="profile-auth-form-input"></label>
+                <input type="email" name="uid" value="Email Id:{{ profile_details.email_id }} " readonly
+                       class="profile-auth-form-input"></label>
                 <label class="name">
                     PHONE* :</label>
 
-                <input type="text" name="phone" placeholder="Phone" class="profile-auth-form-input">
+                <input type="text" name="phone" placeholder="Phone" value="{{ profile_details.phone_no }}"
+                       class="profile-auth-form-input">
                 <label class="name">
                     PASSWORD* :</label>
                 <label>
                     <input type="password" name="pass" placeholder="Password" class="profile-auth-form-input">
-                    <input type="password" name="pass" placeholder="Conform Password" class="profile-auth-form-input">
+                    <input type="password" name="pass" placeholder="Confirm Password" class="profile-auth-form-input">
                 </label>
                 <label class="profile-auth-form-input" style="display: block;">
                     <span class="gen">Gender: </span>
-                    <input type="checkbox" name="Male">Male
-                    <input type="checkbox" name="Female">Female
+                    {% if profile_details.gender == 'Male' %}
+                        <label class="profile-container">Male
+                            <input type="checkbox" checked="checked" disabled>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="profile-container">Female
+                            <input type="checkbox" disabled>
+                            <span class="checkmark"></span>
+                        </label>
+                    {% else %}
+                        <label class="profile-container">Male
+                            <input type="checkbox" disabled>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="profile-container">Female
+                            <input type="checkbox" checked="checked" disabled>
+                            <span class="checkmark"></span>
+                        </label>
+
+                    {% endif %}
+
                 </label>
 
                 <label class="profile-auth-form-input" style="display: block;">
 
-                    <span class="gen">Type of User:</span>
-                    <input type="checkbox" name="Journalist">Journalist</input>
-                    <input type="checkbox" name="Subscriber">Subscriber</input>
-                    <input type="checkbox" name="Subscriber">Subscriber</input>
+                    <span class="gen" style="margin-bottom:10px; ">Type of User:</span>
+                 {% if profile_details.journal_access == True and profile_details.suscriber_access == True %}
+                        <label class="profile-container">Journalist
+                            <input type="checkbox" checked="checked" disabled>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="profile-container">Subscriber
+                            <input type="checkbox" checked="checked" disabled>
+                            <span class="checkmark"></span>
+                        </label>
+                    {% elif profile_details.suscriber_access == True %}
+                        <label class="profile-container">Journalist
+                            <input type="checkbox" disabled>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="profile-container">Subscriber
+                            <input type="checkbox" checked="checked" disabled>
+                            <span class="checkmark"></span>
+                        </label>
+
+                    {% endif %}
                 </label>
 
-                    <input class="profile-auth-form-button" type="submit" name="sb" value="UPDATE PROFILE" class="sub">
+                <input class="profile-auth-form-button" type="submit" name="sb" value="UPDATE PROFILE" class="sub">
 
 
             </form>
