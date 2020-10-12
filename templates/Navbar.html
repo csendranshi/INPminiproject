@@ -6,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Journalist</title>
     <link href="{% static '/css/css_login_form.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static '/assets/news.png' %}"/>
     <link href="{% static '/css/index_style1.css' %}" rel="stylesheet">
-    <link href="{% static '/css/newsCard1.css' %}" rel="stylesheet">
+    <link href="{% static '/css/newsCard.css' %}" rel="stylesheet">
     <link href="{% static '/css/top_story1.css' %}" rel="stylesheet">
+    <link href="{% static '/css/business.css' %}" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
 
@@ -54,16 +57,15 @@
     color:#eeeeee;
 ">
 
-                {{ user.first_name }}
-                <br/>
-                {{ user.last_name }}
-
+            {{ user.first_name }}
+            <br/>
+            {{ user.last_name }}
 
 
         </div>
         <hr>
         <a href="javascript:void(0)" class="closebtn" onclick="closeDrawer()">&times;</a>
-        <a style="margin-top:25px " href="#"><img class="custom-icon-class-style"
+        <a style="margin-top:25px " href="{% url 'profile' %}"><img class="custom-icon-class-style"
                                                   src="{% static '/assets/account.png' %}" alt="">Profile</a>
         <a href="#"><img class="custom-icon-class-style" src="{% static '/assets/postnews.png' %}" alt="">Post
             Article</a>
@@ -81,6 +83,7 @@
                                          alt="">Education</a>
     <a href="{% url 'business' %}"><img class="custom-icon-class-style" src="{% static '/assets/business.png' %}"
                                         alt="">Business</a>
+
     <a href="{% url 'world' %}"><img class="custom-icon-class-style" src="{% static '/assets/world.png' %}" alt="">World</a>
     <a href="{% url 'technology' %}"><img class="custom-icon-class-style" src="{% static '/assets/connect.png' %}"
                                           alt="">Technology</a>
@@ -108,7 +111,7 @@
 {% block content %}
 
 {% endblock %}
-
+ <footer>Footer</footer>
 <script src="{% static '/js/script.js' %}"></script>
 <script>
     function myFunction() {

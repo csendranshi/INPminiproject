@@ -1,0 +1,134 @@
+
+.aarr-html {
+    font-family: 'Robota', sans-serif;
+    font-size: 10px;
+    display: inline-block;
+}
+
+.aarr-body {
+    flex-wrap: wrap;
+    background-color: transparent;
+
+
+}
+
+.news-post {
+    width: 300px;
+    height: 400px;
+    padding: 50px 40px 40px;
+    background-color: rgba(255, 255, 255, 0.13);
+    display: inline-grid;
+    align-items: center;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+
+}
+
+.news-post-info {
+    padding-top: 50px;
+}
+
+.news-post-img {
+    min-width: 20rem;
+    height: 20rem;
+    position: absolute;
+
+}
+
+.news-post-img img {
+    width: 68%;
+    height: 60%;
+    object-fit: cover;
+    display: block;
+
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    position: absolute;
+}
+
+.news-post-text {
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    margin: 300px 0px 0px 0px;
+    position: absolute;
+    font-size: 15px;
+    width: 65%;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.news-post-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    position: absolute;
+    /*padding:25px;*/
+    font-size: 15px;
+    margin: 170px 0px 0px 0px;
+    color: #eeeeee;
+    width: 75%;
+    text-decoration: none;
+}
+
+.news-post-date {
+    width: 60px;
+    height: 60px;
+    background: #303841;
+    display: block;
+    border-radius: 50%;
+    transition: all .2s ease-in-out;
+    text-align: center;
+    color: white;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 190px 180px;
+    z-index: 2;
+    position: absolute;
+}
+
+.news-post-date:hover {
+    transform: scale(1.1);
+}
+
+.news-date-size-day {
+    display: block;
+    font-size: 25px;
+    text-decoration: underline;
+}
+
+.news-date-size-month {
+    display: block;
+    font-size: 10px;
+}
+
+.news-date-size-year {
+    display: block;
+    font-size: 10px;
+}
+
+.news-post-cta {
+    display: inline-block;
+    padding: 1.5rem 3rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    position: absolute;
+    color: #fff;
+    background: #303841;
+    border-radius: 25px;
+    margin: 300px 0px 0px 0px;
+    transition: all .2s ease-in-out;
+
+}
+
+.news-post-cta:hover {
+    background-color: rgba(255, 255, 255, 0.13);
+    transform: scale(1.1);
+}
+
+
