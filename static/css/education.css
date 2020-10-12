@@ -9,7 +9,6 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 0.2fr 1.5fr 1.2fr 0.8fr;
   grid-template-areas:
-    "nav nav nav nav"
     "sidebar main main main"
     "sidebar content1 content2 content3"
     "sidebar footer footer footer";
@@ -28,6 +27,7 @@
   grid-area: main;
   border-radius: var(--main-radius);
   padding-top: var(--main-padding);
+  height: 300px;
 }
 
 #sidebar {
@@ -59,10 +59,12 @@
 }
 
 footer {
-  background: #1de9b6;
+  background: rgba(255,255,255,0.13);
   grid-area: footer;
   border-radius: var(--main-radius);
   padding-top: var(--main-padding);
+  height: 100%;
+  max-height: 100px;
 }
 
 
