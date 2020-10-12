@@ -3,161 +3,171 @@
 {% load static %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>form</title>
-    <link href="form.css" rel="stylesheet">
-    <style>
-        *{
-    margin: 0;
-    padding: 0;
-}
-.fl{
-    float: left;
-}
-.warpper{
-    width: 100%;
-    height: 100vh;
-    background-image: url("image/a3.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.main{
-    width: 30%;
-    height: 650px;
-    background-color: #3A4750;
-    margin: 50px 35%;
-    border-radius: 20px 20px 30px 30px;
-}
-.head{
-    width: 100%;
-    background-color: #D72323;
-    height: 40px;
-    border-radius: 20px 20px 0 0;
-}
-.head p{
-    line-height: 40px;
-    text-align: center;
-    font-size: 25px;
-    font-weight: bold;
-    color: #fff;
-}
-.form{
-    width: 100%;
-    height: 500px;
-}
-.name{
-    font-size: 16px;
-    color: #fff;
-    margin: 15px 0 0 5%;
-}
-.name-inp{
-    width: 90%;
-    height: 30px;
-    margin: 5px 0 0 5%;
-    font-size: 16px;
-    padding: 2px;
-    color: rgb(114, 111, 111);
-    border: 1px solid rgb(17, 67, 107);
-    background-color: rgb(231, 232, 250);
-}
-.name-inp:hover{
-    background-color: rgb(0, 23, 41);
-    color: rgb(173, 167, 167);
-    border: 1px solid rgb(139, 139, 139);
-}
-.pass{
-    margin: 5px 0 0 5%;
-    height: 30px;
-    width: 41%;
-    padding: 2px;
-    background-color: rgb(231, 232, 250);
-    border: 1px solid rgb(17, 67, 107);
-}
-.pass:hover{
-    background-color: rgb(0, 23, 41);
-    color: rgb(173, 167, 167);
-    border: 1px solid rgb(139, 139, 139);
-}
-.gender{
-    margin: 15px 0 0 5%;
-    color: #fff;
-    font-size: 16px;
-}
-.gen{
-    font-size: 18px;
-}
-.genm{
-    margin-left: 5%;
-}
-.sub{
-    width: 90%;
-    margin: 15px 0 0 5%;
-    font-size: 16px;
-    height: 40px;
-    background-color: #031c30;
-    border: 1px solid rgb(17, 67, 107);
-    color: #fff;
-}
-.sub:hover{
-    background-color: #E94601;
-    color: #fff;
-}
-    </style>
-</head>
-<body>
-    <div class="warpper fl">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>form</title>
+        <link href="form.css" rel="stylesheet">
+        <style>
+
+            .wrapper {
+                width: 100%;
+                height: 100vh;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            .main {
+                width: 90%;
+                height: 800px;
+                background-color: #eee;
+                margin: 50px auto;
+                border-bottom-left-radius: 20px;
+                border-top-right-radius: 20px;
+            }
+
+            .head {
+                width: 100%;
+                font-family: 'Lato', serif;
+                height: 40px;
+                border-radius: 20px 20px 0 0;
+                line-height: 40px;
+                text-align: center;
+                font-size: 20px;
+                font-weight: bold;
+                color: #3a4750;
+            }
+
+            .form {
+                width: 90%;
+                height: 500px;
+                margin: 10px auto;
+                text-align: inherit;
+            }
+
+            .name {
+                font-size: 16px;
+                color: #3a4750;
+                margin: 15px 0 0 2%;
+                font-family: 'Lato', serif;
+            }
+
+
+            .gen {
+                font-size: 20px;
+                font-family: 'Lato', serif;
+            }
+
+            .sub {
+                width: 90%;
+                margin: 15px 0 0 5%;
+                font-size: 16px;
+                height: 40px;
+                background-color: #031c30;
+                border: 1px solid rgba(255, 255, 255, 0.13);
+                color: #3a4750;
+            }
+
+            .sub:hover {
+                background-color: #E94601;
+                color: #3a4750;
+            }
+
+            .profile-auth-form-input {
+                background-color: #eee;
+                border: 1px solid #3a4750;
+                border-top-right-radius: 15px;
+                border-bottom-left-radius: 15px;
+                padding: 12px 15px;
+                margin: 10px;
+                width: 90%;
+                font-size: 20px;
+                color: #3a4750;
+            }
+
+            .profile-auth-form-input::placeholder {
+                color: #3a4750;
+            }
+
+            .profile-auth-form-input:focus {
+                outline: none;
+            }
+
+            .profile-auth-form-button {
+                border-top-right-radius: 15px;
+                border-bottom-left-radius: 15px;
+                border: 1px solid #eeeeee;
+                background-color: #3a4750;
+                color: #eeeeee;
+                font-size: 12px;
+                font-weight: bold;
+                padding: 12px 45px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                transition: transform 80ms ease-in;
+                margin: 20px;
+            }
+
+            .profile-auth-form-button:active {
+                transform: scale(0.95);
+            }
+
+            .profile-auth-form-button:focus {
+                outline: none;
+            }
+
+        </style>
+    </head>
+    <body>
+
+    <div class="wrapper">
         <div class="main">
             <div class="head">
-<p>
-<h1 align="center">PROFILE</h1></p>
-</div>
-<div class="form fl">
-                <form method="POST">
-                    <p class="name">
-FIRST NAME* :</p>
-<p>
-<input type="text" name="fname" placeholder="First Name" class="name-inp"></p>
-<p class="name">
-LAST NAME* :</p>
-<p>
-<input type="text" name="lname" placeholder="Last Name" class="name-inp"></P>
-                    <p class="name">
-EMAIL* :</p>
-<p>
-<input type="email" name="uid" placeholder="Email" class="name-inp"></p>
-<p class="name">
-PHONE* :</P>
-                    <p>
-<input type="text" name="phone" placeholder="Phone" class="name-inp"></p>
-<p class="name">
-PASSWORD* :</p>
-<p>
-<input type="password" name="pass" placeholder="Password" class="pass">
-                        <input type="password" name="pass" placeholder="Conform Password" class="pass">
-                    </p>
-<p class="gender">
-<span class="gen">Gender</span>
-                        <input type="checkbox" name="ge" class="genm">Male
-                        <input type="checkbox" name="ge" class="genm">Female
-                    </p>
-<p>
-<p class="gender">
-<span class="gen">type of viewer</span>
-                        <input type="checkbox" name="ge" class="genm">informant contributer
-                        <input type="checkbox" name="ge" class="genm">subscriber
-                    </p>
-<p>
-<input type="submit" name="sb" value="UPDATE PROFILE" class="sub"></p>
+                <label>
+                    <h1 align="center">PROFILE</h1></label>
+            </div>
 
-</form>
-</div>
-</div>
-</div>
-</body>
-</html>
+            <form class="form" method="POST">
+
+                <input type="text" name="fname" value="First Name: " readonly class="profile-auth-form-input"></label>
+
+                <input type="text" name="lname" value="Last Name: " readonly class="profile-auth-form-input"></label>
+
+                <input type="email" name="uid" value="Email Id: " readonly class="profile-auth-form-input"></label>
+                <label class="name">
+                    PHONE* :</label>
+
+                <input type="text" name="phone" placeholder="Phone" class="profile-auth-form-input">
+                <label class="name">
+                    PASSWORD* :</label>
+                <label>
+                    <input type="password" name="pass" placeholder="Password" class="profile-auth-form-input">
+                    <input type="password" name="pass" placeholder="Conform Password" class="profile-auth-form-input">
+                </label>
+                <label class="profile-auth-form-input" style="display: block;">
+                    <span class="gen">Gender: </span>
+                    <input type="checkbox" name="Male">Male
+                    <input type="checkbox" name="Female">Female
+                </label>
+
+                <label class="profile-auth-form-input" style="display: block;">
+
+                    <span class="gen">Type of User:</span>
+                    <input type="checkbox" name="Journalist">Journalist</input>
+                    <input type="checkbox" name="Subscriber">Subscriber</input>
+                    <input type="checkbox" name="Subscriber">Subscriber</input>
+                </label>
+
+                    <input class="profile-auth-form-button" type="submit" name="sb" value="UPDATE PROFILE" class="sub">
+
+
+            </form>
+
+        </div>
+    </div>
+    </body>
+    </html>
 
 {% endblock %}
