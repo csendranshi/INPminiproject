@@ -21,8 +21,6 @@ def email_id_status(email_id):
 
 
 def auth(request):
-    if request.session.has_key('logged_in'):
-        redirect('/')
     register_firstname = request.POST.get('reg_firstname')
     register_lastname = request.POST.get('reg_lastname')
     register_emailId = request.POST.get('reg_emailId')
@@ -30,7 +28,8 @@ def auth(request):
     register_date = request.POST.get('dateofbirth')
     if request.method == 'POST':
         if register_emailId != "" and register_firstname != "" and register_lastname != "" and register_password != "" and register_date != "":
-            print(register_firstname, register_lastname, register_emailId, register_password,
+            hashed_password = generate_password_hash(register_password, method="sha256")
+            print(register_firstname, register_lastname, register_emailId, hashed_password,
                   register_date)
             status = email_id_status(register_emailId)
             if status == 'EMAIL ID TAKEN':
@@ -39,7 +38,7 @@ def auth(request):
                 with connection.cursor() as cursor:
                     print()
                     cursor.execute('CALL news_database.insert_personal_details(%s,%s,%s,%s,%s)',
-                                   [register_firstname, register_lastname, register_emailId, register_password,
+                                   [register_firstname, register_lastname, register_emailId, hashed_password,
                                     register_date])
                     context = {"registration_success": True}
                     return render(request, 'Login.html', context)
@@ -62,7 +61,7 @@ def Login(request):
                 context = {"registration_success": False}
                 return render(request, 'Login.html', context)
             else:
-                if password == row[4]:
+                if check_password_hash(row[4], password):
                     messages.info(request, "Valid Credentials")
                     request.session['logged_in'] = True
                     request.session['journal_access'] = True

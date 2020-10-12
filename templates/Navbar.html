@@ -10,6 +10,8 @@
     <link href="{% static '/css/index_style1.css' %}" rel="stylesheet">
     <link href="{% static '/css/newsCard1.css' %}" rel="stylesheet">
     <link href="{% static '/css/top_story1.css' %}" rel="stylesheet">
+    <link href="{% static '/css/education.css' %}" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
 
@@ -55,10 +57,9 @@
     color:#eeeeee;
 ">
 
-                {{ user.first_name }}
-                <br/>
-                {{ user.last_name }}
-
+            {{ user.first_name }}
+            <br/>
+            {{ user.last_name }}
 
 
         </div>
@@ -109,7 +110,7 @@
 {% block content %}
 
 {% endblock %}
-
+ <footer>Footer</footer>
 <script src="{% static '/js/script.js' %}"></script>
 <script>
     function myFunction() {
