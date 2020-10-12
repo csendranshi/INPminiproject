@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'World',
     'homepage',
     'technology',
-    'health'
+    'health',
+    'profile_details'
 ]
 
 MIDDLEWARE = [

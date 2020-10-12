@@ -65,7 +65,7 @@
         </div>
         <hr>
         <a href="javascript:void(0)" class="closebtn" onclick="closeDrawer()">&times;</a>
-        <a style="margin-top:25px " href="#"><img class="custom-icon-class-style"
+        <a style="margin-top:25px " href="{% url 'profile' %}"><img class="custom-icon-class-style"
                                                   src="{% static '/assets/account.png' %}" alt="">Profile</a>
         <a href="#"><img class="custom-icon-class-style" src="{% static '/assets/postnews.png' %}" alt="">Post
             Article</a>
@@ -83,6 +83,8 @@
                                          alt="">Education</a>
     <a href="{% url 'business' %}"><img class="custom-icon-class-style" src="{% static '/assets/business.png' %}"
                                         alt="">Business</a>
+    <a href="{% url 'profile' %}"><img class="custom-icon-class-style" src="{% static '/assets/account.png' %}"
+                                        alt="">Profile</a>
     <a href="{% url 'world' %}"><img class="custom-icon-class-style" src="{% static '/assets/world.png' %}" alt="">World</a>
     <a href="{% url 'technology' %}"><img class="custom-icon-class-style" src="{% static '/assets/connect.png' %}"
                                           alt="">Technology</a>

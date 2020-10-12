@@ -25,6 +25,7 @@ from india import views as view_india
 from World import views as view_world
 from technology import views as view_tech
 from health import views as view_health
+from profile_details import views as view_profile
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', view_homepage.home_view, name='home'),
@@ -39,5 +40,6 @@ urlpatterns = [
     path('register/', view_auth.auth, name="register"),
     path('login/', view_auth.Login, name="login"),
     path('logout/', view_auth.Logout, name="logout"),
+    path('profile/', view_profile.profile_view, name='profile'),
 
 ]
