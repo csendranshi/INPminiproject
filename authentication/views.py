@@ -26,22 +26,27 @@ def auth(request):
     register_emailId = request.POST.get('reg_emailId')
     register_password = request.POST.get('reg_password')
     register_date = request.POST.get('dateofbirth')
+    register_phone_no = request.POST.get('reg_phone_number')
+    register_gender = request.POST.get('Gender')
     if request.method == 'POST':
+        if register_gender == None:
+            messages.info(request, "Please Select A Gender")
         if register_emailId != "" and register_firstname != "" and register_lastname != "" and register_password != "" and register_date != "":
             hashed_password = generate_password_hash(register_password, method="sha256")
             print(register_firstname, register_lastname, register_emailId, hashed_password,
                   register_date)
+            print(register_phone_no, register_gender)
             status = email_id_status(register_emailId)
             if status == 'EMAIL ID TAKEN':
                 messages.info(request, "Email Id is Already Registered")
             else:
                 with connection.cursor() as cursor:
                     print()
-                    cursor.execute('CALL news_database.insert_personal_details(%s,%s,%s,%s,%s)',
-                                   [register_firstname, register_lastname, register_emailId, hashed_password,
-                                    register_date])
-                    context = {"registration_success": True}
-                    return render(request, 'Login.html', context)
+                    # cursor.execute('CALL news_database.insert_personal_details(%s,%s,%s,%s,%s)',
+                    #                [register_firstname, register_lastname, register_emailId, hashed_password,
+                    #                 register_date])
+                    # context = {"registration_success": True}
+                    # return render(request, 'Login.html', context)
 
     return render(request, 'Register.html')
 
