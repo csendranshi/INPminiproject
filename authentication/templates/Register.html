@@ -29,7 +29,7 @@
                 <input class="auth-form-input" type="password" name="reg_password" placeholder="Password" required>
                 <input class="auth-form-input" type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
                        name="dateofbirth" placeholder="Date Of Birth" required>
-                <input class="auth-form-input" type="number" name="reg_phone_number" placeholder="Phone Number"
+                <input class="auth-form-input" type="number" name="reg_phone_number" pattern="/(91|0091|022)\d{10}/" placeholder="Phone Number"
                        required>
 
                 <select class="auth-form-input" id="Gender" name="Gender" required>

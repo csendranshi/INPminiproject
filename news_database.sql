@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 11, 2020 at 02:26 PM
+-- Generation Time: Oct 13, 2020 at 08:47 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -25,7 +25,7 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_personal_details` (IN `first_name` VARCHAR(200), IN `last_name` VARCHAR(200), IN `email_id` VARCHAR(200), IN `safe_password` VARCHAR(200), IN `dateofbirth` DATE)  MODIFIES SQL DATA
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_personal_details` (IN `first_name` VARCHAR(200), IN `last_name` VARCHAR(200), IN `email_id` VARCHAR(200), IN `safe_password` VARCHAR(200), IN `dateofbirth` DATE, IN `gender` VARCHAR(100), IN `phone_no` BIGINT)  MODIFIES SQL DATA
 BEGIN
     DECLARE errno INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -40,12 +40,16 @@ first_name,
 last_name,
 email_id,
 safe_password,
-date_of_birth)
+date_of_birth,
+gender,
+phone_no)
     VALUES (first_name
     , last_name
     , email_id
     , safe_password
-    , dateofbirth);
+    , dateofbirth,
+      gender,
+      phone_no);
     
     
       COMMIT WORK;
@@ -278,6 +282,30 @@ CREATE TABLE `django_session` (
   `expire_date` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `django_session`
+--
+
+INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('0s3pd7uuv2hm6ouc174hy6xrnge8vp2y', '.eJxdzEEKAjEMQNG7ZD0I466zEryBFyiZNlMjbSNJu5DBu1tdKLh9fP4OWVKi6LnCsmE2muAmXStmjyGQ2ZcxFq7_uLFa8xULwQIX6itVmCDjD8_SG9erDLZuQXkl9XdlUW4PWJr2saGCnD3H0etncpxn59wpvf0QpMDzBWllPFI:1kSDvm:i7p-mPfw0bn8-xcEy-5ZKzXBPwcSjkxAJnDbtMUlnLE', '2020-10-27 06:37:06.673955');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `education_stories`
+--
+
+CREATE TABLE `education_stories` (
+  `id` int(11) NOT NULL,
+  `title` int(11) NOT NULL,
+  `image_link` varchar(500) DEFAULT NULL,
+  `image_blob` mediumblob DEFAULT NULL,
+  `datetime` datetime NOT NULL DEFAULT current_timestamp(),
+  `content` mediumtext NOT NULL,
+  `user_email_id` int(11) NOT NULL,
+  `category` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- --------------------------------------------------------
 
 --
@@ -292,15 +320,18 @@ CREATE TABLE `personal_details` (
   `safe_password` varchar(100) DEFAULT NULL,
   `date_of_birth` varchar(100) DEFAULT NULL,
   `admin_priority` tinyint(4) DEFAULT 0,
-  `journalist_priority` tinyint(4) DEFAULT 0
+  `journalist_priority` tinyint(4) DEFAULT 0,
+  `suscriber_priority` tinyint(1) NOT NULL DEFAULT 1,
+  `gender` varchar(100) NOT NULL,
+  `phone_no` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `personal_details`
 --
 
-INSERT INTO `personal_details` (`idpersonal_details`, `first_name`, `last_name`, `email_id`, `safe_password`, `date_of_birth`, `admin_priority`, `journalist_priority`) VALUES
-(1, 'Reuben', 'Coutinho', 'reuben211999@gmail.com', '12345', '2020-10-21', 0, 0);
+INSERT INTO `personal_details` (`idpersonal_details`, `first_name`, `last_name`, `email_id`, `safe_password`, `date_of_birth`, `admin_priority`, `journalist_priority`, `suscriber_priority`, `gender`, `phone_no`) VALUES
+(3, 'Reuben', 'Coutinho', 'reuben211999@gmail.com', 'sha256$269Weu3G$1dcd536a61e4451d25135549689879c39353b55f6568e5ed3e5ba9881ea8d351', '2020-10-21', 0, 1, 1, 'Male', 7021597154);
 
 --
 -- Indexes for dumped tables
@@ -380,6 +411,12 @@ ALTER TABLE `django_session`
   ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
 
 --
+-- Indexes for table `education_stories`
+--
+ALTER TABLE `education_stories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `personal_details`
 --
 ALTER TABLE `personal_details`
@@ -444,10 +481,16 @@ ALTER TABLE `django_migrations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
+-- AUTO_INCREMENT for table `education_stories`
+--
+ALTER TABLE `education_stories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `personal_details`
 --
 ALTER TABLE `personal_details`
-  MODIFY `idpersonal_details` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idpersonal_details` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
