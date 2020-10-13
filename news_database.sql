@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2020 at 08:47 AM
+-- Generation Time: Oct 13, 2020 at 06:20 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -287,7 +287,7 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('0s3pd7uuv2hm6ouc174hy6xrnge8vp2y', '.eJxdzEEKAjEMQNG7ZD0I466zEryBFyiZNlMjbSNJu5DBu1tdKLh9fP4OWVKi6LnCsmE2muAmXStmjyGQ2ZcxFq7_uLFa8xULwQIX6itVmCDjD8_SG9erDLZuQXkl9XdlUW4PWJr2saGCnD3H0etncpxn59wpvf0QpMDzBWllPFI:1kSDvm:i7p-mPfw0bn8-xcEy-5ZKzXBPwcSjkxAJnDbtMUlnLE', '2020-10-27 06:37:06.673955');
+('0s3pd7uuv2hm6ouc174hy6xrnge8vp2y', '.eJxdzEEKAjEMQNG7ZD0I466zEryBFyiZNlMjbSNJu5DBu1tdKLh9fP4OWVKi6LnCsmE2muAmXStmjyGQ2ZcxFq7_uLFa8xULwQIX6itVmCDjD8_SG9erDLZuQXkl9XdlUW4PWJr2saGCnD3H0etncpxn59wpvf0QpMDzBWllPFI:1kSMRI:H7zK48CWRdYx9sNz4r5-Qa3GNATxRQVHd5YZkMrzX-s', '2020-10-27 15:42:12.297916');
 
 -- --------------------------------------------------------
 
@@ -490,7 +490,7 @@ ALTER TABLE `education_stories`
 -- AUTO_INCREMENT for table `personal_details`
 --
 ALTER TABLE `personal_details`
-  MODIFY `idpersonal_details` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idpersonal_details` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
