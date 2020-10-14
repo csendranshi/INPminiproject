@@ -112,30 +112,34 @@
 }
 
 
-@media  screen and (max-width: 550px) {
+@media (max-width: 650px) {
   .tech-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.4fr 2.2fr 1.2fr 1.2fr 1.2fr 1.2fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
-      "health"
-      "tech-main"
-      "tech-content"
-      "tech-content1"
-      "tech-content2"
-      "tech-content3"
-      "healthnews";
-  }
-}
-@media  screen and (max-width: 900px) and (min-width:550px) {
-  .tech-container {
-    display:grid;
-    grid-template-areas:
-      "health health"
-      "tech-main tech-main"
+      "tech-main1 tech-main1"
       "tech-content1 tech-content2"
       "tech-content3 tech-content4"
       "tech-content5 tech-content6"
+      "tech-content7 tech-content8"
+      "healthnews healthnews"
+  }
+  #tech-main2{
+    display: none;
+  }
+}
+@media (max-width: 1000px) and (min-width:650px) {
+  .tech-container {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "tech-main1 tech-main2"
+      "tech-content1 tech-content2"
       "tech-content3 tech-content4"
+      "tech-content5 tech-content6"
+      "tech-content7 tech-content8"
       "healthnews healthnews"
   }
 }
