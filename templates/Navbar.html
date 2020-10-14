@@ -9,11 +9,13 @@
     <link rel="icon" href="{% static '/assets/news.png' %}"/>
     <link href="{% static '/css/index_style1.css' %}" rel="stylesheet">
     <link href="{% static '/css/newsCard.css' %}" rel="stylesheet">
-    <link href="{% static '/css/top_story1.css' %}" rel="stylesheet">
+    <link href="{% static '/css/top_story.css' %}" rel="stylesheet">
     <link href="{% static '/css/business.css' %}" rel="stylesheet">
     <link href="{% static '/css/education.css' %}" rel="stylesheet">
     <link href="{% static '/css/health.css' %}" rel="stylesheet">
     <link href="{% static '/css/technology.css' %}" rel="stylesheet">
+     <link href="{% static '/css/posts.css' %}" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
 
@@ -70,7 +72,7 @@
         <a style="margin-top:25px " href="{% url 'profile' %}"><img class="custom-icon-class-style"
                                                   src="{% static '/assets/account.png' %}" alt="">Profile</a>
          {% if user.journal_access %}
-        <a href="#"><img class="custom-icon-class-style" src="{% static '/assets/postnews.png' %}" alt="">Post
+        <a href="{% url 'posts' %}"><img class="custom-icon-class-style" src="{% static '/assets/postnews.png' %}" alt="">Post
             Article</a>
         <a href="#"><img class="custom-icon-class-style" src="{% static '/assets/journal.png' %}" alt="">Previous Posts</a>
          {% endif %}

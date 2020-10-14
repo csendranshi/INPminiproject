@@ -1,127 +1,163 @@
 {% extends 'Navbar.html' %}
 
 {% load static %}
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Index Page</title>
-<head>
-    <link href="{% static '/css/index_style1.css' %}" rel="stylesheet">
+    <head>
+        <link href="{% static '/css/index_style1.css' %}" rel="stylesheet">
     </head>
 </head>
 <body>
 {% block content %}
 
+{# Grid layout start from here #}
+<div class="homepage-grid-container">
+    {# grid main #}
+    <main class="homepage-grid-main1" id="grid">
+
+                <div class="home-page-cont">
+
+                    <img src="https://images.thequint.com/thequint%2F2018-08%2F9b7cf7c8-4db9-4ce1-bdd4-72376228838d%2Fec6c9f38_89ae_4111_a2e3_22abe6df8bd9.jpg?rect=0%2C0%2C640%2C360&auto=format%2Ccompress&fmt=webp&format=webp&w=480&dpr=1.0"
+                         alt="Nature" style="width:100%;">
+                    <div class="home-page-text-block">
+
+                        <p>Self-Care in a Pandemic: How Do You Be Kind to Yourself?</p>
+                    </div>
+                </div>
 
 
-{#    Grid layout start from here #}
-    <div class="grid-container">
-{#    grid main #}
-     <main class="grid-main" id="grid">
+
+    </main>
+    <main class="homepage-grid-main2">
+        <div class="card1">
+            <div class="con">
+
+                <p>Bobcat Fire: Fire Burns Through More Than 106K Acres; Flames Again Threaten Mt. Wilson - LAist
+                    Bobcat
+                    Fire: Fire Burns Through More Than 106K Acres; Flames</p>
+            </div>
 
 
-     </main>
-{#    The Below is The Top Stories Scrollabel#}
+        </div>
+
+        <div class="card1">
+            <div class="con">
+
+                <p>Bobcat Fire: Fire Burns Through More Than 106K Acres; Flames Again Threaten Mt. Wilson - LAist
+                    Bobcat
+                    Fire: Fire Burns Through More Than 106K Acres; Flames</p>
+            </div>
+        </div>
+
+    </main>
+    {# The Below is The Top Stories Scrollabel#}
     <div id="scroll">
         <div class="table-box-for-scrollable">
-        <label class="table-box-for-scrollable-text-main">Top Stories</label>
-        <div class="box-for-scrollable">
+            <label class="table-box-for-scrollable-text-main">Top Stories</label>
+            <div class="box-for-scrollable">
 
-            <table>
-                <tr>
-                    {% for top_story in top_stories %}
-                    <div id="myBtn" class="row-for-each-story">
+                <table>
+                    <tr>
+                        {% for top_story in top_stories %}
+                        <div id="myBtn" class="row-for-each-story">
                         <span class="image-position-each-row"><img class="image-for-row"
                                                                    src="{{ top_story.image }}" alt=""></span>
-                        <span class="news-post-text-for-top-stories">{{top_story.title}}</span>
+                            <span class="news-post-text-for-top-stories">{{top_story.title}}</span>
+                        </div>
+
+
+                        {% endfor %}
+                    </tr>
+                </table>
+                <div id="bottom"></div>
+            </div>
+        </div>
+    </div>
+
+    {# The Above is The Top Stories Scrollabel#}
+
+    {# content 1 #}
+    <div id="content1">
+        <div class="aarr-html">
+            <div class="aarr-body">
+                <div class="news-post">
+                    <div class="news-post-img">
+
+                        <img src="{% static 'css/Jake.jpg' %}" alt=""/>
+                        <div class="news-post-info">
+                            <a href="#about" class="news-post-title">Bobcat Fire: Fire Burns Through More Than 106K
+                                Acres; Flames
+                                Again Threaten Mt. Wilson - LAist
+                                Bobcat Fire: Fire Burns Through More Than 106K Acres; Flames
+                                Again Threaten Mt. Wilson - LAistBobcat Fire: Fire Burns Through More Than 106K Acres;
+                                Flames
+                                Again Threaten Mt. Wilson - LAist
+                            </a>
+
+                        </div>
                     </div>
 
-
-                    {% endfor %}
-                </tr>
-            </table>
-            <div id="bottom"></div>
-        </div>
-    </div>
-    </div>
-
- {#    The Above is The Top Stories Scrollabel#}
-
-{# content 1   #}
-<div id="content1">
-     <div class="aarr-html">
-    <div class="aarr-body">
-    <div class="news-post">
-        <div class="news-post-img">
-
-            <img src="{% static 'css/Jake.jpg' %}" alt=""/>
-            <div class="news-post-info">
-                <a href="#about" class="news-post-title">Bobcat Fire: Fire Burns Through More Than 106K Acres; Flames
-                    Again Threaten Mt. Wilson - LAist
-                Bobcat Fire: Fire Burns Through More Than 106K Acres; Flames
-                    Again Threaten Mt. Wilson - LAistBobcat Fire: Fire Burns Through More Than 106K Acres; Flames
-                    Again Threaten Mt. Wilson - LAist
-                </a>
+                </div>
 
             </div>
         </div>
+        <div class="aarr-html">
+            <div class="aarr-body">
+                <div class="news-post">
+                    <div class="news-post-img">
 
-    </div>
+                        <img src="{% static 'css/Jake.jpg' %}" alt=""/>
+                        <div class="news-post-info">
+                            <a href="#about" class="news-post-title">Bobcat Fire: Fire Burns Through More Than 106K
+                                Acres; Flames
+                                Again Threaten Mt. Wilson - LAist
+                                Bobcat Fire: Fire Burns Through More Than 106K Acres; Flames
+                                Again Threaten Mt. Wilson - LAistBobcat Fire: Fire Burns Through More Than 106K Acres;
+                                Flames
+                                Again Threaten Mt. Wilson - LAist
+                            </a>
 
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
-        {#    content one end #}
+    {# content one end #}
     <div id="content2">
-     <div class="aarr-html">
-    <div class="aarr-body">
-    <div class="news-post">
-        <div class="news-post-img">
+        <div class="aarr-html">
+            <div class="aarr-body">
+                <div class="news-post">
+                    <div class="news-post-img">
 
-            <img src="{% static 'css/Jake.jpg' %}" alt=""/>
-            <div class="news-post-info">
-                <a href="#about" class="news-post-title">Bobcat Fire: Fire Burns Through More Than 106K Acres; Flames
-                    Again Threaten Mt. Wilson - LAist
-                Bobcat Fire: Fire Burns Through More Than 106K Acres; Flames
-                    Again Threaten Mt. Wilson - LAistBobcat Fire: Fire Burns Through More Than 106K Acres; Flames
-                    Again Threaten Mt. Wilson - LAist
-                </a>
+                        <img src="{% static 'css/Jake.jpg' %}" alt=""/>
+                        <div class="news-post-info">
+                            <a href="#about" class="news-post-title">Bobcat Fire: Fire Burns Through More Than 106K
+                                Acres; Flames
+                                Again Threaten Mt. Wilson - LAist
+                                Bobcat Fire: Fire Burns Through More Than 106K Acres; Flames
+                                Again Threaten Mt. Wilson - LAistBobcat Fire: Fire Burns Through More Than 106K Acres;
+                                Flames
+                                Again Threaten Mt. Wilson - LAist
+                            </a>
 
-            </div>
-        </div>
+                        </div>
+                    </div>
 
-    </div>
-
-    </div>
-    </div>
-    </div>
-{#    content 2 end #}
-    <div id="content3">
-     <div class="aarr-html">
-    <div class="aarr-body">
-    <div class="news-post">
-        <div class="news-post-img">
-
-            <img src="{% static 'css/Jake.jpg' %}" alt=""/>
-            <div class="news-post-info">
-                <a href="#about" class="news-post-title">Bobcat Fire: Fire Burns Through More Than 106K Acres; Flames
-                    Again Threaten Mt. Wilson - LAist
-                Bobcat Fire: Fire Burns Through More Than 106K Acres; Flames
-                    Again Threaten Mt. Wilson - LAistBobcat Fire: Fire Burns Through More Than 106K Acres; Flames
-                    Again Threaten Mt. Wilson - LAist
-                </a>
+                </div>
 
             </div>
         </div>
 
     </div>
-
-    </div>
-    </div>
-    </div>
-{#    content 3 end#}
-    </div>
+    {# content 2 end #}
+    {# content 3 end#}
+</div>
 
 
 {% endblock %}

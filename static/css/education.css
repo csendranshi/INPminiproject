@@ -144,7 +144,7 @@
 
 .text-block {
     position: absolute;
-    bottom: 3px;
+    bottom: 0px;
     font-size: 15px;
     background-color: black;
     opacity: 0.75;

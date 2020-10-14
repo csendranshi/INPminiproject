@@ -2,135 +2,97 @@
 {% load static %}
 {% block content %}
 
-    <body class="auth-form-body">
+<body class="auth-form-body">
 
-    <h2 class="auth-form-h2">
+<h2 class="auth-form-h2">
 
-        <div>Catch our latest Spilled Tea!</div>
-    </h2>
-    <div class="container" id="container">
+    <div>Catch our latest Spilled Tea!</div>
+</h2>
+<div class="container" id="container">
 
 
-        <div class="form-container sign-in-container">
-        <div style="color: #3a4750; font-size: 25px; margin: auto">Post an Article</div>
-            <form class="auth-form-form" method="POST" action="{% url 'posts' %}">
+    <div class="form-container sign-in-container">
+
+        <form class="post-auth-form-form" method="POST" action="{% url 'posts' %}">
             <div style="display:inline-block">
-
+                <div style="color: #3a4750; font-size: 25px; margin: auto">Post an Article</div>
                 {% csrf_token %}
-            <div class="icon-auth-form-input">
 
-                    <input class="icon-auth-form-input-for-input" type="text" name="imageLink" placeholder="Image Link">
-                    <i class="icon-auth-form-input-icon-icon">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABHUlEQVRIS92V4U3DQAyFv0wAGwAbwATABrABnaAwCXQCukHZAJgARoAN2glAH7KlU0jKNVGEVP9JlLPfs599TsPE1kyMz34RXACPwPFI2T6AGfAiTimRB0cjwTNcrJM2wVecngHvA4lOgbeI/Um+rCAJ1lHi044kVyHx4V8EifsA3FWS6Dtv+fZWIOh9ONuoa8CqusxsV4ADopWxvQQeqKXgBwF+2dEXfZ4BSTZBYu9S6q0EZmOgfTiP7G6BRfGeVb4C6p9VVhOUvUh9l/HxJp4SSlzazgQGm6HgSqYpiSRdkzaIQFA1LyvouyuDCSontr7JtYBtv/+rwDHLJg7NPuM+cyuXu8jbaBPHblTBnbBf63ps1p3x+/XLnESib34QPRnKZk0rAAAAAElFTkSuQmCC"/>
-                    </i>
-                    <div class="icon-bg-auth-form-bg"></div>
-                </div>
-                <div class="icon-auth-form-input">
 
-                    <input class="icon-auth-form-input-for-input" type="text" name="postTitle" placeholder="Title">
-                    <i class="icon-auth-form-input-icon-icon">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABHUlEQVRIS92V4U3DQAyFv0wAGwAbwATABrABnaAwCXQCukHZAJgARoAN2glAH7KlU0jKNVGEVP9JlLPfs599TsPE1kyMz34RXACPwPFI2T6AGfAiTimRB0cjwTNcrJM2wVecngHvA4lOgbeI/Um+rCAJ1lHi044kVyHx4V8EifsA3FWS6Dtv+fZWIOh9ONuoa8CqusxsV4ADopWxvQQeqKXgBwF+2dEXfZ4BSTZBYu9S6q0EZmOgfTiP7G6BRfGeVb4C6p9VVhOUvUh9l/HxJp4SSlzazgQGm6HgSqYpiSRdkzaIQFA1LyvouyuDCSontr7JtYBtv/+rwDHLJg7NPuM+cyuXu8jbaBPHblTBnbBf63ps1p3x+/XLnESib34QPRnKZk0rAAAAAElFTkSuQmCC"/>
-                    </i>
-                    <div class="icon-bg-auth-form-bg"></div>
-                </div>
-                <div class="icon-auth-form-input">
-                    <label for="icon-auth-form-input-for-input">Category</label>
-{#                     <div class="icon-auth-form-input-for-input" style="visibility: hidden; width: inherit">..................</div>#}
-                    <select class="icon-auth-form-input-for-input" name="category">
-                        <option value="india">India</option>
-                        <option value="world">World</option>
-                        <option value="technology">Technology</option>
-                        <option value="health">Health</option>
-                        <option value="education">Education</option>
-                        <option value="business">Business</option>
-                    </select>
+                <input class="auth-form-input" type="text" name="imageLink" placeholder="Image Link">
 
-                    <i class="icon-auth-form-input-icon-icon">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA10lEQVRIS+2UwQ3CMAxFX0dgAzYBNmAD2AAxAbABbAATABuwCSvABKCPHGFFKWkO4VA1lyaS87/97LSh8moq6zMYZAn3E9EcWAFT4AHcgIN9s0jigBjREVi0qOyAbamDN1DmZxNYAxfbL4GN7WellXgDoZgAEt9HmSpzmVwBJdJ5eYOX3RoZey8yBu6dVfk+4L8aBESpZqYQhYpDkvH5U3BbkyV4MiSaqjA9vsnFBtILmaZwp5rv47IVhGA9MBlpop42lpoqISxe/fwXFWP4dWFAlMVZHdEbVnknGYpA66kAAAAASUVORK5CYII="/>
-                    </i>
-                    <div class="icon-bg-auth-form-bg"></div>
-                </div>
-            <div class="icon-auth-form-input">
-                    <label for="icon-auth-form-input-for-input">Section</label>
-{#                     <div class="icon-auth-form-input-for-input" style="visibility: hidden; width: inherit">..................</div>#}
-                    <select class="icon-auth-form-input-for-input" name="section">
-                        <option value="india">India</option>
-                        <option value="world">World</option>
-                        <option value="technology">Technology</option>
-                        <option value="health">Health</option>
-                        <option value="education">Education</option>
-                        <option value="business">Business</option>
-                    </select>
 
-                    <i class="icon-auth-form-input-icon-icon">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA10lEQVRIS+2UwQ3CMAxFX0dgAzYBNmAD2AAxAbABbAATABuwCSvABKCPHGFFKWkO4VA1lyaS87/97LSh8moq6zMYZAn3E9EcWAFT4AHcgIN9s0jigBjREVi0qOyAbamDN1DmZxNYAxfbL4GN7WellXgDoZgAEt9HmSpzmVwBJdJ5eYOX3RoZey8yBu6dVfk+4L8aBESpZqYQhYpDkvH5U3BbkyV4MiSaqjA9vsnFBtILmaZwp5rv47IVhGA9MBlpop42lpoqISxe/fwXFWP4dWFAlMVZHdEbVnknGYpA66kAAAAASUVORK5CYII="/>
-                    </i>
-                    <div class="icon-bg-auth-form-bg"></div>
-                </div>
+                <input class="auth-form-input" type="text" name="postTitle" placeholder="Title">
+
+                <select class="auth-form-input" name="category">
+                    <option value="Latest">Latest</option>
+                    <option value="india">India</option>
+                    <option value="world">World</option>
+                    <option value="technology">Technology</option>
+                    <option value="health">Health</option>
+                    <option value="education">Education</option>
+                    <option value="business">Business</option>
+                </select>
+
+
+                <select class="auth-form-input" name="section">
+                    <option value="top-stories">Top Stories</option>
+                    <option value="Matrix1x1">Matrix1x1</option>
+                    <option value="Matrix1x2">Matrix1x2</option>
+                    <option value="Matrix1x3">Matrix1x3</option>
+                    <option value="Matrix2x4">Matrix2x4</option>
+                    <option value="Matrix2x5">Matrix2x5</option>
+                    <option value="Matrix2x5">Matrix2x5</option>
+                </select>
             </div>
             <div style="display: inline">
-            <div class="icon-auth-form-input">
-                <input class="icon-auth-form-input-for-input" type="file">
-
-
+                <input class="auth-form-input" type="file">
+                <textarea class="auth-form-input" name="postDesc" placeholder="description" rows="4"
+                          cols="20"></textarea>
+                <div class="icon-bg-auth-form-bg"></div>
             </div>
-                <div class="icon-auth-form-input">
+            <button type="submit" class="auth-form-button">Login in</button>
 
-                    <textarea class="icon-auth-form-input-for-input" name="postDesc" placeholder="description" rows="4" cols="20"></textarea>
-                    <br>
-                    <i class="icon-auth-form-input-icon-icon">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABHUlEQVRIS92V4U3DQAyFv0wAGwAbwATABrABnaAwCXQCukHZAJgARoAN2glAH7KlU0jKNVGEVP9JlLPfs599TsPE1kyMz34RXACPwPFI2T6AGfAiTimRB0cjwTNcrJM2wVecngHvA4lOgbeI/Um+rCAJ1lHi044kVyHx4V8EifsA3FWS6Dtv+fZWIOh9ONuoa8CqusxsV4ADopWxvQQeqKXgBwF+2dEXfZ4BSTZBYu9S6q0EZmOgfTiP7G6BRfGeVb4C6p9VVhOUvUh9l/HxJp4SSlzazgQGm6HgSqYpiSRdkzaIQFA1LyvouyuDCSontr7JtYBtv/+rwDHLJg7NPuM+cyuXu8jbaBPHblTBnbBf63ps1p3x+/XLnESib34QPRnKZk0rAAAAAElFTkSuQmCC"/>
-                    </i>
-                    <div class="icon-bg-auth-form-bg"></div>
-                </div>
+                <!--            <div class="icon-auth-form-input">-->
 
-            </div>
-
-                {#                <a class="auth-form-a" href="#">Forgot your password?</a>#}
-                <button type="submit" class="auth-form-button">Login in</button>
-                {% for message in messages %}
-                    <h5>{{ message }}</h5>
-                {% endfor %}
-            </div>
-
-            </form>
-        </div>
-        </div>
-    <div class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
-                <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10"
-                        cx="65.1" cy="65.1" r="62.1"/>
-                <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round"
-                          stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
-            </svg>
-            <p class="success">Posted !</p>
-
-        </div>
+        </form>
     </div>
-    {% if registration_success %}
-        <script>
-            let modalBtn = document.getElementById("modal-btn")
-            let modal = document.querySelector(".modal")
-            let closeBtn = document.querySelector(".close-btn")
-            window.onload = function () {
-                modal.style.display = "block"
-            };
+</div>
+<div class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+            <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10"
+                    cx="65.1" cy="65.1" r="62.1"/>
+            <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round"
+                      stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+        </svg>
+        <p class="success">Posted !</p>
 
-            closeBtn.onclick = function () {
-                modal.style.display = "none"
-            }
-            window.onclick = function (e) {
-                if (e.target == modal) {
-                    modal.style.display = "none"
-                }
-            }
-        </script>
+    </div>
+</div>
+{% if registration_success %}
+<script>
+    let modalBtn = document.getElementById("modal-btn")
+    let modal = document.querySelector(".modal")
+    let closeBtn = document.querySelector(".close-btn")
+    window.onload = function () {
+        modal.style.display = "block"
+    };
 
-    {% endif %}
+    closeBtn.onclick = function () {
+        modal.style.display = "none"
+    }
+    window.onclick = function (e) {
+        if (e.target == modal) {
+            modal.style.display = "none"
+        }
+    }
+</script>
 
-    </body>
+{% endif %}
+
+</body>
 
 
 {% endblock %}
