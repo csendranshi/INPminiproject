@@ -101,12 +101,14 @@ def Logout(request):
     request.session['logged_in'] = False
     request.session['journal_access'] = False
     request.session['admin_access'] = False
+    request.session['suscriber_priority'] = False
     dict_of_user_details = {
         'admin_access': request.session['admin_access'],
         'journal_access': request.session['journal_access'],
         'logged_in': request.session['logged_in'],
         'first_name': "",
-        'last_name': ""
+        'last_name': "",
+        'suscriber_access':request.session['suscriber_priority']
     }
     context = {'user': dict_of_user_details}
     return render(request, 'Login.html', context)
