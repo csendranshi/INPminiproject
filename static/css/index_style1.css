@@ -9,7 +9,7 @@
     grid-template-rows: 0fr 0fr ; */
     grid-template-areas: "sidebar main1 main2" "sidebar content1 content2 " "main21 main22 main23" "content21 content22 content23 ";
     font-size: 12px;
-    column-gap: 20px;
+    column-gap: 10px;
     row-gap: 107px;
 }
 .homepage-grid-main1{
@@ -21,12 +21,10 @@
 }
 
 .homepage-grid-main2{
-    background: rgba(255, 255, 255, 0.13);
+    /*background: rgba(255, 255, 255, 0.13);*/
     grid-area: main2;
     margin: auto;
-   border-top-right-radius: 30px !important;
-    border-bottom-left-radius: 30px !important;
-    padding-top: 10px;
+    padding-top: 5px;
     height: 300px;
 
 }
