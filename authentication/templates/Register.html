@@ -20,9 +20,7 @@
     color:  #303841;
     font-family: 'Lato',serif;
 ">Create Account</h1>
-                {% for message in messages %}
-                    <h5>{{ message }}</h5>
-                {% endfor %}
+                
                 {% csrf_token %}
 
                 <input class="lr-auth-form-input" type="text" pattern="[A-Za-z]{2,15}" title="First Name Cannot Have Digits or Special Characters" name="reg_firstname" placeholder="First Name" required>
@@ -31,7 +29,7 @@
                 <input class="lr-auth-form-input" type="password" name="reg_password" placeholder="Password" required>
                 <input class="lr-auth-form-input" type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
                        name="dateofbirth" placeholder="Date Of Birth" required>
-                <input class="lr-auth-form-input" type="number" name="reg_phone_number" minlength="10" maxlength="14" pattern="/(91|0091|022)\d{10}/" placeholder="Phone Number"
+                <input class="lr-auth-form-input" type="text" pattern="[789][0-9]{9}" name="reg_phone_number" minlength="10" maxlength="14" placeholder="Phone Number"
                        required>
 
                 <select class="lr-auth-form-input" id="Gender" name="Gender" required>
@@ -40,7 +38,7 @@
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
                 </select>
-
+                <p >{{ message }}</h5>
                 <input type="submit" class="lr-auth-form-button" value="Register"/>
             </form>
         </div>
@@ -49,7 +47,9 @@
                 <div class="lr-overlay-panel lr-overlay-left">
                     <h1 class="lr-auth-form-h1">Welcome Back!</h1>
                     <p class="lr-auth-form-p">To catch our latest news please login with your personal info</p>
-
+                   
+                    
+                       
                     <a href="{% url 'login' %}" class="lr-auth-form-button lr-ghost" id="signIn">Sign In</a>
                 </div>
             </div>
