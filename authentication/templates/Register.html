@@ -17,6 +17,8 @@
                 <h1 style="
     font-weight: bold;
     margin: 0px auto;
+    color:  #303841;
+    font-family: 'Lato',serif;
 ">Create Account</h1>
                 {% for message in messages %}
                     <h5>{{ message }}</h5>
@@ -44,11 +46,11 @@
         </div>
         <div class="lr-overlay-container">
             <div class="lr-overlay">
-                <div class="lr-overlay-panel overlay-left">
+                <div class="lr-overlay-panel lr-overlay-left">
                     <h1 class="lr-auth-form-h1">Welcome Back!</h1>
                     <p class="lr-auth-form-p">To catch our latest news please login with your personal info</p>
 
-                    <a href="{% url 'login' %}" class="lr-auth-form-button ghost" id="signIn">Sign In</a>
+                    <a href="{% url 'login' %}" class="lr-auth-form-button lr-ghost" id="signIn">Sign In</a>
                 </div>
             </div>
         </div>

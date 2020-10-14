@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-.auth-form-body {
+.lr-auth-form-body {
     background: #e3dfc8;
 
     align-items: center;
@@ -14,17 +14,17 @@
 
 }
 
-.auth-form-h1 {
+.lr-auth-form-h1 {
     font-weight: bold;
     margin: 30px auto;
 }
 
-.auth-form-h2 {
+.lr-auth-form-h2 {
     text-align: center;
     color: #eeeeee;
 }
 
-.auth-form-p {
+.lr-auth-form-p {
     font-size: 14px;
     font-weight: 100;
     line-height: 20px;
@@ -32,18 +32,18 @@
     margin: 20px 0 30px;
 }
 
-.auth-form-span {
+.lr-auth-form-span {
     font-size: 12px;
 }
 
-.auth-form-a {
+.lr-auth-form-a {
     color: #303841;
     font-size: 18px;
     text-decoration: none;
     margin: 15px 0;
 }
 
-.auth-form-button {
+.lr-auth-form-button {
     border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
     border: 1px solid #eeeeee;
@@ -58,15 +58,15 @@
     margin: 20px;
 }
 
-.auth-form-button:active {
+.lr-auth-form-button:active {
     transform: scale(0.95);
 }
 
-.auth-form-button:focus {
+.lr-auth-form-button:focus {
     outline: none;
 }
 
-.ghost {
+.lr-ghost {
     background-color: transparent;
     border-color: #d72323;
     color: #d72323;
@@ -74,7 +74,7 @@
     margin: 20px;
 }
 
-.auth-form-form {
+.lr-auth-form-form {
     background-color: #eeeeee;
     display: flex;
     align-items: center;
@@ -85,7 +85,7 @@
     text-align: center;
 }
 
-.auth-form-input {
+.lr-auth-form-input {
     background-color: #eee;
     border: 1px solid #3a4750;
     border-top-right-radius: 15px;
@@ -97,15 +97,15 @@
     color: #3a4750;
 }
 
-.auth-form-input::placeholder {
+.lr-auth-form-input::placeholder {
     color: #3a4750;
 }
 
-.auth-form-input:focus {
+.lr-auth-form-input:focus {
     outline: none;
 }
 
-.container {
+.lr-container {
     background-color: #eeeeee;
     border-top-right-radius: 35px;
     border-bottom-left-radius: 35px;
@@ -120,32 +120,32 @@
     margin: 10px auto;
 }
 
-.form-container {
+.lr-form-container {
     position: absolute;
     top: 0;
     height: 100%;
     transition: all 0.6s ease-in-out;
 }
 
-.sign-in-container {
+.lr-sign-in-container {
     left: 0;
     width: 83% !important;
     z-index: 2;
 
 }
 
-.container.right-panel-active .sign-in-container {
+.lr-container.right-panel-active .lr-sign-in-container {
     transform: translateX(100%);
 }
 
-.sign-up-container {
+.lr-sign-up-container {
     left: 0;
     width: 50%;
     opacity: 0;
     z-index: 1;
 }
 
-.container.right-panel-active .sign-up-container {
+.lr-container.right-panel-active .lr-sign-up-container {
     transform: translateX(100%);
     opacity: 1;
     z-index: 5;
@@ -153,7 +153,7 @@
 }
 
 
-.overlay-container {
+.lr-overlay-container {
     position: absolute;
     top: 0;
     left: 50%;
@@ -164,11 +164,11 @@
     z-index: 100;
 }
 
-.container.right-panel-active .overlay-container {
+.lr-container.right-panel-active .lr-overlay-container {
     transform: translateX(-100%);
 }
 
-.overlay {
+.lr-overlay {
     background-size: cover;
     background: no-repeat 0 0;
     border: none;
@@ -181,11 +181,11 @@
     transition: transform 0.6s ease-in-out;
 }
 
-.container.right-panel-active .overlay {
+.lr-container.right-panel-active .lr-overlay {
     transform: translateX(50%);
 }
 
-.overlay-panel {
+.lr-overlay-panel {
     position: absolute;
     border-radius: 20px;
 
@@ -202,43 +202,43 @@
     transition: transform 0.6s ease-in-out;
 }
 
-.overlay-left {
+.lr-overlay-left {
     transform: translateX(-20%);
 }
 
-.container.right-panel-active .overlay-left {
+.lr-container.right-panel-active .lr-overlay-left {
     transform: translateX(0);
 }
 
-.overlay-right {
+.lr-overlay-right {
     right: 0;
     transform: translateX(0);
 }
 
-.container.right-panel-active .overlay-right {
+.lr-container.right-panel-active .lr-overlay-right {
     transform: translateX(20%);
 }
 
 @media (max-width: 600px) {
 
-    .auth-form-form {
+    .lr-auth-form-form {
 
         padding: 0 2px;
 
     }
 
-    .overlay-right {
+    .lr-overlay-right {
         right: auto;
 
     }
 
-    .sign-in-container {
+    .lr-sign-in-container {
         left: 0;
         width: 90%;
         z-index: 2;
     }
 
-    .overlay-panel {
+    .lr-overlay-panel {
         position: absolute;
         border-radius: 20px;
         display: none;
@@ -253,7 +253,7 @@
         transform: translateX(0);
         transition: transform 0.6s ease-in-out;
     }
-    .sign-up-container {
+    .lr-sign-up-container {
    margin: -10px -56%;
     width: 70%;
     opacity: 0;
@@ -339,23 +339,22 @@ svg {
 }
 
 
-.icon-auth-form-input {
+.lr-icon {
     background-color: #eeeeee;
-    border: 2px solid #3a4750;
+    border: 1px solid #3a4750;
     border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
-    margin: 10px;
-    color: #3a4750;
+
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     padding: 10px;
-
+    margin: 10px auto;
 
 }
 
-.icon-auth-form-input input {
+.lr-icon-input {
     background-color: #eeeeee;
     border: none;
     font-family: 'Lato', serif;
@@ -366,24 +365,21 @@ svg {
     transition: all .25s ease;
 }
 
-.icon-auth-form-input input:focus {
+.lr-icon-input:focus {
     padding-left: 5px;
-    padding-right: 8px;
+    padding-right: 0px;
 }
 
-.icon-auth-form-input input:focus ~ .icon-bg-auth-form-bg {
 
-}
-
-.icon-auth-form-input input:focus ~ i {
+.lr-icon-input:focus ~ i {
     transform: translate(0, -8px);
-    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, .4);
+    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, .15);
 }
 
-.icon-auth-form-input i.icon-auth-form-input-icon-icon {
+.lr-icon i.icon {
     order: -1;
     background: #eeeeee;
-    border-radius: 5px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
