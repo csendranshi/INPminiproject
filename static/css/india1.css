@@ -99,6 +99,7 @@
     font-family: 'Lato', serif;
     font-size: 15px;
     padding-top: 20px;
+    padding-bottom: 20px;
     /*font-weight: 800;*/
     /*max-width: 400px;*/
     /*transition: width 2s;*/
@@ -108,43 +109,34 @@
 /*}*/
 
 
-#wrap2 > con{
-    padding-top: 40px;
+
+
+#spin {
+    font-size: 90px;
+  color:red;
 }
-.india-page-text-block {
-  position: absolute;
-  bottom: 0px;
-  font-size: 15px;
-  background-color: #222222;
-  color: white;
-  padding-left: 20px;
-  padding-right: 20px;
-  /* height: 327px; */
-  border-bottom-left-radius: 20px;
-  border-top-right-radius: 20px;
-  width: 501px;
+#spin:after {
+  content:"";
+  animation: spin 5s linear infinite;
 }
-
-.india-page-cont {
-
-  position: relative;
-  font-family: 'Lato', serif;
-  /*height: 327px;*/
-  width:500px;
-  margin: auto;
-
+@keyframes spin {
+  0% { content:"IPL 2020"}
+  10% { content:"SSR case"}
+  20% { content:"Rhea chakroborty"}
+  30% { content:"TRP SCAM"}
+  40% { content:"NEET 2020"}
+  50% { content: "School Reopening" }
+  60% { content: "Sports" }
+  70% { content: "Income Tax 2020"}
+  80% { content: "COVID-19"}
+  90% { content: "Delhi Metro"}
 }
 
-.india-page-cont h1 {
-  /*position: center;*/
-  padding-left: 180px;
-  color: #eeeeee;
-}
 
-.india-page-cont img {
-  border-bottom-left-radius: 20px;
-  border-top-right-radius: 20px;
-  height: 307px;
-  width: 501px !important;
+.wrap3{
+   display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.4rem;
+    font-size: 12px;
+  text-align: center;
 }
-
