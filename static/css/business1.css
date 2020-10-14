@@ -1,0 +1,171 @@
+:root {
+  --main-radius: 5px;
+  --main-padding: 5px;
+}
+
+
+
+.business-container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 0.2fr 1.5fr 1.2fr 0.8fr;
+  grid-template-areas:
+    "business-main1 business-main1 business-main2 business-main2"
+    "business-content1 business-content2 business-content3 business-content4"
+    "business-content5 business-content6 business-content7 business-content8"
+    "healthnews healthnews healthnews healthnews";
+  grid-gap: 0.2rem;
+
+  font-size: 15px;
+  color: #fff5ea;
+  text-align: center;
+  row-gap: 20px;
+  column-gap: 20px;
+  margin-top:50px;
+}
+
+
+#business-main1{
+
+  grid-area: business-main1;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding-top: var(--main-padding);
+  height: 300px;
+  overflow: hidden;
+}
+#business-main2{
+
+  grid-area: business-main2;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding-top: var(--main-padding);
+  height: 300px;
+  overflow: hidden;
+}
+#business-content1 {
+  background: rgba(255, 255, 255, 0.13);
+  grid-area: business-content1;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding-top: var(--main-padding);
+}
+
+#business-content2 {
+  background: rgba(255, 255, 255, 0.13);
+  grid-area: business-content2;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding-top: var(--main-padding);
+}
+#business-content3 {
+  background: rgba(255, 255, 255, 0.13);
+  grid-area: business-content3;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding-top: var(--main-padding);
+}
+#business-content4 {
+  background:rgba(255, 255, 255, 0.13);
+  grid-area:business-content4;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding-top: var(--main-padding);
+}
+#business-content5 {
+  background:rgba(255, 255, 255, 0.13);
+  grid-area:business-content5;
+   border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding-top: var(--main-padding);
+}
+#business-content6 {
+  background:#3a4750;
+  grid-area:business-content6;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding-top: var(--main-padding);
+}
+#business-content7 {
+  background:#3a4750;
+  grid-area:business-content7;
+   border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding-top: var(--main-padding);
+}
+#business-content8 {
+  background:#3a4750;
+  grid-area:business-content8;
+   border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding-top: var(--main-padding);
+}
+
+
+
+#healthnews {
+  background:rgba(255, 255, 255, 0.13);
+  grid-area: healthnews;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+}
+
+
+@media  screen and (max-width: 550px) {
+  .business-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.4fr 2.2fr 1.2fr 1.2fr 1.2fr 1.2fr 1fr;
+    grid-template-areas:
+      "health"
+      "business-main"
+      "business-content"
+      "business-content1"
+      "business-content2"
+      "business-content3"
+      "healthnews";
+  }
+}
+@media  screen and (max-width: 900px) and (min-width:550px) {
+  .business-container {
+    display:grid;
+    grid-template-areas:
+      "health health"
+      "business-main business-main"
+      "business-content1 business-content2"
+      "business-content3 business-content4"
+      "business-content5 business-content6"
+      "business-content3 business-content4"
+      "healthnews healthnews"
+  }
+}
+.business-image-css-main {
+  width: 100%;
+  height: auto;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  position: relative;
+  bottom: 10px;
+
+}
+
+.business-image-css-main {
+  width: 100%;
+  height: auto;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  position: relative;
+  bottom: 10px;
+
+}
+.business-image-css {
+  width: 100%;
+  height: auto;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  position: relative;
+  bottom: 10px;
+}
+.business-p-tag-css {
+  font-family: 'Lato',serif;
+}

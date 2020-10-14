@@ -2,130 +2,76 @@
 
 {% load static %}
 
-<body>
 {% block content %}
 
+<div class="tech-container">
+  <div id="tech-main1">
+    <img class="tech-image-css-main"
+    src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/SC_PTI_1200x768.png?lS4x2mrMxx_SAYHB70Lcf6ieT9qRKwaW&size=770:433"
+    alt="">
 
 
-    <div class="grid-container">
-        <main class="grid-main">Main</main>
+  </div>
+  <div id="tech-main2">
 
-        <div id="sidebar">
+    <img class="tech-image-css-main" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/Screenshot_2020-10-14_at_2.38._1200x768.png?rO1EDGhfMZyiZdQ7n52C726CyxGGqOV6&size=770:433" alt="">
+  </div>
+  <div id="tech-content1">
+    <img class="tech-image-css" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/gipta_gopinath_reuters_1200x768.jpeg?ncCDhhvcujj7_uWw1NHCoiB4oFUYKcHD&size=770:433" alt="">
+    <p style="font-family: 'Lato',serif;
+              columns: #eeeeee;"  class="tech-p-tag-css">
+              Gita Gopinath explains IMF’s growth forecast for India and the road ahead</p>
+      </div>
+  <div id="tech-content2">
+    <img class="tech-image-css" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/infosys-reuters_1200x768.jpeg?AhxJNAT9fffWU2wyPFHVLLM4Wm.JIROJ&size=770:433" alt="">
+    <p style="font-family: 'Lato',serif;
+              columns: #eeeeee;"  class="tech-p-tag-css">
+             After TCS, Infosys to roll out salary hikes, promotions</p>
 
-            <div class="education-table-box-for-scrollable">
-                <label class="education-table-box-for-scrollable-text-main">Educational Top Stories</label>
-                <div class="education-box-for-scrollable">
+  </div>
+  <div id="tech-content3">
+    <img class="tech-image-css" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/sensex-reuters-file_1200x768.png?GLr1S0dtsQ1sNJy.BSeTmIGS1iUrX2AF&size=770:433" alt="">
+              columns: #eeeeee;"  class="tech-p-tag-css">Sensex, Nifty end higher for 10th consecutive session, bank stocks shoot up ahead of loan moratorium hearing</p>
 
-                    <table>
-                        <tr>
-                            {% for top_story in top_stories %}
-                                <div id="myBtn" class="education-row-for-each-story">
-                        <span class="education-image-position-each-row"><img class="education-image-for-row"
-                                                                             src="{{ top_story.image }}" alt=""></span>
-                                    <span class="education-news-post-text-for-top-stories">{{ top_story.title }}</span>
-                                </div>
+  </div>
+  <div id="tech-content4">
+    <img class="tech-image-css" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/Screenshot_2020-10-14_at_1.56._1200x768.png?X95fvxbsl0AmnyBsEGGXDja_NbXF6Qd7&size=770:433" alt="">
+    <p style="font-family: 'Lato',serif;
+              columns: #eeeeee;"  class="tech-p-tag-css">Loan restructuring: Only standard accounts as of March 1 can apply, says RBI</p>
 
+  </div>
+  <div id="tech-content5">
+    <img class="tech-image-css" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/Screenshot_2020-10-14_at_12.44_1200x768.png?wd8coRGcROiJH4W7eayLCD3PsxoJYnWg&size=770:433" alt="">
+    <p style="font-family: 'Lato',serif;
+              columns: #eeeeee;"  class="tech-p-tag-css">
+              India set to be overtaken by Bangladesh in per capita GDP growth: IMF</p>
 
-                            {% endfor %}
-                        </tr>
-                    </table>
-                    <div id="bottom"></div>
-                </div>
-            </div>
+  </div>
+  <div id="tech-content6">
+    <img class="tech-image-css" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/credit-card-851506_1920_1200x768.jpeg?rC1vpt9K87s_jkUUv_KKx43DbWoo8VLI&size=770:433" alt="">
+    <p style="font-family: 'Lato',serif;
+              columns: #eeeeee;"  class="tech-p-tag-css">
+            Explained: Benefits of having more than one credit card
+            </p>
 
-        </div>
-        <div id="content1">
+  </div>
+  <div id="tech-content7">
+    <img class="tech-image-css" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/indian-economy-l-reuters_1200x768.jpeg?3lYBHaqdfWWGPmKcpg2mzGNAFfWgxdVA&size=770:433" alt="">
+    <p style="font-family: 'Lato',serif;
+              columns: #eeeeee;"  class="tech-p-tag-css">
+             Indian economy will bounce back with 8.8% growth in 2021: IMF</p>
 
-            <div class="aarr-body">
-                <div class="news-post">
-                    <div class="news-post-img">
-                        {#            <div class="news-post-date">#}
-                        {#                <span class="news-date-size-day">30</span>#}
-                        {#                <span class="news-date-size-month">September</span>#}
-                        {#                <span class="news-date-size-year">2020</span>#}
-                        {#            </div>#}
-                        <img src="{% static 'css/Jake.jpg' %}" alt=""/>
-                        <div class="news-post-info">
-                            <a href="#about" class="news-post-title">Bobcat Fire: Fire Burns Through More Than 106K
-                                Acres; Flames
-                                Again Threaten Mt. Wilson - LAist
-                                Bobcat Fire: Fire Burns Through More Than 106K Acres; Flames
-                                Again Threaten Mt. Wilson - LAistBobcat Fire: Fire Burns Through More Than 106K
-                                Acres; Flames
-                                Again Threaten Mt. Wilson - LAist
-                            </a>
-
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-        <div id="content2">
-
-            <div class="aarr-body">
-                <div class="news-post">
-                    <div class="news-post-img">
-                        {#            <div class="news-post-date">#}
-                        {#                <span class="news-date-size-day">30</span>#}
-                        {#                <span class="news-date-size-month">September</span>#}
-                        {#                <span class="news-date-size-year">2020</span>#}
-                        {#            </div>#}
-                        <img src="{% static 'css/Jake.jpg' %}" alt=""/>
-                        <div class="news-post-info">
-                            <a href="#about" class="news-post-title">Bobcat Fire: Fire Burns Through More Than 106K
-                                Acres; Flames
-                                Again Threaten Mt. Wilson - LAist
-                                Bobcat Fire: Fire Burns Through More Than 106K Acres; Flames
-                                Again Threaten Mt. Wilson - LAistBobcat Fire: Fire Burns Through More Than 106K
-                                Acres; Flames
-                                Again Threaten Mt. Wilson - LAist
-                            </a>
-
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-        <div id="content3">
-
-            <div class="aarr-body">
-                <div class="news-post">
-                    <div class="news-post-img">
-                        {#            <div class="news-post-date">#}
-                        {#                <span class="news-date-size-day">30</span>#}
-                        {#                <span class="news-date-size-month">September</span>#}
-                        {#                <span class="news-date-size-year">2020</span>#}
-                        {#            </div>#}
-                        <img src="{% static 'css/Jake.jpg' %}" alt=""/>
-                        <div class="news-post-info">
-                            <a href="#about" class="news-post-title">Bobcat Fire: Fire Burns Through More Than 106K
-                                Acres; Flames
-                                Again Threaten Mt. Wilson - LAist
-                                Bobcat Fire: Fire Burns Through More Than 106K Acres; Flames
-                                Again Threaten Mt. Wilson - LAistBobcat Fire: Fire Burns Through More Than 106K
-                                Acres; Flames
-                                Again Threaten Mt. Wilson - LAist
-                            </a>
-
-                        </div>
-                    </div>
-
-                </div>
+  </div>
+  <div id="tech-content8">
+    <img class="tech-image-css" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/gst_council_meet_1200x768.jpeg?nEosOtiOC1hN08VzlBLj_76yAXPNiNlE&size=770:433" alt="">
+    <p style="font-family: 'Lato',serif;
+              columns: #eeeeee;"  class="tech-p-tag-css">Centre allows 20 states to raise Rs 68,825 crore via open market borrowing to meet GST shortfall</p>
 
 
-            </div>
+  </div>
+  <div  id="healthnews">technews</div>
+</div>
 
-        </div>
-    </div>
-<<<<<<< HEAD
-   </div>
-=======
 
->>>>>>> d012be3725c6f6cadf4c5b79d48a7213483d6fc4
+
 {% endblock %}
