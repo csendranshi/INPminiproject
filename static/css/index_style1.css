@@ -5,15 +5,15 @@
 .homepage-grid-container {
     display: grid;
     height: 100vh;
-    grid-template-columns: 0fr 2fr -1fr ;
-    grid-template-rows: 0fr 0fr ;
-    grid-template-areas: "sidebar main1 main2" "sidebar content1 content2 " ;
+    /* grid-template-columns: 0fr 2fr -1fr ;
+    grid-template-rows: 0fr 0fr ; */
+    grid-template-areas: "sidebar main1 main2" "sidebar content1 content2 " "main21 main22 main23" "content21 content22 content23 ";
     font-size: 12px;
     column-gap: 20px;
     row-gap: 107px;
 }
 .homepage-grid-main1{
-
+    margin: auto;
     grid-area: main1;
     height: 300px;
     max-width: 600px;
@@ -34,12 +34,12 @@
 
 #homepage-scroll {
     grid-area: sidebar;
-
+    margin: auto;
 }
 #homepage-content1 {
 
     grid-area: content1;
-
+    margin: auto;
     border-top-right-radius: 30px !important;
     border-bottom-left-radius: 30px !important;
     border-top-left-radius: 0px !important;
@@ -282,15 +282,15 @@
 }
 
 
-.homepage-second-grid-container {
+/* .homepage-second-grid-container {
     display: grid;
     height: 100vh;
     grid-template-columns: 1fr 1fr 1fr ;
     grid-template-areas: "main21 main22 main23" "content21 content22 content23 " ;
     font-size: 12px;
-    column-gap: 10px;
+    column-gap: 20px;
     row-gap: 15px;
-}
+} */
 
 .homepage-second-grid-main1{
     margin: auto;
@@ -374,4 +374,38 @@
     border-bottom-left-radius: 30px !important;
     border-top-left-radius: 0px !important;
     border-bottom-right-radius: 0px !important;
+}
+
+@media(max-width:1000px) and (min-width:600px){
+    .homepage-grid-container {
+        display: grid;
+        margin-top: 50px;
+        grid-template-areas: "sidebar main1" "sidebar main2"  "content1 content2" "main21 main22" "content22 content21" "main23 content23" ;
+
+    }
+    /* .homepage-second-grid-container {
+        margin-top: 400px;
+        row-gap: 100px;
+        display: grid;
+    
+        grid-template-areas: "main21 main22" "content22 content21" "main23 content23" ;
+     
+    } */
+}
+
+@media(max-width:600px) {
+    .homepage-grid-container {
+        display: grid;
+        margin-top: 50px;
+        grid-template-areas: "sidebar" "main1"  "main2"  "content1" "content2" "main21" "main22" "content22" "content21" "main23" "content23" ;
+
+    }
+    /* .homepage-second-grid-container {
+        margin-top: 400px;
+        row-gap: 100px;
+        display: grid;
+    
+        grid-template-areas: "main21" "main22" "content22" "content21" "main23" "content23" ;
+     
+    } */
 }
