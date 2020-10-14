@@ -383,7 +383,6 @@ svg {
 .icon-auth-form-input i.icon-auth-form-input-icon-icon {
     order: -1;
     background: #eeeeee;
-    border: 2px solid #3a4750;
     border-radius: 5px;
     display: flex;
     align-items: center;
