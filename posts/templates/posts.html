@@ -5,51 +5,97 @@
     <body class="auth-form-body">
 
     <h2 class="auth-form-h2">
-        <div>Welcome Back Peeps,</div>
+
         <div>Catch our latest Spilled Tea!</div>
     </h2>
     <div class="container" id="container">
 
-        <div class="form-container sign-in-container">
-            <form class="auth-form-form" method="POST" action="{% url 'login' %}">
-                <div style="color: #3a4750; font-size: 25px">Login for updates on our latest news</div>
-                {% csrf_token %}
-                <div class="icon-auth-form-input">
 
-                    <input class="icon-auth-form-input-for-input" type="text" name="username" placeholder="Email ID">
+        <div class="form-container sign-in-container">
+        <div style="color: #3a4750; font-size: 25px; margin: auto">Post an Article</div>
+            <form class="auth-form-form" method="POST" action="{% url 'posts' %}">
+            <div style="display:inline-block">
+
+                {% csrf_token %}
+            <div class="icon-auth-form-input">
+
+                    <input class="icon-auth-form-input-for-input" type="text" name="imageLink" placeholder="Image Link">
                     <i class="icon-auth-form-input-icon-icon">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABHUlEQVRIS92V4U3DQAyFv0wAGwAbwATABrABnaAwCXQCukHZAJgARoAN2glAH7KlU0jKNVGEVP9JlLPfs599TsPE1kyMz34RXACPwPFI2T6AGfAiTimRB0cjwTNcrJM2wVecngHvA4lOgbeI/Um+rCAJ1lHi044kVyHx4V8EifsA3FWS6Dtv+fZWIOh9ONuoa8CqusxsV4ADopWxvQQeqKXgBwF+2dEXfZ4BSTZBYu9S6q0EZmOgfTiP7G6BRfGeVb4C6p9VVhOUvUh9l/HxJp4SSlzazgQGm6HgSqYpiSRdkzaIQFA1LyvouyuDCSontr7JtYBtv/+rwDHLJg7NPuM+cyuXu8jbaBPHblTBnbBf63ps1p3x+/XLnESib34QPRnKZk0rAAAAAElFTkSuQmCC"/>
                     </i>
                     <div class="icon-bg-auth-form-bg"></div>
                 </div>
                 <div class="icon-auth-form-input">
-                    <input class="icon-auth-form-input-for-input" type="password" name="password"
-                           placeholder="Password">
+
+                    <input class="icon-auth-form-input-for-input" type="text" name="postTitle" placeholder="Title">
+                    <i class="icon-auth-form-input-icon-icon">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABHUlEQVRIS92V4U3DQAyFv0wAGwAbwATABrABnaAwCXQCukHZAJgARoAN2glAH7KlU0jKNVGEVP9JlLPfs599TsPE1kyMz34RXACPwPFI2T6AGfAiTimRB0cjwTNcrJM2wVecngHvA4lOgbeI/Um+rCAJ1lHi044kVyHx4V8EifsA3FWS6Dtv+fZWIOh9ONuoa8CqusxsV4ADopWxvQQeqKXgBwF+2dEXfZ4BSTZBYu9S6q0EZmOgfTiP7G6BRfGeVb4C6p9VVhOUvUh9l/HxJp4SSlzazgQGm6HgSqYpiSRdkzaIQFA1LyvouyuDCSontr7JtYBtv/+rwDHLJg7NPuM+cyuXu8jbaBPHblTBnbBf63ps1p3x+/XLnESib34QPRnKZk0rAAAAAElFTkSuQmCC"/>
+                    </i>
+                    <div class="icon-bg-auth-form-bg"></div>
+                </div>
+                <div class="icon-auth-form-input">
+                    <label for="icon-auth-form-input-for-input">Category</label>
+{#                     <div class="icon-auth-form-input-for-input" style="visibility: hidden; width: inherit">..................</div>#}
+                    <select class="icon-auth-form-input-for-input" name="category">
+                        <option value="india">India</option>
+                        <option value="world">World</option>
+                        <option value="technology">Technology</option>
+                        <option value="health">Health</option>
+                        <option value="education">Education</option>
+                        <option value="business">Business</option>
+                    </select>
 
                     <i class="icon-auth-form-input-icon-icon">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA10lEQVRIS+2UwQ3CMAxFX0dgAzYBNmAD2AAxAbABbAATABuwCSvABKCPHGFFKWkO4VA1lyaS87/97LSh8moq6zMYZAn3E9EcWAFT4AHcgIN9s0jigBjREVi0qOyAbamDN1DmZxNYAxfbL4GN7WellXgDoZgAEt9HmSpzmVwBJdJ5eYOX3RoZey8yBu6dVfk+4L8aBESpZqYQhYpDkvH5U3BbkyV4MiSaqjA9vsnFBtILmaZwp5rv47IVhGA9MBlpop42lpoqISxe/fwXFWP4dWFAlMVZHdEbVnknGYpA66kAAAAASUVORK5CYII="/>
                     </i>
                     <div class="icon-bg-auth-form-bg"></div>
                 </div>
+            <div class="icon-auth-form-input">
+                    <label for="icon-auth-form-input-for-input">Section</label>
+{#                     <div class="icon-auth-form-input-for-input" style="visibility: hidden; width: inherit">..................</div>#}
+                    <select class="icon-auth-form-input-for-input" name="section">
+                        <option value="india">India</option>
+                        <option value="world">World</option>
+                        <option value="technology">Technology</option>
+                        <option value="health">Health</option>
+                        <option value="education">Education</option>
+                        <option value="business">Business</option>
+                    </select>
+
+                    <i class="icon-auth-form-input-icon-icon">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA10lEQVRIS+2UwQ3CMAxFX0dgAzYBNmAD2AAxAbABbAATABuwCSvABKCPHGFFKWkO4VA1lyaS87/97LSh8moq6zMYZAn3E9EcWAFT4AHcgIN9s0jigBjREVi0qOyAbamDN1DmZxNYAxfbL4GN7WellXgDoZgAEt9HmSpzmVwBJdJ5eYOX3RoZey8yBu6dVfk+4L8aBESpZqYQhYpDkvH5U3BbkyV4MiSaqjA9vsnFBtILmaZwp5rv47IVhGA9MBlpop42lpoqISxe/fwXFWP4dWFAlMVZHdEbVnknGYpA66kAAAAASUVORK5CYII="/>
+                    </i>
+                    <div class="icon-bg-auth-form-bg"></div>
+                </div>
+            </div>
+            <div style="display: inline">
+            <div class="icon-auth-form-input">
+                <input class="icon-auth-form-input-for-input" type="file">
+
+
+            </div>
+                <div class="icon-auth-form-input">
+
+                    <textarea class="icon-auth-form-input-for-input" name="postDesc" placeholder="description" rows="4" cols="20"></textarea>
+                    <br>
+                    <i class="icon-auth-form-input-icon-icon">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABHUlEQVRIS92V4U3DQAyFv0wAGwAbwATABrABnaAwCXQCukHZAJgARoAN2glAH7KlU0jKNVGEVP9JlLPfs599TsPE1kyMz34RXACPwPFI2T6AGfAiTimRB0cjwTNcrJM2wVecngHvA4lOgbeI/Um+rCAJ1lHi044kVyHx4V8EifsA3FWS6Dtv+fZWIOh9ONuoa8CqusxsV4ADopWxvQQeqKXgBwF+2dEXfZ4BSTZBYu9S6q0EZmOgfTiP7G6BRfGeVb4C6p9VVhOUvUh9l/HxJp4SSlzazgQGm6HgSqYpiSRdkzaIQFA1LyvouyuDCSontr7JtYBtv/+rwDHLJg7NPuM+cyuXu8jbaBPHblTBnbBf63ps1p3x+/XLnESib34QPRnKZk0rAAAAAElFTkSuQmCC"/>
+                    </i>
+                    <div class="icon-bg-auth-form-bg"></div>
+                </div>
+
+            </div>
 
                 {#                <a class="auth-form-a" href="#">Forgot your password?</a>#}
                 <button type="submit" class="auth-form-button">Login in</button>
                 {% for message in messages %}
                     <h5>{{ message }}</h5>
                 {% endfor %}
+            </div>
+
             </form>
         </div>
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-panel overlay-right">
-                    <h1 class="auth-form-h1">Hello, Friend!</h1>
-                    <p class="auth-form-p">Enter your personal details and start your journey with the journalist</p>
-
-                    <a href="{% url 'register' %}" class="auth-form-button ghost" id="signUp">Sign Up</a>
-                </div>
-            </div>
         </div>
-    </div>
     <div class="modal">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
@@ -59,7 +105,7 @@
                 <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round"
                           stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
             </svg>
-            <p class="success">Registration Successful</p>
+            <p class="success">Posted !</p>
 
         </div>
     </div>
