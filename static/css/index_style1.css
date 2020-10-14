@@ -1,3 +1,63 @@
+:root {
+    --main-radius: 5px;
+    --main-padding: 5px;
+}
+.grid-container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-rows: 1fr 1fr ;
+    grid-template-areas: "scroll main main " "scroll content1 content2 " ;
+    font-size: 12px;
+    column-gap: 10px;
+    row-gap: 15px;
+}
+.grid-main{
+    background: rgba(255, 255, 255, 0.13);
+    grid-area: main;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+    height: 300px;
+}
+
+#scroll {
+    grid-area: sidebar;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+}
+#content1 {
+
+    grid-area: content1;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+    height: 100%;
+    max-height: 300px;
+}
+
+
+
+
+#content2 {
+
+    grid-area: content2;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+}
+
+/*#content3 {*/
+/*    grid-area: content3;*/
+/*    border-radius: var(--main-radius);*/
+/*    padding-top: var(--main-padding);*/
+/*}*/
+
+/*footer {*/
+/*    background: rgba(255, 255, 255, 0.13);*/
+/*    grid-area: footer;*/
+/*    border-radius: var(--main-radius);*/
+/*    padding-top: var(--main-padding);*/
+/*    height: 100%;*/
+/*    max-height: 100px;*/
+/*}*/
 .super-class {
     background-color: black;
 }
