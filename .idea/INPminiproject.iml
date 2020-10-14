@@ -16,7 +16,11 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
+<<<<<<< HEAD
+    <orderEntry type="jdk" jdkName="Python 3.8 (PythonProj)" jdkType="Python SDK" />
+=======
     <orderEntry type="jdk" jdkName="Python 3.8 (djangoProject1)" jdkType="Python SDK" />
+>>>>>>> d012be3725c6f6cadf4c5b79d48a7213483d6fc4
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
