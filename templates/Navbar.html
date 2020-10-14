@@ -5,17 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Journalist</title>
-    <link href="{% static '/css/css_login_form.css' %}" rel="stylesheet">
+    <link href="{% static '/css/css_auth.css' %}" rel="stylesheet">
     <link rel="icon" href="{% static '/assets/news.png' %}"/>
     <link href="{% static '/css/index_style1.css' %}" rel="stylesheet">
     <link href="{% static '/css/newsCard.css' %}" rel="stylesheet">
     <link href="{% static '/css/top_story.css' %}" rel="stylesheet">
     <link href="{% static '/css/business.css' %}" rel="stylesheet">
+<<<<<<< HEAD
     <link href="{% static '/css/educationPage.css' %}" rel="stylesheet">
     <link href="{% static '/css/health.css' %}" rel="stylesheet">
     <link href="{% static '/css/technology1.css' %}" rel="stylesheet">
+    <link href="{% static '/css/posts.css' %}" rel="stylesheet">
+    <link href="{% static '/css/india1.css' %}" rel="stylesheet">
+    <link href="{% static '/css/footer.css' %}" rel="stylesheet">
+=======
+    <link href="{% static '/css/education.css' %}" rel="stylesheet">
+    <link href="{% static '/css/health1.css' %}" rel="stylesheet">
+    <link href="{% static '/css/technology.css' %}" rel="stylesheet">
      <link href="{% static '/css/posts.css' %}" rel="stylesheet">
     <link href="{% static '/css/india1.css' %}" rel="stylesheet">
+    <link href="{% static '/css/world.css' %}" rel="stylesheet">
+>>>>>>> 8004a48bef3860b9f2cdc5d2a9dcedcd784bb2cb
 
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
@@ -71,12 +81,13 @@
         <hr>
         <a href="javascript:void(0)" class="closebtn" onclick="closeDrawer()">&times;</a>
         <a style="margin-top:25px " href="{% url 'profile' %}"><img class="custom-icon-class-style"
-                                                  src="{% static '/assets/account.png' %}" alt="">Profile</a>
-         {% if user.journal_access %}
-        <a href="{% url 'posts' %}"><img class="custom-icon-class-style" src="{% static '/assets/postnews.png' %}" alt="">Post
+                                                                    src="{% static '/assets/account.png' %}" alt="">Profile</a>
+        {% if user.journal_access %}
+        <a href="{% url 'posts' %}"><img class="custom-icon-class-style" src="{% static '/assets/postnews.png' %}"
+                                         alt="">Post
             Article</a>
         <a href="#"><img class="custom-icon-class-style" src="{% static '/assets/journal.png' %}" alt="">Previous Posts</a>
-         {% endif %}
+        {% endif %}
         <a href="{% url 'logout' %}"><img class="custom-icon-class-style" src="{% static '/assets/logout.png' %}"
                                           alt="">Log Out</a>
     </div>
@@ -96,21 +107,20 @@
                                           alt="">Technology</a>
     <a href="{% url 'health' %}"><img class="custom-icon-class-style" src="{% static '/assets/hospital.png' %}" alt="">Health</a>
     {% if user.suscriber_access %}
-        <a style="justify-content:flex-end;" href="javascript:void(0)" onclick="openDrawer()"><img style="margin-right: 5px;
+    <a style="justify-content:flex-end;" href="javascript:void(0)" onclick="openDrawer()"><img style="margin-right: 5px;
 
             margin-bottom: -5px;"
-                                                                                                   src="{% static '/assets/profile.png' %}"
-                                                                                                   alt="">Profile</a>
+                                                                                               src="{% static '/assets/profile.png' %}"
+                                                                                               alt="">Profile</a>
     {% else %}
-        <a href="{% url 'login' %}"><img class="custom-icon-class-style" src="{% static '/assets/pen.png' %}" alt="">Sign
-            In/Up</a>
+    <a href="{% url 'login' %}"><img class="custom-icon-class-style" src="{% static '/assets/pen.png' %}" alt="">Sign
+        In/Up</a>
     {% endif %}
-
 
 
     <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
 
-
+<hr style="height: 7px; color: #d72323; background-color: #d72323; border-color: #d72323">
 </div>
 
 
@@ -118,7 +128,48 @@
 {% block content %}
 
 {% endblock %}
+<!-- Site footer -->
+<!--<footer class="site-footer">-->
+<!--    <div class="footer-container">-->
+<!--        <div id="footer-main1">-->
+<!--            <h6>About</h6>-->
+<!--            <p class="text-justify"><i>THE JOURNALIST </i> done by-->
+<!--            <div>54 Reuben Coutinho</div>-->
+<!--            <div>55 Anshika Gupta</div>-->
+<!--            <div>60 Rhea Rodrigues</div>-->
+<!--            <div>64 Ankita Tripathi</div>-->
+<!--            </p>-->
 
+<!--        </div>-->
+
+<!--        <div id="footer-main2">-->
+<!--            <h6>Categories</h6>-->
+<!--            <ul class="footer-links">-->
+<!--                <li>Latest</li>-->
+<!--                <li>India</a></li>-->
+<!--                <li>Education</li>-->
+<!--                <li>Business</li>-->
+<!--                <li>World</li>-->
+<!--                <li>Technology</li>-->
+<!--                <li>Health</li>-->
+<!--            </ul>-->
+
+<!--        </div>-->
+
+<!--        <div id="end-bar">-->
+<!--            <hr class="new1">-->
+
+
+<!--            <p class=>-->
+<!--                The Journalist-->
+<!--            </p>-->
+
+<!--        </div>-->
+
+
+<!--    </div>-->
+
+<!--</footer>-->
 <script src="{% static '/js/script.js' %}"></script>
 <script>
     function myFunction() {

@@ -120,16 +120,16 @@
   animation: spin 5s linear infinite;
 }
 @keyframes spin {
-  0% { content:"IPL 2020"; }
-  10% { content:"SSR case"; }
-  20% { content:"Rhea chakroborty"; }
-  30% { content:"TRP SCAM"; }
-  40% { content:"NEET 2020"; }
-  50% { content: "School Reopening";  }
-  60% { content: "Sports";  }
-  70% { content: "Income Tax 2020";  }
-  80% { content: "COVID-19";  }
-  90% { content: "Delhi Metro";  }
+  0% { content:"IPL 2020"}
+  10% { content:"SSR case"}
+  20% { content:"Rhea chakroborty"}
+  30% { content:"TRP SCAM"}
+  40% { content:"NEET 2020"}
+  50% { content: "School Reopening" }
+  60% { content: "Sports" }
+  70% { content: "Income Tax 2020"}
+  80% { content: "COVID-19"}
+  90% { content: "Delhi Metro"}
 }
 
 
