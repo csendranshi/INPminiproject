@@ -12,43 +12,83 @@
 </head>
 <body>
 {% block content %}
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a href="https://in.tradingview.com" rel="noopener" target="_blank"><span class="blue-text"></span></a> </div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+  {
+  "symbols": [
+    {
+      "proName": "FOREXCOM:SPXUSD",
+      "title": "S&P 500"
+    },
+    {
+      "proName": "FOREXCOM:NSXUSD",
+      "title": "Nasdaq 100"
+    },
+    {
+      "proName": "FX_IDC:EURUSD",
+      "title": "EUR/USD"
+    },
+    {
+      "proName": "BITSTAMP:BTCUSD",
+      "title": "BTC/USD"
+    },
+    {
+      "proName": "BITSTAMP:ETHUSD",
+      "title": "ETH/USD"
+    }
+  ],
+  "colorTheme": "dark",
+  "isTransparent": false,
+  "locale": "in"
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
 
 {# Grid layout start from here #}
 <div class="homepage-grid-container">
     {# grid main #}
     <main class="homepage-grid-main1" id="grid">
-
-                <div class="home-page-cont">
-
-                    <img src="https://c.ndtvimg.com/2020-09/tsosgnm_joe-biden-afp_625x300_30_September_20.jpg"
-                         alt="Nature" style="width:100%;">
-                    <div class="home-page-text-block">
-
-                        <p>Can Trump Pull It Off? The Odds Favour Biden, But...</p>
-                    </div>
-                </div>
+        <br>
+        <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container" style="transform: translateY(6px)">
+  <div id="tradingview_e5423"></div>
+  <div class="tradingview-widget-copyright"><a href="https://in.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text"></span></a> </div>
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+  <script type="text/javascript">
+  new TradingView.widget(
+  {
+  "width": 580,
+  "height": 350,
+  "symbol": "NASDAQ:AAPL",
+  "interval": "D",
+  "timezone": "Etc/UTC",
+  "theme": "dark",
+  "style": "1",
+  "locale": "in",
+  "toolbar_bg": "#f1f3f6",
+  "enable_publishing": false,
+  "allow_symbol_change": true,
+  "container_id": "tradingview_e5423"
+}
+  );
+  </script>
+</div>
+<!-- TradingView Widget END -->
 
 
 
     </main>
     <main class="homepage-grid-main2">
-        <div class="card1">
-            <div class="con">
-
-                <p>49 Workers Stranded For Months In UAE Brought Back To India: Report</p>
-            </div>
-
-
-        </div>
-
-        <div class="card1">
-            <div class="con">
-
-                <p>Immunity Against COVID-19 May Last For Months, Shows Study Led By Indian-Origin Researcher.
-                    
-                </p>
-            </div>
-        </div>
+        <br>
+        <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/mumbai-26831"><img src="https://w.bookcdn.com/weather/picture/32_26831_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"  alt="booked.net"/></a><!-- weather widget end -->
+        <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/chennai-18036"><img src="https://w.bookcdn.com/weather/picture/32_18036_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"  alt="booked.net"/></a><!-- weather widget end -->
+        <br>
+        <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/kolkata-26871"><img src="https://w.bookcdn.com/weather/picture/32_26871_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"  alt="booked.net"/></a><!-- weather widget end -->
+        <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/new-delhi-18038"><img src="https://w.bookcdn.com/weather/picture/32_18038_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"  alt="booked.net"/></a><!-- weather widget end -->
 
     </main>
     {# The Below is The Top Stories Scrollabel#}
