@@ -9,7 +9,7 @@
 
     align-items: center;
     flex-direction: column;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Lato', sans-serif;
     height: 100vh;
 
 }
@@ -17,11 +17,13 @@
 .lr-auth-form-h1 {
     font-weight: bold;
     margin: 30px auto;
+    font-family: 'Lato',serif;
 }
 
 .lr-auth-form-h2 {
     text-align: center;
     color: #eeeeee;
+    font-family: 'Lato',serif;
 }
 
 .lr-auth-form-p {
@@ -30,6 +32,7 @@
     line-height: 20px;
     letter-spacing: 0.5px;
     margin: 20px 0 30px;
+    font-family: 'Lato',serif;
 }
 
 .lr-auth-form-span {
@@ -41,6 +44,7 @@
     font-size: 18px;
     text-decoration: none;
     margin: 15px 0;
+    font-family: 'Lato',serif;
 }
 
 .lr-auth-form-button {
@@ -72,6 +76,7 @@
     color: #d72323;
     text-decoration: none;
     margin: 20px;
+    font-family: 'Lato',serif;
 }
 
 .lr-auth-form-form {

@@ -32,7 +32,7 @@ def auth(request):
         if 14 >= int(register_phone_no) >= 10:
             messages.info(request, "Phone Number must be at least 10 Digits")
         if register_gender is None:
-            messages.info(request, "Please Select A Gender")
+            return render(request, 'Register.html',{'message':'Select A Gender'})
         if register_emailId != "" and register_firstname != "" and register_lastname != "" and register_password != "" and register_date != "":
             hashed_password = generate_password_hash(register_password, method="sha256")
             print(register_firstname, register_lastname, register_emailId, hashed_password,
@@ -40,7 +40,7 @@ def auth(request):
             print(register_phone_no, register_gender)
             status = email_id_status(register_emailId)
             if status == 'EMAIL ID TAKEN':
-                messages.info(request, "Email Id is Already Registered")
+                return render(request, 'Register.html',{'message':'Email Id Is Already Registered'})
             else:
                 with connection.cursor() as cursor:
                     print()
