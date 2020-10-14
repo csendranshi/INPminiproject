@@ -6,17 +6,20 @@
 
 .auth-form-body {
     background: #e3dfc8;
+    margin: auto;
 
-    align-items: center;
+    /*align-items: center;*/
     flex-direction: column;
     font-family: 'Inter', sans-serif;
+    /*padding: 20px;*/
     height: 100vh;
 
 }
 
 .auth-form-h1 {
     font-weight: bold;
-    margin: 30px auto;
+    padding: 5px;
+    margin: auto;
 }
 
 .auth-form-h2 {
@@ -24,13 +27,13 @@
     color: #eeeeee;
 }
 
-.auth-form-p {
-    font-size: 14px;
-    font-weight: 100;
-    line-height: 20px;
-    letter-spacing: 0.5px;
-    margin: 20px 0 30px;
-}
+/*.auth-form-p {*/
+/*    font-size: 14px;*/
+/*    font-weight: 100;*/
+/*    line-height: 20px;*/
+/*    letter-spacing: 0.5px;*/
+/*    !*margin: 20px 0 30px;*!*/
+/*}*/
 
 .auth-form-span {
     font-size: 12px;
@@ -40,7 +43,7 @@
     color: #303841;
     font-size: 18px;
     text-decoration: none;
-    margin: 15px 0;
+    margin: auto;
 }
 
 .auth-form-button {
@@ -55,7 +58,7 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: transform 80ms ease-in;
-    margin: 20px;
+    margin: auto;
 }
 
 .auth-form-button:active {
@@ -66,23 +69,27 @@
     outline: none;
 }
 
-.ghost {
-    background-color: transparent;
-    border-color: #d72323;
-    color: #d72323;
-    text-decoration: none;
-    margin: 20px;
-}
+/*.ghost {*/
+/*    background-color: transparent;*/
+/*    border-color: #d72323;*/
+/*    color: #d72323;*/
+/*    text-decoration: none;*/
+/*    margin: 20px;*/
+/*}*/
 
 .post-auth-form-form {
     background-color: #eeeeee;
-    display: flex;
-    align-items: center;
+    /*display: flex;*/
+    /*align-items: center;*/
     justify-content: center;
     flex-direction: column;
     padding: 0 50px;
-    height: 100%;
+    max-height:inherit;
+    margin: auto;
+    max-width: inherit;
     text-align: center;
+    /*transform: translateX(25%);*/
+    /*transform: translateY(200px);*/
 }
 
 .auth-form-input {
@@ -90,9 +97,9 @@
     border: 1px solid #3a4750;
     border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
-    padding: 12px 15px;
-    margin: 10px;
-    width: 100%;
+    padding: 15px 15px;
+    margin: 10px auto;
+    max-width: inherit;
     font-size: 20px;
     color: #3a4750;
 }
@@ -105,7 +112,7 @@
     outline: none;
 }
 
-.posts-container {
+.container-posts {
     background-color: #eeeeee;
     border-top-right-radius: 35px;
     border-bottom-left-radius: 35px;
@@ -114,16 +121,17 @@
     0 10px 10px rgba(0, 0, 0, 0.22);
     position: relative;
     overflow: hidden;
-    width: 768px;
-    max-width: 100%;
-    min-height: 700px;
-    margin: 10px auto;
+    /*width: 768px;*/
+    max-width: 80%;
+    min-height: 75%;
+    margin: auto;
 }
 
 .form-container {
-    position: absolute;
-    top: 0;
-    height: 100%;
+    position: relative;
+    /*top: 0;*/
+    margin: inherit;
+    height: 90%;
     transition: all 0.6s ease-in-out;
 }
 

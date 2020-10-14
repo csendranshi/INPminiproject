@@ -10,8 +10,8 @@
     </h2>
     <div class="container" id="container">
 
-        <div class="form-container sign-in-container">
-            <form class="auth-form-form" method="POST" action="{% url 'login' %}">
+        <div class="form-container ">
+            <form class="auth-form-form sign-in-container" method="POST" action="{% url 'login' %}">
                 <div style="color: #3a4750; font-size: 25px">Login for updates on our latest news</div>
                 {% csrf_token %}
                 <div class="icon-auth-form-input">

@@ -208,7 +208,7 @@
         grid-template-areas: "content1" "content2" "content3" "content4" "content6" "content5";
         font-size: 12px;
         column-gap: 10px;
-
+        margin: 50px auto;
     }
 
     .card1 {
@@ -232,8 +232,7 @@ padding-left: 10px;
         grid-template-areas: "content1 content2" "content3 content4" "content6 content5";
         font-size: 12px;
         column-gap: 10px;
-        margin: 10px auto;
-
+        margin: 50px auto;
     }
 
     .card1 {
