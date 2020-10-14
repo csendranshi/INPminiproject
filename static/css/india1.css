@@ -111,3 +111,40 @@
 #wrap2 > con{
     padding-top: 40px;
 }
+.india-page-text-block {
+  position: absolute;
+  bottom: 0px;
+  font-size: 15px;
+  background-color: #222222;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  /* height: 327px; */
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  width: 501px;
+}
+
+.india-page-cont {
+
+  position: relative;
+  font-family: 'Lato', serif;
+  /*height: 327px;*/
+  width:500px;
+  margin: auto;
+
+}
+
+.india-page-cont h1 {
+  /*position: center;*/
+  padding-left: 180px;
+  color: #eeeeee;
+}
+
+.india-page-cont img {
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  height: 307px;
+  width: 501px !important;
+}
+
