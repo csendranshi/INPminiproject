@@ -27,20 +27,22 @@
 
 
 #tech-main1{
-  background: rgba(255, 255, 255, 0.13);
+  
   grid-area: tech-main1;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   padding-top: var(--main-padding);
   height: 300px;
+  overflow: hidden;
 }
 #tech-main2{
-  background:rgba(255, 255, 255, 0.13);
+ 
   grid-area: tech-main2;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   padding-top: var(--main-padding);
   height: 300px;
+  overflow: hidden;
 }
 #tech-content1 {
   background: rgba(255, 255, 255, 0.13);
@@ -126,18 +128,36 @@
 }
 @media  screen and (max-width: 900px) and (min-width:550px) {
   .tech-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.4fr 2.2fr 1.2fr 1.2fr 1.2fr 1.2fr 1fr;
-
+    display:grid;
     grid-template-areas:
       "health health"
       "tech-main tech-main"
-      "tech-content tech-content1"
-      "tech-content2 tech-content3"
+      "tech-content1 tech-content2"
+      "tech-content3 tech-content4"
+      "tech-content5 tech-content6"
+      "tech-content3 tech-content4"
       "healthnews healthnews"
   }
 }
+.tech-image-css-main {
+  width: 100%;
+  height: auto;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  position: relative;
+  bottom: 10px;
+ 
+}
 
+.tech-image-css-main {
+  width: 100%;
+  height: auto;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  position: relative;
+  bottom: 10px;
+ 
+}
 .tech-image-css {
   width: 100%;
   height: auto;

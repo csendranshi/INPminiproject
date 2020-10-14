@@ -6,14 +6,14 @@
         <link href="{% static '/css/css_login_form1.css' %}" rel="stylesheet">
         <link rel="stylesheet" href="">
     </head>
-    <body class="auth-form-body">
-    <h2 class="auth-form-h2">
+    <body class="lr-uth-form-body">
+    <h2 class="lr-auth-form-h2">
         <div>Welcome Back Peeps,</div>
         <div>Catch our latest Spilled Tea!</div>
     </h2>
-    <div class="container right-panel-active" id="container">
-        <div class="form-container sign-up-container">
-            <form class="auth-form-form" method="POST">
+    <div class="lr-container right-panel-active" id="container">
+        <div class="lr-form-container lr-sign-up-container">
+            <form class="lr-auth-form-form" method="POST">
                 <h1 style="
     font-weight: bold;
     margin: 0px auto;
@@ -23,41 +23,37 @@
                 {% endfor %}
                 {% csrf_token %}
 
-                <input class="auth-form-input" type="text" pattern="[A-Za-z]{2,15}" title="First Name Cannot Have Digits or Special Characters" name="reg_firstname" placeholder="First Name" required>
-                <input class="auth-form-input" type="text" pattern="[A-Za-z]{2,15}" title="First Name Cannot Have Digits or Special Characters" name="reg_lastname" placeholder="Last Name" required>
-                <input class="auth-form-input" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Enter A Proper Email ID" name="reg_emailId" placeholder="Email ID" required>
-                <input class="auth-form-input" type="password" name="reg_password" placeholder="Password" required>
-                <input class="auth-form-input" type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
+                <input class="lr-auth-form-input" type="text" pattern="[A-Za-z]{2,15}" title="First Name Cannot Have Digits or Special Characters" name="reg_firstname" placeholder="First Name" required>
+                <input class="lr-auth-form-input" type="text" pattern="[A-Za-z]{2,15}" title="First Name Cannot Have Digits or Special Characters" name="reg_lastname" placeholder="Last Name" required>
+                <input class="lr-auth-form-input" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Enter A Proper Email ID" name="reg_emailId" placeholder="Email ID" required>
+                <input class="lr-auth-form-input" type="password" name="reg_password" placeholder="Password" required>
+                <input class="lr-auth-form-input" type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
                        name="dateofbirth" placeholder="Date Of Birth" required>
-                <input class="auth-form-input" type="number" name="reg_phone_number" minlength="10" maxlength="14" pattern="/(91|0091|022)\d{10}/" placeholder="Phone Number"
+                <input class="lr-auth-form-input" type="number" name="reg_phone_number" minlength="10" maxlength="14" pattern="/(91|0091|022)\d{10}/" placeholder="Phone Number"
                        required>
 
-                <select class="auth-form-input" id="Gender" name="Gender" required>
+                <select class="lr-auth-form-input" id="Gender" name="Gender" required>
                     <option selected="true" disabled>Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
                 </select>
 
-                <input type="submit" class="auth-form-button" value="Register"/>
+                <input type="submit" class="lr-auth-form-button" value="Register"/>
             </form>
         </div>
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-panel overlay-left">
-                    <h1 class="auth-form-h1">Welcome Back!</h1>
-                    <p class="auth-form-p">To catch our latest news please login with your personal info</p>
+        <div class="lr-overlay-container">
+            <div class="lr-overlay">
+                <div class="lr-overlay-panel overlay-left">
+                    <h1 class="lr-auth-form-h1">Welcome Back!</h1>
+                    <p class="lr-auth-form-p">To catch our latest news please login with your personal info</p>
 
-                    <a href="{% url 'login' %}" class="auth-form-button ghost" id="signIn">Sign In</a>
+                    <a href="{% url 'login' %}" class="lr-auth-form-button ghost" id="signIn">Sign In</a>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        function onFirstName(){
-
-        }
-    </script>
+  
     </body>
     </html>
 
