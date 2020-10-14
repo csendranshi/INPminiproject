@@ -6,16 +6,16 @@
 
 <h2 class="auth-form-h2">
 
-    <div>Catch our latest Spilled Tea!</div>
+    <div>Got some latest Tea to spill?</div>
 </h2>
-<div class="container" id="container">
+<div class="container-posts" id="container">
 
 
     <div class="form-container sign-in-container">
 
-        <form class="post-auth-form-form" method="POST" action="{% url 'posts' %}">
+        <form style="margin: auto" class="post-auth-form-form" method="POST" action="{% url 'posts' %}">
             <div style="display:inline-block">
-                <div style="color: #3a4750; font-size: 25px; margin: auto">Post an Article</div>
+                <div style="color: #3a4750; font-size: 25px; margin: inherit; padding: 2%">Post an Article</div>
                 {% csrf_token %}
 
 
@@ -56,6 +56,7 @@
                 <!--            <div class="icon-auth-form-input">-->
 
         </form>
+        <br>
     </div>
 </div>
 <div class="modal">
@@ -91,7 +92,7 @@
 </script>
 
 {% endif %}
-
+<br>
 </body>
 
 
