@@ -5,18 +5,18 @@
 
 
 
-.health-container {
+.tech-container {
   display: grid;
   height: 100vh;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 0.2fr 1.5fr 1.2fr 0.8fr;
   grid-template-areas:
-    "health-content3 health-content4 health-main2 health-main2"
-    "health-main1 health-main1 health-content1 health-content2"
-    "health-content5 health-content6 health-content7 health-content8"
-    "healthnews healthnews healthnews healthnews";
+    "tech-main1 tech-main1 tech-main2 tech-main2"
+    "tech-content1 tech-content2 tech-content3 tech-content4"
+    "tech-content5 tech-content6 tech-content7 tech-content8"
+    "footer footer footer footer";
   grid-gap: 0.2rem;
-
+ 
   font-size: 15px;
   color: #fff5ea;
   text-align: center;
@@ -26,77 +26,77 @@
 }
 
 
-#health-main1{
-
-  grid-area: health-main1;
+#tech-main1{
+  
+  grid-area: tech-main1;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   padding-top: var(--main-padding);
   height: 300px;
   overflow: hidden;
 }
-#health-main2{
-
-  grid-area: health-main2;
+#tech-main2{
+ 
+  grid-area: tech-main2;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   padding-top: var(--main-padding);
   height: 300px;
   overflow: hidden;
 }
-#health-content1 {
+#tech-content1 {
   background: rgba(255, 255, 255, 0.13);
-  grid-area: health-content1;
+  grid-area: tech-content1;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   padding-top: var(--main-padding);
 }
 
-#health-content2 {
+#tech-content2 {
   background: rgba(255, 255, 255, 0.13);
-  grid-area: health-content2;
+  grid-area: tech-content2;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   padding-top: var(--main-padding);
 }
-#health-content3 {
+#tech-content3 {
   background: rgba(255, 255, 255, 0.13);
-  grid-area: health-content3;
+  grid-area: tech-content3;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   padding-top: var(--main-padding);
 }
-#health-content4 {
+#tech-content4 {
   background:rgba(255, 255, 255, 0.13);
-  grid-area:health-content4;
+  grid-area:tech-content4;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   padding-top: var(--main-padding);
 }
-#health-content5 {
+#tech-content5 {
   background:rgba(255, 255, 255, 0.13);
-  grid-area:health-content5;
+  grid-area:tech-content5;
    border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   padding-top: var(--main-padding);
 }
-#health-content6 {
+#tech-content6 {
   background:#3a4750;
-  grid-area:health-content6;
+  grid-area:tech-content6;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   padding-top: var(--main-padding);
 }
-#health-content7 {
+#tech-content7 {
   background:#3a4750;
-  grid-area:health-content7;
+  grid-area:tech-content7;
    border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   padding-top: var(--main-padding);
 }
-#health-content8 {
+#tech-content8 {
   background:#3a4750;
-  grid-area:health-content8;
+  grid-area:tech-content8;
    border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   padding-top: var(--main-padding);
@@ -104,65 +104,59 @@
 
 
 
-#healthnews {
-  background:rgba(255, 255, 255, 0.13);
-  grid-area: healthnews;
-  border-radius: var(--main-radius);
-  padding-top: var(--main-padding);
-}
 
 
-@media  screen and (max-width: 650px) {
-  .health-container {
+@media (max-width: 650px) {
+  .tech-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
-      "health-main1 health-main1"
-      "health-content1 health-content2"
-      "health-content3 health-content4"
-      "health-content5 health-content6"
-      "health-content7 health-content8"
-      "healthnews healthnews"
+      "tech-main1 tech-main1"
+      "tech-content1 tech-content2"
+      "tech-content3 tech-content4"
+      "tech-content5 tech-content6"
+      "tech-content7 tech-content8"
+      "footer footer"
   }
-  #health-main2{
+  #tech-main2{
     display: none;
   }
 }
-@media  screen and (max-width: 1000px) and (min-width:650px) {
-  .health-container {
+@media (max-width: 1000px) and (min-width:650px) {
+  .tech-container {
     display:grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
-      "health-main1 health-main2"
-      "health-content1 health-content2"
-      "health-content3 health-content4"
-      "health-content5 health-content6"
-      "health-content7 health-content8"
-      "healthnews healthnews"
+      "tech-main1 tech-main2"
+      "tech-content1 tech-content2"
+      "tech-content3 tech-content4"
+      "tech-content5 tech-content6"
+      "tech-content7 tech-content8"
+      "footer footer"
   }
 }
-.health-image-css-main {
+.tech-image-css-main {
   width: 100%;
   height: auto;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   position: relative;
   bottom: 10px;
-
+ 
 }
 
-.health-image-css-main {
+.tech-image-css-main {
   width: 100%;
   height: auto;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   position: relative;
   bottom: 10px;
-
+ 
 }
-.health-image-css {
+.tech-image-css {
   width: 100%;
   height: auto;
   border-top-right-radius: 20px;
@@ -170,6 +164,6 @@
   position: relative;
   bottom: 10px;
 }
-.health-p-tag-css {
+.tech-p-tag-css {
   font-family: 'Lato',serif;
 }

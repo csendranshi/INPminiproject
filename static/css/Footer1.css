@@ -1,11 +1,23 @@
 
-        .flex-container {
+       #footer-for-pages {
+
+
+  
+    grid-area: footer;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    height: 300px;
+    width: 100%;
+        
+
+       }
+
+       .flex-container {
             display: flex;
             background-color: #303841;
             color: #effad3;
             font-size: 20px;
-            height: 300px;
-            width: 100%;
+                width: 100%;
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: space-between;

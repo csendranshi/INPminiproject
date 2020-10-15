@@ -14,7 +14,7 @@
     "business-main1 business-main1 business-main2 business-main2"
     "business-content1 business-content2 business-content3 business-content4"
     "business-content5 business-content6 business-content7 business-content8"
-    "healthnews healthnews healthnews healthnews";
+    "footer footer footer footer";
   grid-gap: 0.2rem;
 
   font-size: 15px;
@@ -102,13 +102,8 @@
   padding-top: var(--main-padding);
 }
 
-
-
-#healthnews {
-  background:rgba(255, 255, 255, 0.13);
-  grid-area: healthnews;
-  border-radius: var(--main-radius);
-  padding-top: var(--main-padding);
+#health-news{
+  display: none;
 }
 
 
@@ -123,7 +118,11 @@
       "business-content3 business-content4"
       "business-content5 business-content6"
       "business-content7 business-content8"
-      "healthnews healthnews"
+      "footer footer";
+    
+  }
+  #health-news{
+    display: none;
   }
   #business-main2{
     display: none;
@@ -140,7 +139,7 @@
       "business-content3 business-content4"
       "business-content5 business-content6"
       "business-content7 business-content8"
-      "healthnews healthnews"
+      "footer footer ";
   }
 }
 .business-image-css-main {

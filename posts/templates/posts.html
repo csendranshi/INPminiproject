@@ -8,23 +8,23 @@
 
     <div>Got some latest Tea to spill?</div>
 </h2>
-<div class="container-posts" id="container">
+<div class="lr-container" id="container">
 
 
-    <div class="form-container sign-in-container">
+    <div class="lr-form-containe">
 
-        <form style="margin: auto" class="post-auth-form-form" method="POST" action="{% url 'posts' %}">
+        <form style="margin: auto" class="lr-auth-form-form lr-sign-in-container" method="POST" action="{% url 'posts' %}">
             <div style="display:inline-block">
                 <div style="color: #3a4750; font-size: 25px; margin: inherit; padding: 2%">Post an Article</div>
                 {% csrf_token %}
 
 
-                <input class="auth-form-input" type="text" name="imageLink" placeholder="Image Link">
+                <input class="icon-auth-form-input" type="text" name="imageLink" placeholder="Image Link">
 
 
-                <input class="auth-form-input" type="text" name="postTitle" placeholder="Title">
+                <input class="icon-auth-form-input" type="text" name="postTitle" placeholder="Title">
 
-                <select class="auth-form-input" name="category">
+                <select class="icon-auth-form-input" name="category">
                     <option value="Latest">Latest</option>
                     <option value="india">India</option>
                     <option value="world">World</option>
@@ -35,7 +35,7 @@
                 </select>
 
 
-                <select class="auth-form-input" name="section">
+                <select class="icon-auth-form-input" name="section">
                     <option value="top-stories">Top Stories</option>
                     <option value="Matrix1x1">Matrix1x1</option>
                     <option value="Matrix1x2">Matrix1x2</option>
@@ -46,8 +46,8 @@
                 </select>
             </div>
             <div style="display: inline">
-                <input class="auth-form-input" type="file">
-                <textarea class="auth-form-input" name="postDesc" placeholder="description" rows="4"
+                <input class="icon-auth-form-input" type="file">
+                <textarea class="icon-auth-form-input" name="postDesc" placeholder="description" rows="4"
                           cols="20"></textarea>
                 <div class="icon-bg-auth-form-bg"></div>
             </div>
@@ -93,6 +93,44 @@
 
 {% endif %}
 <br>
+<footer id="footer-for-pages">
+    <div class="flexcontainer-column">
+        <div class="flex-container">
+            <div style="margin-left: 20px">
+                <div>
+                    <div>ABOUT</div>
+                    The Journalist Done By
+                </div>
+                <list>
+                    <ul class="ul-styles"> Reuben Coutinho</ul>
+                    <ul class="ul-styles"> Anshika Gupta</ul>
+                    <ul class="ul-styles"> Rhea Rodrigues</ul>
+                    <ul class="ul-styles"> Ankita Tripathi</ul>
+                </list>
+    
+            </div>
+            <hr>
+            <div style="margin-right: 100px">
+    
+                <div>CONTENTS</div>
+                <list>
+                    <ul style="margin:0px;">Latest</ul>
+                    <ul style="margin:0px;">India</ul>
+                    <ul style="margin:0px;">Education</ul>
+                    <ul style="margin:0px;">Business</ul>
+                    <ul style="margin:0px;">world</ul>
+                    <ul style="margin:0px;">Technology</ul>
+                    <ul style="margin:0px;">Health</ul>
+                </list>
+    
+            </div>
+    
+        </div>
+    
+    
+    </div>
+    
+</footer>
 </body>
 
 

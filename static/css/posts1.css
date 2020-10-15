@@ -102,6 +102,7 @@
     max-width: inherit;
     font-size: 20px;
     color: #3a4750;
+    display: block;
 }
 
 .auth-form-input::placeholder {
@@ -126,6 +127,7 @@
     min-height: 75%;
     margin: auto;
 }
+
 
 .form-container {
     position: relative;
@@ -359,48 +361,11 @@ svg {
     align-items: center;
     position: relative;
     padding: 10px;
+    width: 100%;
+    font-size: medium;
 
 
 }
-
-.icon-auth-form-input input {
-    background-color: #eeeeee;
-    border: none;
-    font-family: 'Lato', serif;
-    font-size: 20px;
-    width: 90%;
-    outline: none;
-    margin-left: 8px;
-    transition: all .25s ease;
-}
-
-.icon-auth-form-input input:focus {
-    padding-left: 5px;
-    padding-right: 8px;
-}
-
-.icon-auth-form-input input:focus ~ .icon-bg-auth-form-bg {
-
-}
-
-.icon-auth-form-input input:focus ~ i {
-    transform: translate(0, -8px);
-    box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, .4);
-}
-
-.icon-auth-form-input i.icon-auth-form-input-icon-icon {
-    order: -1;
-    background: #eeeeee;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 31px;
-    height: 31px;
-    z-index: 20;
-    transition: all .25s ease;
-}
-
 
 
 

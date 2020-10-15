@@ -15,7 +15,7 @@
       "world-main1 world-main1 world-main2 world-main2"
       "world-content1 world-content2 world-content3 world-content4"
       "world-content5 world-content6 world-content7 world-content8"
-      "healthnews healthnews healthnews healthnews";
+      "footer footer footer footer";
     grid-gap: 0.2rem;
    
     font-size: 15px;
@@ -34,11 +34,9 @@
     /*border-top-right-radius: 20px;*/
     /*border-bottom-left-radius: 20px;*/
     overflow: hidden;
-<<<<<<< HEAD
     margin-top: 50px;
-=======
-    transform: translateY(4px);
->>>>>>> 465d86cdd1024e08983b75152c6a444b69febe78
+
+
   }
   
   #world-main1{
@@ -119,14 +117,6 @@
   
   
   
-  #healthnews {
-    background:rgba(255, 255, 255, 0.13);
-    grid-area: healthnews;
-    border-radius: var(--main-radius);
-    padding-top: var(--main-padding);
-  }
-  
-  
   @media (max-width: 650px) {
     .world-container {
       display: grid;
@@ -139,7 +129,7 @@
         "world-content3 world-content4"
         "world-content5 world-content6"
         "world-content7 world-content8"
-        "healthnews healthnews"
+        "footer footer"
     }
     #world-main2{
       display: none;
@@ -157,7 +147,7 @@
         "world-content3 world-content4"
         "world-content5 world-content6"
         "world-content7 world-content8"
-        "healthnews healthnews"
+        "footer footer"
     }
   }
   .world-image-css-main {
