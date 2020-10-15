@@ -2,6 +2,11 @@
     --main-radius: 5px;
     --main-padding: 5px;
 }
+.audio {
+    display:none;
+}
+
+
 .homepage-grid-container {
     display: grid;
     height: 100vh;
