@@ -29,12 +29,16 @@
   #map{
     width: 100%;
     height: 300px;
-    border: 1px solid #cccccc;
+    /*border: 1px solid #cccccc;*/
     grid-area: map;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
+    /*border-top-right-radius: 20px;*/
+    /*border-bottom-left-radius: 20px;*/
     overflow: hidden;
+<<<<<<< HEAD
     margin-top: 50px;
+=======
+    transform: translateY(4px);
+>>>>>>> 465d86cdd1024e08983b75152c6a444b69febe78
   }
   
   #world-main1{
