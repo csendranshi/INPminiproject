@@ -114,6 +114,11 @@
     width: 100%;
     font-size: 20px;
     color: #3a4750;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .lr-auth-form-input::placeholder {
@@ -466,9 +471,105 @@ svg {
     transition: all .25s ease;
 }
 
+/* .lr-auth-form-input {
+    background-color: #eee;
+    border: 1px solid #3a4750;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding: 12px 15px;
+    margin: 10px;
+    width: 100%;
+    font-size: 20px;
+    color: #3a4750;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+} */
+
+.lr-auth-form-input-for-icon {
+    background-color: #eee;
+    border: 1px solid #3a4750;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding: 12px 15px;
+    margin: 10px;
+    width: 400px;
+    font-size: 20px;
+    color: #3a4750;
+    display: flex;
+    
+       
+}
 
 
-
+    .lr-auth-register-icon-input {
+      background-color: #eee;
+        position: relative;
+        display: flex;
+        align-items: center;
+          border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+       align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        border: 1px solid #3a4750;
+      
+    }
+    .lr-auth-register-input {
+       
+      background-color: #eee;
+        border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+        border: 0px solid #3a4750;
+        font-family: 'Lato',sans-serif;
+        transition: all .25s ease;
+        min-width: 250px;
+      outline:none;
+      color: #3a4750;
+      font-size: 20px;
+    }
+    .lr-auth-register-input.valid ~ .lr-auth-register-icons .lr-reg-check{
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+        background-color: #eee;
+        margin-left: 0px;
+    }
+    .lr-auth-register-input.invalid ~ .lr-auth-register-icons .lr-reg-x{
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+    }
+    .lr-auth-register-icons {
+        position: absolute;
+        right: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+        width: 30px;
+        height: 25px;
+        transition: all .25s ease;
+    }
+    i {
+        position: absolute;
+        transition: all .25s ease;
+        font-size: 1.3rem;
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(.5);
+    }
+    .lr-reg-check {
+        color: #3aba6f;
+        text-shadow: 0px 5px 10px rgba(58, 186, 111, .3);
+    }
+    .lr-reg-x {
+        color: rgb(240, 90, 92);
+        text-shadow: 0px 5px 10px rgba(240, 90, 92, .3);
+    }
 
 /*.path {*/
 /*    stroke-dasharray: 1000;*/
