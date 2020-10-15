@@ -5,90 +5,130 @@
 {% block content %}
 <body>
 
-<div id="googleMap" style="display:inherit;width:100%;height:300px;transform: translateY(4px)"></div>
-
+<div id="map" ></div>
+<!--put your map api javascript url with key here-->
+<script src="https://apis.mapmyindia.com/advancedmaps/v1/gpbxme3lewuxxgpj5dfkpy4n53o5l4g2/map_load?v=1.5"></script>
 <script>
-function myMap() {
-var mapProp= {
-  center:new google.maps.LatLng(19.08742,72.870850),
-  zoom:5,
-};
-var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-}
-</script>
+  var map = null;
+  var latitude,longitude;
+  window.onload = function() {
+      getLocation()
+      function  getLocation() {
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(showPosition);
 
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+          } else {
+              x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+      }
+
+      function showPosition(position){
+          latitude=position.coords.latitude;
+          longitude= position.coords.longitude;
+          console.log(latitude,longitude)
+
+      var centre = new L.LatLng(latitude,longitude);
+      console.log("Hello RUN",latitude,longitude)
+      map=new MapmyIndia.Map('map',{center:centre,zoomControl: true,hybrid:true });
+      /*1.create a MapmyIndia Map by simply calling new MapmyIndia.Map() and passsing it at the minimum div object, all others are optional...
+      2.all leaflet mapping functions can be called simply on the L object
+      3.MapmyIndia may extend and in future modify the customised/forked Leaflet object to enhance mapping functionality for developers, which will be clearly documented in the MapmyIndia API documentation section.*/
+      }
+      var event_div = document.getElementById("event-log");
+      /***map-events****/
+      map.on("dblclick", function(e) {
+          var pt = e.latlng;/*event returns lat lng of clicked point*/
+          event_div.innerHTML= "dbclick:</br> lat:" + pt.lat + "</br>lng:" + pt.lng + "</br>" + event_div.innerHTML;
+      });
+      map.on("click", function(e) {
+          var pt = e.latlng;/*event returns lat lng of clicked point*/
+          event_div.innerHTML= "click:</br> lat:" + pt.lat + "</br>lng:" + pt.lng + "</br>" + event_div.innerHTML;
+      });
+      map.on("resize", function(e) {
+          event_div.innerHTML="map resized</br>" + event_div.innerHTML;
+      });
+      map.on("mouseup", function(e) {
+          var pt = e.latlng;/*event returns lat lng of current point*/
+          event_div.innerHTML = "mouseup:</br> lat:" + pt.lat + "</br>lng:" + pt.lng + "</br>" + event_div.innerHTML;
+      });
+      map.on("mousedown", function(e) {
+          var pt = e.latlng;/*event returns lat lng of current point*/
+          event_div.innerHTML = "mousedown:</br> lat:" + pt.lat + "</br>lng:" + pt.lng + "</br>" + event_div.innerHTML;
+      });
+  };
+
+</script>
 <hr style="height: 5px; color: #99999960; background-color: #99999960; border-color: #99999960; transform: translateY(-4px)">
 
-<div class="tech-container">
-  <div id="tech-main1">
-    <img class="tech-image-css-main"
+<div class="world-container">
+  <div id="world-main1">
+    <img class="world-image-css-main"
     src="https://ichef.bbci.co.uk/news/800/cpsprodpb/15D07/production/_114915398_tv063800890.jpg"alt="">
 
 
   </div>
-  <div id="tech-main2">
-      <img class="tech-image-css-main" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/A425/production/_114912024_92ea9faf-fc9c-41e4-a385-e651bd01e764.jpg" alt="">
+  <div id="world-main2">
+      <img class="world-image-css-main" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/A425/production/_114912024_92ea9faf-fc9c-41e4-a385-e651bd01e764.jpg" alt="">
 
 
 
   </div>
-  <div id="tech-content1">
-    <img class="tech-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/168BF/production/_114915329_3227189c-273c-4cad-88a6-e9c1594ca00f.jpg" alt="">
+  <div id="world-content1">
+    <img class="world-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/168BF/production/_114915329_3227189c-273c-4cad-88a6-e9c1594ca00f.jpg" alt="">
     <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="tech-p-tag-css">
+              columns: #eeeeee;"  class="world-p-tag-css">
              stages released in Yemen 'prisoner swap' </p>
       </div>
-  <div id="tech-content2">
-    <img class="tech-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/10E65/production/_114912296_diyabanzareuters.jpg" alt="">
+  <div id="world-content2">
+    <img class="world-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/10E65/production/_114912296_diyabanzareuters.jpg" alt="">
     <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="tech-p-tag-css">
+              columns: #eeeeee;"  class="world-p-tag-css">
             France fines Congo activist for seizing museum artefact</p>
 
   </div>
-  <div id="tech-content3">
-    <img class="tech-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/12052/production/_114901837_38b972ca-c47f-41cb-adc5-a52f2d780838.jpg" alt="">
+  <div id="world-content3">
+    <img class="world-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/12052/production/_114901837_38b972ca-c47f-41cb-adc5-a52f2d780838.jpg" alt="">
     <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="tech-p-tag-css">Helicopters carrying wounded troops collide</p>
+              columns: #eeeeee;"  class="world-p-tag-css">Helicopters carrying wounded troops collide</p>
 
   </div>
-  <div id="tech-content4">
-    <img class="tech-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/10194/production/_114904956_mediaitem114902284.jpg" alt="">
+  <div id="world-content4">
+    <img class="world-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/10194/production/_114904956_mediaitem114902284.jpg" alt="">
     <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="tech-p-tag-css">Thousands gather in Bangkok as king returns to country</p>
+              columns: #eeeeee;"  class="world-p-tag-css">Thousands gather in Bangkok as king returns to country</p>
 
   </div>
-  <div id="tech-content5">
-    <img class="tech-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/8E7D/production/_114877463_6e03f974-d9dd-4641-bbdf-bcb886039d93.jpg" alt="">
+  <div id="world-content5">
+    <img class="world-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/8E7D/production/_114877463_6e03f974-d9dd-4641-bbdf-bcb886039d93.jpg" alt="">
     <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="tech-p-tag-css">
+              columns: #eeeeee;"  class="world-p-tag-css">
               The BTS fans investing in their favourite K-pop band</p>
 
   </div>
-  <div id="tech-content6">
-    <img class="tech-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/53B7/production/_114913412_folioreu_cut.jpg" alt="">
+  <div id="world-content6">
+    <img class="world-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/53B7/production/_114913412_folioreu_cut.jpg" alt="">
     <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="tech-p-tag-css">
+              columns: #eeeeee;"  class="world-p-tag-css">
 
             Shakespeare First Folio fetches a record $10m at auction</p>
 
   </div>
 
-  <div id="tech-content7">
-    <img class="tech-image-css" src="https://i.gadgets360cdn.com/large/iphone_11_back_image_1602673044747.jpg" alt="">
+  <div id="world-content7">
+    <img class="world-image-css" src="https://i.gadgets360cdn.com/large/iphone_11_back_image_1602673044747.jpg" alt="">
     <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="tech-p-tag-css">iPhone 11, iPhone 11 Pro to Get Huge Price Discounts During Amazon, Flipkart Sales</p>
+              columns: #eeeeee;"  class="world-p-tag-css">iPhone 11, iPhone 11 Pro to Get Huge Price Discounts During Amazon, Flipkart Sales</p>
 
 
   </div>
-    <div id="tech-content8">
-    <img class="tech-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/1A2A/production/_114889660_mediaitem114889659.jpg" alt="">
+    <div id="world-content8">
+    <img class="world-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/1A2A/production/_114889660_mediaitem114889659.jpg" alt="">
     <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="tech-p-tag-css">
+              columns: #eeeeee;"  class="world-p-tag-css">
              Karabakh war leaves civilians shell-shocked and bitter</p>
 
   </div>
-  <div  id="healthnews">technews</div>
+  <div  id="healthnews">worldnews</div>
 </div>
 {% endblock %}
 </body>
