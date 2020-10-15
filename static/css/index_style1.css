@@ -403,3 +403,10 @@
      
     } */
 }
+
+
+/* To Overite the CSS of the Cricket Box */
+
+.main-body {
+    background-color: #303841 !important;
+}
