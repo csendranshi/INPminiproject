@@ -23,23 +23,43 @@
                 
                 {% csrf_token %}
 
-                <input class="lr-auth-form-input" type="text" pattern="[A-Za-z]{2,15}" title="First Name Cannot Have Digits or Special Characters" name="reg_firstname" placeholder="First Name" required>
-                <input class="lr-auth-form-input" type="text" pattern="[A-Za-z]{2,15}" title="First Name Cannot Have Digits or Special Characters" name="reg_lastname" placeholder="Last Name" required>
-                <input class="lr-auth-form-input" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Enter A Proper Email ID" name="reg_emailId" placeholder="Email ID" required>
-                <input class="lr-auth-form-input" type="password" name="reg_password" placeholder="Password" required>
-                <input class="lr-auth-form-input" type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
+                <input class="lr-auth-form-input" value="{{userdetails.firstname}}" type="text" pattern="[A-Za-z]{2,15}" title="First Name Cannot Have Digits or Special Characters" name="reg_firstname" placeholder="First Name" required>
+                <input class="lr-auth-form-input" value="{{userdetails.lastname}}"type="text" pattern="[A-Za-z]{2,15}" title="First Name Cannot Have Digits or Special Characters" name="reg_lastname" placeholder="Last Name" required>
+                <input class="lr-auth-form-input" value="{{userdetails.emailId}}"type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Enter A Proper Email ID" name="reg_emailId" placeholder="Email ID" required>
+                <input class="lr-auth-form-input" value="{{userdetails.password}}" type="password" name="reg_password" placeholder="Password" required>
+                <input class="lr-auth-form-input" value="{{userdetails.date}}"type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
                        name="dateofbirth" placeholder="Date Of Birth" required>
-                <input class="lr-auth-form-input" type="text" pattern="[789][0-9]{9}" name="reg_phone_number" minlength="10" maxlength="14" placeholder="Phone Number"
+                <input class="lr-auth-form-input" value="{{userdetails.phone_no}}" type="text" pattern="[6789][0-9]{9}" name="reg_phone_number" minlength="10" maxlength="14" placeholder="Phone Number"
                        required>
 
                 <select class="lr-auth-form-input" id="Gender" name="Gender" required>
-                    <option selected="true" disabled>Gender</option>
-                    <option value="Male">Male</option>
+                    {% if userdetails.gender == 'Male' %}
+                    <option disabled>Gender</option>
+                    <option value="Male" selected="true" >Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
+                    {% elif userdetails.gender == 'Female' %}
+                    <option disabled>Gender</option>
+                    <option value="Male"  >Male</option>
+                    <option value="Female" selected="true">Female</option>
+                    <option value="Other">Other</option>
+                    {% elif userdetails.gender == 'Other' %}
+                    <option disabled>Gender</option>
+                    <option value="Male"  >Male</option>
+                    <option value="Female" >Female</option>
+                    <option value="Other" selected="true">Other</option>
+                    {% else %}
+                    <option selected="true" disabled>Gender</option>
+                    <option value="Male"  >Male</option>
+                    <option value="Female" >Female</option>
+                    <option value="Other" >Other</option>
+                    {% endif %}
+                    
                 </select>
-                <p >{{ message }}</h5>
+                <p >{{ message }}</p>
                 <input type="submit" class="lr-auth-form-button" value="Register"/>
+                <a href="{% url 'login' %}" class="lr-auth-form-button-screen-size-min lr-ghost" id="signIn">Sign In</a>
+
             </form>
         </div>
         <div class="lr-overlay-container">
