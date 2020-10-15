@@ -20,6 +20,7 @@
      <link href="{% static '/css/posts.css' %}" rel="stylesheet">
     <link href="{% static '/css/india1.css' %}" rel="stylesheet">
     <link href="{% static '/css/world1.css' %}" rel="stylesheet">
+    <link href="{% static '/css/Footer.css' %}" rel="stylesheet">
 
 
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
@@ -124,48 +125,44 @@
 {% block content %}
 
 {% endblock %}
-<!-- Site footer -->
-<!--<footer class="site-footer">-->
-<!--    <div class="footer-container">-->
-<!--        <div id="footer-main1">-->
-<!--            <h6>About</h6>-->
-<!--            <p class="text-justify"><i>THE JOURNALIST </i> done by-->
-<!--            <div>54 Reuben Coutinho</div>-->
-<!--            <div>55 Anshika Gupta</div>-->
-<!--            <div>60 Rhea Rodrigues</div>-->
-<!--            <div>64 Ankita Tripathi</div>-->
-<!--            </p>-->
 
-<!--        </div>-->
+<div class="flexcontainer-column">
+    <div class="flex-container">
+        <div style="margin-left: 20px">
+            <div>
+                <div>ABOUT</div>
+                The Journalist Done By
+            </div>
+            <list>
+                <ul class="ul-styles"> Reuben Coutinho</ul>
+                <ul class="ul-styles"> Anshika Gupta</ul>
+                <ul class="ul-styles"> Rhea Rodrigues</ul>
+                <ul class="ul-styles"> Ankita Tripathi</ul>
+            </list>
 
-<!--        <div id="footer-main2">-->
-<!--            <h6>Categories</h6>-->
-<!--            <ul class="footer-links">-->
-<!--                <li>Latest</li>-->
-<!--                <li>India</a></li>-->
-<!--                <li>Education</li>-->
-<!--                <li>Business</li>-->
-<!--                <li>World</li>-->
-<!--                <li>Technology</li>-->
-<!--                <li>Health</li>-->
-<!--            </ul>-->
+        </div>
+        <hr>
+        <div style="margin-right: 100px">
 
-<!--        </div>-->
+            <div>CONTENTS</div>
+            <list>
+                <ul style="margin:0px;">Latest</ul>
+                <ul style="margin:0px;">India</ul>
+                <ul style="margin:0px;">Education</ul>
+                <ul style="margin:0px;">Business</ul>
+                <ul style="margin:0px;">world</ul>
+                <ul style="margin:0px;">Technology</ul>
+                <ul style="margin:0px;">Health</ul>
+            </list>
 
-<!--        <div id="end-bar">-->
-<!--            <hr class="new1">-->
+        </div>
 
-
-<!--            <p class=>-->
-<!--                The Journalist-->
-<!--            </p>-->
-
-<!--        </div>-->
+    </div>
 
 
-<!--    </div>-->
+</div>
 
-<!--</footer>-->
+
 <script src="{% static '/js/script.js' %}"></script>
 <script>
     function myFunction() {
