@@ -16,7 +16,7 @@
                 {% csrf_token %}
                 <div class="lr-icon">
 
-                    <input class="lr-icon-input" type="text" name="username" placeholder="Email ID">
+                    <input class="lr-icon-input" value="{{ userdetails.email }}" type="text" name="username" placeholder="Email ID">
                     <i class="icon" >
                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABHUlEQVRIS92V4U3DQAyFv0wAGwAbwATABrABnaAwCXQCukHZAJgARoAN2glAH7KlU0jKNVGEVP9JlLPfs599TsPE1kyMz34RXACPwPFI2T6AGfAiTimRB0cjwTNcrJM2wVecngHvA4lOgbeI/Um+rCAJ1lHi044kVyHx4V8EifsA3FWS6Dtv+fZWIOh9ONuoa8CqusxsV4ADopWxvQQeqKXgBwF+2dEXfZ4BSTZBYu9S6q0EZmOgfTiP7G6BRfGeVb4C6p9VVhOUvUh9l/HxJp4SSlzazgQGm6HgSqYpiSRdkzaIQFA1LyvouyuDCSontr7JtYBtv/+rwDHLJg7NPuM+cyuXu8jbaBPHblTBnbBf63ps1p3x+/XLnESib34QPRnKZk0rAAAAAElFTkSuQmCC"/>
                     </i>
@@ -31,10 +31,14 @@
                     </i>
   
                 </div>
-
-                {#                <a class="lr-auth-form-a" href="#">Forgot your password?</a>#}
+                               <p>
+                                {{ userdetails.status}}
+                               </p> 
+                <!-- {#                <a class="lr-auth-form-a" href="#">Forgot your password?</a>#} -->
                 <button type="submit" class="lr-auth-form-button">Login in</button>
+                <a href="{% url 'register' %}" class="lr-auth-form-button-screen-size-min lr-ghost" id="signUp">Sign Up</a>
             </form>
+
         </div>
         <div class="lr-overlay-container">
             <div class="lr-overlay">

@@ -28,11 +28,17 @@ def auth(request):
     register_date = request.POST.get('dateofbirth')
     register_phone_no = request.POST.get('reg_phone_number')
     register_gender = request.POST.get('Gender')
+    userdetails={
+        'firstname':register_firstname,
+        'lastname':register_lastname,
+        'emailId':register_emailId,
+        'password':'',
+        'date':register_date,
+        'phone_no':register_phone_no,
+    }
     if request.method == 'POST':
-        if 14 >= int(register_phone_no) >= 10:
-            messages.info(request, "Phone Number must be at least 10 Digits")
         if register_gender is None:
-            return render(request, 'Register.html',{'message':'Select A Gender'})
+            return render(request, 'Register.html',{'message':'Select A Gender','userdetails':userdetails})
         if register_emailId != "" and register_firstname != "" and register_lastname != "" and register_password != "" and register_date != "":
             hashed_password = generate_password_hash(register_password, method="sha256")
             print(register_firstname, register_lastname, register_emailId, hashed_password,
@@ -40,7 +46,16 @@ def auth(request):
             print(register_phone_no, register_gender)
             status = email_id_status(register_emailId)
             if status == 'EMAIL ID TAKEN':
-                return render(request, 'Register.html',{'message':'Email Id Is Already Registered'})
+                userdetails={
+                        'firstname':register_firstname,
+                        'lastname':register_lastname,
+                        'emailId':'',
+                        'password':'',
+                        'date':register_date,
+                        'phone_no':register_phone_no,
+                        'gender':register_gender
+                    }
+                return render(request, 'Register.html',{'message':'Email Id Is Already Registered','userdetails':userdetails})
             else:
                 with connection.cursor() as cursor:
                     print()
@@ -63,9 +78,12 @@ def Login(request):
                            [username])
             row = cursor.fetchone()
             print(row)
+            userdetails={
+            'email':username,
+            'status':'Invalid Credentials'
+            }
             if row is None:
-                messages.info(request, "Invalid Credentials 1")
-                context = {"registration_success": False}
+                context = {"registration_success": False,"userdetails":userdetails}
                 return render(request, 'Login.html', context)
             else:
                 if check_password_hash(row[4], password):
@@ -91,8 +109,7 @@ def Login(request):
                     context = {"registration_success": False, 'user': dict_of_user_details}
                     return redirect('/')
                 else:
-                    messages.info(request, "Invalid Credentials 2")
-                    context = {"registration_success": False}
+                    context = {"registration_success": False,"userdetails":userdetails}
                     return render(request, 'Login.html', context)
     return render(request, 'Login.html')
 

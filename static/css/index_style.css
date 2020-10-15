@@ -32,12 +32,11 @@
 
 #homepage-scroll {
     grid-area: sidebar;
-    margin: auto;
+    
 }
 #homepage-content1 {
 
     grid-area: content1;
-    margin: auto;
     border-top-right-radius: 30px !important;
     border-bottom-left-radius: 30px !important;
     border-top-left-radius: 0px !important;
@@ -51,7 +50,6 @@
 #homepage-content2 {
 
     grid-area: content2;
-   margin: auto;
     border-top-right-radius: 30px !important;
     border-bottom-left-radius: 30px !important;
     border-top-left-radius: 0px !important;
@@ -291,21 +289,20 @@
 } */
 
 .homepage-second-grid-main1{
-    margin: auto;
+   
     grid-area: main21;
     height: 300px;
     max-width: 600px;
 
 }
 .homepage-second-grid-main2{
-    margin: auto;
+
     grid-area: main22;
     height: 300px;
     max-width: 600px;
 
 }
 .homepage-second-grid-main3{
-    margin: auto;
     grid-area: main23;
     height: 300px;
     max-width: 600px;
@@ -335,11 +332,9 @@
 } */
 
 #second-content1 {
-    margin: auto;
+  
     grid-area: content21;
-    border-radius: var(--main-radius);
-    background-color: rgba(255, 255, 255, 0.13);
-    border-top-right-radius: 30px !important;
+      border-top-right-radius: 30px !important;
     border-bottom-left-radius: 30px !important;
     border-top-left-radius: 0px !important;
     border-bottom-right-radius: 0px !important;
@@ -349,10 +344,9 @@
 
 
 #second-content2 {
-    margin: auto;
+
     grid-area: content22;
-    border-radius: var(--main-radius);
-    background-color: rgba(255, 255, 255, 0.13);
+
     border-top-right-radius: 30px !important;
     border-bottom-left-radius: 30px !important;
     border-top-left-radius: 0px !important;
@@ -361,13 +355,10 @@
 }
 
 #second-content3 {
-    margin: auto;
+
     height: 400px;
 
     grid-area: content23;
-    border-radius: var(--main-radius);
-    padding-top: var(--main-padding);
-    background-color: rgba(255, 255, 255, 0.13);
     border-top-right-radius: 30px !important;
     border-bottom-left-radius: 30px !important;
     border-top-left-radius: 0px !important;
