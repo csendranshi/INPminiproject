@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'health',
     'profile_details',
     'posts',
-    'article'
+    'article',
+    'footer'
 ]
 
 MIDDLEWARE = [
