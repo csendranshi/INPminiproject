@@ -487,8 +487,16 @@ svg {
     flex-wrap: wrap;
     flex-direction: column;
 } */
+.lr-auth-form-input.valid {
+    border:1px solid green !important;
+}
 
-.lr-auth-form-input-for-icon {
+.lr-auth-form-input.invalid {
+    border:1px solid red !important;
+}
+
+/* CHECK MARK ANIMATION */
+/* .lr-auth-form-input-for-icon {
     background-color: #eee;
     border: 1px solid #3a4750;
     border-top-right-radius: 15px;
@@ -515,7 +523,7 @@ svg {
         justify-content: center;
         flex-wrap: wrap;
         flex-direction: column;
-        border: 1px solid #3a4750;
+        border: px solid #3a4750;
       
     }
     .lr-auth-register-input {
@@ -569,7 +577,7 @@ svg {
     .lr-reg-x {
         color: rgb(240, 90, 92);
         text-shadow: 0px 5px 10px rgba(240, 90, 92, .3);
-    }
+    } */
 
 /*.path {*/
 /*    stroke-dasharray: 1000;*/
@@ -644,3 +652,58 @@ svg {
 /*}*/
 
 /*Icon for input*/
+
+
+.tooltip {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background:#3a4750;
+    color: #fff;
+    border-radius: 14px;
+    transition: all .25s ease;
+    opacity: 0;
+    font-size: .85rem;
+    max-width: 280px;
+    transform: translate(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: -5px;
+    z-index: 100;
+    font-family: 'Lato',serif;
+}
+.activeT {
+    opacity: 1;
+    margin-top: 0px;
+    z-index: 1000 !important;
+}
+
+.tooltip h4 {
+    font-size: 1rem;
+    border-bottom: 1px solid #fff;
+    width: calc(100% - 15px);
+    text-align: center;
+    padding: 5px;
+    z-index: 50;
+}
+.tooltip p {
+    padding: 10px;
+    z-index: 50;
+}
+.tooltip h4:empty {
+    display: none;
+    z-index: 50;
+}
+.tooltip:after {
+    content: '';
+    position: absolute;
+    background: inherit;
+    width: 12px;
+    height: 12px;
+    transform: rotate(45deg);
+    top: -5px;
+    border-radius: 2px 0px 0px 0px;
+    z-index: 100;
+}
