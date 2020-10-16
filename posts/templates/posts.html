@@ -1,59 +1,172 @@
 {% extends 'Navbar.html' %}
 {% load static %}
 {% block content %}
+<script>
+       function val() {
+    d = document.getElementById("post-category").value;
+    console.log(d)
+}
+</script>
+<style>
 
+    .posts-parent {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        column-gap: 10px;
+    }
+
+    .posts-div1 {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    .posts-div2 {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    .posts-div3 {
+        grid-area: 1 / 2 / 4 / 3;
+    }
+
+    .posts-div4 {
+        grid-area: 3 / 1 / 4 / 2;
+    }
+
+    .posts-div5 {
+        grid-area: 4 / 1 / 5 / 3;
+    }
+
+    .posts-auth-form-form {
+        background-color: #eeeeee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 50px;
+        height: 70%;
+        text-align: center;
+    }
+
+    .posts-sign-in-container {
+        left: 0;
+        width: 88% !important;
+        z-index: 2;
+    }
+
+    .posts-form-container {
+        position: absolute;
+        top: 0;
+        height: 160%;
+        transition: all 0.6s ease-in-out;
+    }
+
+    .posts-auth-form-input {
+        background-color: #eeeeee;
+        border: 2px solid #3a4750;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        margin: 10px;
+        color: #3a4750;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        padding: 10px;
+        width: 100%;
+        font-size: medium;
+        outline: none;
+    }
+
+    .posts-description-auth-form-input {
+        background-color: #eeeeee;
+        border: 2px solid #3a4750;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        margin: 10px;
+        color: #3a4750;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        padding: 10px;
+        width: 100%;
+        font-size: medium;
+        outline: none;
+        height: 80%;
+    }
+</style>
 <body class="auth-form-body">
 
 <h2 class="auth-form-h2">
 
     <div>Got some latest Tea to spill?</div>
+
 </h2>
 <div class="lr-container" id="container">
 
 
-    <div class="lr-form-containe">
+    <div class="posts-form-container">
 
-        <form style="margin: auto" class="lr-auth-form-form lr-sign-in-container" method="POST" action="{% url 'posts' %}">
+        <form style="margin: auto" class="posts-auth-form-form posts-sign-in-container" method="POST"
+              action="{% url 'posts' %}">
             <div style="display:inline-block">
                 <div style="color: #3a4750; font-size: 25px; margin: inherit; padding: 2%">Post an Article</div>
                 {% csrf_token %}
+                <div class="posts-parent">
+                    <div class="posts-div1">
+                        <input class="posts-auth-form-input" type="text" name="imageLink" placeholder="Image Link">
 
 
-                <input class="icon-auth-form-input" type="text" name="imageLink" placeholder="Image Link">
+                        <input class="posts-auth-form-input" type="text" name="postTitle" placeholder="Title">
+
+                    </div>
+                    <div class="posts-div2">
+                        <select onchange="val()" id="post-category"class="posts-auth-form-input" name="category">
+                            <option value="Latest">Latest</option>
+                            <option value="india">India</option>
+                            <option value="world">World</option>
+                            <option value="technology">Technology</option>
+                            <option value="health">Health</option>
+                            <option value="education">Education</option>
+                            <option value="business">Business</option>
+                        </select>
 
 
-                <input class="icon-auth-form-input" type="text" name="postTitle" placeholder="Title">
+                        <select class="posts-auth-form-input" name="section">
+                            <option value="top-stories">Top Stories</option>
+                            <option value="Matrix1x1">Matrix1x1</option>
+                            <option value="Matrix1x2">Matrix1x2</option>
+                            <option value="Matrix1x3">Matrix1x3</option>
+                            <option value="Matrix2x4">Matrix2x4</option>
+                            <option value="Matrix2x5">Matrix2x5</option>
+                            <option value="Matrix2x5">Matrix2x5</option>
+                        </select>
+                    </div>
+                    <div class="posts-div3">
+                         <textarea class="posts-description-auth-form-input" name="postDesc" placeholder="description"
+                                   rows="4"
+                                   cols="20"></textarea>
+                    </div>
+                    <div class="posts-div4">
+                        <input class="posts-auth-form-input" type="file">
 
-                <select class="icon-auth-form-input" name="category">
-                    <option value="Latest">Latest</option>
-                    <option value="india">India</option>
-                    <option value="world">World</option>
-                    <option value="technology">Technology</option>
-                    <option value="health">Health</option>
-                    <option value="education">Education</option>
-                    <option value="business">Business</option>
-                </select>
+                    </div>
+                    <div class="posts-div5">
+                        <button type="submit" class="auth-form-button">Login in</button>
+
+                    </div>
+                </div>
 
 
-                <select class="icon-auth-form-input" name="section">
-                    <option value="top-stories">Top Stories</option>
-                    <option value="Matrix1x1">Matrix1x1</option>
-                    <option value="Matrix1x2">Matrix1x2</option>
-                    <option value="Matrix1x3">Matrix1x3</option>
-                    <option value="Matrix2x4">Matrix2x4</option>
-                    <option value="Matrix2x5">Matrix2x5</option>
-                    <option value="Matrix2x5">Matrix2x5</option>
-                </select>
             </div>
             <div style="display: inline">
-                <input class="icon-auth-form-input" type="file">
-                <textarea class="icon-auth-form-input" name="postDesc" placeholder="description" rows="4"
-                          cols="20"></textarea>
+
                 <div class="icon-bg-auth-form-bg"></div>
             </div>
-            <button type="submit" class="auth-form-button">Login in</button>
 
-                <!--            <div class="icon-auth-form-input">-->
+            <!--            <div class="icon-auth-form-input">-->
 
         </form>
         <br>
@@ -89,6 +202,7 @@
             modal.style.display = "none"
         }
     }
+
 </script>
 
 {% endif %}
@@ -107,11 +221,11 @@
                     <ul class="ul-styles"> Rhea Rodrigues</ul>
                     <ul class="ul-styles"> Ankita Tripathi</ul>
                 </list>
-    
+
             </div>
             <hr>
             <div style="margin-right: 100px">
-    
+
                 <div>CONTENTS</div>
                 <list>
                     <ul style="margin:0px;">Latest</ul>
@@ -122,14 +236,14 @@
                     <ul style="margin:0px;">Technology</ul>
                     <ul style="margin:0px;">Health</ul>
                 </list>
-    
+
             </div>
-    
+
         </div>
-    
-    
+
+
     </div>
-    
+
 </footer>
 </body>
 

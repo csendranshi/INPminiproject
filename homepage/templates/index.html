@@ -13,42 +13,51 @@
 <body>
 {% block content %}
 <audio controls autoplay hidden>
-  <source src="{% static '/assets/2020-07-30_-_Conspiracy_Theory_-_David_Fesliyan.mp3' %}" type="audio/ogg"  >
+    <source src="{% static '/assets/2020-07-30_-_Conspiracy_Theory_-_David_Fesliyan.mp3' %}" type="audio/ogg">
 
 </audio>
 <!-- TradingView Widget BEGIN -->
 <div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
-  <div class="tradingview-widget-copyright"><a href="https://in.tradingview.com" rel="noopener" target="_blank"><span class="blue-text"></span></a> </div>
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
-  {
-  "symbols": [
-    {
-      "proName": "FOREXCOM:SPXUSD",
-      "title": "S&P 500"
-    },
-    {
-      "proName": "FOREXCOM:NSXUSD",
-      "title": "Nasdaq 100"
-    },
-    {
-      "proName": "FX_IDC:EURUSD",
-      "title": "EUR/USD"
-    },
-    {
-      "proName": "BITSTAMP:BTCUSD",
-      "title": "BTC/USD"
-    },
-    {
-      "proName": "BITSTAMP:ETHUSD",
-      "title": "ETH/USD"
-    }
-  ],
-  "colorTheme": "dark",
-  "isTransparent": false,
-  "locale": "in"
-}
-  </script>
+    <div class="tradingview-widget-container__widget"></div>
+    <div class="tradingview-widget-copyright"><a href="https://in.tradingview.com" rel="noopener" target="_blank"><span
+            class="blue-text"></span></a></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+        {
+            "symbols"
+        :
+            [
+                {
+                    "proName": "FOREXCOM:SPXUSD",
+                    "title": "S&P 500"
+                },
+                {
+                    "proName": "FOREXCOM:NSXUSD",
+                    "title": "Nasdaq 100"
+                },
+                {
+                    "proName": "FX_IDC:EURUSD",
+                    "title": "EUR/USD"
+                },
+                {
+                    "proName": "BITSTAMP:BTCUSD",
+                    "title": "BTC/USD"
+                },
+                {
+                    "proName": "BITSTAMP:ETHUSD",
+                    "title": "ETH/USD"
+                }
+            ],
+                "colorTheme"
+        :
+            "dark",
+                "isTransparent"
+        :
+            false,
+                "locale"
+        :
+            "in"
+        }
+    </script>
 </div>
 <!-- TradingView Widget END -->
 
@@ -56,16 +65,25 @@
 <div class="homepage-grid-container">
     {# grid main #}
     <main class="homepage-grid-main1" id="grid">
-       <iframe src="https://ourworldindata.org/coronavirus-data-explorer?tab=map&zoomToSelection=true&country=~OWID_WRL&region=World&casesMetric=true&interval=total&hideControls=true&smoothing=0&pickerMetric=location&pickerSort=asc" loading="lazy" style="width: 630px; height: 400px; border: 0px none;"></iframe>
+        <iframe src="https://ourworldindata.org/coronavirus-data-explorer?tab=map&zoomToSelection=true&country=~OWID_WRL&region=World&casesMetric=true&interval=total&hideControls=true&smoothing=0&pickerMetric=location&pickerSort=asc"
+                loading="lazy" style="width: 500px; height: 400px;"></iframe>
 
     </main>
     <main class="homepage-grid-main2">
         <br>
-        <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/mumbai-26831"><img src="https://w.bookcdn.com/weather/picture/32_26831_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"  alt="booked.net"/></a><!-- weather widget end -->
-        <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/chennai-18036"><img src="https://w.bookcdn.com/weather/picture/32_18036_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"  alt="booked.net"/></a><!-- weather widget end -->
+        <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/mumbai-26831"><img
+            src="https://w.bookcdn.com/weather/picture/32_26831_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
+            alt="booked.net"/></a><!-- weather widget end -->
+        <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/chennai-18036"><img
+            src="https://w.bookcdn.com/weather/picture/32_18036_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
+            alt="booked.net"/></a><!-- weather widget end -->
         <br>
-        <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/kolkata-26871"><img src="https://w.bookcdn.com/weather/picture/32_26871_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"  alt="booked.net"/></a><!-- weather widget end -->
-        <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/new-delhi-18038"><img src="https://w.bookcdn.com/weather/picture/32_18038_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"  alt="booked.net"/></a><!-- weather widget end -->
+        <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/kolkata-26871"><img
+            src="https://w.bookcdn.com/weather/picture/32_26871_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
+            alt="booked.net"/></a><!-- weather widget end -->
+        <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/new-delhi-18038"><img
+            src="https://w.bookcdn.com/weather/picture/32_18038_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
+            alt="booked.net"/></a><!-- weather widget end -->
 
     </main>
     {# The Below is The Top Stories Scrollabel#}
@@ -116,8 +134,6 @@
     {# content 3 end#}
 
 
-
-
     {# grid main #}
     <main class="homepage-second-grid-main1" id="grid">
 
@@ -131,18 +147,17 @@
             </div>
         </div>
     </main>
-    <main class="homepage-second-grid-main2" >
+    <main class="homepage-second-grid-main2">
 
-                <div class="home-page-cont">
+        <div class="home-page-cont">
 
-                    <img src="https://i.ndtvimg.com/i/2016-08/pharma_650x400_81472018651.jpg"
-                         alt="Nature" style="width:100%;">
-                    <div class="home-page-text-block">
+            <img src="https://i.ndtvimg.com/i/2016-08/pharma_650x400_81472018651.jpg"
+                 alt="Nature" style="width:100%;">
+            <div class="home-page-text-block">
 
-                        <p>Baxter To Acquire Claris Injectables For ₹ 4,237 Crore</p>
-                    </div>
-                </div>
-
+                <p>Baxter To Acquire Claris Injectables For ₹ 4,237 Crore</p>
+            </div>
+        </div>
 
 
     </main>
@@ -164,12 +179,12 @@
         </div>
 
     </main>
- 
+
 
     {# content 1 #}
     <div id="second-content1">
-       
-        
+
+
         <div class="home-page-cont">
 
             <img src="https://s.ndtvimg.com/images/stories/dhoni_brave_300.jpg"
@@ -180,14 +195,12 @@
             </div>
         </div>
 
-          
-                
-    
+
     </div>
     {# content one end #}
     <div id="second-content2">
-      
-        
+
+
         <div class="home-page-cont">
 
             <img src="https://i.ndtvimg.com/mt/2013-11/Andy_Coulson_Reuters_360x270.jpg"
@@ -198,8 +211,7 @@
             </div>
         </div>
 
-         
-                
+
     </div>
     {# content 2 end #}
     {# content 3 end#}
@@ -227,50 +239,50 @@
         </div>
     </div>
 
-<!--    <div>-->
-<!--            <div class="bingwidget" data-type="covid19" data-market="en-us" data-language="en-us"></div>-->
+    <!--    <div>-->
+    <!--            <div class="bingwidget" data-type="covid19" data-market="en-us" data-language="en-us"></div>-->
 
-<!--<script src="//www.bing.com/widget/bootstrap.answer.js" async=""></script>-->
-<!--        </div>-->
-<footer id="footer-for-pages">
-    <div class="flexcontainer-column">
-        <div class="flex-container">
-            <div style="margin-left: 20px">
-                <div>
-                    <div>ABOUT</div>
-                    The Journalist Done By
+    <!--<script src="//www.bing.com/widget/bootstrap.answer.js" async=""></script>-->
+    <!--        </div>-->
+    <footer id="footer-for-pages">
+        <div class="flexcontainer-column">
+            <div class="flex-container">
+                <div style="margin-left: 20px">
+                    <div>
+                        <div>ABOUT</div>
+                        The Journalist Done By
+                    </div>
+                    <list>
+                        <ul class="ul-styles"> Reuben Coutinho</ul>
+                        <ul class="ul-styles"> Anshika Gupta</ul>
+                        <ul class="ul-styles"> Rhea Rodrigues</ul>
+                        <ul class="ul-styles"> Ankita Tripathi</ul>
+                    </list>
+
                 </div>
-                <list>
-                    <ul class="ul-styles"> Reuben Coutinho</ul>
-                    <ul class="ul-styles"> Anshika Gupta</ul>
-                    <ul class="ul-styles"> Rhea Rodrigues</ul>
-                    <ul class="ul-styles"> Ankita Tripathi</ul>
-                </list>
-    
+                <hr>
+                <div style="margin-right: 100px">
+
+                    <div>CONTENTS</div>
+                    <list>
+                        <ul style="margin:0px;">Latest</ul>
+                        <ul style="margin:0px;">India</ul>
+                        <ul style="margin:0px;">Education</ul>
+                        <ul style="margin:0px;">Business</ul>
+                        <ul style="margin:0px;">world</ul>
+                        <ul style="margin:0px;">Technology</ul>
+                        <ul style="margin:0px;">Health</ul>
+                    </list>
+
+                </div>
+
             </div>
-            <hr>
-            <div style="margin-right: 100px">
-    
-                <div>CONTENTS</div>
-                <list>
-                    <ul style="margin:0px;">Latest</ul>
-                    <ul style="margin:0px;">India</ul>
-                    <ul style="margin:0px;">Education</ul>
-                    <ul style="margin:0px;">Business</ul>
-                    <ul style="margin:0px;">world</ul>
-                    <ul style="margin:0px;">Technology</ul>
-                    <ul style="margin:0px;">Health</ul>
-                </list>
-    
-            </div>
-    
+
+
         </div>
-    
-    
-    </div>
-    
-</footer>
- 
+
+    </footer>
+
 </div>
 
 
