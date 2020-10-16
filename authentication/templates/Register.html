@@ -5,33 +5,7 @@
     <head>
      
         <script>
-        document.addEventListener('DOMContentLoaded', function(){ 
-        const tooltips = document.querySelectorAll('[data-tooltip]')
-        tooltips.forEach((item) => {
-            const text = item.dataset.tooltip
-            const title = item.dataset.tooltipTitle
-            const tooltip = document.createElement('div')
-            
-            item.addEventListener('mouseenter', (evt) => {
-                const cords = evt.target.getBoundingClientRect()
-                tooltip.className = 'tooltip'
-                tooltip.innerHTML = `<h4>${!!title?title:''}</h4><p>${text}</p>`
-                document.body.appendChild(tooltip)
-                tooltip.style.top = `${cords.y + cords.height + 10}px`
-                tooltip.style.left = `${cords.x + cords.width / 2}px`
-                    
-                setTimeout(() => {
-                    tooltip.classList.add('activeT')
-                }, 10);
-            })
-            item.addEventListener('mouseleave', () => {
-                tooltip.classList.remove('activeT')
-                setTimeout(() => {
-                    document.body.removeChild(tooltip)
-                }, 250);
-            })
-        })
-    }, false);
+    
 
           function validateForm() {
              console.log("Running")
@@ -74,8 +48,7 @@ phone_number)
                 
                 {% csrf_token %}
 
-                <input oninput="handleInputName(event)" id="auth-register-firstname"class="lr-auth-form-input" value="{{userdetails.firstname}}" type="text" name="reg_firstname" placeholder="First Name" data-tooltip="Please Enter this Filed Reuben" 
-                
+                <input oninput="handleInputName(event)" id="auth-register-firstname"class="lr-auth-form-input" value="{{userdetails.firstname}}" type="text" name="reg_firstname" placeholder="First Name"   
                 required/>
                 <input oninput="handleInputName(event)" class="lr-auth-form-input" value="{{userdetails.lastname}}" type="text" name="reg_lastname" placeholder="Last Name" />
                 <input oninput="handleInput(event)" class="lr-auth-form-input" value="{{userdetails.emailId}}" type="text"   name="reg_emailId" placeholder="Email ID" />
