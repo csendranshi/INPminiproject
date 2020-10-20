@@ -5,9 +5,22 @@
         function val() {
             d = document.getElementById("post-category").value;
             console.log(d)
-            document.getElementById("health-grid-css-table").style.display = "block"
+            if (d === "health") {
+                document.getElementById("health-grid-css-table").style.display = "block"
+                document.getElementById("world-grid-css-table").style.display = "none"
+            } else if (d === "world") {
+                document.getElementById("health-grid-css-table").style.display = "none"
+                document.getElementById("world-grid-css-table").style.display = "block"
+            }
+
+
         }
 
+        function changeTheCellColor() {
+            d = document.getElementById("post-section").value;
+            console.log(d)
+            document.getElementById("long-bar").style.backgroundColor = "#d72323"
+        }
 
     </script>
     <style>
@@ -18,12 +31,9 @@
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 0.2fr 1.5fr;
             grid-template-areas:
-    "post-main1 post-content2"
-    "post-content1 post-content3";
-
-
+            "post-main1 post-content2"
+            "post-content1 post-content3";
             grid-gap: 0.2rem;
-
             font-size: 15px;
             color: #fff5ea;
             text-align: center;
@@ -60,7 +70,8 @@
         #post-content2 {
 
             grid-area: post-content2;
-            background-color:#eeeeee;color: #303841;
+            background-color: #eeeeee;
+            color: #303841;
             border-top-right-radius: 20px;
             border-bottom-left-radius: 20px;
 
@@ -139,10 +150,24 @@
 
         }
 
-        #health-grid-css-table tr {
-            border: 1px solid green;
+
+        #world-grid-css-table {
+            display: none;
+            border-spacing: 15px;
+            background-color: #eeeeee;
+        }
+
+        #world-grid-css-table td {
+            border: 2px solid #3a4750;
+            width: 60px;
+            height: 60px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+            background-color: #303841;
 
         }
+
 
     </style>
     <body class="auth-form-body">
@@ -173,6 +198,7 @@
 
                     <div id="post-content1">
                         <select onchange="val()" id="post-category" class="posts-auth-form-input" name="category">
+                            <option selected disabled>Category</option>
                             <option value="Latest">Latest</option>
                             <option value="india">India</option>
                             <option value="world">World</option>
@@ -183,8 +209,9 @@
                         </select>
 
 
-                        <select class="posts-auth-form-input" name="section">
-                            <option value="top-stories">Top Stories</option>
+                        <select onchange="changeTheCellColor()" id="post-section" class="posts-auth-form-input"
+                                name="section">
+                            <option selected disabled value="top-stories">Section</option>
                             <option value="Matrix1x1">Matrix1x1</option>
                             <option value="Matrix1x2">Matrix1x2</option>
                             <option value="Matrix1x3">Matrix1x3</option>
@@ -212,12 +239,35 @@
                     <tr>
                         <td></td>
                         <td></td>
-                        <td colspan="2"></td>
+                        <td id="long-bar" colspan="2"></td>
 
 
                     </tr>
                     <tr>
                         <td colspan="2"></td>
+                        <td></td>
+                        <td></td>
+
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table id="world-grid-css-table">
+                    <tr>
+
+                        <td id="long-bar" colspan="2"></td>
+                        <td colspan="2"></td>
+
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
 
