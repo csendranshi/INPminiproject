@@ -19,7 +19,15 @@
         function changeTheCellColor() {
             d = document.getElementById("post-section").value;
             console.log(d)
-            document.getElementById("long-bar").style.backgroundColor = "#d72323"
+            if (d==="long-bar-1") {
+                document.getElementById("long-bar-1").style.backgroundColor = "#d72323";
+                 document.getElementById("long-bar-2").style.backgroundColor = "#3a4750"
+            }
+            else if (d==="long-bar-2"){
+                 document.getElementById("long-bar-1").style.backgroundColor = "#3a4750";
+                document.getElementById("long-bar-2").style.backgroundColor = "#d72323"
+            }
+
         }
 
     </script>
@@ -212,8 +220,8 @@
                         <select onchange="changeTheCellColor()" id="post-section" class="posts-auth-form-input"
                                 name="section">
                             <option selected disabled value="top-stories">Section</option>
-                            <option value="Matrix1x1">Matrix1x1</option>
-                            <option value="Matrix1x2">Matrix1x2</option>
+                            <option value="long-bar-1">Matrix1x1</option>
+                            <option value="long-bar-2">Matrix1x2</option>
                             <option value="Matrix1x3">Matrix1x3</option>
                             <option value="Matrix2x4">Matrix2x4</option>
                             <option value="Matrix2x5">Matrix2x5</option>
@@ -260,8 +268,8 @@
                 <table id="world-grid-css-table">
                     <tr>
 
-                        <td id="long-bar" colspan="2"></td>
-                        <td colspan="2"></td>
+                        <td id="long-bar-1" colspan="2"></td>
+                        <td id="long-bar-2"  colspan="2"></td>
 
 
                     </tr>
