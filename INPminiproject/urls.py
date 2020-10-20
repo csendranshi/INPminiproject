@@ -27,6 +27,8 @@ from technology import views as view_tech
 from health import views as view_health
 from profile_details import views as view_profile
 from posts import views as posts_views
+from article import views as article_views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', view_homepage.home_view, name='home'),
@@ -42,6 +44,7 @@ urlpatterns = [
     path('login/', view_auth.Login, name="login"),
     path('logout/', view_auth.Logout, name="logout"),
     path('profile/', view_profile.profile_view, name='profile'),
-    path('posts/', posts_views.posts_view,name='posts'),
+    path('posts/', posts_views.posts_view, name='posts'),
+    path('article/', article_views.article_view, name='article'),
 
 ]
