@@ -1,150 +1,147 @@
 {% extends 'Navbar.html' %}
 {% load static %}
 {% block content %}
-<script>
-       function val() {
-    d = document.getElementById("post-category").value;
-    console.log(d)
-}
-let dropArea = document.getElementById('drop-area')
-       ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-  dropArea.addEventListener(eventName, preventDefaults, false)
-})
-
-;['dragenter', 'dragover'].forEach(eventName => {
-  dropArea.addEventListener(eventName, highlight, false)
-})
-
-;['dragleave', 'drop'].forEach(eventName => {
-  dropArea.addEventListener(eventName, unhighlight, false)
-})
-
-function highlight(e) {
-  dropArea.classList.add('highlight')
-}
-
-function unhighlight(e) {
-  dropArea.classList.remove('highlight')
-}
-
-</script>
-<style>
-
-    .posts-parent {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(5, 1fr);
-        grid-column-gap: 0px;
-        grid-row-gap: 0px;
-        column-gap: 10px;
-    }
-
-    .posts-div1 {
-        grid-area: 1 / 1 / 2 / 2;
-    }
-
-    .posts-div2 {
-        grid-area: 2 / 1 / 3 / 2;
-    }
-
-    .posts-div3 {
-        grid-area: 1 / 2 / 4 / 3;
-    }
-
-    .posts-div4 {
-        grid-area: 3 / 1 / 4 / 2;
-    }
-
-    .posts-div5 {
-        grid-area: 4 / 1 / 5 / 3;
-    }
-
-    .posts-auth-form-form {
-        background-color: #eeeeee;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        padding: 0 50px;
-        height: 70%;
-        text-align: center;
-    }
-
-    .posts-sign-in-container {
-        left: 0;
-        width: 88% !important;
-        z-index: 2;
-    }
-
-    .posts-form-container {
-        position: absolute;
-        top: 0;
-        height: 160%;
-        transition: all 0.6s ease-in-out;
-    }
-
-    .posts-auth-form-input {
-        background-color: #eeeeee;
-        border: 2px solid #3a4750;
-        border-top-right-radius: 15px;
-        border-bottom-left-radius: 15px;
-        margin: 10px;
-        color: #3a4750;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        padding: 10px;
-        width: 100%;
-        font-size: medium;
-        outline: none;
-    }
-
-    .posts-description-auth-form-input {
-        background-color: #eeeeee;
-        border: 2px solid #3a4750;
-        border-top-right-radius: 15px;
-        border-bottom-left-radius: 15px;
-        margin: 10px;
-        color: #3a4750;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        padding: 10px;
-        width: 100%;
-        font-size: medium;
-        outline: none;
-        height: 80%;
-    }
-</style>
-<body class="auth-form-body">
-
-<h2 class="auth-form-h2">
-
-    <div>Got some latest Tea to spill?</div>
-
-</h2>
-<div class="lr-container" id="container">
+    <script>
+        function val() {
+            d = document.getElementById("post-category").value;
+            console.log(d)
+        }
 
 
-    <div class="posts-form-container">
+    </script>
+    <style>
 
-        <form style="margin: auto" class="posts-auth-form-form posts-sign-in-container" method="POST"
-              action="{% url 'posts' %}">
-            <div style="display:inline-block">
-                <div style="color: #3a4750; font-size: 25px; margin: inherit; padding: 2%">Post an Article</div>
-                {% csrf_token %}
-                <div class="posts-parent">
-                    <div class="posts-div1">
+        .post-container {
+            display: grid;
+            height: 80vh;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 0.2fr 1.5fr 1.2fr 0.8fr;
+            grid-template-areas:
+    "post-main1 post-main1"
+    "post-content1 post-content2" 
+    "post-content3 post-content4";
+
+
+            grid-gap: 0.2rem;
+
+            font-size: 15px;
+            color: #fff5ea;
+            text-align: center;
+            row-gap: 20px;
+            column-gap: 20px;
+            margin-top: 50px;
+        }
+
+
+        #post-main1 {
+
+            grid-area: post-main1;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+
+        }
+
+
+        #post-content1 {
+            background: rgba(255, 255, 255, 0.13);
+            grid-area: post-content1;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            padding-top: var(--main-padding);
+        }
+
+        #post-content2 {
+            background: rgba(255, 255, 255, 0.13);
+            grid-area: post-content2;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            padding-top: var(--main-padding);
+        }
+
+        #post-content3 {
+            background: rgba(255, 255, 255, 0.13);
+            grid-area: post-content3;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            padding-top: var(--main-padding);
+        }
+
+
+
+        .post-outer-container {
+            background-color: #eeeeee;
+            border: 2px solid #3a4750;
+            border-top-right-radius: 30px;
+            border-bottom-left-radius: 30px;
+            margin: 10px auto;
+            padding: 20px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .posts-auth-form-input {
+            background-color: #eeeeee;
+            border: 2px solid #3a4750;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            margin: 10px;
+            color: #3a4750;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 10px;
+            width: 100%;
+            font-size: medium;
+            outline: none;
+        }
+
+        .posts-description-auth-form-input {
+            background-color: #eeeeee;
+            border: 2px solid #3a4750;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            margin: 10px;
+            color: #3a4750;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 10px;
+            width: 100%;
+            font-size: medium;
+            outline: none;
+            height: 80%;
+        }
+    </style>
+    <body class="auth-form-body">
+
+    <h2 class="auth-form-h2">
+
+        <div>Got some latest Tea to spill?</div>
+
+    </h2>
+    <div class="post-outer-container" id="container">
+
+
+        <div class="post-container">
+
+            <form style="margin: auto" method="POST"
+                  action="{% url 'posts' %}">
+                <div style="display:inline-block">
+                    <div style="color: #3a4750; font-size: 25px; margin: inherit; padding: 2%">Post an Article</div>
+                    {% csrf_token %}
+
+                    <div id="post-main1">
                         <input class="posts-auth-form-input" type="text" name="imageLink" placeholder="Image Link">
 
 
                         <input class="posts-auth-form-input" type="text" name="postTitle" placeholder="Title">
 
                     </div>
-                    <div class="posts-div2">
-                        <select onchange="val()" id="post-category"class="posts-auth-form-input" name="category">
+
+                    <div id="post-content1">
+                        <select onchange="val()" id="post-category" class="posts-auth-form-input" name="category">
                             <option value="Latest">Latest</option>
                             <option value="india">India</option>
                             <option value="world">World</option>
@@ -164,95 +161,27 @@ function unhighlight(e) {
                             <option value="Matrix2x5">Matrix2x5</option>
                             <option value="Matrix2x5">Matrix2x5</option>
                         </select>
-                    </div>
-                    <div class="posts-div3">
-                         <textarea class="posts-description-auth-form-input" name="postDesc" placeholder="description"
-                                   rows="4"
-                                   cols="20"></textarea>
-                    </div>
-                    <div class="posts-div4">
                         <input id="drop-area" name="post-picture" class="posts-auth-form-input" type="file">
+                        <textarea class="posts-description-auth-form-input" name="postDesc" placeholder="description"
+                                  rows="4"
+                                  cols="20"></textarea>
+                         <input type="submit" class="auth-form-button" value="Submit For Preview"/>
 
                     </div>
-                    <div class="posts-div5">
-                        <input type="submit" class="auth-form-button" value="Submit For Preview"/>
 
-                    </div>
+
                 </div>
 
+                <!--            <div class="icon-auth-form-input">-->
 
-            </div>
-            <div style="display: inline">
-
-                <div class="icon-bg-auth-form-bg"></div>
-            </div>
-
-            <!--            <div class="icon-auth-form-input">-->
-
-        </form>
-        <br>
-    </div>
-</div>
-
-<br>
-    <footer class="footer"id="footer-for-pages">
-
-    <div class="inner-footer">
-        <div class="footer-item">
-            <h2 style="margin-top: 10px;font-family:'Cinzel',sans-serif;">The Journalist</h2>
-            <p>A News Website</p>
-        </div>
-
-        <div class="footer-items">
-            <h2 >Quick Links</h2>
-            <div class="footer-border"> </div>
-                <ul class="footer-ul">
-                    <a  class="footer-ul-a" href="{% url 'home' %}"><li class="footer-ul-li">Latest</li></a>
-                    <a class="footer-ul-a"  href="{% url 'india' %}"><li class="footer-ul-li">India</li></a>
-                    <a  class="footer-ul-a" href="{% url 'education' %}"><li class="footer-ul-li">Education</li></a>
-                    <a class="footer-ul-a"  href="{% url 'business' %}"><li class="footer-ul-li">Business</li></a>
-                    <a  class="footer-ul-a" href="{% url 'world' %}"><li class="footer-ul-li">World</li></a>
-                    <a  class="footer-ul-a" href="{% url 'technology' %}"><li class="footer-ul-li">Technology</li></a>
-                    <a  class="footer-ul-a" href="{% url 'health' %}"><li class="footer-ul-li">Health</li></a>
-                </ul>
+            </form>
 
         </div>
-        <div class="footer-items">
-            <h2>Contact Us</h2>
-            <div class="footer-border"> </div>
-                <ul class="footer-ul">
-                     <li class="footer-ul-li"><div><img  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACR0lEQVRIS7WVTVLbQBCF32ioSnaQE0RmTFWkLGKfAOUEcU4QOAH2STAnAE4AOUGcE1ibWAtoo9wA70gVo0m1NEOE/qwsPDtbo/5ev9czEtjxEjuuj62AxPd9sbd3lmVZJIQYsSBjTOx53sI8P18EaZp2iewErJSaC+Css4AQ8w/397O2Pa2AZDiMYcwn++J15nnzj3d3Mf/+dXQ08rJsCuCb6yhcr8dNkEZASfkm87zIFa4WsKAFgH0DXIREDH21agD2HFI+8K7M88ZcPM9BynMD5BkIIDZaz9h/C1nmVbUeVDOpAZx6p4iLGymXAjgoSzPAo9B6zAUTpa7YrqYu6h1Y7536lVK3AvgC4Ce0PskhUnLBYwN8D4kmrguermoWdYBShmsERPmzRKlH9rjcfsnGNCAa2H2v3nPd9gY8af1unKYMQwnwOyDy/xfAU3HcYNECWp9aiy4BRM6iZDiMYMwPtjEgispZNXVQBGbMLFyv51Ytz/9+ZQI30HrEIa8OD6dCiHMA1wFRkZNdTVM0EcANgH/+FpPEp7q4KoBYaD11I5koxdfFewN8DYluOwHWz/wFAKcBEXfUuhKlWDFb9pLHVsBKqbwLnvU/Wg9cuFXK0vcP3kj5wGekSb09lM3iEqXysAEsAqLPTbtK91Ut3NYM3ANW91ZKtorDvQqIigmyy51eAJsnrf22Ljuv6/JlVoaUi3ddhp0WOaVViPV7wsq3Fe8F4E0VCP/Vq3hvwAvEmHxkMyFO2r4R1WHY+k3uOgN9nu0c8BcPcUooQTdnLAAAAABJRU5ErkJggg=="/>
-                    </div><div style="margin: -20px 25px;">123, Sesame Street</div></li>
-                    <li class="footer-ul-li"><div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABzElEQVRIS7WVTVLCQBCFXxOqdKeewFhhEzbKCYQbwAn0BuoJxBOIJxBvgCcQTiBszIbRHIElVjlpq4cMFfIjiRSzTCX99bzu90LY86E910cu4N11jw9qtTeBf0dRpxWGi/82kgHY4kR0IUWZeboLZAOwUZxoZrpmPt8FsgEIPG8M4BJEs+XPT1vqH9br410gaQBL0aXWJ1Z3uZWFABj7SnWqzCMX4Cu1fp6aycRXytys7CmSqOPP5yIXgkZjKhJZ2apuVBowBHDFzHfNz8+BAXheCOAURGto2e7lvTTgGsBzUuvA81ZQ4Kmp1G2V4hmAGajjSMdH0PrMD8MwcF0XjvPFwIK0bsmzKpCM0WzHAF58peRG+PC8AQE34geKop6FlHF8FhB3bLqMdU+tKohowMArR9HjNsfnZlHQaPTBfC+yfGt9JptjunWcvtxkQ6Itji9MU+vqdEzEM+kDaINosc3xhYCkLGbARD3rjbwhFzn+z/9BvFUjk0+rM4TWD3mbVOT4Uj8cO5NE52NiHnGtNvXn80k6hUU26/hSAOPo1XaJ9l3jk7wTp3AyTkoDbL1YNoFI6LkJ+SZLrbvprKoMqOLiTFRU/bjM+3u/wS8UmzUoxdWRKwAAAABJRU5ErkJggg=="/>
-                    </div><div style="margin: -20px 25px;"> +91 923567891 </div>
-                    </li>
-                    <li class="footer-ul-li"> <div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABbklEQVRIS91VQVLCQBDsWS7e4AciC1UEL/IC8Qf4g/AC4SXCC/AH+gPxBXgxHMhS4Qdy45Jda9YNpsBQISku7CmVzHRP98xOCGc+dGZ8XBDBotnswZgpgHpJ2yIQDbwwnDHOzqKFlBGA65LgSXrkKXWzT2D4hRaie7tcfhYh+mq17oTWc871lLLFpxVYAgN8Axh0lHo7hSSQsg9gSkDtKEECSkTjdhiO8pAEUo4JeErHZiswZkREzy54to3jx24UsaqDM6/Xa1eVyiuAnlWfys0k4A/OS56CKltmhHjY7wvHkNbvzpKNFqLHMQsprdVHCTjAVcd9uLfNMmbYXq0m/Bw0GsOUyo9tHPcTlbkJEj/2/H1x7303EJOOUsO0dycT2Iql7BPA4FUHtjGA/9+kFSJgUNsXY6wCTeRn3ZXCBHnGlWMum4AvU9LEvI5kxa09pexW/ttFv+uam1h2o65B5B+s67IlZ+Vf0C/zXBb9AJ6AyBnHE9PjAAAAAElFTkSuQmCC"/>
-                        </div>  <div style="margin: -20px 30px;">csr.tj@thejournalist.com </div> </li>
-
-                </ul>
-
-        </div>
-        <div class="footer-items">
-            <h2>Social </h2>
-            <div class="footer-border"> </div>
-                <ul class="footer-ul">
-                    <li  class="footer-ul-li" style="display: inline-block"> <img class="footer-li-img"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACD0lEQVRIS81VPXLTQBh9n+QZKE1HF3kkF2tmiHMBEk5AboB9AsIJMDUF4QSxTwAVLXZF6wwTVERrVOQApsIpVo9ZWfJIwlHkwhO+RjPS077vfT9vBXsO2fP5eBiCMAhOQL4m2ReRfp1KknMRmUNkoqJoWsX+oyD0/QGAiww4I7BMD9gSaQJAG8Bx9nmotB4XoSWCLPNvAGYrY06P4njZpEeh53lotb6APITIy6KSMoHvW/bTlTFek8OvPO+puO5Xh/zOJPkA1/0FYKK0tlVIo0oQA4iV1ifVzNPSkQfrv8RiJj87nRfiODMAP5TWz0Pftz04UFp37iIggU89rc9ywFW32xdjLqrNts2l6w4dst0Com4U3WQEx0rrTeJVBYTIexVFo5wgDII5SI/k6DZJ0gY+cpyBiHy0JL3F4miDXStoTpBPFMm3vcXivFi2MAhGIN8B2EzOzgryQ1bGPKk2PZ0c29SC4v+QIFu6vZXI1jxr8qGQZ3+SZGLfPXacNxAZQeRSRdHGShqVaNuYOuQ43dKSB8hlIjJ4dn29sZEmBPWLJuKlHKRdtJLnFNS2ldZr3JZNHhN4dWtMp4lVlMY2n6paq1jbtDW7KYwZqji2iu4NO7J0nM/ptteZXSqzbNdTAZZ2Y7eyiOSelT/r7bpgD1aJdUT749rg7o7fBKYict7owrm3HjsCHuZO3jHJWvhfHdhbKMOYt/8AAAAASUVORK5CYII="/> </li>
-                    <li  class="footer-ul-li" style="display: inline-block"> <img class="footer-li-img"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA6klEQVRIS+1UwQ2CQBCc5RqwA0n2RfxoBWolUoIlaAVagi3YAVSgL3l4JNiBXx945oAQYkBOAkGN+9rksjM7c7tL6DioY3x8FkFg2zYJsVHAGICdqfedMJxVOWGsQIMrIQ4EDJ7AWiJg3gFYlHTaGoEHYKoJFLC/xbE7iaJr3ZCYW8SscjCitSPlqg5cv/dLEDC7UGqYdEpU7NiDUtoywLJ8R8o0L4mXCgLm3PdKO2rsaoNg3ljBiXlL6VLpSCYoiwuASOd3y1qOzudjI4uKRcFXTtFfQf+b/Ft/YHI5375FTUGLdcbnuinZA/HvahmVXlKbAAAAAElFTkSuQmCC"/></li>
-                    <li  class="footer-ul-li" style="display: inline-block"><img  class="footer-li-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACW0lEQVRIS8VVwXHaUBB9K9lJbsEVRPaXDyIXUoGhA1yB7QoMFcSpILgCSAVRByEVoBwCB7ODOgi+cbC0nv2SPAIkYDLjsU4aaf++3bfv7Se88kOvnB9vDzDz/TZErkSkRUQt7VhEIiKKQPQjmM/Hu1io7WDmeR5cdwigDeARgCa0ySxY9v0jgHHqOP3PDw9RFVAlwN/z8xal6S8CCESDYD6/qzo8M+YawEAAIaLLqm62ACae13jvugsCHlPH6dZVVgDaTo+OQhH5JI7T2YzfApgaE2r7qeO0NVgBPwCNII7jOq5tjOvq/0nA3CnHrQEoNU6aTkD0TWnR6sR1JwQsA+bTXcPM6RoKcNlkDovYNYCpMQMCbldJcvIljpfTs7MeEX3Pg28C5tEekCWAMGDW2dhnDWBmjFVJwKwKQRlgs7KaoWsBF+VuNwGUx3FRQS7VhQDLJvPJPtfPfP8OIl8D5pe8WwACRE3mbpGs1MUoYL7ZSdEBAGsUvUjRGG39CsBolST9d8fHHiXJkIBwlab3Oi9LaabAVsDs7RwykuR0U5aFAJQuVRWALEmuOH2dGbNnyNl6WJQPlSnJ95K6+iL/rma0filkCqJO2dFbRttUUqVaMvd6q6enSOkp+eVPocBKivI2RYD7JnNvn2r0v91bOg+i06KbWidPjekS8FNE+kT0z25Skbg8yOKwXQ+OcytEPV2KVcm3jFYMsqZyVVhMREtd1/ka19DfSJLrul217gPfj0QkhshYXHdsh5ftI61Sk6pyGno3qF+IKPzvC+cQ/g+Jefs7+ZAqd8U8Aw0+OCj46gkMAAAAAElFTkSuQmCC"/> </li>
-                    <li  class="footer-ul-li" style="display: inline-block"> <img  class="footer-li-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACHklEQVRIS7VWwXHbMBC8BfWPOohmIM+Y9iNyBYoqMF1B1EGSCkxVEKeC2BVYqiBSBeYn4sPEjEqQ/wIuA4hkIJISM0zEF2dA7N7d7gIEnfnBmfHpJEE6GAxYiGcAIwAPl1n21Ra0lvIBRJ+ZOYExd+FmszlW6GkCKR+J6FOxmYnu7DuInj3Ap1CpaSeCtZRzEN2Wm4GZe2e+9wBXoVIfOxH8urgYCWOWRPTOAfxvgqKqdDjcV7jbbajXm3bqwApKQWBbHzS1y0Tfr5Sap8Nh3ERguw2MuWeiLWk9K4QvRU6ltKMYn7KtEeJGMEdNBKmU23KURMtQqUluiD1kKiW3ZYKZnU0BfPNFJsB29dPfHyrlii87KLx9guSNtB659SBIimqtdQFsfYJ8nF8OCPIARTZUVRI2Zgtj5sVc8wBGHATL69fXxOlnxXcO5sRqVWAcBG0tZQTmD27RmCcL6MTTeszGLHwCCHHLRP1qMRAiucyyRY2gNiJgwsz9IrXWHdD6xlUZBC9oAC9AG0dUExmYEHPsO+uIyI2y1USu2PQtVKpfsy4wM8BcGPPS4rjy+PiTg33QYjtXFiJ24lWzAczCLIudVkTOJQ3PhrSOa0Fr+rKJgHa7R+r13tvvwyxbtWWn7bg+THflsLPCsxAT2+0xon8icI4iWlwpFXUlqF04uT1/eIDdL5z8hLUkY9/bXmZWpPW085XZJuDfrJ/9r+I3TCEZKC2VzjAAAAAASUVORK5CYII="/> </li>
-                </ul>
-
-        </div>
-
-
-
-    </div>
-    <div style="text-align: center">
-        Copyrights <span style="font-family:'Cinzel',sans-serif;">The Journalist</span>
     </div>
 
-    </footer>
-</body>
+    <br>
+    {% include 'footer.html' %}
+    </body>
 
 
 {% endblock %}

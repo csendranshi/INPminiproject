@@ -7,7 +7,6 @@
     <style>
 
 
-
         .article-container {
             display: grid;
             height: 100vh;
@@ -19,27 +18,31 @@
     "content main main content1"
     "content main main content1"
     "content main main content1";
-            grid-gap: 0.2rem;
-            font-weight: 800;
+
+
             font-family: 'Lato', serif;
-            font-size: 12px;
+            font-size: 2vh;
             color: #fff5ea;
             text-align: justify;
+            column-gap: 10px;
+            margin-top: 30px;
         }
 
 
         .article-hello {
             background: #303841;
             grid-area: main;
+            height: inherit;
 
-            border-radius: var(--main-radius);
-            padding-top: var(--main-padding);
             overflow: scroll;
             overflow-x: hidden;
+            text-align: center;
+            padding: 40px;
         }
 
         .article-hello::-webkit-scrollbar {
             width: 5px;
+
         }
 
 
@@ -69,8 +72,13 @@
             padding-top: var(--main-padding);
         }
 
+        .article-p-tag {
+            word-spacing: 5px;
+            line-height: 50px;
+            text-align: justify !important;
+        }
 
-        @media screen and (max-width: 550px) {
+        @media screen and (max-width: 1000px) {
             .article-container {
                 grid-template-columns: 1fr;
                 grid-template-rows: 0.4fr 2.2fr 1.2fr 1.2fr 1.2fr 1.2fr 1fr;
@@ -91,6 +99,12 @@
             #article-content {
                 display: none
             }
+
+            .article-p-tag {
+                word-spacing: 2px;
+                line-height: 35px;
+                text-align: justify !important;
+            }
         }
 
     </style>
@@ -99,35 +113,46 @@
 
         <div class="article-hello">
 
-            <div><img style="width: 100%;"
-                      src="https://c.ndtvimg.com/2020-05/5ko0k9tc_coronavirus-vaccine-reuters_625x300_20_May_20.jpg"
-                      align=left/></div>
-            <p style="word-spacing: 5px;line-height: 25px;  ">
-                iPhone 12 mini, iPhone 12, iPhone 12 Pro, and iPhone 12 Pro Max pre-order details in India have been
-                revealed just days after their official launch. While the iPhone 12 and iPhone 12 Pro will go up for
-                pre-orders starting October 23, the iPhone 12 mini and iPhone 12 Pro Max pre-orders will begin November
-                6. iPhone 12 Mini and iPhone 12 Pro Max pre-orders timeline is same as the pre-orders planned in markets
-                including the US, UK, Australia, China, Germany, and Japan. However, the iPhone 12 and iPhone 12 Pro
-                will go on pre-orders in the first batch of countries from October 16 and will go on sale from October
-                23.
+            <div style="margin: 20px auto !important;"><img style="width: 100%; max-width: 600px;"
+                                                            src="https://c.ndtvimg.com/2020-05/5ko0k9tc_coronavirus-vaccine-reuters_625x300_20_May_20.jpg"
+                                                            align=left/></div>
+            <p class="article-p-tag">
+                London: British researchers on Tuesday said they hope to expose healthy volunteers to the virus that
+                causes Covid-19 in a groundbreaking study to discover the amount needed for people to become infected.
+                The Human Challenge Programme -- a partnership that includes Imperial College London -- hopes the work
+                will ultimately help to "reduce the spread of the coronavirus, mitigate its impact and reduce deaths".
+                <br>
+                In what researchers called a world first, the opening stage of the project will examine the possibility
+                of exposing healthy volunteers to the SARS-CoV-2 coronavirus.
+                <br>
+                They aim to recruit volunteers between the ages of 18 and 30 with no underlying health conditions such
+                as heart disease, diabetes or obesity.
+                <br>
+                "In this initial phase, the aim will be to discover the smallest amount of virus it takes to cause a
+                person to develop Covid-19," Imperial College said in a statement.
+                <br>
+                The volunteer would be infected via the nose, Peter Openshaw, professor of experimental medicine at
+                Imperial, told BBC Radio 4 on Tuesday.
 
-                Apple has revealed the India pre-order details for the iPhone 12 mini, iPhone 12, iPhone 12 Pro, and the
-                iPhone 12 Pro Max through its official website. At the time of the launch, the company announced that
-                the iPhone 12 and iPhone 12 Pro would go on sale in the country starting October 30. It, however, didn't
-                make any announcements about the pre-orders.
+                "The great advantage of these volunteer studies is that we can look at each volunteer very carefully not
+                only during the infection but also prior to infection, and we can work out exactly what's going on at
+                every stage," he added.
 
-                The India availability of the iPhone 12 mini and iPhone 12 Pro Max is still a mystery. Nevertheless, it
-                is likely to align with the release date set for the US and other key markets that is November 13.
+                The researchers would use the results to study how vaccines might work and to explore potential
+                treatments.
 
-                iPhone 12 mini, iPhone 12, iPhone 12 Pro, iPhone 12 Pro Max price in India
-                iPhone 12 mini price in India starts at Rs. 69,900 for the base 64GB storage variant. However, the 128GB
-                storage model of the iPhone 12 mini is priced at Rs. 74,900, while its 256GB storage option is at Rs.
-                84,900. The iPhone 12, on the other front, comes at Rs. 79,900 for the 64GB, whereas its 128GB and 256GB
-                storage models are priced at Rs. 84,900 and Rs. 94,900, respectively. The iPhone 12 Pro price is set at
-                Rs. 1,19,900 for the 128GB storage variant, while its 256GB storage model is priced at Rs. 1,29,900 and
-                the top-end 512GB storage option is at Rs. 1,49,900. Lastly, the iPhone 12 Pro Max carries a price tag
-                of at Rs. 1,29,900 for the 128GB storage variant, while its 256GB and 512GB storage options are priced
-                at Rs. 1,39,900 and Rs. 1,59,900, respectively.
+                Because the study deliberately infects the volunteers, "it should be possible for scientists to begin to
+                establish efficacy very quickly, by testing if those who have had a vaccine are less likely to become
+                infected with the virus", explained the researchers.
+
+                "Our number one priority is the safety of the volunteers," said Chris Chiu, from Imperial's department
+                of infectious disease.
+
+                "No study is completely risk free, but the Human Challenge Programme partners will be working hard to
+                ensure we make the risks as low as we possibly can."
+
+                "The UK's experience and expertise in human challenge trials as well as in wider COVID-19 science will
+                help us tackle the pandemic, benefiting people in the UK and worldwide," he added.
             </p></div>
         <div id="article-content">sidebar 1</div>
         <div id="article-content1">sidebar 2</div>
