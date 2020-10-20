@@ -5,6 +5,7 @@
         function val() {
             d = document.getElementById("post-category").value;
             console.log(d)
+            document.getElementById("health-grid-css-table").style.display = "block"
         }
 
 
@@ -14,12 +15,11 @@
         .post-container {
             display: grid;
             height: 80vh;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            grid-template-rows: 0.2fr 1.5fr 1.2fr 0.8fr;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 0.2fr 1.5fr;
             grid-template-areas:
-    "post-main1 post-main1"
-    "post-content1 post-content2" 
-    "post-content3 post-content4";
+    "post-main1 post-content2"
+    "post-content1 post-content3";
 
 
             grid-gap: 0.2rem;
@@ -41,21 +41,29 @@
 
         }
 
+        #post-main2 {
+
+            grid-area: post-main2;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+
+        }
 
         #post-content1 {
-            background: rgba(255, 255, 255, 0.13);
+
             grid-area: post-content1;
             border-top-right-radius: 20px;
             border-bottom-left-radius: 20px;
-            padding-top: var(--main-padding);
+
         }
 
         #post-content2 {
-            background: rgba(255, 255, 255, 0.13);
+
             grid-area: post-content2;
+            background-color:#eeeeee;color: #303841;
             border-top-right-radius: 20px;
             border-bottom-left-radius: 20px;
-            padding-top: var(--main-padding);
+
         }
 
         #post-content3 {
@@ -65,7 +73,6 @@
             border-bottom-left-radius: 20px;
             padding-top: var(--main-padding);
         }
-
 
 
         .post-outer-container {
@@ -113,6 +120,30 @@
             outline: none;
             height: 80%;
         }
+
+        #health-grid-css-table {
+            display: none;
+            border-spacing: 15px;
+            background-color: #eeeeee;
+
+        }
+
+        #health-grid-css-table td {
+            border: 2px solid #3a4750;
+            width: 60px;
+            height: 60px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+            background-color: #303841;
+
+        }
+
+        #health-grid-css-table tr {
+            border: 1px solid green;
+
+        }
+
     </style>
     <body class="auth-form-body">
 
@@ -165,7 +196,7 @@
                         <textarea class="posts-description-auth-form-input" name="postDesc" placeholder="description"
                                   rows="4"
                                   cols="20"></textarea>
-                         <input type="submit" class="auth-form-button" value="Submit For Preview"/>
+                        <input type="submit" class="auth-form-button" value="Submit For Preview"/>
 
                     </div>
 
@@ -175,7 +206,32 @@
                 <!--            <div class="icon-auth-form-input">-->
 
             </form>
+            <div id="post-content2">
+                <h3 style=" background-color:#eeeeee;color: #303841; ">How the Grid Looks</h3>
+                <table id="health-grid-css-table">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td colspan="2"></td>
 
+
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td></td>
+                        <td></td>
+
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+
+            </div>
         </div>
     </div>
 
