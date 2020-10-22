@@ -8,73 +8,71 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>form</title>
-        <link href="form.css" rel="stylesheet">
+
+
         <style>
-            .profile-parent {
+
+
+            .profile-grid-container {
                 display: grid;
-                grid-template-columns: repeat(5, 1fr);
-                grid-column-gap: 0px;
-                grid-row-gap: 0px;
-            }
+                height: 80vh;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 0.2fr 1.5fr;
+                grid-template-areas:
+    "profile-main1  profile-main2"
+    "profile-content1  profile-content2"
+    "footer footer";
+                grid-gap: 0.2rem;
 
-            .profile-div1 {
-                grid-area: 1 / 1 / 2 / 2;
-                width: 220px;
-                margin: 20px;
-            }
-
-            .profile-div2 {
-                grid-area: 1 / 2 / 2 / 3;
-                width: 400px;
-                margin: 20px;
-            }
-
-            .profile-div3 {
-                grid-area: 2 / 1 / 3 / 2;
-                width: 220px;
-                margin: 20px;
-            }
-
-            .profile-div4 {
-                grid-area: 2 / 2 / 3 / 3;
-                width: 400px;
-                margin: 20px;
-            }
-
-            .profile-div5 {
-                grid-area: 3 / 1 / 4 / 2;
-            }
-
-            .profile-div6 {
-                grid-area: 3 / 2 / 4 / 3;
-            }
-
-            .profile-div7 {
-                grid-area: 4 / 1 / 5 / 3;
-                width: 400px;
-                margin: 20px;
-            }
-
-
-            .wrapper {
-                width: 100%;
-                height: 100vh;
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
-
-            .main {
-                width: 90%;
-                height: 900px;
+                font-size: 15px;
+                color: #fff5ea;
+                text-align: center;
+                row-gap: 20px;
+                column-gap: 20px;
                 background-color: rgba(255, 255, 255, 0.13);
-                margin: 50px auto;
-                border-bottom-left-radius: 20px;
-                border-top-right-radius: 20px;
-                max-width: 700px;
+                width: 60%;
+                margin: 10px auto;
+                border-top-right-radius: 30px;
+                border-bottom-left-radius: 30px;
             }
 
 
+            #profile-main1 {
+
+                grid-area: profile-main1;
+                border-top-right-radius: 20px;
+                border-bottom-left-radius: 20px;
+                padding-top: var(--main-padding);
+                height: 300px;
+                overflow: hidden;
+            }
+
+            #profile-main2 {
+
+                grid-area: profile-main2;
+                border-top-right-radius: 20px;
+                border-bottom-left-radius: 20px;
+                padding-top: var(--main-padding);
+                height: 300px;
+                overflow: hidden;
+            }
+
+            #profile-content1 {
+
+                grid-area: profile-content1;
+                border-top-right-radius: 20px;
+                border-bottom-left-radius: 20px;
+                overflow: hidden;
+            }
+
+            #profile-content2 {
+
+                grid-area: profile-content2;
+                border-top-right-radius: 20px;
+                border-bottom-left-radius: 20px;
+
+                overflow: hidden;
+            }
 
 
             .name {
@@ -236,16 +234,16 @@
     </head>
     <body>
 
-    <div class="wrapper">
-        <div class="main">
+    <div>
+
         <form method="POST">
 
             <h1 class="auth-form-h1" style="margin: 10px auto;color: #cccccc;font-family: 'Lato', serif;"
                 align="center"> Your Profile</h1>
-            <div class="profile-parent">
+            <div class="profile-grid-container">
 
 
-                <div class="profile-div1">
+                <div id="profile-main1">
                     <div style="width: 200px;height: 200px;margin: 20px;
                                 border-radius:50%;background-color: #cccccc; ">
 
@@ -254,7 +252,7 @@
                 </div>
 
 
-                <div class="profile-div2">
+                <div id="profile-main2">
                     <input type="text" name="fname" value="First Name:{{ profile_details.first_name }}" readonly
                            class="profile-auth-form-input"></label>
 
@@ -266,7 +264,7 @@
                 </div>
 
 
-                <div class="profile-div3">
+                <div id="profile-content1">
                     <label class="name">
                         PHONE* :</label>
 
@@ -296,10 +294,11 @@
                         {% endif %}
 
                     </label>
-                    <input class="profile-auth-form-button" type="submit" name="sb" value="UPDATE PROFILE" class="sub">
+                    <input class="profile-auth-form-button" type="submit" name="sb" value="UPDATE PROFILE"
+                           class="sub">
 
                 </div>
-                <div class="profile-div4">
+                <div id="profile-content2">
                     <label class="name">
                         PASSWORD* :</label>
 
@@ -334,16 +333,13 @@
                 </div>
 
 
-
-
             </div>
-                </form>
+        </form>
 
 
-
-        </div>
     </div>
-  {% include 'footer.html' %}
+    </div>
+    {% include 'footer.html' %}
     </body>
     </html>
 
