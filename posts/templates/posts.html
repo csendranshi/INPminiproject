@@ -3,28 +3,30 @@
 {% block content %}
     <script>
         function val() {
-            d = document.getElementById("post-category").value;
-            console.log(d)
-            if (d === "health") {
-                document.getElementById("health-grid-css-table").style.display = "block"
-                document.getElementById("world-grid-css-table").style.display = "none"
-            } else if (d === "world") {
-                document.getElementById("health-grid-css-table").style.display = "none"
-                document.getElementById("world-grid-css-table").style.display = "block"
+            const d = document.getElementById("post-category").value;
+            const categories = ["health-grid-css-table", "world-grid-css-table",
+                "tech-grid-css-table", "business-grid-css-table",
+                "education-grid-css-table", "latest-grid-css-table", "india-grid-css-table"];
+            var i;
+            for (i = 0; i < categories.length; i++) {
+                if (categories[i] !== d) {
+                    document.getElementById(categories[i]).style.display = "none"
+                } else if (categories[i] === d) {
+                    document.getElementById(categories[i]).style.display = "block"
+                }
             }
 
 
         }
 
         function changeTheCellColor() {
-            d = document.getElementById("post-section").value;
+            const d = document.getElementById("post-section").value;
             console.log(d)
-            if (d==="long-bar-1") {
+            if (d === "long-bar-1") {
                 document.getElementById("long-bar-1").style.backgroundColor = "#d72323";
-                 document.getElementById("long-bar-2").style.backgroundColor = "#3a4750"
-            }
-            else if (d==="long-bar-2"){
-                 document.getElementById("long-bar-1").style.backgroundColor = "#3a4750";
+                document.getElementById("long-bar-2").style.backgroundColor = "#3a4750"
+            } else if (d === "long-bar-2") {
+                document.getElementById("long-bar-1").style.backgroundColor = "#3a4750";
                 document.getElementById("long-bar-2").style.backgroundColor = "#d72323"
             }
 
@@ -77,7 +79,6 @@
             border-bottom-left-radius: 20px;
 
         }
-
 
 
         .post-outer-container {
@@ -162,7 +163,91 @@
 
         }
 
+        #tech-grid-css-table {
+            display: none;
+            border-spacing: 15px;
+            background-color: #eeeeee;
+        }
 
+        #tech-grid-css-table td {
+            border: 2px solid #3a4750;
+            width: 60px;
+            height: 60px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+            background-color: #303841;
+
+        }
+
+        #business-grid-css-table {
+            display: none;
+            border-spacing: 15px;
+            background-color: #eeeeee;
+        }
+
+        #business-grid-css-table td {
+            border: 2px solid #3a4750;
+            width: 60px;
+            height: 60px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+            background-color: #303841;
+
+        }
+
+        #education-grid-css-table {
+            display: none;
+            border-spacing: 15px;
+            background-color: #eeeeee;
+        }
+
+        #education-grid-css-table td {
+            border: 2px solid #3a4750;
+            width: 60px;
+            height: 60px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+            background-color: #303841;
+
+        }
+
+
+        #india-grid-css-table {
+            display: none;
+            border-spacing: 15px;
+            background-color: #eeeeee;
+        }
+
+        #india-grid-css-table td {
+            border: 2px solid #3a4750;
+            width: 60px;
+            height: 60px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+            background-color: #303841;
+
+        }
+
+        #latest-grid-css-table {
+            display: none;
+            border-spacing: 15px;
+            background-color: #eeeeee;
+        }
+
+        #latest-grid-css-table td {
+            border: 2px solid #3a4750;
+            width: 60px;
+            height: 60px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+            background-color: #303841;
+
+        }
     </style>
     <body class="auth-form-body">
 
@@ -193,25 +278,29 @@
                     <div id="post-content1">
                         <select onchange="val()" id="post-category" class="posts-auth-form-input" name="category">
                             <option selected disabled>Category</option>
-                            <option value="Latest">Latest</option>
-                            <option value="india">India</option>
-                            <option value="world">World</option>
-                            <option value="technology">Technology</option>
-                            <option value="health">Health</option>
-                            <option value="education">Education</option>
-                            <option value="business">Business</option>
+                            <option value="latest-grid-css-table">Latest</option>
+                            <option value="india-grid-css-table">India</option>
+                            <option value="world-grid-css-table">World</option>
+                            <option value="tech-grid-css-table">Technology</option>
+                            <option value="health-grid-css-table">Health</option>
+                            <option value="education-grid-css-table">Education</option>
+                            <option value="business-grid-css-table">Business</option>
                         </select>
 
 
                         <select onchange="changeTheCellColor()" id="post-section" class="posts-auth-form-input"
                                 name="section">
                             <option selected disabled value="top-stories">Section</option>
-                            <option value="long-bar-1">Matrix1x1</option>
-                            <option value="long-bar-2">Matrix1x2</option>
-                            <option value="Matrix1x3">Matrix1x3</option>
-                            <option value="Matrix2x4">Matrix2x4</option>
-                            <option value="Matrix2x5">Matrix2x5</option>
-                            <option value="Matrix2x5">Matrix2x5</option>
+                            <option value="cell-1">Cell 1</option>
+                            <option value="cell-2">Cell 2</option>
+                            <option value="cell-3">Cell 3</option>
+                            <option value="cell-4">Cell 4</option>
+                            <option value="cell-5">Cell 5</option>
+                            <option value="cell-6">Cell 6</option>
+                            <option value="cell-7">Cell 7</option>
+                            <option value="cell-8">Cell 8</option>
+
+
                         </select>
                         <input id="drop-area" name="post-picture" class="posts-auth-form-input" type="file">
                         <textarea class="posts-description-auth-form-input" name="postDesc" placeholder="description"
@@ -228,7 +317,8 @@
 
             </form>
             <div id="post-content2">
-                <h3 style=" background-color:#eeeeee;color: #303841; ">How the Grid Looks</h3>
+                <h3 style=" background-color:#eeeeee;color: #303841; ">Where your Article Will Show</h3>
+
                 <table id="health-grid-css-table">
                     <tr>
                         <td></td>
@@ -252,10 +342,17 @@
                     </tr>
                 </table>
                 <table id="world-grid-css-table">
+
+                    <tr>
+
+                        <td colspan="4">MAP</td>
+
+
+                    </tr>
                     <tr>
 
                         <td id="long-bar-1" colspan="2"></td>
-                        <td id="long-bar-2"  colspan="2"></td>
+                        <td id="long-bar-2" colspan="2"></td>
 
 
                     </tr>
@@ -274,7 +371,165 @@
                         <td></td>
                     </tr>
                 </table>
+                <table id="tech-grid-css-table">
+                    <tr>
 
+                        <td id="long-bar-1" colspan="2"></td>
+                        <td id="long-bar-2" colspan="2"></td>
+
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table id="business-grid-css-table">
+                    <tr>
+
+                        <td colspan="2"> T</td>
+                        <td id="long-bar-2" colspan="2"></td>
+
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table id="education-grid-css-table">
+                    <tr>
+                        <td></td>
+                        <td style="background: #eeeeee;border: none;">
+                            <table style="border-spacing:5px; ">
+                                <tr>
+                                    <td style="height: 20px;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="height: 20px;"></td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="background: #eeeeee;border: none;">
+                            <table style="border-spacing:5px; ">
+                                <tr>
+                                    <td style="height: 20px;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="height: 20px;"></td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table id="india-grid-css-table">
+
+                    <tr>
+
+                        <td colspan="4">MAP</td>
+
+
+                    </tr>
+                    <tr>
+
+                        <td id="long-bar-1" colspan="2"></td>
+                        <td id="long-bar-2" colspan="2"></td>
+
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <table id="latest-grid-css-table">
+
+                    <tr>
+
+                        <td rowspan="2"></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+
+
+                        <td></td>
+
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td style="background: #eeeeee;border: none;">
+                            <table style="border-spacing:5px; ">
+                                <tr>
+                                    <td style="height: 20px;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="height: 20px;"></td>
+                                </tr>
+                            </table>
+                        </td>
+
+
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td style="background: #eeeeee;border: none;">
+                            <table style="border-spacing:5px; ">
+                                <tr>
+                                    <td style="height: 12px;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="height: 12px;"></td>
+                                </tr>
+                                  <tr>
+                                    <td style="height: 12px;"></td>
+                                </tr>
+                            </table>
+                        </td>
+
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
