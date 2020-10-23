@@ -28,17 +28,17 @@ def auth(request):
     register_date = request.POST.get('dateofbirth')
     register_phone_no = request.POST.get('reg_phone_number')
     register_gender = request.POST.get('Gender')
-    userdetails={
-        'firstname':register_firstname,
-        'lastname':register_lastname,
-        'emailId':register_emailId,
-        'password':'',
-        'date':register_date,
-        'phone_no':register_phone_no,
+    userdetails = {
+        'firstname': register_firstname,
+        'lastname': register_lastname,
+        'emailId': register_emailId,
+        'password': '',
+        'date': register_date,
+        'phone_no': register_phone_no,
     }
     if request.method == 'POST':
         if register_gender is None:
-            return render(request, 'Register.html',{'message':'Select A Gender','userdetails':userdetails})
+            return render(request, 'Register.html', {'message': 'Select A Gender', 'userdetails': userdetails})
         if register_emailId != "" and register_firstname != "" and register_lastname != "" and register_password != "" and register_date != "":
             hashed_password = generate_password_hash(register_password, method="sha256")
             print(register_firstname, register_lastname, register_emailId, hashed_password,
@@ -46,16 +46,17 @@ def auth(request):
             print(register_phone_no, register_gender)
             status = email_id_status(register_emailId)
             if status == 'EMAIL ID TAKEN':
-                userdetails={
-                        'firstname':register_firstname,
-                        'lastname':register_lastname,
-                        'emailId':'',
-                        'password':'',
-                        'date':register_date,
-                        'phone_no':register_phone_no,
-                        'gender':register_gender
-                    }
-                return render(request, 'Register.html',{'message':'Email Id Is Already Registered','userdetails':userdetails})
+                userdetails = {
+                    'firstname': register_firstname,
+                    'lastname': register_lastname,
+                    'emailId': '',
+                    'password': '',
+                    'date': register_date,
+                    'phone_no': register_phone_no,
+                    'gender': register_gender
+                }
+                return render(request, 'Register.html',
+                              {'message': 'Email Id Is Already Registered', 'userdetails': userdetails})
             else:
                 with connection.cursor() as cursor:
                     print()
@@ -78,12 +79,12 @@ def Login(request):
                            [username])
             row = cursor.fetchone()
             print(row)
-            userdetails={
-            'email':username,
-            'status':'Invalid Credentials'
+            userdetails = {
+                'email': username,
+                'status': 'Invalid Credentials'
             }
             if row is None:
-                context = {"registration_success": False,"userdetails":userdetails}
+                context = {"registration_success": False, "userdetails": userdetails}
                 return render(request, 'Login.html', context)
             else:
                 if check_password_hash(row[4], password):
@@ -109,7 +110,7 @@ def Login(request):
                     context = {"registration_success": False, 'user': dict_of_user_details}
                     return redirect('/')
                 else:
-                    context = {"registration_success": False,"userdetails":userdetails}
+                    context = {"registration_success": False, "userdetails": userdetails}
                     return render(request, 'Login.html', context)
     return render(request, 'Login.html')
 
@@ -125,7 +126,7 @@ def Logout(request):
         'logged_in': request.session['logged_in'],
         'first_name': "",
         'last_name': "",
-        'suscriber_access':request.session['suscriber_priority']
+        'suscriber_access': request.session['suscriber_priority']
     }
     context = {'user': dict_of_user_details}
     return render(request, 'Login.html', context)

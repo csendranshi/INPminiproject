@@ -96,8 +96,13 @@
                     <tr>
                         {% for top_story in top_stories %}
                         <div id="myBtn" class="row-for-each-story">
-                        <span class="image-position-each-row"><img class="image-for-row"
-                                                                   src="{{ top_story.image }}" alt=""></span>
+                        <span class="image-position-each-row">
+                            {% if top_story.image == '' %}
+                            <img class="image-for-row" src="{{ top_story.image_link }}" alt="">
+                                {% else %}
+                               <img class="image-for-row" src="{{ top_story.image }}" alt="">
+                            {% endif %}
+                        </span>
                             <span class="news-post-text-for-top-stories">{{top_story.title}}</span>
                         </div>
 

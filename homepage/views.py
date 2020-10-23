@@ -1,3 +1,4 @@
+from django.db import connection
 from django.shortcuts import render
 import requests
 
@@ -12,14 +13,19 @@ def home_view(request, *args, **kwargs):
     # 95c4ed43f7644dc8a05175665cd04b7a - api key
     r = requests.get(top_stories).json()
     top = []
-    for i in r['articles']:
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM top_stories")
+        row = cursor.fetchall()
+
+    for i in row:
         top_story = {
-            'image': i['urlToImage'],
-            'title': i['title'],
-            'content': i['content']
+            'id':i[0],
+            'title': i[1],
+            'image':i[2],
+            'image_link': i[3]
         }
         top.append(top_story)
-
+    print(top)
     if request.session.has_key('logged_in'):
         print(request.session.has_key('logged_in'))
         dict_of_user_details = {

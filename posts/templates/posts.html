@@ -2,11 +2,13 @@
 {% load static %}
 {% block content %}
     <script>
+        const categories = ["health-grid-css-table", "world-grid-css-table",
+            "tech-grid-css-table", "business-grid-css-table",
+            "education-grid-css-table", "latest-grid-css-table", "india-grid-css-table", "setArticlePicture", "setArticlePicture"];
+
         function val() {
             const d = document.getElementById("post-category").value;
-            const categories = ["health-grid-css-table", "world-grid-css-table",
-                "tech-grid-css-table", "business-grid-css-table",
-                "education-grid-css-table", "latest-grid-css-table", "india-grid-css-table"];
+
             var i;
             for (i = 0; i < categories.length; i++) {
                 if (categories[i] !== d) {
@@ -30,6 +32,36 @@
                 document.getElementById("long-bar-2").style.backgroundColor = "#d72323"
             }
 
+        }
+
+
+        window.addEventListener("load", function () {
+            document.getElementById("drop-area").onchange = function (event) {
+                var reader = new FileReader();
+                reader.readAsDataURL(event.srcElement.files[0]);
+                var me = this;
+                reader.onload = function () {
+                    var fileContent = reader.result;
+                    console.log(fileContent);
+                    document.getElementById("setArticlePicture").src = String(fileContent);
+
+                    var i;
+                    for (i = 0; i < categories.length; i++) {
+                        if (categories[i] !== "setArticlePicture") {
+                            document.getElementById(categories[i]).style.display = "none"
+                        } else if (categories[i] === "setArticlePicture") {
+                            document.getElementById("setArticlePicture").style.display = "block";
+
+                        }
+                    }
+                    document.getElementById("ToGetImageText").value = fileContent;
+                }
+            }
+        });
+
+        function loadImage() {
+
+            document.getElementById("ToGetImageText").value = fileContent;
         }
 
     </script>
@@ -248,6 +280,14 @@
             background-color: #303841;
 
         }
+
+        #setArticlePicture {
+            display: none;
+        }
+
+        .no-display {
+            display: none;
+        }
     </style>
     <body class="auth-form-body">
 
@@ -262,13 +302,14 @@
         <div class="post-container">
 
             <form style="margin: auto" method="POST"
-                  action="{% url 'posts' %}">
+            >
                 <div style="display:inline-block">
                     <div style="color: #3a4750; font-size: 25px; margin: inherit; padding: 2%">Post an Article</div>
                     {% csrf_token %}
 
                     <div id="post-main1">
-                        <input class="posts-auth-form-input" type="text" name="imageLink" placeholder="Image Link">
+                        <input onchange="loadImage()" class="posts-auth-form-input" type="text" name="imageLink"
+                               placeholder="Image Link">
 
 
                         <input class="posts-auth-form-input" type="text" name="postTitle" placeholder="Title">
@@ -302,12 +343,12 @@
 
 
                         </select>
-                        <input id="drop-area" name="post-picture" class="posts-auth-form-input" type="file">
+                        <input id="drop-area" name="postPicture" class="posts-auth-form-input" type="file">
                         <textarea class="posts-description-auth-form-input" name="postDesc" placeholder="description"
                                   rows="4"
                                   cols="20"></textarea>
                         <input type="submit" class="auth-form-button" value="Submit For Preview"/>
-
+                        <input class="no-display" name="finalPictureValue" id="ToGetImageText" type="text"/>
                     </div>
 
 
@@ -318,7 +359,7 @@
             </form>
             <div id="post-content2">
                 <h3 style=" background-color:#eeeeee;color: #303841; ">Where your Article Will Show</h3>
-
+                <img id="setArticlePicture" width="400" src="" alt="Image is Not Loading">
                 <table id="health-grid-css-table">
                     <tr>
                         <td></td>
@@ -509,7 +550,6 @@
                         </td>
 
 
-
                     </tr>
                     <tr>
                         <td></td>
@@ -522,7 +562,7 @@
                                 <tr>
                                     <td style="height: 12px;"></td>
                                 </tr>
-                                  <tr>
+                                <tr>
                                     <td style="height: 12px;"></td>
                                 </tr>
                             </table>
@@ -536,6 +576,7 @@
 
     <br>
     {% include 'footer.html' %}
+
     </body>
 
 

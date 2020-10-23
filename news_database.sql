@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2020 at 06:20 PM
+-- Generation Time: Oct 23, 2020 at 07:32 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -52,6 +52,33 @@ phone_no)
       phone_no);
     
     
+      COMMIT WORK;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `latest_top_stories` (IN `title` MEDIUMTEXT, IN `image` LONGTEXT, IN `image_link` MEDIUMTEXT, IN `content` LONGTEXT, IN `useremailid` VARCHAR(100), IN `category` VARCHAR(100))  NO SQL
+BEGIN
+    DECLARE errno INT;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+    GET CURRENT DIAGNOSTICS CONDITION 1 errno = MYSQL_ERRNO;
+    SELECT errno AS MYSQL_ERROR;
+    ROLLBACK;
+    END;
+    START TRANSACTION;
+INSERT INTO top_stories (
+title,
+image,
+image_link,
+content,
+user_email_id,
+category)
+    VALUES (title
+    , image
+    , image_link
+    , content
+    , useremailid
+    , category);    
       COMMIT WORK;
 
 END$$
@@ -287,7 +314,8 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('0s3pd7uuv2hm6ouc174hy6xrnge8vp2y', '.eJxdzEEKAjEMQNG7ZD0I466zEryBFyiZNlMjbSNJu5DBu1tdKLh9fP4OWVKi6LnCsmE2muAmXStmjyGQ2ZcxFq7_uLFa8xULwQIX6itVmCDjD8_SG9erDLZuQXkl9XdlUW4PWJr2saGCnD3H0etncpxn59wpvf0QpMDzBWllPFI:1kSMRI:H7zK48CWRdYx9sNz4r5-Qa3GNATxRQVHd5YZkMrzX-s', '2020-10-27 15:42:12.297916');
+('0s3pd7uuv2hm6ouc174hy6xrnge8vp2y', '.eJxdzkEKwjAQheG7zLoIdZeuBG_gBcI0mcaRZEYmyULEu1tdVOr2g__xnpA1JYqeBaYFc6UBbtpNMHsMgWrdGGNh-ceFrTYvWAgmuFCfSWCAjD88a28sV1259hqMZzJ_N1bj9th2qCBnz3EN7LtyHEfn3Cl9_BC07PLdidcbBItF9Q:1kSYRT:niJo1RecPfdQiWG7aaV_SmANTRCtoJKBOKBn7M5hkyw', '2020-10-28 04:31:11.767700'),
+('hk4fo4tgcg9z6bo0ugism6hhse4289h0', '.eJxFykEKAjEMAMC_5LwI6617EvyBHyjZNlsjbSpJexDx71Zh9TrME3JNiaJngaVppwlutatg9hgCme2KsbD8bMNsA61bUF5J_V25KrfH3jdWa16wECxwob6SwAQZ_3iuvbFc62AqyNlzHKrfepxn59wpffwQaoHXGzmFO7w:1kVv4r:SXvavYeEBHraa-U6JUJNq7PKffT9QVKzjntO68-EgL0', '2020-11-06 11:17:45.163582');
 
 -- --------------------------------------------------------
 
@@ -331,7 +359,8 @@ CREATE TABLE `personal_details` (
 --
 
 INSERT INTO `personal_details` (`idpersonal_details`, `first_name`, `last_name`, `email_id`, `safe_password`, `date_of_birth`, `admin_priority`, `journalist_priority`, `suscriber_priority`, `gender`, `phone_no`) VALUES
-(3, 'Reuben', 'Coutinho', 'reuben211999@gmail.com', 'sha256$269Weu3G$1dcd536a61e4451d25135549689879c39353b55f6568e5ed3e5ba9881ea8d351', '2020-10-21', 0, 1, 1, 'Male', 7021597154);
+(3, 'Reuben', 'Coutinho', 'reuben211999@gmail.com', 'sha256$269Weu3G$1dcd536a61e4451d25135549689879c39353b55f6568e5ed3e5ba9881ea8d351', '2020-10-21', 0, 1, 1, 'Male', 7021597154),
+(13, 'Reuben', 'Coutinho', 'reuben21@gmail.com', 'sha256$ah0IJ6i7$6b33db3b30b7b41affc7cb7c05297d5ed1583ee6ab0be14b44ab186e9a77897b', '2020-10-20', 0, 0, 1, 'Male', 8291310013);
 
 --
 -- Indexes for dumped tables
@@ -490,7 +519,7 @@ ALTER TABLE `education_stories`
 -- AUTO_INCREMENT for table `personal_details`
 --
 ALTER TABLE `personal_details`
-  MODIFY `idpersonal_details` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idpersonal_details` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

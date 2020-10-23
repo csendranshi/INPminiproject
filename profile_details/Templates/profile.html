@@ -11,7 +11,20 @@
 
 
         <style>
+            @media screen and (max-width: 650px) {
+                .profile-grid-container {
+                    display: grid;
+                    height: 80vh;
+                    grid-template-columns:  1fr;
+                    grid-template-rows:  0.2fr;
+                    grid-template-areas:
+                "profile-main1"  "profile-main2"
+                "profile-content1"  "profile-content2"
+                "footer";
+                    grid-gap: 0.2rem;
 
+                }
+            }
 
             .profile-grid-container {
                 display: grid;
