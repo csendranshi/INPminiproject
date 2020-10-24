@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2020 at 07:32 PM
+-- Generation Time: Oct 24, 2020 at 07:46 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -56,7 +56,7 @@ phone_no)
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `latest_top_stories` (IN `title` MEDIUMTEXT, IN `image` LONGTEXT, IN `image_link` MEDIUMTEXT, IN `content` LONGTEXT, IN `useremailid` VARCHAR(100), IN `category` VARCHAR(100))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `latest_top_stories` (IN `title` MEDIUMTEXT, IN `image` LONGTEXT, IN `image_link` MEDIUMTEXT, IN `content` LONGTEXT, IN `useremailid` VARCHAR(100), IN `category` VARCHAR(100), IN `section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
 BEGIN
     DECLARE errno INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -72,13 +72,17 @@ image,
 image_link,
 content,
 user_email_id,
-category)
+category,
+section,
+news_unique_id)
     VALUES (title
     , image
     , image_link
     , content
     , useremailid
-    , category);    
+    , category
+    , section
+    , news_unique_id);    
       COMMIT WORK;
 
 END$$
