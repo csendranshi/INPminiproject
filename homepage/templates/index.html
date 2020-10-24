@@ -7,253 +7,247 @@
     <meta charset="UTF-8">
     <title>Index Page</title>
     <head>
-        <link href="{% static '/css/index_style1.css' %}" rel="stylesheet">
+        <link href="{% static '/css/index_style2.css' %}" rel="stylesheet">
     </head>
 </head>
 <body>
 {% block content %}
-<audio controls autoplay hidden>
-    <source src="{% static '/assets/2020-07-30_-_Conspiracy_Theory_-_David_Fesliyan.mp3' %}" type="audio/ogg">
+    <audio controls autoplay hidden>
+        <source src="{% static '/assets/2020-07-30_-_Conspiracy_Theory_-_David_Fesliyan.mp3' %}" type="audio/ogg">
 
-</audio>
-<!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-    <div class="tradingview-widget-container__widget"></div>
-    <div class="tradingview-widget-copyright"><a href="https://in.tradingview.com" rel="noopener" target="_blank"><span
-            class="blue-text"></span></a></div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
-        {
-            "symbols"
-        :
-            [
-                {
-                    "proName": "FOREXCOM:SPXUSD",
-                    "title": "S&P 500"
-                },
-                {
-                    "proName": "FOREXCOM:NSXUSD",
-                    "title": "Nasdaq 100"
-                },
-                {
-                    "proName": "FX_IDC:EURUSD",
-                    "title": "EUR/USD"
-                },
-                {
-                    "proName": "BITSTAMP:BTCUSD",
-                    "title": "BTC/USD"
-                },
-                {
-                    "proName": "BITSTAMP:ETHUSD",
-                    "title": "ETH/USD"
-                }
-            ],
-                "colorTheme"
-        :
-            "dark",
-                "isTransparent"
-        :
-            false,
-                "locale"
-        :
-            "in"
-        }
-    </script>
-</div>
-<!-- TradingView Widget END -->
+    </audio>
+    <!-- TradingView Widget BEGIN -->
+    <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <div class="tradingview-widget-copyright"><a href="https://in.tradingview.com" rel="noopener"
+                                                     target="_blank"><span
+                class="blue-text"></span></a></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js"
+                async>
+            {
+                "symbols"
+            :
+                [
+                    {
+                        "proName": "FOREXCOM:SPXUSD",
+                        "title": "S&P 500"
+                    },
+                    {
+                        "proName": "FOREXCOM:NSXUSD",
+                        "title": "Nasdaq 100"
+                    },
+                    {
+                        "proName": "FX_IDC:EURUSD",
+                        "title": "EUR/USD"
+                    },
+                    {
+                        "proName": "BITSTAMP:BTCUSD",
+                        "title": "BTC/USD"
+                    },
+                    {
+                        "proName": "BITSTAMP:ETHUSD",
+                        "title": "ETH/USD"
+                    }
+                ],
+                    "colorTheme"
+            :
+                "dark",
+                    "isTransparent"
+            :
+                false,
+                    "locale"
+            :
+                "in"
+            }
+        </script>
+    </div>
+    <!-- TradingView Widget END -->
 
-{# Grid layout start from here #}
-<div class="homepage-grid-container">
-    {# grid main #}
-    <main class="homepage-grid-main1" id="grid">
-        <iframe src="https://ourworldindata.org/coronavirus-data-explorer?tab=map&zoomToSelection=true&country=~OWID_WRL&region=World&casesMetric=true&interval=total&hideControls=true&smoothing=0&pickerMetric=location&pickerSort=asc"
-                loading="lazy" style="width: 500px; height: 400px;"></iframe>
+    {# Grid layout start from here #}
+    <div class="homepage-grid-container">
+        {# grid main #}
+        <main id="homepage-grid-main1">
+            <iframe src="https://ourworldindata.org/coronavirus-data-explorer?tab=map&zoomToSelection=true&country=~OWID_WRL&region=World&casesMetric=true&interval=total&hideControls=true&smoothing=0&pickerMetric=location&pickerSort=asc"
+                    loading="lazy" style="width: 500px; height: 400px;"></iframe>
 
-    </main>
-    <main class="homepage-grid-main2">
-        <br>
-        <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/mumbai-26831"><img
-            src="https://w.bookcdn.com/weather/picture/32_26831_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
-            alt="booked.net"/></a><!-- weather widget end -->
-        <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/chennai-18036"><img
-            src="https://w.bookcdn.com/weather/picture/32_18036_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
-            alt="booked.net"/></a><!-- weather widget end -->
-        <br>
-        <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/kolkata-26871"><img
-            src="https://w.bookcdn.com/weather/picture/32_26871_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
-            alt="booked.net"/></a><!-- weather widget end -->
-        <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/new-delhi-18038"><img
-            src="https://w.bookcdn.com/weather/picture/32_18038_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
-            alt="booked.net"/></a><!-- weather widget end -->
+        </main>
+        <main id="homepage-grid-main2">
+            <br>
+            <!-- weather widget start --><a style="margin: 10px;" target="blank"
+                                            href="https://www.booked.net/weather/mumbai-26831"><img
+                src="https://w.bookcdn.com/weather/picture/32_26831_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
+                alt="booked.net"/></a><!-- weather widget end -->
+            <!-- weather widget start --><a style="margin: 10px;" target="_blank"
+                                            href="https://www.booked.net/weather/chennai-18036"><img
+                src="https://w.bookcdn.com/weather/picture/32_18036_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
+                alt="booked.net"/></a><!-- weather widget end -->
+            <br>
+            <!-- weather widget start --><a style="margin: 10px;" target="_blank"
+                                            href="https://www.booked.net/weather/kolkata-26871"><img
+                src="https://w.bookcdn.com/weather/picture/32_26871_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
+                alt="booked.net"/></a><!-- weather widget end -->
+            <!-- weather widget start --><a style="margin: 10px;" target="_blank"
+                                            href="https://www.booked.net/weather/new-delhi-18038"><img
+                src="https://w.bookcdn.com/weather/picture/32_18038_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
+                alt="booked.net"/></a><!-- weather widget end -->
 
-    </main>
-    {# The Below is The Top Stories Scrollabel#}
-    <div id="homepage-scroll">
-        <div class="table-box-for-scrollable">
-            <label class="table-box-for-scrollable-text-main">Top Stories</label>
-            <div class="box-for-scrollable">
+        </main>
+        {# The Below is The Top Stories Scrollabel#}
+        <div id="homepage-scroll">
+            <div class="table-box-for-scrollable">
+                <label class="table-box-for-scrollable-text-main">Top Stories</label>
+                <div class="box-for-scrollable">
 
-                <table>
-                    <tr>
-                        {% for top_story in top_stories %}
-                        <a href="{% url 'article' %}" id="myBtn" class="row-for-each-story">
+                    <table>
+                        <tr>
+                            {% for top_story in top_stories %}
+                                <a style="text-decoration: none;"
+                                   href="{% url 'article' %}" id="myBtn" class="row-for-each-story">
                         <span class="image-position-each-row">
                             {% if top_story.image == '' %}
-                            <img class="image-for-row" src="{{ top_story.image_link }}" alt="">
-                                {% else %}
-                               <img class="image-for-row" src="{{ top_story.image }}" alt="">
+                                <img class="image-for-row" src="{{ top_story.image_link }}" alt="">
+                            {% else %}
+                                <img class="image-for-row" src="{{ top_story.image }}" alt="">
                             {% endif %}
                         </span>
-                            <span class="news-post-text-for-top-stories">{{top_story.title}}</span>
-                        </a>
+                                    <span class="news-post-text-for-top-stories">{{ top_story.title }}</span>
+                                </a>
 
 
-                        {% endfor %}
-                    </tr>
-                </table>
-                <div id="bottom"></div>
+                            {% endfor %}
+                        </tr>
+                    </table>
+                    <div id="bottom"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    {# The Above is The Top Stories Scrollabel#}
+        {# The Above is The Top Stories Scrollabel#}
 
-    {# content 2 #}
-    <iframe src="https://bwidget.crictimes.org/" style="width:100%;min-height: 250px;;
+        {# content 2 #}
+
+        <div id="homepage-content1">
+
+            {#            <div class="home-page-cont">#}
+
+            <img class="homepage-image-css"
+                 src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/gipta_gopinath_reuters_1200x768.jpeg?ncCDhhvcujj7_uWw1NHCoiB4oFUYKcHD&size=770:433"
+                 alt="">
+            <p style="font-family: 'Lato',serif;
+             " class="homepage-p-tag-css">
+                Gita Gopinath explains IMF’s growth forecast for India and the road ahead</p>
+        </div>
+
+
+        <div id="homepage-content2">
+
+            <iframe src="https://bwidget.crictimes.org/" style="width:100%;min-height: 250px;;
                                                         background-color: #222222 !important;
-                                                            
+
                                                         " frameborder="0" scrolling="yes"></iframe>
-    <div id="homepage-content1">
 
-        <div class="home-page-cont">
+        </div>
+        {# content 3 end#}
 
-            <img src="https://i.ndtvimg.com/i/2015-10/carbon-emission-reuters_650x400_81443754057.jpg"
-                 alt="Nature" style="width:100%;">
-            <div class="home-page-text-block">
 
-                <p> Drop In Emissions During Lockdown Largest In Modern History: Study</p>
+        {# grid main #}
+        <div id="homepage-second-grid-main1" id="grid">
+            <img class="homepage-image-css"
+                 src="http://i.ndtvimg.com/i/2016-10/priyanka-chopra_640x480_71475648989.jpg" alt="">
+            <p style="font-family: 'Lato',serif;
+             " class="homepage-p-tag-css">
+                Priyanka Chopra Takes A Day Off From Quantico, Tours New York City</p>
+
+        </div>
+        <div id="homepage-second-grid-main2">
+            <img class="homepage-image-css"
+                 src="https://i.ndtvimg.com/i/2016-08/pharma_650x400_81472018651.jpg" alt="">
+            <p style="font-family: 'Lato',serif;
+             " class="homepage-p-tag-css">
+                Baxter To Acquire Claris Injectables For ₹ 4,237 Crore</p>
+
+
+        </div>
+        <div id="homepage-second-grid-main3">
+
+            <div class="card1">
+                <div class="con">
+
+                    <p>Al Jazeera Penalised for Showing Wrong Map of India, Off Air for 5 Days</p>
+                </div>
+
+
+            </div>
+
+            <div class="card1">
+                <div class="con">
+
+                    <p>Former UK editor Rebekah Brooks said 'easy' to hack phones: witness</p>
+                </div>
             </div>
         </div>
 
+
+
+        {# content 1 #}
+        <div id="second-content1">
+
+            <img class="homepage-image-css"
+                 src="https://s.ndtvimg.com/images/stories/dhoni_brave_300.jpg" alt="">
+            <p style="font-family: 'Lato',serif;
+             " class="homepage-p-tag-css">
+                International news agencies boycott India-England Test series</p>
+
+
+        </div>
+        {# content one end #}
+        <div id="second-content2">
+            <img class="homepage-image-css"
+                 src="https://i.ndtvimg.com/mt/2013-11/Andy_Coulson_Reuters_360x270.jpg" alt="">
+            <p style="font-family: 'Lato',serif;
+             " class="homepage-p-tag-css">
+                Do his phone,' Murdoch editor told journalist hunting celebrity scoop</p>
+
+
+        </div>
+        {# content 2 end #}
+        {# content 3 end#}
+        <div id="second-content3">
+            <div class="card1">
+                <div class="con">
+
+                    <p>India among five most dangerous countries for journalists in 2013: report</p>
+                </div>
+
+
+            </div>
+
+            <div class="card1">
+                <div class="con">
+
+                    <p>IOC criticises BCCI for attacking press freedom</p>
+                </div>
+            </div>
+            <div class="card1">
+                <div class="con">
+
+                    <p>Security head 'burnt stuff' on day News of the World shut</p>
+                </div>
+            </div>
+        </div>
+
+        <!--    <div>-->
+        <!--            <div class="bingwidget" data-type="covid19" data-market="en-us" data-language="en-us"></div>-->
+
+        <!--<script src="//www.bing.com/widget/bootstrap.answer.js" async=""></script>-->
+        <!--        </div>-->
+        {% include 'footer.html' %}
     </div>
-
-    {# content 3 end#}
-
-
-    {# grid main #}
-    <main class="homepage-second-grid-main1" id="grid">
-
-        <div class="home-page-cont">
-
-            <img src="http://i.ndtvimg.com/i/2016-10/priyanka-chopra_640x480_71475648989.jpg"
-                 alt="Nature" style="width:100%;">
-            <div class="home-page-text-block">
-
-                <p>Priyanka Chopra Takes A Day Off From Quantico, Tours New York City</p>
-            </div>
-        </div>
-    </main>
-    <main class="homepage-second-grid-main2">
-
-        <div class="home-page-cont">
-
-            <img src="https://i.ndtvimg.com/i/2016-08/pharma_650x400_81472018651.jpg"
-                 alt="Nature" style="width:100%;">
-            <div class="home-page-text-block">
-
-                <p>Baxter To Acquire Claris Injectables For ₹ 4,237 Crore</p>
-            </div>
-        </div>
-
-
-    </main>
-    <main class="homepage-second-grid-main3">
-        <div class="card1">
-            <div class="con">
-
-                <p>Al Jazeera Penalised for Showing Wrong Map of India, Off Air for 5 Days</p>
-            </div>
-
-
-        </div>
-
-        <div class="card1">
-            <div class="con">
-
-                <p>Former UK editor Rebekah Brooks said 'easy' to hack phones: witness</p>
-            </div>
-        </div>
-
-    </main>
-
-
-    {# content 1 #}
-    <div id="second-content1">
-
-
-        <div class="home-page-cont">
-
-            <img src="https://s.ndtvimg.com/images/stories/dhoni_brave_300.jpg"
-                 alt="Nature" style="width:100%;">
-            <div class="home-page-text-block">
-
-                <p>International news agencies boycott India-England Test series</p>
-            </div>
-        </div>
-
-
-    </div>
-    {# content one end #}
-    <div id="second-content2">
-
-
-        <div class="home-page-cont">
-
-            <img src="https://i.ndtvimg.com/mt/2013-11/Andy_Coulson_Reuters_360x270.jpg"
-                 alt="Nature" style="width:100%;">
-            <div class="home-page-text-block">
-
-                <p>Do his phone,' Murdoch editor told journalist hunting celebrity scoop</p>
-            </div>
-        </div>
-
-
-    </div>
-    {# content 2 end #}
-    {# content 3 end#}
-    <div id="second-content3">
-        <div class="card1">
-            <div class="con">
-
-                <p>India among five most dangerous countries for journalists in 2013: report</p>
-            </div>
-
-
-        </div>
-
-        <div class="card1">
-            <div class="con">
-
-                <p>IOC criticises BCCI for attacking press freedom</p>
-            </div>
-        </div>
-        <div class="card1">
-            <div class="con">
-
-                <p>Security head 'burnt stuff' on day News of the World shut</p>
-            </div>
-        </div>
-    </div>
-
-    <!--    <div>-->
-    <!--            <div class="bingwidget" data-type="covid19" data-market="en-us" data-language="en-us"></div>-->
-
-    <!--<script src="//www.bing.com/widget/bootstrap.answer.js" async=""></script>-->
-    <!--        </div>-->
-    {% include 'footer.html' %}
+    </body>
 
 
 
-</div>
+
 
 
 {% endblock %}

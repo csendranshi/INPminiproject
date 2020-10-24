@@ -9,9 +9,9 @@ def boolean_function(s):
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
-    top_stories = "https://newsapi.org/v2/top-headlines?country=in&apiKey=95c4ed43f7644dc8a05175665cd04b7a"
-    # 95c4ed43f7644dc8a05175665cd04b7a - api key
-    r = requests.get(top_stories).json()
+    # top_stories = "https://newsapi.org/v2/top-headlines?country=in&apiKey=95c4ed43f7644dc8a05175665cd04b7a"
+    # # 95c4ed43f7644dc8a05175665cd04b7a - api key
+    # r = requests.get(top_stories).json()
     top = []
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM top_stories")
@@ -25,7 +25,6 @@ def home_view(request, *args, **kwargs):
             'image_link': i[3]
         }
         top.append(top_story)
-    print(top)
     if request.session.has_key('logged_in'):
         print(request.session.has_key('logged_in'))
         dict_of_user_details = {
