@@ -3,6 +3,7 @@ import requests
 from django.db import connection
 import random
 
+
 def cell_list(prefix, get_range):
     list_cell_string = []
     for i in get_range:
@@ -17,7 +18,7 @@ def posts_view(request, *args, **kwargs):
     health_cell = cell_list('health', range(1, 10))
     world_cell = cell_list('world', range(1, 11))
     business_cell = cell_list('business', range(1, 9))
-    tech_cell= cell_list('technology',range(1,11))
+    tech_cell = cell_list('technology', range(1, 11))
     edu_cell = cell_list('education', range(1, 9))
     india_cell = cell_list('india', range(1, 11))
     dictionary_of_section_as_per_category = {
@@ -25,9 +26,9 @@ def posts_view(request, *args, **kwargs):
         'health': health_cell,
         'world': world_cell,
         'business': business_cell,
-        'technology':tech_cell,
-        'education':edu_cell,
-        'india':india_cell
+        'technology': tech_cell,
+        'education': edu_cell,
+        'india': india_cell
     }
 
     if request.session.has_key('logged_in'):
@@ -51,21 +52,53 @@ def posts_view(request, *args, **kwargs):
             article_section = request.POST.get('section')
             article_file_picture = request.POST.get('finalPictureValue')
 
-            n = random.randint(10000, 999999)
-            f = open("unique_id.txt", "a")
-            f.write(str(n) + "\n")
-            f.close()
+            n = random.randint(100000, 999999)
             with connection.cursor() as cursor:
+
                 print(article_image_link,
                       article_title,
                       article_category,
                       article_section,
                       article_content)
-                cursor.execute('CALL news_database.latest_top_stories(%s,%s,%s,%s,%s,%s,%s,%s)',
+                if article_category.split('-')[0] == 'latest' and article_section == 'latest-cell-1':
+                    cursor.execute('CALL news_database.latest_top_stories(%s,%s,%s,%s,%s,%s,%s,%s)',
+                                   [article_title, article_file_picture, article_image_link, article_content,
+                                    dict_of_user_details['email_id'], article_category, article_section, n])
+                elif article_category.split('-')[0] == 'latest':
+                    cursor.execute('CALL news_database.update_latest_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
                                [article_title, article_file_picture, article_image_link, article_content,
-                                dict_of_user_details['email_id'], article_category,article_section,n])
-                print("clean")
+                                dict_of_user_details['email_id'], article_category, article_section, n])
+                elif article_category.split('-')[0] == 'india':
+                    cursor.execute('CALL news_database.update_india_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
+                                   [article_title, article_file_picture, article_image_link, article_content,
+                                    dict_of_user_details['email_id'], article_category, article_section, n])
+                elif article_category.split('-')[0] == 'education':
+                    cursor.execute('CALL news_database.update_education_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
+                                   [article_title, article_file_picture, article_image_link, article_content,
+                                    dict_of_user_details['email_id'], article_category, article_section, n])
+                elif article_category.split('-')[0] == 'business':
+                    cursor.execute('CALL news_database.update_business_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
+                                   [article_title, article_file_picture, article_image_link, article_content,
+                                    dict_of_user_details['email_id'], article_category, article_section, n])
+                elif article_category.split('-')[0] == 'world':
+                    cursor.execute('CALL news_database.update_world_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
+                                   [article_title, article_file_picture, article_image_link, article_content,
+                                    dict_of_user_details['email_id'], article_category, article_section, n])
+                elif article_category.split('-')[0] == 'technology':
+                    cursor.execute('CALL news_database.update_technology_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
+                                   [article_title, article_file_picture, article_image_link, article_content,
+                                    dict_of_user_details['email_id'], article_category, article_section, n])
+                elif article_category.split('-')[0] == 'health':
+                    cursor.execute('CALL news_database.update_health_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
+                                   [article_title, article_file_picture, article_image_link, article_content,
+                                    dict_of_user_details['email_id'], article_category, article_section, n])
+                else:
+                    print("Un-Successfull")
+
+            print("clean")
+
         context_of_top_stories = {'user': dict_of_user_details, 'cell_list': dictionary_of_section_as_per_category}
         return render(request, 'posts.html', context_of_top_stories)
+
     context = {'cell_list': dictionary_of_section_as_per_category}
     return render(request, 'posts.html', context)
