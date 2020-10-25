@@ -10,9 +10,17 @@
                 {% if tech_story.section == 'technology-cell-1' %}
                     <a href="{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}"
                        style="text-decoration: none">
+                    {% if tech_story.image != '' %}
+
                         <img class="tech-image-css-main"
-                             src="{{ tech_story.image_link }}"
+                             src="{{ tech_story.image }}"
                              alt="">
+                          {% else %}
+                        <img class="tech-image-css-main"
+
+                                 src="{{ tech_story.image_link }}"
+                                 alt="">
+                        {% endif %}
                     </a>
 
                 {% endif %}

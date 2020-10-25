@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2020 at 01:34 PM
+-- Generation Time: Oct 25, 2020 at 06:30 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -25,6 +25,25 @@ DELIMITER $$
 --
 -- Procedures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_the_row_with_respective_grid_section` (IN `in_category` VARCHAR(100), IN `in_the_unique_id` INT, IN `in_section` VARCHAR(100))  NO SQL
+BEGIN
+    DECLARE errno INT;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+    GET CURRENT DIAGNOSTICS CONDITION 1 errno = MYSQL_ERRNO;
+    SELECT errno AS MYSQL_ERROR;
+    ROLLBACK;
+    END;
+    START TRANSACTION;
+	SELECT * FROM all_news_archive WHERE 
+    category = in_category AND
+    id = in_the_unique_id
+    and section = in_section;
+    
+      COMMIT WORK;
+
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_personal_details` (IN `first_name` VARCHAR(200), IN `last_name` VARCHAR(200), IN `email_id` VARCHAR(200), IN `safe_password` VARCHAR(200), IN `dateofbirth` DATE, IN `gender` VARCHAR(100), IN `phone_no` BIGINT)  MODIFIES SQL DATA
 BEGIN
     DECLARE errno INT;
@@ -487,7 +506,7 @@ CREATE TABLE `django_session` (
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
 ('0s3pd7uuv2hm6ouc174hy6xrnge8vp2y', '.eJxdzkEKwjAQheG7zLoIdZeuBG_gBcI0mcaRZEYmyULEu1tdVOr2g__xnpA1JYqeBaYFc6UBbtpNMHsMgWrdGGNh-ceFrTYvWAgmuFCfSWCAjD88a28sV1259hqMZzJ_N1bj9th2qCBnz3EN7LtyHEfn3Cl9_BC07PLdidcbBItF9Q:1kSYRT:niJo1RecPfdQiWG7aaV_SmANTRCtoJKBOKBn7M5hkyw', '2020-10-28 04:31:11.767700'),
-('hk4fo4tgcg9z6bo0ugism6hhse4289h0', '.eJxFykEKAjEMAMC_5LwI6617EvyBHyjZNlsjbSpJexDx71Zh9TrME3JNiaJngaVppwlutatg9hgCme2KsbD8bMNsA61bUF5J_V25KrfH3jdWa16wECxwob6SwAQZ_3iuvbFc62AqyNlzHKrfepxn59wpffwQaoHXGzmFO7w:1kVv4r:SXvavYeEBHraa-U6JUJNq7PKffT9QVKzjntO68-EgL0', '2020-11-06 11:17:45.163582');
+('hk4fo4tgcg9z6bo0ugism6hhse4289h0', '.eJxFykEKAjEMAMC_5LwI6617EvyBHyjZNlsjbSpJexDx71Zh9TrME3JNiaJngaVppwlutatg9hgCme2KsbD8bMNsA61bUF5J_V25KrfH3jdWa16wECxwob6SwAQZ_3iuvbFc62AqyNlzHKrfepxn59wpffwQaoHXGzmFO7w:1kWiE3:ak_LmmnR4bWIr6DnoE4o2-RVdeFrKPQFS1U1AWwJ_AA', '2020-11-08 15:46:31.298853');
 
 -- --------------------------------------------------------
 

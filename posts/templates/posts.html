@@ -19,7 +19,7 @@
 
         const categories = ["health-grid-css-table", "world-grid-css-table",
             "technology-grid-css-table", "business-grid-css-table",
-            "education-grid-css-table", "latest-grid-css-table", "india-grid-css-table"];
+            "education-grid-css-table", "latest-grid-css-table", "india-grid-css-table","setArticlePicture"];
 
         const latest_section = getting_cell_range('latest', 15)
         const health_section = getting_cell_range('health', 10)
@@ -459,12 +459,12 @@
                                placeholder="Image Link">
 
 
-                        <input class="posts-auth-form-input" type="text" name="postTitle" placeholder="Title">
+                        <input class="posts-auth-form-input" type="text" name="postTitle" placeholder="Title" required>
 
                     </div>
 
                     <div id="post-content1">
-                        <select onchange="val()" id="post-category" class="posts-auth-form-input" name="category">
+                        <select onchange="val()" id="post-category" class="posts-auth-form-input" name="category" required>
                             <option selected disabled>Category</option>
                             <option value="latest-grid-css-table">Latest</option>
                             <option value="india-grid-css-table">India</option>
@@ -545,7 +545,7 @@
                         <input id="drop-area" name="postPicture" class="posts-auth-form-input" type="file">
                         <textarea class="posts-description-auth-form-input" name="postDesc" placeholder="description"
                                   rows="10"
-                                  cols="50" title="Enter A Break Tag To Indicate Next Paragraph"></textarea>
+                                  cols="50" title="Can Enter Break Tag,Bold Tag,String Tag" required></textarea>
                         <input type="submit" class="auth-form-button" value="Submit For Preview"/>
                         <input class="no-display" name="finalPictureValue" id="ToGetImageText" type="text"/>
                     </div>
