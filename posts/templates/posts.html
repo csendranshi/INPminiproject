@@ -87,10 +87,11 @@
             }
         });
 
-        function loadImage() {
-
-            document.getElementById("ToGetImageText").value = fileContent;
-        }
+        //function loadImage() {
+         //   const link = document.getElementById("image_link_with_text").value;
+        //    console.log(link)
+       //     document.getElementById("setArticlePicture").src = String(link);
+       // }
 
     </script>
     <style>
@@ -452,10 +453,13 @@
             >
                 <div style="display:inline-block">
                     <div style="color: #3a4750; font-size: 25px; margin: inherit; padding: 2%">Post an Article</div>
+                    <p style="color: #3a4750;">Choose Image or Enter Image Link</p>
                     {% csrf_token %}
 
                     <div id="post-main1">
-                        <input onchange="loadImage()" class="posts-auth-form-input" type="text" name="imageLink"
+                        <input
+{#                                oninput="loadImage()"#}
+                               id="image_link_with_text" class="posts-auth-form-input" type="text" name="imageLink"
                                placeholder="Image Link">
 
 
