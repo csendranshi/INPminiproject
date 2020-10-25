@@ -51,8 +51,9 @@ def posts_view(request, *args, **kwargs):
             article_category = request.POST.get('category')
             article_section = request.POST.get('section')
             article_file_picture = request.POST.get('finalPictureValue')
-
             n = random.randint(100000, 999999)
+
+
             with connection.cursor() as cursor:
 
                 print(article_image_link,
@@ -64,34 +65,42 @@ def posts_view(request, *args, **kwargs):
                     cursor.execute('CALL news_database.latest_top_stories(%s,%s,%s,%s,%s,%s,%s,%s)',
                                    [article_title, article_file_picture, article_image_link, article_content,
                                     dict_of_user_details['email_id'], article_category, article_section, n])
+                    print("latest-cell-1")
                 elif article_category.split('-')[0] == 'latest':
                     cursor.execute('CALL news_database.update_latest_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
                                [article_title, article_file_picture, article_image_link, article_content,
                                 dict_of_user_details['email_id'], article_category, article_section, n])
+                    print('latest')
                 elif article_category.split('-')[0] == 'india':
                     cursor.execute('CALL news_database.update_india_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
                                    [article_title, article_file_picture, article_image_link, article_content,
                                     dict_of_user_details['email_id'], article_category, article_section, n])
+                    print('india')
                 elif article_category.split('-')[0] == 'education':
                     cursor.execute('CALL news_database.update_education_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
                                    [article_title, article_file_picture, article_image_link, article_content,
                                     dict_of_user_details['email_id'], article_category, article_section, n])
+                    print('education')
                 elif article_category.split('-')[0] == 'business':
                     cursor.execute('CALL news_database.update_business_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
                                    [article_title, article_file_picture, article_image_link, article_content,
                                     dict_of_user_details['email_id'], article_category, article_section, n])
+                    print('business')
                 elif article_category.split('-')[0] == 'world':
                     cursor.execute('CALL news_database.update_world_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
                                    [article_title, article_file_picture, article_image_link, article_content,
                                     dict_of_user_details['email_id'], article_category, article_section, n])
+                    print('world')
                 elif article_category.split('-')[0] == 'technology':
                     cursor.execute('CALL news_database.update_technology_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
                                    [article_title, article_file_picture, article_image_link, article_content,
                                     dict_of_user_details['email_id'], article_category, article_section, n])
+                    print('technology')
                 elif article_category.split('-')[0] == 'health':
                     cursor.execute('CALL news_database.update_health_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
                                    [article_title, article_file_picture, article_image_link, article_content,
                                     dict_of_user_details['email_id'], article_category, article_section, n])
+                    print('health')
                 else:
                     print("Un-Successfull")
 

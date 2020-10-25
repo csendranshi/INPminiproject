@@ -48,7 +48,7 @@ urlpatterns = [
     path('logout/', view_auth.Logout, name="logout"),
     path('profile/', view_profile.profile_view, name='profile'),
     path('posts/', posts_views.posts_view, name='posts'),
-    path('article/', article_views.article_view, name='article'),
+    path('article/<grid_category>/<section>/<unique_id>', article_views.article_view, name='article'),
 
 ]
 
