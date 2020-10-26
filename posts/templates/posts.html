@@ -2,33 +2,96 @@
 {% load static %}
 {% block content %}
     <script>
+
+        function getting_cell_range(prefix, range_end) {
+            var i;
+            var new_list = []
+
+            for (i = 1; i < range_end; i++) {
+                var changing_str;
+                var str = prefix + "-cell-";
+                changing_str = str + i;
+                new_list.push(changing_str)
+            }
+            return new_list
+
+        }
+
+        const categories = ["health-grid-css-table", "world-grid-css-table",
+            "technology-grid-css-table", "business-grid-css-table",
+            "education-grid-css-table", "latest-grid-css-table", "india-grid-css-table","setArticlePicture"];
+
+        const latest_section = getting_cell_range('latest', 15)
+        const health_section = getting_cell_range('health', 10)
+        const world_section = getting_cell_range('world', 11)
+        const business_section = getting_cell_range('business', 9)
+        const technology_section = getting_cell_range('technology', 11)
+        const education_section = getting_cell_range('education', 9)
+        const india_section = getting_cell_range('india', 11)
+
+
         function val() {
-            d = document.getElementById("post-category").value;
-            console.log(d)
-            if (d === "health") {
-                document.getElementById("health-grid-css-table").style.display = "block"
-                document.getElementById("world-grid-css-table").style.display = "none"
-            } else if (d === "world") {
-                document.getElementById("health-grid-css-table").style.display = "none"
-                document.getElementById("world-grid-css-table").style.display = "block"
+            const d = document.getElementById("post-category").value;
+
+            var i;
+            for (i = 0; i < categories.length; i++) {
+                if (categories[i] !== d) {
+                    document.getElementById(categories[i]).style.display = "none";
+                    var str = categories[i].split("-")
+                    document.getElementById(str[0] + "-posts-auth-form-input").style.display = "none";
+                } else if (categories[i] === d) {
+                    document.getElementById(categories[i]).style.display = "block"
+                    var str = categories[i].split("-")
+                    document.getElementById(str[0] + "-posts-auth-form-input").style.display = "flex";
+                }
             }
 
 
         }
 
-        function changeTheCellColor() {
-            d = document.getElementById("post-section").value;
-            console.log(d)
-            if (d==="long-bar-1") {
-                document.getElementById("long-bar-1").style.backgroundColor = "#d72323";
-                 document.getElementById("long-bar-2").style.backgroundColor = "#3a4750"
-            }
-            else if (d==="long-bar-2"){
-                 document.getElementById("long-bar-1").style.backgroundColor = "#3a4750";
-                document.getElementById("long-bar-2").style.backgroundColor = "#d72323"
+        function changeTheCellColor(category, section) {
+            const d = document.getElementById(category).value;
+            var i;
+            for (i = 0; i < section.length; i++) {
+                if (section[i] !== d) {
+                    document.getElementById(section[i]).style.backgroundColor = "#3a4750"
+                } else if (section[i] === d) {
+                    document.getElementById(section[i]).style.backgroundColor = "#d72323"
+                }
             }
 
         }
+
+
+        window.addEventListener("load", function () {
+            document.getElementById("drop-area").onchange = function (event) {
+                var reader = new FileReader();
+                reader.readAsDataURL(event.srcElement.files[0]);
+                var me = this;
+                reader.onload = function () {
+                    var fileContent = reader.result;
+
+                    document.getElementById("setArticlePicture").src = String(fileContent);
+
+                    var i;
+                    for (i = 0; i < categories.length; i++) {
+                        if (categories[i] !== "setArticlePicture") {
+                            document.getElementById(categories[i]).style.display = "none"
+                        } else if (categories[i] === "setArticlePicture") {
+                            document.getElementById("setArticlePicture").style.display = "block";
+
+                        }
+                    }
+                    document.getElementById("ToGetImageText").value = fileContent;
+                }
+            }
+        });
+
+        //function loadImage() {
+         //   const link = document.getElementById("image_link_with_text").value;
+        //    console.log(link)
+       //     document.getElementById("setArticlePicture").src = String(link);
+       // }
 
     </script>
     <style>
@@ -79,7 +142,6 @@
         }
 
 
-
         .post-outer-container {
             background-color: #eeeeee;
             border: 2px solid #3a4750;
@@ -99,6 +161,125 @@
             margin: 10px;
             color: #3a4750;
             display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 10px;
+            width: 100%;
+            font-size: medium;
+            outline: none;
+        }
+
+        #latest-posts-auth-form-input {
+            background-color: #eeeeee;
+            border: 2px solid #3a4750;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            margin: 10px;
+            color: #3a4750;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 10px;
+            width: 100%;
+            font-size: medium;
+            outline: none;
+        }
+
+        #india-posts-auth-form-input {
+            background-color: #eeeeee;
+            border: 2px solid #3a4750;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            margin: 10px;
+            color: #3a4750;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 10px;
+            width: 100%;
+            font-size: medium;
+            outline: none;
+        }
+
+        #education-posts-auth-form-input {
+            background-color: #eeeeee;
+            border: 2px solid #3a4750;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            margin: 10px;
+            color: #3a4750;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 10px;
+            width: 100%;
+            font-size: medium;
+            outline: none;
+        }
+
+        #business-posts-auth-form-input {
+            background-color: #eeeeee;
+            border: 2px solid #3a4750;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            margin: 10px;
+            color: #3a4750;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 10px;
+            width: 100%;
+            font-size: medium;
+            outline: none;
+        }
+
+        #world-posts-auth-form-input {
+            background-color: #eeeeee;
+            border: 2px solid #3a4750;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            margin: 10px;
+            color: #3a4750;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 10px;
+            width: 100%;
+            font-size: medium;
+            outline: none;
+        }
+
+        #technology-posts-auth-form-input {
+            background-color: #eeeeee;
+            border: 2px solid #3a4750;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            margin: 10px;
+            color: #3a4750;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 10px;
+            width: 100%;
+            font-size: medium;
+            outline: none;
+        }
+
+        #health-posts-auth-form-input {
+            background-color: #eeeeee;
+            border: 2px solid #3a4750;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            margin: 10px;
+            color: #3a4750;
+            display: none;
             justify-content: center;
             align-items: center;
             position: relative;
@@ -162,7 +343,99 @@
 
         }
 
+        #technology-grid-css-table {
+            display: none;
+            border-spacing: 15px;
+            background-color: #eeeeee;
+        }
 
+        #technology-grid-css-table td {
+            border: 2px solid #3a4750;
+            width: 60px;
+            height: 60px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+            background-color: #303841;
+
+        }
+
+        #business-grid-css-table {
+            display: none;
+            border-spacing: 15px;
+            background-color: #eeeeee;
+        }
+
+        #business-grid-css-table td {
+            border: 2px solid #3a4750;
+            width: 60px;
+            height: 60px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+            background-color: #303841;
+
+        }
+
+        #education-grid-css-table {
+            display: none;
+            border-spacing: 15px;
+            background-color: #eeeeee;
+        }
+
+        #education-grid-css-table td {
+            border: 2px solid #3a4750;
+            width: 60px;
+            height: 60px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+            background-color: #303841;
+
+        }
+
+
+        #india-grid-css-table {
+            display: none;
+            border-spacing: 15px;
+            background-color: #eeeeee;
+        }
+
+        #india-grid-css-table td {
+            border: 2px solid #3a4750;
+            width: 60px;
+            height: 60px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+            background-color: #303841;
+
+        }
+
+        #latest-grid-css-table {
+            display: none;
+            border-spacing: 15px;
+            background-color: #eeeeee;
+        }
+
+        #latest-grid-css-table td {
+            border: 2px solid #3a4750;
+            width: 60px;
+            height: 60px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+
+            background-color: #303841;
+
+        }
+
+        #setArticlePicture {
+            display: none;
+        }
+
+        .no-display {
+            display: none;
+        }
     </style>
     <body class="auth-form-body">
 
@@ -177,48 +450,108 @@
         <div class="post-container">
 
             <form style="margin: auto" method="POST"
-                  action="{% url 'posts' %}">
+            >
                 <div style="display:inline-block">
                     <div style="color: #3a4750; font-size: 25px; margin: inherit; padding: 2%">Post an Article</div>
+                    <p style="color: #3a4750;">Choose Image or Enter Image Link</p>
                     {% csrf_token %}
 
                     <div id="post-main1">
-                        <input class="posts-auth-form-input" type="text" name="imageLink" placeholder="Image Link">
+                        <input
+{#                                oninput="loadImage()"#}
+                               id="image_link_with_text" class="posts-auth-form-input" type="text" name="imageLink"
+                               placeholder="Image Link">
 
 
-                        <input class="posts-auth-form-input" type="text" name="postTitle" placeholder="Title">
+                        <input class="posts-auth-form-input" type="text" name="postTitle" placeholder="Title" required>
 
                     </div>
 
                     <div id="post-content1">
-                        <select onchange="val()" id="post-category" class="posts-auth-form-input" name="category">
+                        <select onchange="val()" id="post-category" class="posts-auth-form-input" name="category" required>
                             <option selected disabled>Category</option>
-                            <option value="Latest">Latest</option>
-                            <option value="india">India</option>
-                            <option value="world">World</option>
-                            <option value="technology">Technology</option>
-                            <option value="health">Health</option>
-                            <option value="education">Education</option>
-                            <option value="business">Business</option>
+                            <option value="latest-grid-css-table">Latest</option>
+                            <option value="india-grid-css-table">India</option>
+                            <option value="education-grid-css-table">Education</option>
+                            <option value="business-grid-css-table">Business</option>
+                            <option value="world-grid-css-table">World</option>
+                            <option value="technology-grid-css-table">Technology</option>
+                            <option value="health-grid-css-table">Health</option>
+
                         </select>
 
 
-                        <select onchange="changeTheCellColor()" id="post-section" class="posts-auth-form-input"
+                        <select onchange="changeTheCellColor('latest-posts-auth-form-input',latest_section)"
+                                id="latest-posts-auth-form-input"
                                 name="section">
                             <option selected disabled value="top-stories">Section</option>
-                            <option value="long-bar-1">Matrix1x1</option>
-                            <option value="long-bar-2">Matrix1x2</option>
-                            <option value="Matrix1x3">Matrix1x3</option>
-                            <option value="Matrix2x4">Matrix2x4</option>
-                            <option value="Matrix2x5">Matrix2x5</option>
-                            <option value="Matrix2x5">Matrix2x5</option>
+                            {% for cell in cell_list.latest %}
+                                <option value="{{ cell }}">{{ cell }}</option>
+                            {% endfor %}
                         </select>
-                        <input id="drop-area" name="post-picture" class="posts-auth-form-input" type="file">
-                        <textarea class="posts-description-auth-form-input" name="postDesc" placeholder="description"
-                                  rows="4"
-                                  cols="20"></textarea>
-                        <input type="submit" class="auth-form-button" value="Submit For Preview"/>
 
+                        <select onchange="changeTheCellColor('india-posts-auth-form-input',india_section)"
+                                id="india-posts-auth-form-input"
+                                name="section">
+                            <option selected disabled value="top-stories">Section</option>
+                            {% for cell in cell_list.india %}
+                                <option value="{{ cell }}">{{ cell }}</option>
+                            {% endfor %}
+                        </select>
+                        <select onchange="changeTheCellColor('education-posts-auth-form-input',education_section)"
+                                id="education-posts-auth-form-input"
+                                name="section">
+                            <option selected disabled value="top-stories">Section</option>
+                            {% for cell in cell_list.education %}
+                                <option value="{{ cell }}">{{ cell }}</option>
+                            {% endfor %}
+                        </select>
+                        <select onchange="changeTheCellColor('business-posts-auth-form-input',business_section)"
+                                id="business-posts-auth-form-input"
+                                name="section">
+                            <option selected disabled value="top-stories">Section</option>
+                            {% for cell in cell_list.business %}
+                                <option value="{{ cell }}">{{ cell }}</option>
+                            {% endfor %}
+                        </select>
+                        <select onchange="changeTheCellColor('world-posts-auth-form-input',world_section)"
+                                id="world-posts-auth-form-input"
+                                name="section">
+                            <option selected disabled value="top-stories">Section</option>
+                            {% for cell in cell_list.world %}
+                                <option value="{{ cell }}">{{ cell }}</option>
+                            {% endfor %}
+                        </select>
+                        <select onchange="changeTheCellColor('technology-posts-auth-form-input',technology_section)"
+                                id="technology-posts-auth-form-input"
+                                name="section">
+                            <option selected disabled value="top-stories">Section</option>
+                            {% for cell in cell_list.technology %}
+                                <option value="{{ cell }}">{{ cell }}</option>
+                            {% endfor %}
+                        </select>
+                        <select onchange="changeTheCellColor('health-posts-auth-form-input',health_section)"
+                                id="health-posts-auth-form-input"
+                                name="section">
+                            <option selected disabled value="top-stories">Section</option>
+                            {% for cell in cell_list.health %}
+                                <option value="{{ cell }}">{{ cell }}</option>
+                            {% endfor %}
+                        </select>
+
+                        {#                    <select onchange="changeTheCellColor()" id="education-posts-auth-form-input"#}
+                        {#                                name="section">#}
+                        {#                            <option selected disabled value="top-stories">Section</option>#}
+                        {#                            {% for cell in cell_list %}#}
+                        {#                            <option value="{{ cell }}">{{ cell }}</option>#}
+                        {#                            {% endfor %}#}
+                        {#                        </select>#}
+                        <input id="drop-area" name="postPicture" class="posts-auth-form-input" type="file">
+                        <textarea class="posts-description-auth-form-input" name="postDesc" placeholder="description"
+                                  rows="10"
+                                  cols="50" title="Can Enter Break Tag,Bold Tag,String Tag" required></textarea>
+                        <input type="submit" class="auth-form-button" value="Submit For Preview"/>
+                        <input class="no-display" name="finalPictureValue" id="ToGetImageText" type="text"/>
                     </div>
 
 
@@ -228,59 +561,230 @@
 
             </form>
             <div id="post-content2">
-                <h3 style=" background-color:#eeeeee;color: #303841; ">How the Grid Looks</h3>
+                <h3 style=" background-color:#eeeeee;color: #303841; ">Where your Article Will Show</h3>
+                <img id="setArticlePicture" width="400" src="" alt="Image is Not Loading">
                 <table id="health-grid-css-table">
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td id="long-bar-1" colspan="2"></td>
+                        <td>T</td>
+                        <td id="health-cell-1"></td>
+                        <td id="health-cell-2" colspan="2"></td>
 
 
                     </tr>
                     <tr>
-                        <td id="long-bar-2" colspan="2"></td>
-                        <td></td>
-                        <td></td>
+                        <td id="health-cell-3" colspan="2"></td>
+                        <td id="health-cell-4"></td>
+                        <td id="health-cell-5"></td>
 
 
                     </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td id="health-cell-6"></td>
+                        <td id="health-cell-7"></td>
+                        <td id="health-cell-8"></td>
+                        <td id="health-cell-9"></td>
                     </tr>
                 </table>
                 <table id="world-grid-css-table">
+
                     <tr>
 
-                        <td id="long-bar-1" colspan="2"></td>
-                        <td id="long-bar-2"  colspan="2"></td>
+                        <td colspan="4">MAP</td>
 
 
                     </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+
+                        <td id="world-cell-1" colspan="2"></td>
+                        <td id="world-cell-2" colspan="2"></td>
 
 
                     </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td id="world-cell-3"></td>
+                        <td id="world-cell-4"></td>
+                        <td id="world-cell-5"></td>
+                        <td id="world-cell-6"></td>
+
+
+                    </tr>
+                    <tr>
+                        <td id="world-cell-7"></td>
+                        <td id="world-cell-8"></td>
+                        <td id="world-cell-9"></td>
+                        <td id="world-cell-10"></td>
                     </tr>
                 </table>
+                <table id="technology-grid-css-table">
+                    <tr>
 
+                        <td id="technology-cell-1" colspan="2"></td>
+                        <td id="technology-cell-2" colspan="2"></td>
+
+
+                    </tr>
+                    <tr>
+                        <td id="technology-cell-3"></td>
+                        <td id="technology-cell-4"></td>
+                        <td id="technology-cell-5"></td>
+                        <td id="technology-cell-6"></td>
+
+
+                    </tr>
+                    <tr>
+                        <td id="technology-cell-7"></td>
+                        <td id="technology-cell-8"></td>
+                        <td id="technology-cell-9"></td>
+                        <td id="technology-cell-10"></td>
+                    </tr>
+                </table>
+                <table id="business-grid-css-table">
+                    <tr>
+
+                        <td colspan="2"> T</td>
+                        <td id="business-cell-1" colspan="2"></td>
+
+
+                    </tr>
+                    <tr>
+                        <td id="business-cell-2"></td>
+                        <td id="business-cell-3"></td>
+                        <td id="business-cell-4"></td>
+                        <td>T</td>
+
+
+                    </tr>
+                    <tr>
+                        <td id="business-cell-5"></td>
+                        <td id="business-cell-6"></td>
+                        <td id="business-cell-7"></td>
+                        <td id="business-cell-8"></td>
+                    </tr>
+                </table>
+                <table id="education-grid-css-table">
+                    <tr>
+                        <td id="education-cell-1"></td>
+                        <td style="background: #eeeeee;border: none;">
+                            <table style="border-spacing:5px; ">
+                                <tr>
+                                    <td id="education-cell-2" style="height: 20px;"></td>
+                                </tr>
+                                <tr>
+                                    <td id="education-cell-3" style="height: 20px;"></td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td id="education-cell-4"></td>
+                    </tr>
+                    <tr>
+                        <td id="education-cell-5"></td>
+                        <td style="background: #eeeeee;border: none;">
+                            <table style="border-spacing:5px; ">
+                                <tr>
+                                    <td id="education-cell-6" style="height: 20px;"></td>
+                                </tr>
+                                <tr>
+                                    <td id="education-cell-7" style="height: 20px;"></td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td id="education-cell-8"></td>
+                    </tr>
+                </table>
+                <table id="india-grid-css-table">
+
+                    <tr>
+                        <td id="india-cell-1" colspan="2" rowspan="2"></td>
+                        <td style="background: #eeeeee;border: none;">
+                            <table style="border-spacing:5px; ">
+                                <tr>
+                                    <td id="india-cell-2" style="height: 20px;"></td>
+                                </tr>
+                                <tr>
+                                    <td id="india-cell-3" style="height: 20px;"></td>
+                                </tr>
+                            </table>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td id="india-cell-4"></td>
+
+
+                    </tr>
+                    <tr>
+                        <td id="india-cell-5" style="height: 20px;"></td>
+                        <td id="india-cell-6" style="height: 20px;"></td>
+                        <td id="india-cell-7" style="height: 20px;"></td>
+                        <td id="india-cell-8" style="height: 20px;"></td>
+
+                    </tr>
+                    <tr>
+                        <td id="india-cell-9" colspan="2"></td>
+                        <td id="india-cell-10" colspan="2"></td>
+
+                    </tr>
+                </table>
+                <table id="latest-grid-css-table">
+
+                    <tr>
+
+                        <td id="latest-cell-1" rowspan="2"></td>
+                        <td id="latest-cell-2"></td>
+                        <td id="latest-cell-3"></td>
+
+                    </tr>
+                    <tr>
+
+
+                        <td id="latest-cell-4"></td>
+
+                        <td id="latest-cell-5"></td>
+
+                    </tr>
+                    <tr>
+                        <td id="latest-cell-6"></td>
+                        <td id="latest-cell-7"></td>
+                        <td style="background: #eeeeee;border: none;">
+                            <table style="border-spacing:5px; ">
+                                <tr>
+                                    <td id="latest-cell-8" style="height: 20px;"></td>
+                                </tr>
+                                <tr>
+                                    <td id="latest-cell-9" style="height: 20px;"></td>
+                                </tr>
+                            </table>
+                        </td>
+
+
+                    </tr>
+                    <tr>
+                        <td id="latest-cell-10"></td>
+                        <td id="latest-cell-11"></td>
+                        <td style="background: #eeeeee;border: none;">
+                            <table style="border-spacing:5px; ">
+                                <tr>
+                                    <td id="latest-cell-12" style="height: 12px;"></td>
+                                </tr>
+                                <tr>
+                                    <td id="latest-cell-13" style="height: 12px;"></td>
+                                </tr>
+                                <tr>
+                                    <td id="latest-cell-14" style="height: 12px;"></td>
+                                </tr>
+                            </table>
+                        </td>
+
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
 
     <br>
     {% include 'footer.html' %}
+
     </body>
 
 

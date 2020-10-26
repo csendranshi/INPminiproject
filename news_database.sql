@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2020 at 06:20 PM
+-- Generation Time: Oct 25, 2020 at 06:30 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -25,6 +25,25 @@ DELIMITER $$
 --
 -- Procedures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_the_row_with_respective_grid_section` (IN `in_category` VARCHAR(100), IN `in_the_unique_id` INT, IN `in_section` VARCHAR(100))  NO SQL
+BEGIN
+    DECLARE errno INT;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+    GET CURRENT DIAGNOSTICS CONDITION 1 errno = MYSQL_ERRNO;
+    SELECT errno AS MYSQL_ERROR;
+    ROLLBACK;
+    END;
+    START TRANSACTION;
+	SELECT * FROM all_news_archive WHERE 
+    category = in_category AND
+    id = in_the_unique_id
+    and section = in_section;
+    
+      COMMIT WORK;
+
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_personal_details` (IN `first_name` VARCHAR(200), IN `last_name` VARCHAR(200), IN `email_id` VARCHAR(200), IN `safe_password` VARCHAR(200), IN `dateofbirth` DATE, IN `gender` VARCHAR(100), IN `phone_no` BIGINT)  MODIFIES SQL DATA
 BEGIN
     DECLARE errno INT;
@@ -52,6 +71,205 @@ phone_no)
       phone_no);
     
     
+      COMMIT WORK;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `latest_top_stories` (IN `title` MEDIUMTEXT, IN `image` LONGTEXT, IN `image_link` MEDIUMTEXT, IN `content` LONGTEXT, IN `useremailid` VARCHAR(100), IN `category` VARCHAR(100), IN `section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
+BEGIN
+    DECLARE errno INT;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+    GET CURRENT DIAGNOSTICS CONDITION 1 errno = MYSQL_ERRNO;
+    SELECT errno AS MYSQL_ERROR;
+    ROLLBACK;
+    END;
+    START TRANSACTION;
+INSERT INTO top_stories (
+title,
+image,
+image_link,
+content,
+user_email_id,
+category,
+section,
+news_unique_id)
+    VALUES (title
+    , image
+    , image_link
+    , content
+    , useremailid
+    , category
+    , section
+    , news_unique_id);    
+      COMMIT WORK;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_business_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
+BEGIN
+    DECLARE errno INT;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+    GET CURRENT DIAGNOSTICS CONDITION 1 errno = MYSQL_ERRNO;
+    SELECT errno AS MYSQL_ERROR;
+    ROLLBACK;
+    END;
+    START TRANSACTION;
+UPDATE business_grid SET title=in_title, image = in_image,
+image_link =in_image_link,
+content=in_content,
+user_email_id=in_useremailid,
+category=in_category,
+section=in_section,
+news_unique_id=news_unique_id,
+datetime=current_timestamp()
+where id=in_section;
+
+      COMMIT WORK;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_education_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
+BEGIN
+    DECLARE errno INT;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+    GET CURRENT DIAGNOSTICS CONDITION 1 errno = MYSQL_ERRNO;
+    SELECT errno AS MYSQL_ERROR;
+    ROLLBACK;
+    END;
+    START TRANSACTION;
+UPDATE education_grid SET title=in_title, image = in_image,
+image_link =in_image_link,
+content=in_content,
+user_email_id=in_useremailid,
+category=in_category,
+section=in_section,
+news_unique_id=news_unique_id,
+datetime=current_timestamp()
+where id=in_section;
+
+      COMMIT WORK;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_health_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
+BEGIN
+    DECLARE errno INT;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+    GET CURRENT DIAGNOSTICS CONDITION 1 errno = MYSQL_ERRNO;
+    SELECT errno AS MYSQL_ERROR;
+    ROLLBACK;
+    END;
+    START TRANSACTION;
+UPDATE health_grid SET title=in_title, image = in_image,
+image_link =in_image_link,
+content=in_content,
+user_email_id=in_useremailid,
+category=in_category,
+section=in_section,
+news_unique_id=news_unique_id,
+datetime=current_timestamp()
+where id=in_section;
+
+      COMMIT WORK;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_india_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
+BEGIN
+    DECLARE errno INT;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+    GET CURRENT DIAGNOSTICS CONDITION 1 errno = MYSQL_ERRNO;
+    SELECT errno AS MYSQL_ERROR;
+    ROLLBACK;
+    END;
+    START TRANSACTION;
+UPDATE india_grid SET title=in_title, image = in_image,
+image_link =in_image_link,
+content=in_content,
+user_email_id=in_useremailid,
+category=in_category,
+section=in_section,
+news_unique_id=news_unique_id,
+datetime=current_timestamp()
+where id=in_section;
+
+      COMMIT WORK;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_latest_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
+BEGIN
+    DECLARE errno INT;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+    GET CURRENT DIAGNOSTICS CONDITION 1 errno = MYSQL_ERRNO;
+    SELECT errno AS MYSQL_ERROR;
+    ROLLBACK;
+    END;
+    START TRANSACTION;
+UPDATE latest_grid SET title=in_title, image = in_image,
+image_link =in_image_link,
+content=in_content,
+user_email_id=in_useremailid,
+category=in_category,
+section=in_section,
+news_unique_id=news_unique_id,
+datetime=current_timestamp()
+where id=in_section;
+
+      COMMIT WORK;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_technology_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
+BEGIN
+    DECLARE errno INT;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+    GET CURRENT DIAGNOSTICS CONDITION 1 errno = MYSQL_ERRNO;
+    SELECT errno AS MYSQL_ERROR;
+    ROLLBACK;
+    END;
+    START TRANSACTION;
+UPDATE technology_grid SET title=in_title, image = in_image,
+image_link =in_image_link,
+content=in_content,
+user_email_id=in_useremailid,
+category=in_category,
+section=in_section,
+news_unique_id=news_unique_id,
+datetime=current_timestamp()
+where id=in_section;
+
+      COMMIT WORK;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_world_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
+BEGIN
+    DECLARE errno INT;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+    GET CURRENT DIAGNOSTICS CONDITION 1 errno = MYSQL_ERRNO;
+    SELECT errno AS MYSQL_ERROR;
+    ROLLBACK;
+    END;
+    START TRANSACTION;
+UPDATE world_grid SET title=in_title, image = in_image,
+image_link =in_image_link,
+content=in_content,
+user_email_id=in_useremailid,
+category=in_category,
+section=in_section,
+news_unique_id=news_unique_id,
+datetime=current_timestamp()
+where id=in_section;
+
       COMMIT WORK;
 
 END$$
@@ -287,24 +505,8 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('0s3pd7uuv2hm6ouc174hy6xrnge8vp2y', '.eJxdzEEKAjEMQNG7ZD0I466zEryBFyiZNlMjbSNJu5DBu1tdKLh9fP4OWVKi6LnCsmE2muAmXStmjyGQ2ZcxFq7_uLFa8xULwQIX6itVmCDjD8_SG9erDLZuQXkl9XdlUW4PWJr2saGCnD3H0etncpxn59wpvf0QpMDzBWllPFI:1kSMRI:H7zK48CWRdYx9sNz4r5-Qa3GNATxRQVHd5YZkMrzX-s', '2020-10-27 15:42:12.297916');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `education_stories`
---
-
-CREATE TABLE `education_stories` (
-  `id` int(11) NOT NULL,
-  `title` int(11) NOT NULL,
-  `image_link` varchar(500) DEFAULT NULL,
-  `image_blob` mediumblob DEFAULT NULL,
-  `datetime` datetime NOT NULL DEFAULT current_timestamp(),
-  `content` mediumtext NOT NULL,
-  `user_email_id` int(11) NOT NULL,
-  `category` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+('0s3pd7uuv2hm6ouc174hy6xrnge8vp2y', '.eJxdzkEKwjAQheG7zLoIdZeuBG_gBcI0mcaRZEYmyULEu1tdVOr2g__xnpA1JYqeBaYFc6UBbtpNMHsMgWrdGGNh-ceFrTYvWAgmuFCfSWCAjD88a28sV1259hqMZzJ_N1bj9th2qCBnz3EN7LtyHEfn3Cl9_BC07PLdidcbBItF9Q:1kSYRT:niJo1RecPfdQiWG7aaV_SmANTRCtoJKBOKBn7M5hkyw', '2020-10-28 04:31:11.767700'),
+('hk4fo4tgcg9z6bo0ugism6hhse4289h0', '.eJxFykEKAjEMAMC_5LwI6617EvyBHyjZNlsjbSpJexDx71Zh9TrME3JNiaJngaVppwlutatg9hgCme2KsbD8bMNsA61bUF5J_V25KrfH3jdWa16wECxwob6SwAQZ_3iuvbFc62AqyNlzHKrfepxn59wpffwQaoHXGzmFO7w:1kWiE3:ak_LmmnR4bWIr6DnoE4o2-RVdeFrKPQFS1U1AWwJ_AA', '2020-11-08 15:46:31.298853');
 
 -- --------------------------------------------------------
 
@@ -331,7 +533,8 @@ CREATE TABLE `personal_details` (
 --
 
 INSERT INTO `personal_details` (`idpersonal_details`, `first_name`, `last_name`, `email_id`, `safe_password`, `date_of_birth`, `admin_priority`, `journalist_priority`, `suscriber_priority`, `gender`, `phone_no`) VALUES
-(3, 'Reuben', 'Coutinho', 'reuben211999@gmail.com', 'sha256$269Weu3G$1dcd536a61e4451d25135549689879c39353b55f6568e5ed3e5ba9881ea8d351', '2020-10-21', 0, 1, 1, 'Male', 7021597154);
+(3, 'Reuben', 'Coutinho', 'reuben211999@gmail.com', 'sha256$269Weu3G$1dcd536a61e4451d25135549689879c39353b55f6568e5ed3e5ba9881ea8d351', '2020-10-21', 0, 1, 1, 'Male', 7021597154),
+(13, 'Reuben', 'Coutinho', 'reuben21@gmail.com', 'sha256$ah0IJ6i7$6b33db3b30b7b41affc7cb7c05297d5ed1583ee6ab0be14b44ab186e9a77897b', '2020-10-20', 0, 0, 1, 'Male', 8291310013);
 
 --
 -- Indexes for dumped tables
@@ -411,12 +614,6 @@ ALTER TABLE `django_session`
   ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
 
 --
--- Indexes for table `education_stories`
---
-ALTER TABLE `education_stories`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `personal_details`
 --
 ALTER TABLE `personal_details`
@@ -481,16 +678,10 @@ ALTER TABLE `django_migrations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT for table `education_stories`
---
-ALTER TABLE `education_stories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `personal_details`
 --
 ALTER TABLE `personal_details`
-  MODIFY `idpersonal_details` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idpersonal_details` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

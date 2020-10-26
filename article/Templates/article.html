@@ -74,7 +74,7 @@
 
         .article-p-tag {
             word-spacing: 5px;
-            line-height: 50px;
+            line-height: 25px;
             text-align: justify !important;
         }
 
@@ -113,46 +113,24 @@
 
         <div class="article-hello">
 
-            <div style="margin: 20px auto !important;"><img style="width: 100%; max-width: 600px;"
-                                                            src="https://c.ndtvimg.com/2020-05/5ko0k9tc_coronavirus-vaccine-reuters_625x300_20_May_20.jpg"
-                                                            align=left/></div>
+            <div style="margin: 20px auto !important;">
+
+                  {% if article_dictionary.image != '' %}
+
+                          <img style="width: 100%; max-width: 600px;" src="{{ article_dictionary.image }}"
+                                                            align=left/>
+                        {% else %}
+                              <img style="width: 100%; max-width: 600px;" src="{{ article_dictionary.image_link }}"
+                                                            align=left/>
+                        {% endif %}
+
+
+
+            </div>
             <p class="article-p-tag">
-                London: British researchers on Tuesday said they hope to expose healthy volunteers to the virus that
-                causes Covid-19 in a groundbreaking study to discover the amount needed for people to become infected.
-                The Human Challenge Programme -- a partnership that includes Imperial College London -- hopes the work
-                will ultimately help to "reduce the spread of the coronavirus, mitigate its impact and reduce deaths".
-                <br>
-                In what researchers called a world first, the opening stage of the project will examine the possibility
-                of exposing healthy volunteers to the SARS-CoV-2 coronavirus.
-                <br>
-                They aim to recruit volunteers between the ages of 18 and 30 with no underlying health conditions such
-                as heart disease, diabetes or obesity.
-                <br>
-                "In this initial phase, the aim will be to discover the smallest amount of virus it takes to cause a
-                person to develop Covid-19," Imperial College said in a statement.
-                <br>
-                The volunteer would be infected via the nose, Peter Openshaw, professor of experimental medicine at
-                Imperial, told BBC Radio 4 on Tuesday.
-
-                "The great advantage of these volunteer studies is that we can look at each volunteer very carefully not
-                only during the infection but also prior to infection, and we can work out exactly what's going on at
-                every stage," he added.
-
-                The researchers would use the results to study how vaccines might work and to explore potential
-                treatments.
-
-                Because the study deliberately infects the volunteers, "it should be possible for scientists to begin to
-                establish efficacy very quickly, by testing if those who have had a vaccine are less likely to become
-                infected with the virus", explained the researchers.
-
-                "Our number one priority is the safety of the volunteers," said Chris Chiu, from Imperial's department
-                of infectious disease.
-
-                "No study is completely risk free, but the Human Challenge Programme partners will be working hard to
-                ensure we make the risks as low as we possibly can."
-
-                "The UK's experience and expertise in human challenge trials as well as in wider COVID-19 science will
-                help us tackle the pandemic, benefiting people in the UK and worldwide," he added.
+                {% autoescape off %}
+               {{ article_dictionary.content }}
+                {% endautoescape %}
             </p></div>
         <div id="article-content">sidebar 1</div>
         <div id="article-content1">sidebar 2</div>
