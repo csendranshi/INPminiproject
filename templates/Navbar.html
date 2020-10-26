@@ -15,6 +15,7 @@
     <link href="{% static '/css/health.css' %}" rel="stylesheet">
     <link href="{% static '/css/technology1.css' %}" rel="stylesheet">
      <link href="{% static '/css/posts1.css' %}" rel="stylesheet">
+    <link href="{% static '/css/prevpost.css' %}" rel="stylesheet">
     <link href="{% static '/css/india1.css' %}" rel="stylesheet">
     <link href="{% static '/css/world1.css' %}" rel="stylesheet">
     <link href="{% static '/css/Footer.css' %}" rel="stylesheet">
@@ -81,7 +82,7 @@
         <a href="{% url 'posts' %}"><img class="custom-icon-class-style" src="{% static '/assets/postnews.png' %}"
                                          alt="">Post
             Article</a>
-        <a href="#"><img class="custom-icon-class-style" src="{% static '/assets/journal.png' %}" alt="">Previous Posts</a>
+        <a href="{% url 'prevpost' %}"><img class="custom-icon-class-style" src="{% static '/assets/journal.png' %}" alt="">Previous Posts</a>
         {% endif %}
         <a href="{% url 'logout' %}"><img class="custom-icon-class-style" src="{% static '/assets/logout.png' %}"
                                           alt="">Log Out</a>

@@ -15,19 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from pages.views import card_view, scroll_view
 
-from homepage import views as view_homepage
-from authentication import views as view_auth
-from education import views as view_education
-from business import views as view_business
-from india import views as view_india
 from World import views as view_world
-from technology import views as view_tech
-from health import views as view_health
-from profile_details import views as view_profile
-from posts import views as posts_views
 from article import views as article_views
+from authentication import views as view_auth
+from business import views as view_business
+from education import views as view_education
+from health import views as view_health
+from homepage import views as view_homepage
+from india import views as view_india
+from pages.views import card_view, scroll_view
+from posts import views as posts_views
+from previous_posts import views as view_prevpost
+from profile_details import views as view_profile
+from technology import views as view_tech
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -45,6 +46,7 @@ urlpatterns = [
     path('logout/', view_auth.Logout, name="logout"),
     path('profile/', view_profile.profile_view, name='profile'),
     path('posts/', posts_views.posts_view, name='posts'),
+    path('previous_post/', view_prevpost.prevpost_view, name='prevpost'),
     path('article/', article_views.article_view, name='article'),
 
 ]
