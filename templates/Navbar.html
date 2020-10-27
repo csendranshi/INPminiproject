@@ -15,8 +15,14 @@
     <link href="{% static '/css/health.css' %}" rel="stylesheet">
     <link href="{% static '/css/technology1.css' %}" rel="stylesheet">
      <link href="{% static '/css/posts1.css' %}" rel="stylesheet">
+<<<<<<< HEAD
+    <link href="{% static '/css/prevpost.css' %}" rel="stylesheet">
+    <link href="{% static '/css/india1.css' %}" rel="stylesheet">
+    <link href="{% static '/css/world1.css' %}" rel="stylesheet">
+=======
     <link href="{% static '/css/india.css' %}" rel="stylesheet">
     <link href="{% static '/css/world.css' %}" rel="stylesheet">
+>>>>>>> fb31c2b3c39794cfb014ec324a522efe4f314049
     <link href="{% static '/css/Footer.css' %}" rel="stylesheet">
     <link href="{% static '/css/drawer.css' %}" rel="stylesheet">
     <link href="{% static '/css/navbar.css' %}" rel="stylesheet">
@@ -81,7 +87,7 @@
         <a href="{% url 'posts' %}"><img class="custom-icon-class-style" src="{% static '/assets/postnews.png' %}"
                                          alt="">Post
             Article</a>
-        <a href="#"><img class="custom-icon-class-style" src="{% static '/assets/journal.png' %}" alt="">Previous Posts</a>
+        <a href="{% url 'prevpost' %}"><img class="custom-icon-class-style" src="{% static '/assets/journal.png' %}" alt="">Previous Posts</a>
         {% endif %}
         <a href="{% url 'logout' %}"><img class="custom-icon-class-style" src="{% static '/assets/logout.png' %}"
                                           alt="">Log Out</a>

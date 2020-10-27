@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'health',
     'profile_details',
     'posts',
+    'previous_posts',
     'article',
     'footer'
 ]
