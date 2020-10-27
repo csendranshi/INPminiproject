@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'Navbar.html' %}
 
-</body>
-</html>
+{% load static %}
+
+{% block content %}
+    <style>
+        .prev-post-user {
+            width: 500px;
+            height: 100%;
+            background-color: #eeeeee;
+            margin: 50px auto;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+    </style>
+    <div class="prev-post-user" >
+
+    </div>
+{% include 'footer.html' %}
+{% endblock %}
