@@ -90,10 +90,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'news_database',
-        'USER': 'root',
-        'PASSWORD': '',
+        'USER': 'admin',
+        'PASSWORD': 'thejournalist',
         'PORT': '3306',
-        'HOST': '127.0.0.1'
+        'HOST': 'thejournalistinstance.csubdeug2c1q.ap-south-1.rds.amazonaws.com'
 
     }
 }

@@ -102,7 +102,7 @@
                         <tr>
                             {% for top_story in top_stories %}
                                 <a style="text-decoration: none;"
-                                   href="{% url 'article' %}" id="myBtn" class="row-for-each-story">
+                                   href="{% url 'article' top_story.category top_story.section top_story.news_unique_id %}" id="myBtn" class="row-for-each-story">
                         <span class="image-position-each-row">
                             {% if top_story.image == '' %}
                                 <img class="image-for-row" src="{{ top_story.image_link }}" alt="">

@@ -16,13 +16,16 @@ def home_view(request, *args, **kwargs):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM top_stories")
         row = cursor.fetchall()
-
+    print(row)
     for i in row:
         top_story = {
-            'id':i[0],
+            'id':i[8],
             'title': i[1],
             'image':i[2],
-            'image_link': i[3]
+            'image_link': i[3],
+            'section': i[7],
+            'category': i[6],
+            'news_unique_id': i[8]
         }
         top.append(top_story)
     if request.session.has_key('logged_in'):

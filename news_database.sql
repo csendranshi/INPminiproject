@@ -28,7 +28,7 @@ DELIMITER $$
 -- Procedures
 --
 DROP PROCEDURE IF EXISTS `get_the_row_with_respective_grid_section`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_the_row_with_respective_grid_section` (IN `in_category` VARCHAR(100), IN `in_the_unique_id` INT, IN `in_section` VARCHAR(100))  NO SQL
+CREATE  PROCEDURE `get_the_row_with_respective_grid_section` (IN `in_category` VARCHAR(100), IN `in_the_unique_id` INT, IN `in_section` VARCHAR(100))  NO SQL
 BEGIN
     DECLARE errno INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -38,17 +38,17 @@ BEGIN
     ROLLBACK;
     END;
     START TRANSACTION;
-	SELECT * FROM all_news_archive WHERE 
+	SELECT * FROM all_news_archive WHERE
     category = in_category AND
     id = in_the_unique_id
     and section = in_section;
-    
+
       COMMIT WORK;
 
 END$$
 
 DROP PROCEDURE IF EXISTS `insert_personal_details`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_personal_details` (IN `first_name` VARCHAR(200), IN `last_name` VARCHAR(200), IN `email_id` VARCHAR(200), IN `safe_password` VARCHAR(200), IN `dateofbirth` DATE, IN `gender` VARCHAR(100), IN `phone_no` BIGINT)  MODIFIES SQL DATA
+CREATE  PROCEDURE `insert_personal_details` (IN `first_name` VARCHAR(200), IN `last_name` VARCHAR(200), IN `email_id` VARCHAR(200), IN `safe_password` VARCHAR(200), IN `dateofbirth` DATE, IN `gender` VARCHAR(100), IN `phone_no` BIGINT)  MODIFIES SQL DATA
 BEGIN
     DECLARE errno INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -73,14 +73,14 @@ phone_no)
     , dateofbirth,
       gender,
       phone_no);
-    
-    
+
+
       COMMIT WORK;
 
 END$$
 
 DROP PROCEDURE IF EXISTS `latest_top_stories`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `latest_top_stories` (IN `title` MEDIUMTEXT, IN `image` LONGTEXT, IN `image_link` MEDIUMTEXT, IN `content` LONGTEXT, IN `useremailid` VARCHAR(100), IN `category` VARCHAR(100), IN `section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
+CREATE  PROCEDURE `latest_top_stories` (IN `title` MEDIUMTEXT, IN `image` LONGTEXT, IN `image_link` MEDIUMTEXT, IN `content` LONGTEXT, IN `useremailid` VARCHAR(100), IN `category` VARCHAR(100), IN `section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
 BEGIN
     DECLARE errno INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -106,13 +106,13 @@ news_unique_id)
     , useremailid
     , category
     , section
-    , news_unique_id);    
+    , news_unique_id);
       COMMIT WORK;
 
 END$$
 
 DROP PROCEDURE IF EXISTS `update_business_grid`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_business_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
+CREATE  PROCEDURE `update_business_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
 BEGIN
     DECLARE errno INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -137,7 +137,7 @@ where id=in_section;
 END$$
 
 DROP PROCEDURE IF EXISTS `update_education_grid`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_education_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
+CREATE  PROCEDURE `update_education_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
 BEGIN
     DECLARE errno INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -162,7 +162,7 @@ where id=in_section;
 END$$
 
 DROP PROCEDURE IF EXISTS `update_health_grid`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_health_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
+CREATE  PROCEDURE `update_health_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
 BEGIN
     DECLARE errno INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -187,7 +187,7 @@ where id=in_section;
 END$$
 
 DROP PROCEDURE IF EXISTS `update_india_grid`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_india_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
+CREATE  PROCEDURE `update_india_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
 BEGIN
     DECLARE errno INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -212,7 +212,7 @@ where id=in_section;
 END$$
 
 DROP PROCEDURE IF EXISTS `update_latest_grid`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_latest_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
+CREATE  PROCEDURE `update_latest_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
 BEGIN
     DECLARE errno INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -237,7 +237,7 @@ where id=in_section;
 END$$
 
 DROP PROCEDURE IF EXISTS `update_technology_grid`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_technology_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
+CREATE  PROCEDURE `update_technology_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
 BEGIN
     DECLARE errno INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -262,7 +262,7 @@ where id=in_section;
 END$$
 
 DROP PROCEDURE IF EXISTS `update_world_grid`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_world_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
+CREATE  PROCEDURE `update_world_grid` (IN `in_title` MEDIUMTEXT, IN `in_image` LONGTEXT, IN `in_image_link` MEDIUMTEXT, IN `in_content` LONGTEXT, IN `in_useremailid` VARCHAR(100), IN `in_category` VARCHAR(100), IN `in_section` VARCHAR(100), IN `news_unique_id` INT)  NO SQL
 BEGIN
     DECLARE errno INT;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -287,7 +287,7 @@ where id=in_section;
 END$$
 
 DROP PROCEDURE IF EXISTS `verify_email_id`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `verify_email_id` (IN `email_id_in` VARCHAR(100), OUT `STATUS1` VARCHAR(100))  MODIFIES SQL DATA
+CREATE  PROCEDURE `verify_email_id` (IN `email_id_in` VARCHAR(100), OUT `STATUS1` VARCHAR(100))  MODIFIES SQL DATA
 BEGIN
 	DECLARE email varchar(100) DEFAULT '';
 	select email_id INTO email
@@ -800,10 +800,7 @@ CREATE TABLE IF NOT EXISTS `latest_grid` (
 --
 
 INSERT INTO `latest_grid` (`id`, `title`, `image`, `image_link`, `content`, `user_email_id`, `category`, `section`, `news_unique_id`, `datetime`) VALUES
-('latest-cell-1', 'Want Codeblocks At Border To End Rajnath Singh After shastra Puja', 'text', 'https://c.ndtvimg.com/2020-10/k8sk237o_rajnath-singh-shastra-puja-2020-sikkim_625x300_25_October_20.jpg', 'New Delhi: Defence Minister Rajnath Singh has said India wants peace along its border with China. He made the statement after performing Shastra Puja - the customary worship of weapons - at Sukna War Memorial in Sikkim\'s Darjeeling, on the occasion of Dussehra today.', 'reuben211999@gmail.com', 'latest-css-grids', 'latest-cell-1', 345278, '2020-10-25 11:14:27'),
-('latest-cell-10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-25 06:48:28'),
-('latest-cell-11', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-25 06:48:28'),
-('latest-cell-12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-25 06:48:28'),
+('latest-cell-1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-25 06:48:28'),
 ('latest-cell-13', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-25 06:48:28'),
 ('latest-cell-14', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-25 06:48:28'),
 ('latest-cell-2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-25 06:48:28'),
