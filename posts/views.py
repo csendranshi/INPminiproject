@@ -24,7 +24,7 @@ def OTPgen():
 
 
 def posts_view(request, *args, **kwargs):
-    latest_cell = cell_list('latest', range(1, 15))
+    latest_cell = cell_list('latest', range(1, 12))
     health_cell = cell_list('health', range(1, 10))
     world_cell = cell_list('world', range(1, 11))
     business_cell = cell_list('business', range(1, 9))
