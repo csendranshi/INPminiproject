@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.db import connection
-
+import time
 
 # Create your views here.
 def profile_view(request, *args, **kwargs):
@@ -25,6 +25,7 @@ def profile_view(request, *args, **kwargs):
                 with connection.cursor() as cursor:
                     cursor.execute('CALL news_database.update_profile_picture(%s,%s)',
                                    [dict_of_user_details['email_id'], profile_picture])
+                    time.sleep(2)
                 print("Successfully Clear")
             if password1 == password2:
                 print(password1, password2, profile_picture)
