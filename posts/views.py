@@ -49,7 +49,9 @@ def posts_view(request, *args, **kwargs):
             'first_name': request.session['first_name'],
             'last_name': request.session['last_name'],
             'email_id': request.session['email_id'],
-            'suscriber_access': request.session['suscriber_priority']
+            'suscriber_access': request.session['suscriber_priority'],
+            'profile_picture': request.session['profile_picture']
+
         }
 
         # print(binary,letter_binary)

@@ -96,6 +96,7 @@ def Login(request):
                     request.session['first_name'] = row[1]
                     request.session['last_name'] = row[2]
                     request.session['email_id'] = row[3]
+                    request.session['profile_picture'] = row[12]
                     dict_of_user_details = {
                         'admin_access': request.session['admin_access'],
                         'journal_access': request.session['journal_access'],
@@ -103,7 +104,8 @@ def Login(request):
                         'first_name': request.session['first_name'],
                         'last_name': request.session['last_name'],
                         'email_id': request.session['email_id'],
-                        'suscriber_access': request.session['suscriber_priority']
+                        'suscriber_access': request.session['suscriber_priority'],
+                        'profile_picture':request.session['profile_picture']
 
                     }
                     print(dict_of_user_details)
