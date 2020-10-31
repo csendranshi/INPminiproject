@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'posts',
     'previous_posts',
     'article',
+    'users_page',
     'footer'
 ]
 

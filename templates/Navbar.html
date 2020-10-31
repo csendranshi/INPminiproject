@@ -105,7 +105,7 @@
         {% endif %}
 
     {% if user.admin_access %}
-        <a href="#"><img class="custom-icon-class-style" src="{% static '/assets/user-account.png' %}"
+        <a href="{% url 'user_page' %}"><img class="custom-icon-class-style" src="{% static '/assets/user-account.png' %}"
                                           alt="">Users</a>
 
     {% endif %}
