@@ -296,10 +296,14 @@
                     <div>
                         {% if profile_details.profile_picture == None %}
                             <img style="width: 200px;height: 200px;margin: 20px auto;
-                                border-radius:50%;background-color: #cccccc; " id="profile_picture"/>
+                                border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            object-fit: cover;background-color: #cccccc; " id="profile_picture"/>
                         {% else %}
                             <img src="{{ profile_details.profile_picture }}" style="width: 200px;height: 200px;margin: 20px auto;
-                                border-radius:50%;background-color: #cccccc; " id="profile_picture"/>
+                                border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            object-fit: cover;background-color: #cccccc; " id="profile_picture"/>
                         {% endif %}
 
                         <label class="profile-picture-input">
