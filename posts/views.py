@@ -56,12 +56,16 @@ def posts_view(request, *args, **kwargs):
 
         article_content = request.POST.get('postDesc')
         if request.method == 'POST':
+
             article_image_link = request.POST.get('imageLink')
             article_title = request.POST.get('postTitle')
             article_category = request.POST.get('category')
             article_section = request.POST.get('section')
             article_file_picture = request.POST.get('finalPictureValue')
-
+            if article_image_link == '' or article_file_picture == '':
+                message = "Enter Image Link or Select An Image"
+                context = {'cell_list': dictionary_of_section_as_per_category,'message':message}
+                return render(request, 'posts.html', context)
             file1 = open('textfile.txt', 'a+')
             file1.seek(0)
             with connection.cursor() as cursor:

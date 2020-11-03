@@ -455,7 +455,7 @@
                     <div style="color: #3a4750; font-size: 25px; margin: inherit; padding: 2%">Post an Article</div>
                     <p style="color: #3a4750;">Choose Image or Enter Image Link</p>
                     {% csrf_token %}
-
+                    {{ message }}
                     <div id="post-main1">
                         <input
 {#                                oninput="loadImage()"#}
