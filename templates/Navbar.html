@@ -60,11 +60,27 @@
 
 <div id="mySidenav" class="sidenav">
     <div style="text-align: start;">
+
+    {% if user.profile_picture %}
+        <img style="
+
+    width: 200px;
+    height: 200px;
+    border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            object-fit: cover;
+    margin: 10px 25px;
+
+"
+             src="{{ user.profile_picture }}" alt="">
+        {% else %}
         <div style="
     background: rgba(255,255,255,0.3);
     width: 200px;
     height: 200px;
-    border-radius: 50%;
+     border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            object-fit: cover;
     margin: 10px auto;
     text-align: center;
     padding: 70px 0;
@@ -79,6 +95,8 @@
 
 
         </div>
+    {% endif %}
+
         <hr>
         <a href="javascript:void(0)" class="closebtn" onclick="closeDrawer()">&times;</a>
         <a style="margin-top:25px " href="{% url 'profile' %}"><img class="custom-icon-class-style"
@@ -89,6 +107,12 @@
             Article</a>
         <a href="{% url 'prevpost' %}"><img class="custom-icon-class-style" src="{% static '/assets/journal.png' %}" alt="">Previous Posts</a>
         {% endif %}
+
+    {% if user.admin_access %}
+        <a href="{% url 'user_page' %}"><img class="custom-icon-class-style" src="{% static '/assets/user-account.png' %}"
+                                          alt="">Users</a>
+
+    {% endif %}
         <a href="{% url 'logout' %}"><img class="custom-icon-class-style" src="{% static '/assets/logout.png' %}"
                                           alt="">Log Out</a>
     </div>

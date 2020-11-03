@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from django.db import connection
+import time
 
 
-# Create your views here.
 
-def world_view(request, *args, **kwargs):
+
+def users_view(request, *args, **kwargs):
     if request.session.has_key('logged_in'):
         print(request.session.has_key('logged_in'))
         dict_of_user_details = {
@@ -17,6 +19,8 @@ def world_view(request, *args, **kwargs):
             'profile_picture': request.session['profile_picture']
 
         }
+
         context_of_top_stories = {'user': dict_of_user_details}
-        return render(request, "World.html", context_of_top_stories)
-    return render(request, "World.html", {})
+        return render(request, "users_page.html", context_of_top_stories)
+
+    return render(request, "users_page.html", {})

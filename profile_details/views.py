@@ -3,6 +3,9 @@ from django.db import connection
 import time
 
 # Create your views here.
+from werkzeug.security import generate_password_hash
+
+
 def profile_view(request, *args, **kwargs):
     if request.session.has_key('logged_in'):
         print(request.session.has_key('logged_in'))
@@ -13,7 +16,8 @@ def profile_view(request, *args, **kwargs):
             'first_name': request.session['first_name'],
             'last_name': request.session['last_name'],
             'email_id': request.session['email_id'],
-            'suscriber_access': request.session['suscriber_priority']
+            'suscriber_access': request.session['suscriber_priority'],
+            'profile_picture': request.session['profile_picture']
 
         }
         if request.method == 'POST':
@@ -21,15 +25,19 @@ def profile_view(request, *args, **kwargs):
             password2 = request.POST.get('pass2')
             profile_picture = request.POST.get('image-data')
             print(password1, password2, profile_picture)
-            if profile_picture != None and profile_picture != '':
+            if profile_picture != None and profile_picture !='':
                 with connection.cursor() as cursor:
                     cursor.execute('CALL news_database.update_profile_picture(%s,%s)',
                                    [dict_of_user_details['email_id'], profile_picture])
                     time.sleep(2)
                 print("Successfully Clear")
-            if password1 == password2:
-                print(password1, password2, profile_picture)
-
+            if password1 == password2 and password1 != '' and password1 !=None:
+                hashed_password = generate_password_hash(password2, method="sha256")
+                with connection.cursor() as cursor:
+                    cursor.execute('CALL news_database.update_password(%s,%s)',
+                                   [dict_of_user_details['email_id'], hashed_password])
+                    time.sleep(2)
+                print("Successfully Updated Password")
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM personal_details WHERE email_id=%s",
                            [dict_of_user_details['email_id']])
@@ -45,8 +53,6 @@ def profile_view(request, *args, **kwargs):
                 'phone_no': row[10],
                 'profile_picture': row[12]
             }
-            email_id = profile_details['email_id']
-            print("This", profile_details['profile_picture'])
 
         context_of_top_stories = {'user': dict_of_user_details, 'profile_details': profile_details}
         return render(request, "profile.html", context_of_top_stories)
