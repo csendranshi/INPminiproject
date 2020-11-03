@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     'previous_posts',
     'article',
     'users_page',
-    'footer'
+    'footer',
+    'search_news',
+    'user_card'
 ]
 
 MIDDLEWARE = [

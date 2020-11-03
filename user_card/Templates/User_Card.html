@@ -1,0 +1,81 @@
+{% load static %}
+<style>
+    .admins_view_all_users {
+        background-color: rgba(255, 255, 255, 0.13);
+        color: white;
+        width: 300px;
+        margin: 30px 10px;
+        height: 376px;
+        border-top-right-radius: 25px;
+        border-bottom-left-radius: 25px;
+
+        display: inline-flex;
+
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .admins_view_all_users-image {
+        width: 280px;
+        height: 280px;
+        object-fit: cover;
+        border-top-right-radius: 25px;
+        border-bottom-left-radius: 25px;
+
+
+    }
+
+    .admins_view_all_users-image-p {
+        border-top-right-radius: 25px;
+        border-bottom-left-radius: 25px;
+        background-color: #3a4750;
+        width: 280px;
+        height: 120px;
+        padding: 10px;
+        font-family: Lato, serif;
+
+
+    }
+</style>
+{% for foo in users %}
+
+    <div class="admins_view_all_users">
+        {% if foo.pro_pic == None %}
+            <img class="admins_view_all_users-image"
+                 src="{% static '/assets/image_upload.png' %}"
+                 alt="{{ foo.first_name }}">
+        {% else %}
+            <img class="admins_view_all_users-image"
+                 src="{{ foo.pro_pic }}"
+                 alt="{{ foo.first_name }}">
+        {% endif %}
+
+
+
+        <p class="admins_view_all_users-image-p">
+            {{ foo.first_name }} {{ foo.last_name }}
+            <br>
+            {% if foo.admin == 1 %}
+                Admin
+            {% elif foo.admin == 0 %}
+
+            {% endif %}
+
+            {% if foo.journalist == 1 %}
+                Journalist
+            {% elif foo.journalist == 0 %}
+
+            {% endif %}
+
+            {% if foo.suscriber == 1 %}
+                Suscriber
+            {% elif foo.suscriber == 0 %}
+
+            {% endif %}
+
+        </p>
+    </div>
+{% endfor %}
+
+
