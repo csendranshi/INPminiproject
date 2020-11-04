@@ -194,28 +194,85 @@
 
         </div>
         <div id="tech-content6">
-            <img class="tech-image-css"
-                 src="https://i.gadgets360cdn.com/large/intel_core_i9_10980xe_angle_ndtv_1577701567067.jpg" alt="">
-            <p style="font-family: 'Lato',serif;
-              " class="tech-p-tag-css">
-                Intel 11th Gen Core ‘Rocket Lake’ Desktop CPUs With PCIe 4.0
-            </p>
+           {% for tech_story in tech_stories %}
+                {% if tech_story.section == 'technology-cell-8' %}
+                    <a href="{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if tech_story.image != '' %}
 
+                            <img class="tech-image-css-main"
+
+                                 src="{{ tech_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="tech-image-css-main"
+
+                                 src="{{ tech_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="tech-p-tag-css">
+               {{ tech_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
         </div>
         <div id="tech-content7">
-            <img class="tech-image-css" src="https://i.gadgets360cdn.com/large/5G_reuters_1601871754591.jpg" alt="">
-            <p style="font-family: 'Lato',serif;
-              " class="tech-p-tag-css">
-                The Promise of 5G Wireless – Speed, Hype, Risk</p>
+           {% for tech_story in tech_stories %}
+                {% if tech_story.section == 'technology-cell-9' %}
+                    <a href="{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if tech_story.image != '' %}
 
+                            <img class="tech-image-css-main"
+
+                                 src="{{ tech_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="tech-image-css-main"
+
+                                 src="{{ tech_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="tech-p-tag-css">
+               {{ tech_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
         </div>
         <div id="tech-content8">
-            <img class="tech-image-css" src="https://i.gadgets360cdn.com/large/iphone_11_back_image_1602673044747.jpg"
-                 alt="">
-            <p style="font-family: 'Lato',serif;
-              " class="tech-p-tag-css">iPhone 11, iPhone 11 Pro to Get Huge Price Discounts During Amazon, Flipkart
-                Sales</p>
+           {% for tech_story in tech_stories %}
+                {% if tech_story.section == 'technology-cell-10' %}
+                    <a href="{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if tech_story.image != '' %}
 
+                            <img class="tech-image-css-main"
+
+                                 src="{{ tech_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="tech-image-css-main"
+
+                                 src="{{ tech_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="tech-p-tag-css">
+               {{ tech_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
 
         </div>
         {% include 'footer.html' %}

@@ -2,6 +2,124 @@
 
 
 {% block content %}
-    Search News
-    {% include 'footer.html'  %}
+    <style>
+        .profile-auth-form-input {
+            background-color: #3a4750;
+            border: 1px solid #cccccc;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            padding: 12px 15px;
+            margin: 10px;
+            width: 90%;
+            font-size: 20px;
+            color: #cccccc;
+        }
+
+        .profile-auth-form-input::placeholder {
+            color: #cccccc;
+        }
+
+        .profile-auth-form-input:focus {
+            outline: none;
+        }
+
+        .profile-auth-form-button {
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            border: 1px solid #eeeeee;
+            background-color: #3a4750;
+            color: #eeeeee;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 12px 45px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform 80ms ease-in;
+            margin: 20px;
+        }
+
+        .profile-auth-form-button:active {
+            transform: scale(0.95);
+        }
+
+        .profile-auth-form-button:focus {
+            outline: none;
+        }
+
+
+        .admins_view_all_users {
+            background-color: rgba(255, 255, 255, 0.13);
+            color: white;
+            width: 300px;
+            margin: 30px 10px;
+            height: 376px;
+            border-top-right-radius: 25px;
+            border-bottom-left-radius: 25px;
+
+            display: inline-flex;
+
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 10px;
+        }
+
+        .admins_view_all_users-image {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border-top-right-radius: 25px;
+            border-bottom-left-radius: 25px;
+
+
+        }
+
+        .admins_view_all_users-image-p {
+            border-top-right-radius: 25px;
+            border-bottom-left-radius: 25px;
+            background-color: #3a4750;
+            width: 280px;
+            height: 120px;
+            padding: 10px;
+            font-family: Lato, serif;
+
+
+        }
+
+    </style>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="search_text" placeholder="Search News" class="profile-auth-form-input">
+        <input type="submit" value="Search" class="profile-auth-form-button">
+    </form>
+
+    {% for search_story in search_stories %}
+         <a href="{% url 'article' search_story.category search_story.section search_story.news_unique_id %}"
+                       style="text-decoration: none;">
+        <div class="admins_view_all_users">
+            {% if search_story.image != '' %}
+
+                <img class="admins_view_all_users-image"
+
+                     src="{{ search_story.image }}"
+                     alt="">
+            {% else %}
+                <img class="admins_view_all_users-image"
+
+                     src="{{ search_story.image_link }}"
+                     alt="">
+            {% endif %}
+
+
+
+
+            <p >
+                {{ search_story.title }}
+
+            </p>
+        </div>
+         </a>
+    {% endfor %}
+
+
+    {% include 'footer.html' %}
 {% endblock %}
