@@ -54,46 +54,143 @@
 
         </div>
         <div id="tech-content1">
-            <img class="tech-image-css"
-                 src="https://i.gadgets360cdn.com/large/iphone_12_apple_newsroom_large_1602669812001.jpg" alt="">
-            <p style="font-family: 'Lato',serif;
+             {% for tech_story in tech_stories %}
+                {% if tech_story.section == 'technology-cell-3' %}
+                    <a href="{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if tech_story.image != '' %}
+
+                            <img class="tech-image-css-main"
+
+                                 src="{{ tech_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="tech-image-css-main"
+
+                                 src="{{ tech_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
               " class="tech-p-tag-css">
-                iPhone 12 Models Are the Cheapest in These Countries</p>
+               {{ tech_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
         </div>
         <div id="tech-content2">
-            <img class="tech-image-css"
-                 src="https://i.gadgets360cdn.com/large/galaxy_tab_a7_1601284786922.jpg?downsize=950:*&output-quality=80&output-format=webp"
-                 alt="">
-            <p style="font-family: 'Lato',serif;
+             {% for tech_story in tech_stories %}
+                {% if tech_story.section == 'technology-cell-4' %}
+                    <a href="{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if tech_story.image != '' %}
+
+                            <img class="tech-image-css-main"
+
+                                 src="{{ tech_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="tech-image-css-main"
+
+                                 src="{{ tech_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
               " class="tech-p-tag-css">
-                Samsung Galaxy Tab A7 Teased to Launch in India Soon</p>
+               {{ tech_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
 
         </div>
         <div id="tech-content3">
-            <img class="tech-image-css"
-                 src="https://i.gadgets360cdn.com/large/apple_homepod_mini_mainjpg_1602609442484.jpg?downsize=950:*&output-quality=80&output-format=webp"
-                 alt="">
-            <p style="font-family: 'Lato',serif;
-              " class="tech-p-tag-css">HomePod mini Smart Speaker With Touch Panel, Ultra WideBand Technology
-                Launched</p>
+            {% for tech_story in tech_stories %}
+                {% if tech_story.section == 'technology-cell-5' %}
+                    <a href="{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if tech_story.image != '' %}
+
+                            <img class="tech-image-css-main"
+
+                                 src="{{ tech_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="tech-image-css-main"
+
+                                 src="{{ tech_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="tech-p-tag-css">
+               {{ tech_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
 
         </div>
         <div id="tech-content4">
-            <img class="tech-image-css"
-                 src="https://i.gadgets360cdn.com/large/watchos_7_apple_1602518085942.jpeg?downsize=950:*&output-quality=80&output-format=webp"
-                 alt="">
-            <p style="font-family: 'Lato',serif;
-              " class="tech-p-tag-css">How watchOS 7 Can Help You, and Your Apple Watch’s Battery, Stay Healthy, and
-                More</p>
+            {% for tech_story in tech_stories %}
+                {% if tech_story.section == 'technology-cell-6' %}
+                    <a href="{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if tech_story.image != '' %}
+
+                            <img class="tech-image-css-main"
+
+                                 src="{{ tech_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="tech-image-css-main"
+
+                                 src="{{ tech_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="tech-p-tag-css">
+               {{ tech_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
 
         </div>
         <div id="tech-content5">
-            <img class="tech-image-css"
-                 src="https://i.gadgets360cdn.com/large/microsoft_logo_bright_reuters_1599477164694.jpg?downsize=950:*&output-quality=80&output-format=webp"
-                 alt="">
-            <p style="font-family: 'Lato',serif;
+           {% for tech_story in tech_stories %}
+                {% if tech_story.section == 'technology-cell-7' %}
+                    <a href="{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if tech_story.image != '' %}
+
+                            <img class="tech-image-css-main"
+
+                                 src="{{ tech_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="tech-image-css-main"
+
+                                 src="{{ tech_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
               " class="tech-p-tag-css">
-                Microsoft to Let Some Employees Work From Home Permanently</p>
+               {{ tech_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
 
         </div>
         <div id="tech-content6">

@@ -48,7 +48,10 @@ INSTALLED_APPS = [
     'posts',
     'previous_posts',
     'article',
-    'footer'
+    'users_page',
+    'footer',
+    'search_news',
+    'user_card'
 ]
 
 MIDDLEWARE = [
@@ -90,14 +93,25 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'news_database',
-        'USER': 'root',
-        'PASSWORD': '',
+        'USER': 'admin',
+        'PASSWORD': 'thejournalist',
         'PORT': '3306',
-        'HOST': '127.0.0.1'
+        'HOST': 'thejournalistinstance.csubdeug2c1q.ap-south-1.rds.amazonaws.com'
 
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'news_database',
+#         'USER': 'root',
+#         'PASSWORD': '12345',
+#         'PORT': '3306',
+#         'HOST': '127.0.0.1'
+#
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 

@@ -1,10 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'Navbar.html' %}
 
-</body>
-</html>
+{% load static %}
+
+{% block content %}
+    <style>
+        .prev-post-user {
+            width: 100%;
+            background-color: #222222;
+            margin: 50px auto;
+            border-radius: 10px;
+        }
+
+        #prev-post-css-table {
+
+
+        {#border-top-right-radius: 10px;#}{#border-bottom-left-radius: 10px;#} margin: auto;
+            width: 100%;
+            border-spacing: 2px;
+
+
+        }
+
+        #prev-post-css-table tr {
+            color: #303841;
+            text-align: center;
+            background-color: rgba(48, 56, 65, 0.8);
+
+
+        }
+
+        #prev-post-css-table tr:nth-child(even) {
+            background-color: rgba(48, 56, 65, 0.9);
+        }
+
+        #prev-post-css-table thead th {
+
+
+            color: #eeeeee;
+            background-color: #3a4750;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-family: 'Lato', serif;
+            padding: 10px;
+            border-radius: 8px;
+
+        }
+
+        #prev-post-css-table td {
+            border-radius: 8px;
+            padding: 10px;
+            font-family: 'Lato', serif;
+            color: #eeeeee;
+        }
+    </style>
+    <div class="prev-post-user">
+        <table id="prev-post-css-table">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>category</th>
+                <th>posted at</th>
+                <th>Article</th>
+            </tr>
+
+            </thead>
+            <tbody>
+            {% for pp in prev_post %}
+                <tr>
+                    <td>{{ pp.news_unique_id }}</td>
+                    <td>{{ pp.title }}</td>
+                    <td>{{ pp.category }}</td>
+                    <td>{{ pp.time_of_post }}</td>
+                    <td><a style="color: #eeeeee;" href="{% url 'article' pp.actual_category pp.section pp.news_unique_id %}">Click Here</a></td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+
+
+        </table>
+    </div>
+    {% include 'footer.html' %}
+{% endblock %}

@@ -8,23 +8,25 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            window.addEventListener("load", function () {
+                document.getElementById("drop-area").onchange = function (event) {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(event.srcElement.files[0]);
+                    var me = this;
+                    reader.onload = function () {
+                        var fileContent = reader.result;
 
+                        document.getElementById("profile_picture").src = String(fileContent);
+                        document.getElementById("image-data").value = fileContent;
+                        {#document.getElementById("setArticlePicture").value = fileContent;#}
+                    }
+                }
+            });
+        </script>
 
         <style>
-            @media screen and (max-width: 650px) {
-                .profile-grid-container {
-                    display: grid;
-                    height: 80vh;
-                    grid-template-columns:  1fr;
-                    grid-template-rows:  0.2fr;
-                    grid-template-areas:
-                "profile-main1"  "profile-main2"
-                "profile-content1"  "profile-content2"
-                "footer";
-                    grid-gap: 0.2rem;
 
-                }
-            }
 
             .profile-grid-container {
                 display: grid;
@@ -32,11 +34,10 @@
                 grid-template-columns: 1fr 1fr;
                 grid-template-rows: 0.2fr 1.5fr;
                 grid-template-areas:
-    "profile-main1  profile-main2"
-    "profile-content1  profile-content2"
-    "footer footer";
+                "profile-main1  profile-main2"
+                "profile-content1  profile-content2"
+                "footer footer";
                 grid-gap: 0.2rem;
-
                 font-size: 15px;
                 color: #fff5ea;
                 text-align: center;
@@ -242,7 +243,42 @@
 
             }
 
+            @media screen and (max-width: 800px) {
+                .profile-grid-container {
+                    display: grid;
+                    height: 150vh;
+                    grid-template-columns:  1fr;
+                    grid-template-rows:  0.2fr;
+                    grid-template-areas:
+                "profile-main1"  "profile-main2"
+                 "profile-content2" "profile-content1"
+                "footer";
+                    grid-gap: 0.2rem;
+                    width: 90%;
 
+                }
+            }
+
+
+            input[type="file"] {
+                display: none;
+            }
+
+            .profile-picture-input {
+                width: 150px;
+                height: 50px;
+                background-color: rgba(255, 255, 255, 0.15);
+                display: block;
+                margin: auto;
+                border-radius: 20px;
+                color: #eeeeee;
+                font-weight: lighter;
+                text-align: center;
+                padding-top: 12px;
+                font-family: Lato, serif;
+                border: 1px dashed #eeeeee;
+
+            }
         </style>
     </head>
     <body>
@@ -250,30 +286,46 @@
     <div>
 
         <form method="POST">
-
+            {% csrf_token %}
             <h1 class="auth-form-h1" style="margin: 10px auto;color: #cccccc;font-family: 'Lato', serif;"
                 align="center"> Your Profile</h1>
             <div class="profile-grid-container">
 
 
                 <div id="profile-main1">
-                    <div style="width: 200px;height: 200px;margin: 20px auto;
-                                border-radius:50%;background-color: #cccccc; ">
+                    <div>
+                        {% if profile_details.profile_picture == None %}
+                            <img style="width: 200px;height: 200px;margin: 20px auto;
+                                border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            object-fit: cover;background-color: #cccccc; " id="profile_picture"/>
+                        {% else %}
+                            <img src="{{ profile_details.profile_picture }}" style="width: 200px;height: 200px;margin: 20px auto;
+                                border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            object-fit: cover;background-color: #cccccc; " id="profile_picture"/>
+                        {% endif %}
 
+                        <label class="profile-picture-input">
+                            Add Profile Picture
+                            <input id="drop-area" type="file">
+                            <input style="display: none;" name="image-data" id="image-data" type="text">
+                        </label>
                     </div>
+
 
                 </div>
 
 
                 <div id="profile-main2">
                     <input type="text" name="fname" value="First Name:{{ profile_details.first_name }}" readonly
-                           class="profile-auth-form-input"></label>
+                           class="profile-auth-form-input">
 
                     <input type="text" name="lname" value="Last Name:{{ profile_details.last_name }} " readonly
-                           class="profile-auth-form-input"></label>
+                           class="profile-auth-form-input">
 
                     <input type="email" name="uid" value="Email Id:{{ profile_details.email_id }} " readonly
-                           class="profile-auth-form-input"></label>
+                           class="profile-auth-form-input">
                 </div>
 
 
@@ -315,10 +367,10 @@
                     <label class="name">
                         PASSWORD* :</label>
 
-                    <input type="password" name="pass" placeholder="Password" class="profile-auth-form-input">
-                    <input type="password" name="pass" placeholder="Confirm Password"
+                    <input type="password" name="pass1" placeholder="Password" class="profile-auth-form-input">
+                    <input type="password" name="pass2" placeholder="Confirm Password"
                            class="profile-auth-form-input">
-                    </label>
+
                     <label class="profile-auth-form-input" style="display: block;">
 
                         <span class="gen" style="margin-bottom:10px; ">Type of User:</span>

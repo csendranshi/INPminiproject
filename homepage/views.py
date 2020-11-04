@@ -16,13 +16,16 @@ def home_view(request, *args, **kwargs):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM top_stories")
         row = cursor.fetchall()
-
+    print(row)
     for i in row:
         top_story = {
-            'id':i[0],
+            'id':i[8],
             'title': i[1],
             'image':i[2],
-            'image_link': i[3]
+            'image_link': i[3],
+            'section': i[7],
+            'category': i[6],
+            'news_unique_id': i[8]
         }
         top.append(top_story)
     if request.session.has_key('logged_in'):
@@ -34,7 +37,8 @@ def home_view(request, *args, **kwargs):
             'first_name': request.session['first_name'],
             'last_name': request.session['last_name'],
             'email_id': request.session['email_id'],
-            'suscriber_access': request.session['suscriber_priority']
+            'suscriber_access': request.session['suscriber_priority'],
+            'profile_picture':request.session['profile_picture']
 
         }
         context_of_top_stories = {'top_stories': top, 'user': dict_of_user_details}

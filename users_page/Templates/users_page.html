@@ -1,0 +1,10 @@
+{% extends 'Navbar.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% include 'User_Card.html' with users=user_details  %}
+
+    {% include 'footer.html' %}
+{% endblock %}

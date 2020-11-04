@@ -31,7 +31,8 @@ from posts import views as posts_views
 from previous_posts import views as view_prevpost
 from profile_details import views as view_profile
 from technology import views as view_tech
-
+from users_page import views as view_users_page
+from search_news import views as view_search_news
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -49,12 +50,12 @@ urlpatterns = [
     path('logout/', view_auth.Logout, name="logout"),
     path('profile/', view_profile.profile_view, name='profile'),
     path('posts/', posts_views.posts_view, name='posts'),
-
     path('previous_post/', view_prevpost.prevpost_view, name='prevpost'),
     path('article/', article_views.article_view, name='article'),
+    path('userspage/', view_users_page.users_view, name='user_page'),
+    path('searchnews/', view_search_news.search_view, name='search_news'),
 
     path('article/<grid_category>/<section>/<unique_id>', article_views.article_view, name='article'),
-
 
 ]
 

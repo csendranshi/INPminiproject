@@ -453,9 +453,9 @@
             >
                 <div style="display:inline-block">
                     <div style="color: #3a4750; font-size: 25px; margin: inherit; padding: 2%">Post an Article</div>
-                    <p style="color: #3a4750;">Choose Image or Enter Image Link</p>
-                    {% csrf_token %}
 
+                    {% csrf_token %}
+                      <p style="color: #3a4750;">{{ message }}</p>
                     <div id="post-main1">
                         <input
 {#                                oninput="loadImage()"#}
@@ -731,28 +731,28 @@
                     <tr>
 
                         <td id="latest-cell-1" rowspan="2"></td>
-                        <td id="latest-cell-2"></td>
-                        <td id="latest-cell-3"></td>
+                        <td ></td>
+                        <td ></td>
 
                     </tr>
                     <tr>
 
 
+                        <td id="latest-cell-2" ></td>
+
+                        <td  ></td>
+
+                    </tr>
+                    <tr>
+                        <td id="latest-cell-3" ></td>
                         <td id="latest-cell-4"></td>
-
-                        <td id="latest-cell-5"></td>
-
-                    </tr>
-                    <tr>
-                        <td id="latest-cell-6"></td>
-                        <td id="latest-cell-7"></td>
                         <td style="background: #eeeeee;border: none;">
                             <table style="border-spacing:5px; ">
                                 <tr>
-                                    <td id="latest-cell-8" style="height: 20px;"></td>
+                                    <td id="latest-cell-5" style="height: 20px;"></td>
                                 </tr>
                                 <tr>
-                                    <td id="latest-cell-9" style="height: 20px;"></td>
+                                    <td id="latest-cell-6"style="height: 20px;"></td>
                                 </tr>
                             </table>
                         </td>
@@ -760,18 +760,18 @@
 
                     </tr>
                     <tr>
-                        <td id="latest-cell-10"></td>
-                        <td id="latest-cell-11"></td>
+                        <td id="latest-cell-7"></td>
+                        <td id="latest-cell-8" ></td>
                         <td style="background: #eeeeee;border: none;">
                             <table style="border-spacing:5px; ">
                                 <tr>
-                                    <td id="latest-cell-12" style="height: 12px;"></td>
+                                    <td id="latest-cell-9" style="height: 12px;"></td>
                                 </tr>
                                 <tr>
-                                    <td id="latest-cell-13" style="height: 12px;"></td>
+                                    <td id="latest-cell-10"  style="height: 12px;"></td>
                                 </tr>
                                 <tr>
-                                    <td id="latest-cell-14" style="height: 12px;"></td>
+                                    <td id="latest-cell-11"  style="height: 12px;"></td>
                                 </tr>
                             </table>
                         </td>
@@ -781,7 +781,39 @@
             </div>
         </div>
     </div>
+      <div class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+                <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10"
+                        cx="65.1" cy="65.1" r="62.1"/>
+                <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round"
+                          stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+            </svg>
+            <p style="color: green;">Article Posted Successfully</p>
 
+        </div>
+    </div>
+    {% if registration_success %}
+        <script>
+            let modalBtn = document.getElementById("modal-btn")
+            let modal = document.querySelector(".modal")
+            let closeBtn = document.querySelector(".close-btn")
+            window.onload = function () {
+                modal.style.display = "block"
+            };
+
+            closeBtn.onclick = function () {
+                modal.style.display = "none"
+            }
+            window.onclick = function (e) {
+                if (e.target == modal) {
+                    modal.style.display = "none"
+                }
+            }
+        </script>
+
+    {% endif %}
     <br>
     {% include 'footer.html' %}
 
