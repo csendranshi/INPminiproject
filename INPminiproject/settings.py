@@ -101,6 +101,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'news_database',
+#         'USER': 'root',
+#         'PASSWORD': '12345',
+#         'PORT': '3306',
+#         'HOST': '127.0.0.1'
+#
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
