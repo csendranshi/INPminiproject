@@ -62,72 +62,270 @@
 <div class="world-container">
   <div id="map" ></div>
   <div id="world-main1">
-    <img class="world-image-css-main"
-    src="https://ichef.bbci.co.uk/news/800/cpsprodpb/15D07/production/_114915398_tv063800890.jpg"alt="">
+      {% for world_story in world_stories %}
+                {% if world_story.section == 'world-cell-1' %}
+                    <a href="{% url 'article' world_story.category world_story.section world_story.news_unique_id %}"
+                       style="text-decoration: none">
+                    {% if world_story.image != '' %}
 
+                        <img class="world-image-css-main"
+                             src="{{ world_story.image }}"
+                             alt="">
+                          {% else %}
+                        <img class="world-image-css-main"
+
+                                 src="{{ world_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
 
   </div>
   <div id="world-main2">
-      <img class="world-image-css-main" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/A425/production/_114912024_92ea9faf-fc9c-41e4-a385-e651bd01e764.jpg" alt="">
+      {% for world_story in world_stories %}
+                {% if world_story.section == 'world-cell-2' %}
+                    <a href="{% url 'article' world_story.category world_story.section world_story.news_unique_id %}"
+                       style="text-decoration: none">
+                    {% if world_story.image != '' %}
 
+                        <img class="world-image-css-main"
+                             src="{{ world_story.image }}"
+                             alt="">
+                          {% else %}
+                        <img class="world-image-css-main"
 
+                                 src="{{ world_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                    </a>
 
+                {% endif %}
+
+            {% endfor %}
   </div>
   <div id="world-content1">
-    <img class="world-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/168BF/production/_114915329_3227189c-273c-4cad-88a6-e9c1594ca00f.jpg" alt="">
-    <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="world-p-tag-css">
-             stages released in Yemen 'prisoner swap' </p>
+    {% for world_story in world_stories %}
+                {% if world_story.section == 'world-cell-3' %}
+                    <a href="{% url 'article' world_story.category world_story.section world_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if world_story.image != '' %}
+
+                            <img class="world-image-css-main"
+
+                                 src="{{ world_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="world-image-css-main"
+
+                                 src="{{ world_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="tech-p-tag-css">
+               {{ world_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
       </div>
   <div id="world-content2">
-    <img class="world-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/10E65/production/_114912296_diyabanzareuters.jpg" alt="">
-    <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="world-p-tag-css">
-            France fines Congo activist for seizing museum artefact</p>
+   {% for world_story in world_stories %}
+                {% if world_story.section == 'world-cell-4' %}
+                    <a href="{% url 'article' world_story.category world_story.section world_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if world_story.image != '' %}
 
+                            <img class="world-image-css-main"
+
+                                 src="{{ world_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="world-image-css-main"
+
+                                 src="{{ world_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="tech-p-tag-css">
+               {{ world_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
   </div>
   <div id="world-content3">
-    <img class="world-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/12052/production/_114901837_38b972ca-c47f-41cb-adc5-a52f2d780838.jpg" alt="">
-    <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="world-p-tag-css">Helicopters carrying wounded troops collide</p>
+      {% for world_story in world_stories %}
+                {% if world_story.section == 'world-cell-5' %}
+                    <a href="{% url 'article' world_story.category world_story.section world_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if world_story.image != '' %}
+
+                            <img class="world-image-css-main"
+
+                                 src="{{ world_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="world-image-css-main"
+
+                                 src="{{ world_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="tech-p-tag-css">
+               {{ world_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
 
   </div>
   <div id="world-content4">
-    <img class="world-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/10194/production/_114904956_mediaitem114902284.jpg" alt="">
-    <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="world-p-tag-css">Thousands gather in Bangkok as king returns to country</p>
+    {% for world_story in world_stories %}
+                {% if world_story.section == 'world-cell-6' %}
+                    <a href="{% url 'article' world_story.category world_story.section world_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if world_story.image != '' %}
 
+                            <img class="world-image-css-main"
+
+                                 src="{{ world_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="world-image-css-main"
+
+                                 src="{{ world_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="tech-p-tag-css">
+               {{ world_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
   </div>
   <div id="world-content5">
-    <img class="world-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/8E7D/production/_114877463_6e03f974-d9dd-4641-bbdf-bcb886039d93.jpg" alt="">
-    <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="world-p-tag-css">
-              The BTS fans investing in their favourite K-pop band</p>
+    {% for world_story in world_stories %}
+                {% if world_story.section == 'world-cell-7' %}
+                    <a href="{% url 'article' world_story.category world_story.section world_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if world_story.image != '' %}
 
+                            <img class="world-image-css-main"
+
+                                 src="{{ world_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="world-image-css-main"
+
+                                 src="{{ world_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="world-p-tag-css">
+               {{ world_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
   </div>
   <div id="world-content6">
-    <img class="world-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/53B7/production/_114913412_folioreu_cut.jpg" alt="">
-    <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="world-p-tag-css">
+   {% for world_story in world_stories %}
+                {% if world_story.section == 'world-cell-8' %}
+                    <a href="{% url 'article' world_story.category world_story.section world_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if world_story.image != '' %}
 
-            Shakespeare First Folio fetches a record $10m at auction</p>
+                            <img class="world-image-css-main"
 
+                                 src="{{ world_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="world-image-css-main"
+
+                                 src="{{ world_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="world-p-tag-css">
+               {{ world_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
   </div>
 
   <div id="world-content7">
-    <img class="world-image-css" src="https://i.gadgets360cdn.com/large/iphone_11_back_image_1602673044747.jpg" alt="">
-    <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="world-p-tag-css">iPhone 11, iPhone 11 Pro to Get Huge Price Discounts During Amazon, Flipkart Sales</p>
+    {% for world_story in world_stories %}
+                {% if world_story.section == 'world-cell-9' %}
+                    <a href="{% url 'article' world_story.category world_story.section world_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if world_story.image != '' %}
 
+                            <img class="world-image-css-main"
+
+                                 src="{{ world_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="world-image-css-main"
+
+                                 src="{{ world_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="world-p-tag-css">
+               {{ world_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
 
   </div>
-    <div id="world-content8">
-    <img class="world-image-css" src="https://ichef.bbci.co.uk/news/800/cpsprodpb/1A2A/production/_114889660_mediaitem114889659.jpg" alt="">
-    <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="world-p-tag-css">
-             Karabakh war leaves civilians shell-shocked and bitter</p>
+<div id="world-content8">
+   {% for world_story in world_stories %}
+                {% if world_story.section == 'world-cell-10' %}
+                    <a href="{% url 'article' world_story.category world_story.section world_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if world_story.image != '' %}
 
+                            <img class="world-image-css-main"
+
+                                 src="{{ world_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="world-image-css-main"
+
+                                 src="{{ world_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="world-p-tag-css">
+               {{ world_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
   </div>
+
        {% include 'footer.html' %}
 </div>
 <!--<script type="text/javascript">!function(t,e){t.artibotApi={l:[],t:[],on:function(){this.l.push(arguments)},trigger:function(){this.t.push(arguments)}};var a=!1,i=e.createElement("script");i.async=!0,i.type="text/javascript",i.src="https://app.artibot.ai/loader.js",e.getElementsByTagName("head").item(0).appendChild(i),i.onreadystatechange=i.onload=function(){if(!(a||this.readyState&&"loaded"!=this.readyState&&"complete"!=this.readyState)){new window.ArtiBot({i:"b5a74815-0d08-4784-8ded-c259a0b5db58"});a=!0}}}(window,document);</script>-->
