@@ -26,7 +26,7 @@ def OTPgen():
 
 def EditContent(string):
     new_string = string.replace("'", "\\'")
-    new_string = new_string.replace("\"", "\\\"")
+    # new_string = new_string.replace("\"", "\\\"")
     return new_string
 
 

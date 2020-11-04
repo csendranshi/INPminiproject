@@ -128,14 +128,31 @@
 
         <div id="homepage-content1">
 
-            {#            <div class="home-page-cont">#}
+           {% for latest_story in latest_stories %}
+                {% if latest_story.section == 'latest-cell-2' %}
+                    <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if latest_story.image != '' %}
 
-            <img class="homepage-image-css"
-                 src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/gipta_gopinath_reuters_1200x768.jpeg?ncCDhhvcujj7_uWw1NHCoiB4oFUYKcHD&size=770:433"
-                 alt="">
-            <p style="font-family: 'Lato',serif;
-             " class="homepage-p-tag-css">
-                Gita Gopinath explains IMF’s growth forecast for India and the road ahead</p>
+                            <img class="homepage-image-css"
+
+                                 src="{{ latest_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="homepage-image-css"
+
+                                 src="{{ latest_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class=latest-p-tag-css">
+               {{ latest_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
         </div>
 
 
