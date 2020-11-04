@@ -137,7 +137,7 @@ def posts_view(request, *args, **kwargs):
                                         addotp])
                         print('business')
                     elif article_category.split('-')[0] == 'world':
-                        cursor.execute('CALL news_database.update_world_grid("%s","%s","%s","%s","%s","%s","%s",%s)',
+                        cursor.execute('CALL news_database.update_world_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
                                        [article_title, article_file_picture, article_image_link,
                                         EditContent(article_content),
                                         dict_of_user_details['email_id'], article_category, article_section,
