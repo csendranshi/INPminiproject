@@ -16,7 +16,7 @@ def home_view(request, *args, **kwargs):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM top_stories")
         row = cursor.fetchall()
-    print(row)
+
     for i in row:
         top_story = {
             'id':i[8],
