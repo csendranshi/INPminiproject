@@ -6,28 +6,117 @@
 
 <div class="health-container">
   <div id="health-main1">
+      {% for health_story in health_stories %}
+                {% if health_story.section == 'health-cell-3' %}
+                    <a href="{% url 'article' health_story.category health_story.section health_story.news_unique_id %}"
+                       style="text-decoration: none">
+                        {% if health_story.image != '' %}
 
-    <img style="object-fit: cover;" class="health-image-css-main"
-    src="https://c.ndtvimg.com/2019-04/1kotmaj_carbs_625x300_16_April_19.jpg"
-    alt="">
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
+
+
+
+
 
 
   </div>
   <div id="health-main2">
+      {% for health_story in health_stories %}
+                {% if health_story.section == 'health-cell-2' %}
+                    <a href="{% url 'article' health_story.category health_story.section health_story.news_unique_id %}"
+                       style="text-decoration: none">
+                        {% if health_story.image != '' %}
 
-    <img class="health-image-css-main" src="https://c.ndtvimg.com/2020-08/pvh7odd_arthritis-_625x300_18_August_20.jpg" alt="">
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
+
+    
   </div>
   <div id="health-content1">
-    <img class="health-image-css" src="https://c.ndtvimg.com/2020-10/alom7cr_covid19-_625x300_14_October_20.jpg" alt="">
-    <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="health-p-tag-css">
-              Coronavirus Prevention: Is It Important For Kids To Wear A Mask When Outside? Know Expert Opinion</p>
+      {% for health_story in health_stories %}
+                {% if health_story.section == 'health-cell-4' %}
+                    <a href="{% url 'article' health_story.category health_story.section health_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if health_story.image != '' %}
+
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="health-p-tag-css">
+               {{ health_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
+    
       </div>
   <div id="health-content2">
-    <img class="health-image-css" src="https://c.ndtvimg.com/2018-12/8qu9f47o_gluten-free_625x300_11_December_18.jpg" alt="">
-    <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="health-p-tag-css">
-             Gluten-Free Diet: These Simple And Nutritious Snacks Can Help You Beat Hunger Pangs</p>
+    {% for health_story in health_stories %}
+                {% if health_story.section == 'health-cell-5' %}
+                    <a href="{% url 'article' health_story.category health_story.section health_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if health_story.image != '' %}
+
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="health-p-tag-css">
+               {{ health_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
 
   </div>
   <div id="health-content3">
@@ -38,38 +127,146 @@
  <script src="https://tools.cdc.gov/1M1B"></script>
   </div>
   <div id="health-content4">
-    <img class="health-image-css" src="https://c.ndtvimg.com/2020-10/3frhji84_mamata-banerjee-durga-puja-covid19_625x300_12_October_20.jpg" alt="">
-    <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="health-p-tag-css">Mamata Banerjee Slashes COVID-19 Test Prices Ahead Of Durga Puja</p>
+   {% for health_story in health_stories %}
+                {% if health_story.section == 'health-cell-1' %}
+                    <a href="{% url 'article' health_story.category health_story.section health_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if health_story.image != '' %}
+
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="health-p-tag-css">
+               {{ health_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
 
   </div>
   <div id="health-content5">
-    <img class="health-image-css" src="https://c.ndtvimg.com/2020-05/v6b24nb_arthritis_625x300_20_May_20.jpg" alt="">
-    <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="health-p-tag-css">
-              World Arthritis Day: Living With Arthritis: Diet, Exercise And Lifestyle Tips To Follow</p>
+    {% for health_story in health_stories %}
+                {% if health_story.section == 'health-cell-6' %}
+                    <a href="{% url 'article' health_story.category health_story.section health_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if health_story.image != '' %}
+
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="health-p-tag-css">
+               {{ health_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
 
   </div>
   <div id="health-content6">
-    <img class="health-image-css" src="https://c.ndtvimg.com/2020-10/l0cbgoho_eyes-_625x300_07_October_20.jpg" alt="">
-    <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="health-p-tag-css">
-            World Sight Day 2020: Blink More Often To Prevent Computer Vision Syndrome; Know More Expert Tips
-            </p>
+    {% for health_story in health_stories %}
+                {% if health_story.section == 'health-cell-7' %}
+                    <a href="{% url 'article' health_story.category health_story.section health_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if health_story.image != '' %}
+
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="health-p-tag-css">
+               {{ health_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
 
   </div>
   <div id="health-content7">
-    <img class="health-image-css" src="https://c.ndtvimg.com/2020-07/jtqrveko_heart-failure-_625x300_23_July_20.jpg" alt="">
-    <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="health-p-tag-css">
-      Heart Failure Vs Heart Attack: Know The Difference
-             </p>
+   {% for health_story in health_stories %}
+                {% if health_story.section == 'health-cell-8' %}
+                    <a href="{% url 'article' health_story.category health_story.section health_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if health_story.image != '' %}
+
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="health-p-tag-css">
+               {{ health_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
 
   </div>
   <div id="health-content8">
-    <img class="health-image-css" src="https://c.ndtvimg.com/2020-10/g1jsre_cold-_625x300_06_October_20.jpg" alt="">
-    <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="health-p-tag-css">COVID-19 And Flu: This Flu Season, Be Prepared Rather Than Being Worried, Suggest Experts</p>
+    {% for health_story in health_stories %}
+                {% if health_story.section == 'health-cell-9' %}
+                    <a href="{% url 'article' health_story.category health_story.section health_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if health_story.image != '' %}
+
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="health-image-css-main"
+
+                                 src="{{ health_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="health-p-tag-css">
+               {{ health_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
 
 
   </div>

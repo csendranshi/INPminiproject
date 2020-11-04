@@ -1,8 +1,25 @@
+from django.db import connection
 from django.shortcuts import render
 
 
 # Create your views here.
 def health_view(request, *args, **kwargs):
+    with connection.cursor() as cursor:
+        cursor.execute('SELECT * from health_grid')
+        rows = cursor.fetchall()
+
+        list_of_health = []
+        for row in rows:
+            health_dict = {
+                'section': row[0],
+                'title': row[1],
+                'image': row[2],
+                'image_link': row[3],
+                'category':row[6],
+                'news_unique_id':row[8]
+            }
+            list_of_health.append(health_dict)
+        print(list_of_health)
     if request.session.has_key('logged_in'):
         print(request.session.has_key('logged_in'))
         dict_of_user_details = {
@@ -16,6 +33,7 @@ def health_view(request, *args, **kwargs):
             'profile_picture': request.session['profile_picture']
 
         }
-        context_of_top_stories = {'user': dict_of_user_details}
+        context_of_top_stories = {'user': dict_of_user_details, 'health_stories': list_of_health}
         return render(request, "health.html", context_of_top_stories)
-    return render(request, "health.html", {})
+    context = {'health_stories': list_of_health}
+    return render(request, "health.html", context)
