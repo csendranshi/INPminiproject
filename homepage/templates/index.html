@@ -12,6 +12,93 @@
 </head>
 <body>
 {% block content %}
+    <style>
+        .weather-style-css {
+            width: 400px;
+            height: 100px;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.13);
+            display: flex;
+            flex-direction: row;
+            color: #eeeeee;
+            padding: 10px;
+            justify-content: space-evenly;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        {# 0aa588bd8889daf2db559988cb3781c8 #}
+
+        function ChennaiWeather(string) {
+            var cityName, temperature, icon
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const responseText = this.responseText
+                    parser = new DOMParser();
+                    xmlDoc = parser.parseFromString(responseText, "text/xml");
+                    cityName = xmlDoc.getElementsByTagName("name")[0].childNodes[0].nodeValue
+                    temperature = xmlDoc.getElementsByTagName("temp_c")[0].childNodes[0].nodeValue
+                    icon = xmlDoc.getElementsByTagName("icon")[0].childNodes[0].nodeValue
+                    document.getElementById("ChennaiIcon").src = icon;
+                    document.getElementById("ChennaiTemp").innerText = temperature + "ºC";
+                    document.getElementById("ChennaiName").innerText = cityName;
+
+                }
+            };
+            xhttp.open("GET", "http://api.weatherapi.com/v1/current.xml?key=946f040cb3aa4c0f93b105344200611&q=" + string, true);
+            xhttp.send();
+
+        }
+        function KolkataWeather(string) {
+            var cityName, temperature, icon
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const responseText = this.responseText
+                    parser = new DOMParser();
+                    xmlDoc = parser.parseFromString(responseText, "text/xml");
+                    cityName = xmlDoc.getElementsByTagName("name")[0].childNodes[0].nodeValue
+                    temperature = xmlDoc.getElementsByTagName("temp_c")[0].childNodes[0].nodeValue
+                    icon = xmlDoc.getElementsByTagName("icon")[0].childNodes[0].nodeValue
+                    document.getElementById("KolkataIcon").src = icon;
+                    document.getElementById("KolkataTemp").innerText = temperature + "ºC";
+                    document.getElementById("KolkataName").innerText = cityName;
+
+                }
+            };
+            xhttp.open("GET", "http://api.weatherapi.com/v1/current.xml?key=946f040cb3aa4c0f93b105344200611&q=" + string, true);
+            xhttp.send();
+
+        }
+
+        function MumbaiWeather(string) {
+            var cityName, temperature, icon
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const responseText = this.responseText
+                    parser = new DOMParser();
+                    xmlDoc = parser.parseFromString(responseText, "text/xml");
+                    cityName = xmlDoc.getElementsByTagName("name")[0].childNodes[0].nodeValue
+                    temperature = xmlDoc.getElementsByTagName("temp_c")[0].childNodes[0].nodeValue
+                    icon = xmlDoc.getElementsByTagName("icon")[0].childNodes[0].nodeValue
+                    document.getElementById("MumbaiIcon").src = icon;
+                    document.getElementById("MumbaiTemp").innerText = temperature + "ºC";
+                    document.getElementById("MumbaiName").innerText = cityName;
+
+                }
+            };
+            xhttp.open("GET", "http://api.weatherapi.com/v1/current.xml?key=946f040cb3aa4c0f93b105344200611&q=" + string, true);
+            xhttp.send();
+
+        }
+
+        MumbaiWeather("Mumbai")
+        ChennaiWeather("Chennai")
+        KolkataWeather("Kolkata")
+    </script>
     <audio controls autoplay hidden>
         <source src="{% static '/assets/2020-07-30_-_Conspiracy_Theory_-_David_Fesliyan.mp3' %}" type="audio/ogg">
 
@@ -73,23 +160,44 @@
         </main>
         <main id="homepage-grid-main2">
             <br>
-            <!-- weather widget start --><a style="margin: 10px;" target="blank"
-                                            href="https://www.booked.net/weather/mumbai-26831"><img
-                src="https://w.bookcdn.com/weather/picture/32_26831_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
-                alt="booked.net"/></a><!-- weather widget end -->
-            <!-- weather widget start --><a style="margin: 10px;" target="_blank"
-                                            href="https://www.booked.net/weather/chennai-18036"><img
-                src="https://w.bookcdn.com/weather/picture/32_18036_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
-                alt="booked.net"/></a><!-- weather widget end -->
-            <br>
-            <!-- weather widget start --><a style="margin: 10px;" target="_blank"
-                                            href="https://www.booked.net/weather/kolkata-26871"><img
-                src="https://w.bookcdn.com/weather/picture/32_26871_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
-                alt="booked.net"/></a><!-- weather widget end -->
-            <!-- weather widget start --><a style="margin: 10px;" target="_blank"
-                                            href="https://www.booked.net/weather/new-delhi-18038"><img
-                src="https://w.bookcdn.com/weather/picture/32_18038_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
-                alt="booked.net"/></a><!-- weather widget end -->
+            <!-- weather widget start -->
+            <div class="weather-style-css">
+                <img id="MumbaiIcon" src="" alt="">
+                <h4 style="font-family: Lato,serif;font-size: 30px;margin: 20px 0px;" id="MumbaiName"></h4>
+
+                <h3 style="font-family: Lato,serif;font-size: 30px;margin: 20px 0px;" id="MumbaiTemp"></h3>
+            </div>
+            <div class="weather-style-css">
+                <img id="ChennaiIcon" src="" alt="">
+                <h4 style="font-family: Lato,serif;font-size: 30px;margin: 20px 0px;" id="ChennaiName"></h4>
+
+                <h3 style="font-family: Lato,serif;font-size: 30px;margin: 20px 0px;" id="ChennaiTemp"></h3>
+            </div>
+              <div class="weather-style-css">
+                <img id="KolkataIcon" src="" alt="">
+                <h4 style="font-family: Lato,serif;font-size: 30px;margin: 20px 0px;" id="KolkataName"></h4>
+
+                <h3 style="font-family: Lato,serif;font-size: 30px;margin: 20px 0px;" id="KolkataTemp"></h3>
+            </div>
+            {#            <a style="margin: 10px;" target="blank"#}
+            {#               href="https://www.booked.net/weather/mumbai-26831"><img#}
+            {#                    src="https://w.bookcdn.com/weather/picture/32_26831_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"#}
+            {#                    alt="booked.net"/></a>#}
+            <!-- weather widget end -->
+            <!-- weather widget start -->
+            {#            <a style="margin: 10px;" target="_blank"#}
+            {#               href="https://www.booked.net/weather/chennai-18036"><img#}
+            {#                    src="https://w.bookcdn.com/weather/picture/32_18036_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"#}
+            {#                    alt="booked.net"/></a><!-- weather widget end -->#}
+            {#            <br>#}
+            {#            <!-- weather widget start --><a style="margin: 10px;" target="_blank"#}
+            {#                                            href="https://www.booked.net/weather/kolkata-26871"><img#}
+            {#                src="https://w.bookcdn.com/weather/picture/32_26871_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"#}
+            {#                alt="booked.net"/></a><!-- weather widget end -->#}
+            {#            <!-- weather widget start --><a style="margin: 10px;" target="_blank"#}
+            {#                                            href="https://www.booked.net/weather/new-delhi-18038"><img#}
+            {#                src="https://w.bookcdn.com/weather/picture/32_18038_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"#}
+            {#                alt="booked.net"/></a><!-- weather widget end -->#}
 
         </main>
         {# The Below is The Top Stories Scrollabel#}
@@ -324,7 +432,7 @@
         {# content 3 end#}
         <div id="second-content3">
             <div class="card1">
-                 {% for latest_story in latest_stories %}
+                {% for latest_story in latest_stories %}
                     {% if latest_story.section == 'latest-cell-9' %}
                         <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
                            style="text-decoration: none;">
