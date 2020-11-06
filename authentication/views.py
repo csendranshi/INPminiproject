@@ -58,11 +58,11 @@ def auth(request):
                 return render(request, 'Register.html',
                               {'message': 'Email Id Is Already Registered', 'userdetails': userdetails})
             else:
-                with connection.cursor() as cursor:
-                    print()
-                    cursor.execute('CALL news_database.insert_personal_details(%s,%s,%s,%s,%s,%s,%s)',
-                                   [register_firstname, register_lastname, register_emailId, hashed_password,
-                                    register_date, register_gender, register_phone_no])
+                # with connection.cursor() as cursor:
+                #     print()
+                #     cursor.execute('CALL news_database.insert_personal_details(%s,%s,%s,%s,%s,%s,%s)',
+                #                    [register_firstname, register_lastname, register_emailId, hashed_password,
+                #                     register_date, register_gender, register_phone_no])
                     context = {"registration_success": True}
                     return render(request, 'Login.html', context)
 
