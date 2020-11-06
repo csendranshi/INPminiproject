@@ -27,6 +27,10 @@ def search_view(request, *args, **kwargs):
                                [search_text])
                 rows = cursor.fetchall()
                 print(rows)
+                if rows == ():
+                    context_of_top_stories = {'user': dict_of_user_details,
+                                              'error_message': True}
+                    return render(request, "search.html", context_of_top_stories)
                 list_of_stories = []
                 for row in rows:
                     stories_dict = {
@@ -39,6 +43,7 @@ def search_view(request, *args, **kwargs):
                     }
                     list_of_stories.append(stories_dict)
 
-            context_of_top_stories = {'user': dict_of_user_details, 'search_stories': list_of_stories}
+            context_of_top_stories = {'user': dict_of_user_details, 'search_stories': list_of_stories,
+                                      'show_search_svg': False}
             return render(request, "search.html", context_of_top_stories)
-    return render(request, "search.html", {})
+    return render(request, "search.html", {'show_search_svg': True})

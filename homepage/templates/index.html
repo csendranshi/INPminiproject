@@ -102,7 +102,8 @@
                         <tr>
                             {% for top_story in top_stories %}
                                 <a style="text-decoration: none;"
-                                   href="{% url 'article' top_story.category top_story.section top_story.news_unique_id %}" id="myBtn" class="row-for-each-story">
+                                   href="{% url 'article' top_story.category top_story.section top_story.news_unique_id %}"
+                                   id="myBtn" class="row-for-each-story">
                         <span class="image-position-each-row">
                             {% if top_story.image == '' %}
                                 <img class="image-for-row" src="{{ top_story.image_link }}" alt="">
@@ -128,7 +129,7 @@
 
         <div id="homepage-content1">
 
-           {% for latest_story in latest_stories %}
+            {% for latest_story in latest_stories %}
                 {% if latest_story.section == 'latest-cell-2' %}
                     <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
                        style="text-decoration: none;">
@@ -146,7 +147,7 @@
                         {% endif %}
                         <p style="font-family: 'Lato',serif;
              " class="homepage-p-tag-css">
-               {{ latest_story.title }}</p>
+                            {{ latest_story.title }}</p>
                     </a>
 
                 {% endif %}
@@ -186,7 +187,7 @@
                         {% endif %}
                         <p style="font-family: 'Lato',serif;
              " class="homepage-p-tag-css">
-               {{ latest_story.title }}</p>
+                            {{ latest_story.title }}</p>
                     </a>
 
                 {% endif %}
@@ -194,7 +195,7 @@
             {% endfor %}
         </div>
         <div id="homepage-second-grid-main2">
-           {% for latest_story in latest_stories %}
+            {% for latest_story in latest_stories %}
                 {% if latest_story.section == 'latest-cell-4' %}
                     <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
                        style="text-decoration: none;">
@@ -212,7 +213,7 @@
                         {% endif %}
                         <p style="font-family: 'Lato',serif;
              " class="homepage-p-tag-css">
-               {{ latest_story.title }}</p>
+                            {{ latest_story.title }}</p>
                     </a>
 
                 {% endif %}
@@ -223,28 +224,49 @@
         <div id="homepage-second-grid-main3">
 
             <div class="card1">
-                <div class="con">
+                {% for latest_story in latest_stories %}
+                    {% if latest_story.section == 'latest-cell-5' %}
+                        <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
+                           style="text-decoration: none;">
+                            <div class="con">
 
-                    <p>Al Jazeera Penalised for Showing Wrong Map of India, Off Air for 5 Days</p>
-                </div>
+                                <p style="text-decoration: none;color: #eeeeee;">{{ latest_story.title }}</p>
+                            </div>
+
+
+                        </a>
+
+                    {% endif %}
+
+                {% endfor %}
 
 
             </div>
 
             <div class="card1">
-                <div class="con">
+                {% for latest_story in latest_stories %}
+                    {% if latest_story.section == 'latest-cell-6' %}
+                        <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
+                           style="text-decoration: none;">
+                            <div class="con">
 
-                    <p>Former UK editor Rebekah Brooks said 'easy' to hack phones: witness</p>
-                </div>
+                                <p style="text-decoration: none;color: #eeeeee;">{{ latest_story.title }}</p>
+                            </div>
+
+
+                        </a>
+
+                    {% endif %}
+
+                {% endfor %}
             </div>
         </div>
-
 
 
         {# content 1 #}
         <div id="second-content1">
 
-           {% for latest_story in latest_stories %}
+            {% for latest_story in latest_stories %}
                 {% if latest_story.section == 'latest-cell-7' %}
                     <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
                        style="text-decoration: none;">
@@ -262,7 +284,7 @@
                         {% endif %}
                         <p style="font-family: 'Lato',serif;
              " class="homepage-p-tag-css">
-               {{ latest_story.title }}</p>
+                            {{ latest_story.title }}</p>
                     </a>
 
                 {% endif %}
@@ -290,7 +312,7 @@
                         {% endif %}
                         <p style="font-family: 'Lato',serif;
              " class="homepage-p-tag-css">
-               {{ latest_story.title }}</p>
+                            {{ latest_story.title }}</p>
                     </a>
 
                 {% endif %}
@@ -302,25 +324,57 @@
         {# content 3 end#}
         <div id="second-content3">
             <div class="card1">
-                <div class="con">
+                 {% for latest_story in latest_stories %}
+                    {% if latest_story.section == 'latest-cell-9' %}
+                        <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
+                           style="text-decoration: none;">
+                            <div class="con">
 
-                    <p>India among five most dangerous countries for journalists in 2013: report</p>
-                </div>
+                                <p style="text-decoration: none;color: #eeeeee;">{{ latest_story.title }}</p>
+                            </div>
 
+
+                        </a>
+
+                    {% endif %}
+
+                {% endfor %}
 
             </div>
 
             <div class="card1">
-                <div class="con">
+                {% for latest_story in latest_stories %}
+                    {% if latest_story.section == 'latest-cell-10' %}
+                        <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
+                           style="text-decoration: none;">
+                            <div class="con">
 
-                    <p>IOC criticises BCCI for attacking press freedom</p>
-                </div>
+                                <p style="text-decoration: none;color: #eeeeee;">{{ latest_story.title }}</p>
+                            </div>
+
+
+                        </a>
+
+                    {% endif %}
+
+                {% endfor %}
             </div>
             <div class="card1">
-                <div class="con">
+                {% for latest_story in latest_stories %}
+                    {% if latest_story.section == 'latest-cell-11' %}
+                        <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
+                           style="text-decoration: none;">
+                            <div class="con">
 
-                    <p>Security head 'burnt stuff' on day News of the World shut</p>
-                </div>
+                                <p style="text-decoration: none;color: #eeeeee;">{{ latest_story.title }}</p>
+                            </div>
+
+
+                        </a>
+
+                    {% endif %}
+
+                {% endfor %}
             </div>
         </div>
 

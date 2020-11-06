@@ -1,4 +1,6 @@
 {% extends 'Navbar.html' %}
+{% load static %}
+
 
 
 {% block content %}
@@ -85,41 +87,63 @@
 
         }
 
+        .flex-display-message {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color:#eeeeee;
+            font-family: Lato,serif;
+        }
+
     </style>
     <form method="POST">
         {% csrf_token %}
-        <input type="text" name="search_text" placeholder="Search News" class="profile-auth-form-input">
+        <input type="text" name="search_text" placeholder="Search News" class="profile-auth-form-input" required>
         <input type="submit" value="Search" class="profile-auth-form-button">
     </form>
 
     {% for search_story in search_stories %}
-         <a href="{% url 'article' search_story.category search_story.section search_story.news_unique_id %}"
-                       style="text-decoration: none;">
-        <div class="admins_view_all_users">
-            {% if search_story.image != '' %}
+        <a href="{% url 'article' search_story.category search_story.section search_story.news_unique_id %}"
+           style="text-decoration: none;">
+            <div class="admins_view_all_users">
+                {% if search_story.image != '' %}
 
-                <img class="admins_view_all_users-image"
+                    <img class="admins_view_all_users-image"
 
-                     src="{{ search_story.image }}"
-                     alt="">
-            {% else %}
-                <img class="admins_view_all_users-image"
+                         src="{{ search_story.image }}"
+                         alt="">
+                {% else %}
+                    <img class="admins_view_all_users-image"
 
-                     src="{{ search_story.image_link }}"
-                     alt="">
-            {% endif %}
-
-
+                         src="{{ search_story.image_link }}"
+                         alt="">
+                {% endif %}
 
 
-            <p >
-                {{ search_story.title }}
 
-            </p>
-        </div>
-         </a>
+
+                <p style="font-family: Lato,serif">
+                    {{ search_story.title }}
+
+                </p>
+            </div>
+        </a>
     {% endfor %}
+    {% if show_search_svg %}
+        <div class="flex-display-message">
+            <img width="600"style="margin: 0px auto;" src="{% static '/assets/web_Search.svg' %}" alt="">
+            <h1> Search Some News Now!</h1>
+        </div>
 
+
+    {% endif %}
+    {% if error_message %}
+        <div class="flex-display-message">
+            <img width="600" src="{% static '/assets/not_found_image.svg' %}" alt="">
+            <h1> Not Found What You Were Searching For, You Might Find it Later!</h1>
+        </div>
+    {% endif %}
 
     {% include 'footer.html' %}
 {% endblock %}

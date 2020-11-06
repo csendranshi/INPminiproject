@@ -57,19 +57,22 @@
         }
 
         #article-content1 {
-            background: #3a4750;
+            background: #303841;
             grid-area: content1;
             height: 100vh;
+            display: none;
             border-radius: var(--main-radius);
             padding-top: var(--main-padding);
+            z-index: -100;
         }
 
         #article-content {
-            background: #3a4750;
+            background: #303841;
             grid-area: content;
             height: 100vh;
             border-radius: var(--main-radius);
             padding-top: var(--main-padding);
+            z-index: -100;
         }
 
         .article-p-tag {
@@ -115,25 +118,24 @@
             <h1 style="font-family: 'Montserrat', sans-serif;"> {{ article_dictionary.title }}</h1>
             <div style="margin: 20px auto !important;">
 
-                  {% if article_dictionary.image != '' %}
+                {% if article_dictionary.image != '' %}
 
-                          <img style="width: 100%; max-width: 600px;" src="{{ article_dictionary.image }}"
-                                                            align=left/>
-                        {% else %}
-                              <img style="width: 100%; max-width: 600px;" src="{{ article_dictionary.image_link }}"
-                                                            align=left/>
-                        {% endif %}
-
+                    <img style="width: 100%; max-width: 600px;" src="{{ article_dictionary.image }}"
+                         align=left/>
+                {% else %}
+                    <img style="width: 100%; max-width: 600px;" src="{{ article_dictionary.image_link }}"
+                         align=left/>
+                {% endif %}
 
 
             </div>
             <p class="article-p-tag">
                 {% autoescape off %}
-               {{ article_dictionary.content }}
+                    {{ article_dictionary.content }}
                 {% endautoescape %}
             </p></div>
-        <div id="article-content">sidebar 1</div>
-        <div id="article-content1">sidebar 2</div>
+        <div id="article-content"></div>
+        <div id="article-content1"></div>
 
 
     </div>
