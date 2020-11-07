@@ -1,26 +1,29 @@
 from django.db import connection
 from django.http import HttpResponse
 from django.shortcuts import render
-import xml.etree.ElementTree as gfg
 import os
+import boto3
+from botocore.exceptions import NoCredentialsError
+import time
+
+
+
 
 def GenerateXML(email_id):
-
     with connection.cursor() as cursor:
         cursor.execute('CALL news_database.get_the_previous_posts_of_user(%s)', [email_id])
         rows = cursor.fetchall()
 
         list_of_prev_posts = []
-        os.remove("./templates/PrevPost.xml")
-        with open("./templates/PrevPost.xml", "a") as files:
+        with open("PrevPost.xml", "a") as files:
             files.write(
-                """<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="{% url './templates/PrevPost.xsl' %}"?>\n""")
+                """<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="./PrevPost.xsl"?>""")
             files.write("<prevpost>")
             for post in rows:
                 files.write("<singlepost>\n")
-                files.write(f"      <category>{post[2]}</category>\n")
-                files.write(f"      <title>{post[1]}</title>\n")
-                files.write(f"      <id>{post[0]}</id>\n")
+                files.write(f"<category>{post[2]}</category>\n")
+                files.write(f"<title>{post[1]}</title>\n")
+                files.write(f"<id>{post[0]}</id>\n")
                 files.write("</singlepost>\n")
 
                 prev_posts = {
@@ -34,9 +37,10 @@ def GenerateXML(email_id):
                 list_of_prev_posts.append(prev_posts)
             files.write("</prevpost>")
 
-def prevpostxsl(request, *args, **kwargs):
 
+def prevpostxsl(request, *args, **kwargs):
     return HttpResponse(open('./templates/PrevPost.xsl').read())
+
 
 # Create your views here.
 def prevpost_view(request, *args, **kwargs):
@@ -70,6 +74,6 @@ def prevpost_view(request, *args, **kwargs):
             list_of_prev_posts.append(prev_posts)
 
         context_of_top_stories = {'user': dict_of_user_details, 'prev_post': list_of_prev_posts}
-        return HttpResponse(open('./templates/PrevPost.xml').read())
+        return render(request, "prevpost.html", context_of_top_stories)
 
-    return HttpResponse(open('./templates/PrevPost.xml').read())
+    return render(request, "prevpost.html")
