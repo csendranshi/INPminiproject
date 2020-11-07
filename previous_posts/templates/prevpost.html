@@ -73,7 +73,9 @@
                     <td>{{ pp.title }}</td>
                     <td>{{ pp.category }}</td>
                     <td>{{ pp.time_of_post }}</td>
-                    <td><a style="color: #eeeeee;" href="{% url 'article' pp.actual_category pp.section pp.news_unique_id %}">Click Here</a></td>
+                    <td><a style="color: #eeeeee;"
+                           href="{% url 'article' pp.actual_category pp.section pp.news_unique_id %}">Click Here</a>
+                    </td>
                 </tr>
 
             {% endfor %}
@@ -82,5 +84,8 @@
 
         </table>
     </div>
+
+
+
     {% include 'footer.html' %}
 {% endblock %}

@@ -54,6 +54,7 @@ urlpatterns = [
     path('article/', article_views.article_view, name='article'),
     path('userspage/', view_users_page.users_view, name='user_page'),
     path('searchnews/', view_search_news.search_view, name='search_news'),
+    path('prevpostxsl/', view_prevpost.prevpostxsl, name='prevpostxsl'),
 
     path('article/<grid_category>/<section>/<unique_id>', article_views.article_view, name='article'),
 
@@ -61,5 +62,3 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
