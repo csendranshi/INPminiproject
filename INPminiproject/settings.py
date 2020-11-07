@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'footer',
     'search_news',
     'user_card',
-    'Page404'
+    'Page404',
 ]
 
 MIDDLEWARE = [
