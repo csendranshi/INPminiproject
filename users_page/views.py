@@ -36,11 +36,14 @@ def users_view(request, *args, **kwargs):
                 }
                 list_of_users.append(dict_of_user)
                 with open('users_page_json.json', 'w') as outfile:
-                    json.dump(dict_of_user, outfile)
+                    json.dump(list_of_users, outfile)
+            outfile.close()
 
             with open('users_page_json.json', 'r') as openfile:
                 # Reading from json file
                 json_object = json.load(openfile)
+
+            openfile.close()
 
 
             print(list_of_users)
