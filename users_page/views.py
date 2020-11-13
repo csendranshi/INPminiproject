@@ -35,8 +35,8 @@ def users_view(request, *args, **kwargs):
                     'pro_pic': row[5]
                 }
                 list_of_users.append(dict_of_user)
-            with open('users_page_json.json', 'w') as outfile:
-                json.dump(dict_of_user, outfile)
+                with open('users_page_json.json', 'w') as outfile:
+                    json.dump(dict_of_user, outfile)
 
             with open('users_page_json.json', 'r') as openfile:
                 # Reading from json file
