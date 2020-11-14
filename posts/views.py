@@ -123,6 +123,7 @@ def posts_view(request, *args, **kwargs):
                                         addotp])
                         print('india')
                     elif article_category.split('-')[0] == 'education':
+                        print("Entering Education")
                         cursor.execute('CALL news_database.update_education_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
                                        [article_title, article_file_picture, article_image_link,
                                         EditContent(article_content),

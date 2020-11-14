@@ -42,11 +42,10 @@ def users_view(request, *args, **kwargs):
             with open('users_page_json.json', 'r') as openfile:
                 # Reading from json file
                 json_object = json.load(openfile)
+                print(json_object)
 
             openfile.close()
 
-
-            print(list_of_users)
             print("latest-cell-1")
 
         context_of_top_stories = {'user': dict_of_user_details, 'user_details': json_object}
