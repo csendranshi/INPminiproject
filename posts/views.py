@@ -3,7 +3,7 @@ import requests
 from django.db import connection
 import random
 import math
-import mysql.connector
+# import mysql.connector
 
 
 def cell_list(prefix, get_range):

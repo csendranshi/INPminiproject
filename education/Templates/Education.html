@@ -3,95 +3,281 @@
 {% load static %}
 
 {% block content %}
-   <div class="center-the-grid">
-    {#<h1>This is The Education News Page</h1>#}
-    <div class="education-grid-container">
+
+   <div class="education-container">
+        <div id="education-main1">
+            {% for education_story in education_stories %}
+                {% if education_story.section == 'education-cell-1' %}
+                    <a href="{% url 'article' education_story.category education_story.section education_story.news_unique_id %}"
+                       style="text-decoration: none">
+                    {% if education_story.image != '' %}
+
+                        <img class="education-image-css-main"
+                             src="{{ education_story.image }}"
+                             alt="">
+                          {% else %}
+                        <img class="education-image-css-main"
+
+                                 src="{{ education_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
+
+        </div>
+        <div id="education-main2">
+            {% for education_story in education_stories %}
+                {% if education_story.section == 'education-cell-2' %}
+                    <a href="{% url 'article' education_story.category education_story.section education_story.news_unique_id %}"
+                       style="text-decoration: none">
+                        {% if education_story.image != '' %}
+
+                            <img class="education-image-css-main"
+
+                                 src="{{ education_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="education-image-css-main"
+
+                                 src="{{ education_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
         <div id="education-content1">
-            <div class="cont">
+             {% for education_story in education_stories %}
+                {% if education_story.section == 'education-cell-3' %}
+                    <a href="{% url 'article' education_story.category education_story.section education_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if education_story.image != '' %}
 
-                <img src="https://www.ndtv.com/education/cache-static/media/presets/625X400/article_images/2020/10/14/Exams_Vy3skDC.webp"
-                     alt="Nature" style="width:100%;">
-                <div class="text-block">
+                            <img class="education-image-css-main"
 
-                    <p>Karnataka Chief Minister, Health Minister Help Girl Student Write NEET Re-Exam Today</p>
-                </div>
-            </div>
+                                 src="{{ education_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="education-image-css-main"
+
+                                 src="{{ education_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="education-p-tag-css">
+               {{ education_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
 
         </div>
         <div id="education-content2">
-            <div class="card1">
-                <div class="con">
+             {% for education_story in education_stories %}
+                {% if education_story.section == 'education-cell-4' %}
+                    <a href="{% url 'article' education_story.category education_story.section education_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if education_story.image != '' %}
 
-                    <p>NEET 2020 Phase 2 Exam Analysis Out; Students Found Paper Moderate</p>
-                </div>
+                            <img class="education-image-css-main"
 
+                                 src="{{ education_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="education-image-css-main"
 
-            </div>
+                                 src="{{ education_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="education-p-tag-css">
+               {{ education_story.title }}</p>
+                    </a>
 
-            <div class="card1">
-                <div class="con">
+                {% endif %}
 
-                    <p>UPSEE Results On October 15 At Upsee.nic.in</p>
-                </div>
-            </div>
-
+            {% endfor %}
 
         </div>
         <div id="education-content3">
-             <div class="c">
-                <div class="con">
-                <img src=" https://www.ndtv.com/education/cache-static/media/presets/625X400/article_images/2020/10/14/empty_seats.webp"
-                     alt="Avatar" style="width:100%">
-                    <p>Schools For Classes 10, 12 To Reopen In Uttarakhand From November 1</p>
-                </div>
+            {% for education_story in education_stories %}
+                {% if education_story.section == 'education-cell-5' %}
+                    <a href="{% url 'article' education_story.category education_story.section education_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if education_story.image != '' %}
 
+                            <img class="education-image-css-main"
 
-            </div>
+                                 src="{{ education_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="education-image-css-main"
 
+                                 src="{{ education_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="education-p-tag-css">
+               {{ education_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
 
         </div>
-        <div id="education-content4">
-            <div class="c">
-                <div class="con">
-                     <img src="https://www.ndtv.com/education/cache-static/media/presets/625X400/article_images/2020/10/14/school-class.webp"
-                     alt="Avatar" style="width:100%">
-                    <p>Cabinet Approves New STARS Project To Strengthen School Education System</p>
-                </div>
+        <div id="eduction-content4">
+            {% for education_story in education_stories %}
+                {% if education_story.section == 'education-cell-6' %}
+                    <a href="{% url 'article' education_story.category education_story.section education_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if education_story.image != '' %}
 
-            </div>
-        </div>
+                            <img class="education-image-css-main"
 
-        <div id="education-content6">
+                                 src="{{ education_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="education-image-css-main"
 
-            <div class="card1">
-                <div class="con">
+                                 src="{{ education_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="education-p-tag-css">
+               {{ education_story.title }}</p>
+                    </a>
 
-                    <p>Kangra Planning To Test All School Students, Teachers For COVID-19</p>
-                </div>
+                {% endif %}
 
-
-            </div>
-
-            <div class="card1">
-                <div class="con">
-
-                    <p>Delhi Government To Frame Policy For Regulating Coaching Institutes</p>
-                </div>
-            </div>
+            {% endfor %}
 
         </div>
         <div id="education-content5">
-           <div class="cont">
+           {% for education_story in education_stories %}
+                {% if education_story.section == 'education-cell-7' %}
+                    <a href="{% url 'article' education_story.category education_story.section education_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if education_story.image != '' %}
 
-                <img src="https://images.thequint.com/thequint%2F2020-04%2F762d6441-e6a9-47cb-9438-2228ad1e0c47%2Fanthony_hi.jpg?rect=0%2C0%2C2000%2C1125&auto=format%2Ccompress&fmt=webp&format=webp&w=576&dpr=1.0"
-                     alt="Nature" style="width:100%;">
-                <div class="text-block">
+                            <img class="education-image-css-main"
 
-                    <p>Provide Gadgets and Net Packs to EWS Students: Delhi HC to Schools</p>
-                </div>
-            </div>
+                                 src="{{ education_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="education-image-css-main"
+
+                                 src="{{ education_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="education-p-tag-css">
+               {{ education_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
         </div>
+        <div id="education-content6">
+            {% for education_story in education_stories %}
+                {% if education_story.section == 'education-cell-8' %}
+                    <a href="{% url 'article' education_story.category education_story.section education_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if education_story.image != '' %}
+
+                            <img class="education-image-css-main"
+
+                                 src="{{ education_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="education-image-css-main"
+
+                                 src="{{ education_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="education-p-tag-css">
+               {{ education_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+        <div id="education-content7">
+             {% for education_story in education_stories %}
+                {% if education_story.section == 'education-cell-9' %}
+                    <a href="{% url 'article' education_story.category education_story.section education_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if education_story.image != '' %}
+
+                            <img class="education-image-css-main"
+
+                                 src="{{ education_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="education-image-css-main"
+
+                                 src="{{ education_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="education-p-tag-css">
+               {{ education_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+        <div id="education-content8">
+             {% for education_story in education_stories %}
+                {% if education_story.section == 'education-cell-10' %}
+                    <a href="{% url 'article' education_story.category education_story.section education_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if education_story.image != '' %}
+
+                            <img class="education-image-css-main"
+
+                                 src="{{ education_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="education-image-css-main"
+
+                                 src="{{ education_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                      <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="education-p-tag-css">
+               {{ education_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
+
+        </div>
+        {% include 'footer.html' %}
     </div>
-           {% include 'footer.html' %}
-   </div>
 {% endblock %}
