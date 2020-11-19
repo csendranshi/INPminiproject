@@ -4,6 +4,8 @@
 }
 
 
+
+
 .education-container {
   display: grid;
   height: 100vh;
@@ -162,4 +164,15 @@
 .education-p-tag-css {
   font-family: 'Lato',serif;
 }
+/*For removing the hyperlink deafult color */
+a {
+    color: white;
+    text-decoration: none;
+}
 
+a:hover
+{
+     color:white;
+     text-decoration:none;
+     cursor:pointer;
+}

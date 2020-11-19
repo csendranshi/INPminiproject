@@ -37,7 +37,7 @@ def posts_view(request, *args, **kwargs):
     world_cell = cell_list('world', range(1, 11))
     business_cell = cell_list('business', range(1, 9))
     tech_cell = cell_list('technology', range(1, 11))
-    edu_cell = cell_list('education', range(1, 9))
+    edu_cell = cell_list('education', range(1, 11))
     india_cell = cell_list('india', range(1, 11))
     dictionary_of_section_as_per_category = {
         'latest': latest_cell,

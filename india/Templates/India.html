@@ -7,37 +7,106 @@
 {% block content %}
 
 <div class="wrapper">
+
     <div class="id1">
         <h1>Trending</h1>
         <span id="by"></span>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/YMfSZAz_KIg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <p style="font-size: 30px;">Much good news as India bends the Covid graph, but the worst performing state is a surprise</p>
+
+         {% for india_story in india_stories %}
+                {% if india_story.section == 'india-cell-1' %}
+                    <div class="india-page-cont">
+                    <a href="{% url 'article' india_story.category india_story.section india_story.news_unique_id %}"
+                       style="text-decoration: none">
+
+                        <iframe width="560" height="315" src="{{ india_story.image_link }}"
+                              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+{#                     <div class="india-page-text-block">#}
+                <p style="font-size: 30px;"> {{ india_story.title }}</p>
+{#                     </div>#}
+                    </a>
+                {% endif %}
+            {% endfor %}
+
+{#        <iframe width="560" height="315" src="https://www.youtube.com/embed/YMfSZAz_KIg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>#}
+
+    </div>
+
     </div>
     <div id="id2">
          <div class="card1 india">
-                <div class="con">
+{#             <div class="india-page-text-block">#}
 
-                    <p>Students Who Missed JEE Advanced Can Directly Appear in 2021: JAB
-                        </p>
-                </div>
+
+               {% for india_story in india_stories %}
+                {% if india_story.section == 'india-cell-2' %}
+
+                        <div class="con">
+                        <p style="color: white"><a href="{% url 'article' india_story.category india_story.section india_story.news_unique_id %}"
+                       style="text-decoration: none">
+                            {{ india_story.title }}
+                      </a></p>
+                        </div>
+
+                {% endif %}
+
+            {% endfor %}
+{#                    </div>#}
+
             </div>
         <div class="card1 india">
-                <div class="con">
+                {% for india_story in india_stories %}
+                {% if india_story.section == 'india-cell-3' %}
 
-                    <p>Rising COVID Cases in K’Taka, Yet RGUHS Conducting Offline Exams</p>
-                </div>
+                        <div class="con">
+                        <p style="color: white"><a href="{% url 'article' india_story.category india_story.section india_story.news_unique_id %}"
+                       style="text-decoration: none">
+                            {{ india_story.title }}
+                      </a></p>
+                        </div>
+
+                {% endif %}
+
+            {% endfor %}
             </div>
     </div>
     <div id ="id3">
-             <div class="india-page-cont">
 
-            <img src="https://i.ndtvimg.com/i/2015-10/carbon-emission-reuters_650x400_81443754057.jpg"
-                 alt="Nature" style="width:100%;">
-            <div class="india-page-text-block">
 
-                <p> Drop In Emissions During Lockdown Largest In Modern History: Study</p>
-            </div>
-        </div>
+            {% for india_story in india_stories %}
+                {% if india_story.section == 'india-cell-4' %}
+                    <div class="india-page-cont">
+                    <a href="{% url 'article' india_story.category india_story.section india_story.news_unique_id %}"
+                       style="text-decoration: none">
+
+
+                        {% if india_story.image != '' %}
+                        <img
+                             src="{{ india_story.image }}"
+                             alt="">
+                          {% else %}
+                        <img
+
+                                 src="{{ india_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+
+
+                     <div class="india-page-text-block">
+
+                <p> {{ india_story.title }}</p>
+
+                     </div>
+
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
+
+
+     </div>
     </div>
 
 </div>
@@ -47,31 +116,72 @@
 <div class="wrap2" id="wrap2">
     <div>
         <div class="card-3">
-            <div class="con">
-                        EVM | EC Gives Different Answers to a Single RTI Query. Surprised?
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="card-3">
-            <div class="con">
-                       Punjab Govt to Bring in New Legislation Against Centre’s Farm Laws
+             {% for india_story in india_stories %}
+                {% if india_story.section == 'india-cell-5' %}
 
-            </div>
+                        <div class="con">
+                        <p style="color: white"><a href="{% url 'article' india_story.category india_story.section india_story.news_unique_id %}"
+                       style="text-decoration: none">
+                            {{ india_story.title }}
+                      </a></p>
+                        </div>
+
+                {% endif %}
+
+            {% endfor %}
+
+
         </div>
     </div>
     <div>
         <div class="card-3">
-            <div class="con">
-                        Bihar: Latest Opinion Poll Reveals the Dangers of Seat Prediction
-            </div>
+             {% for india_story in india_stories %}
+                {% if india_story.section == 'india-cell-6' %}
+
+                        <div class="con">
+                        <p style="color: white"><a href="{% url 'article' india_story.category india_story.section india_story.news_unique_id %}"
+                       style="text-decoration: none">
+                            {{ india_story.title }}
+                      </a></p>
+                        </div>
+
+                {% endif %}
+
+            {% endfor %}
         </div>
     </div>
     <div>
         <div class="card-3">
-            <div class="con">
-                        Lockdown Helped Me Manage My Borderline Personality Disorder
-            </div>
+            {% for india_story in india_stories %}
+                {% if india_story.section == 'india-cell-7' %}
+
+                        <div class="con">
+                        <p style="color: white"><a href="{% url 'article' india_story.category india_story.section india_story.news_unique_id %}"
+                       style="text-decoration: none">
+                            {{ india_story.title }}
+                      </a></p>
+                        </div>
+
+                {% endif %}
+
+            {% endfor %}
+        </div>
+    </div>
+    <div>
+        <div class="card-3">
+             {% for india_story in india_stories %}
+                {% if india_story.section == 'india-cell-8' %}
+
+                        <div class="con">
+                        <p style="color: white"><a href="{% url 'article' india_story.category india_story.section india_story.news_unique_id %}"
+                       style="text-decoration: none">
+                            {{ india_story.title }}
+                      </a></p>
+                        </div>
+
+                {% endif %}
+
+            {% endfor %}
         </div>
     </div>
 
@@ -82,15 +192,43 @@
 <div class="wrap3">
 <!--    frame 1-->
     <div>
-        <p style="font-size: 20px;color: white">IMF's biannual world economic outlook | India's GDP to contract | India News</p>
-       <iframe width="560" height="315" src="https://www.youtube.com/embed/mZKyqZ9VVXk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+         {% for india_story in india_stories %}
+                {% if india_story.section == 'india-cell-9' %}
+                    <div class="india-page-cont">
+                    <a href="{% url 'article' india_story.category india_story.section india_story.news_unique_id %}"
+                       style="text-decoration: none">
+
+                         <p style="font-size: 20px;color: white">{{ india_story.title }}</p>
+
+                        <iframe width="560" height="315" src="{{ india_story.image_link }}"
+                              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                    </a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+
 
     </div>
 <!--    frame 2ss-->
     <div>
-        <p style="font-size: 20px;color: white">IMF Chief speaks on economic impact of the coronavirus pandemic | World News</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/yDLnNATbv-I" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+         {% for india_story in india_stories %}
+                {% if india_story.section == 'india-cell-10' %}
+                    <div class="india-page-cont">
+                    <a href="{% url 'article' india_story.category india_story.section india_story.news_unique_id %}"
+                       style="text-decoration: none">
 
+                         <p style="font-size: 20px;color: white">{{ india_story.title }}</p>
+
+                        <iframe width="560" height="315" src="{{ india_story.image_link }}"
+                              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                    </a>
+                    </div>
+                {% endif %}
+            {% endfor %}
     </div>
 </div>
     </div>
