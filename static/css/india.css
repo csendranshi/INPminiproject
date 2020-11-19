@@ -194,3 +194,23 @@
     width: 450px;
     margin: 20px;
 }
+
+
+
+
+@media (max-width: 1000px) and (min-width:250px) {
+  .wrap2 {
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr ;
+
+  }
+   .wrapper{
+        display:grid;
+    grid-template-columns: 1fr;
+   }
+   .wrap3{
+       display:grid;
+    grid-template-columns: 1fr;
+   }
+}
