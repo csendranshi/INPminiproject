@@ -3,33 +3,89 @@
 {% block content %}
     <html>
     <head>
-     
+
         <script>
-    
 
-          function validateForm() {
-             console.log("Running")
-  var firstname = document.forms["auth-register"]["reg_firstname"].value;
-  var lastname = document.forms["auth-register"]["reg_firstname"].value;
-  var email_id = document.forms["auth-register"]["reg_emailId"].value;
-  var password = document.forms["auth-register"]["reg_password"].value;
-  var  phone_number = document.forms["auth-register"]["reg_phone_number"].value;
-  console.log(firstname,
-lastname,
-email_id,
-password,
-phone_number)
-  if (firstname == "") {
-      console.log("Running")
-    firstname.required = true;
-    alert("Message")
-    
-    return false;
- 
-  }
 
-}
-</script>
+            function validateForm() {
+                console.log("Running")
+
+
+                var firstname = document.forms["auth-register"]["reg_firstname"].value;
+                var lastname = document.forms["auth-register"]["reg_lastname"].value;
+                var email_id = document.forms["auth-register"]["reg_emailId"].value;
+                var password = document.forms["auth-register"]["reg_password"].value;
+                var phone_number = document.forms["auth-register"]["reg_phone_number"].value;
+                console.log(firstname,
+                    lastname,
+                    email_id,
+                    password,
+                    phone_number)
+                let name;
+                name = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g
+                const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+
+
+                if (firstname === "") {
+
+                    alert("Enter First Name")
+                    return false;
+
+                } else if (!firstname.match(name)) {
+
+                    alert("Enter A Valid First Name")
+                    return false;
+                }
+
+
+                if (lastname === "") {
+                    alert("Enter Last Name")
+                    return false;
+                } else if (!lastname.match(name)) {
+
+                    alert("Enter A Valid Last Name")
+                    return false;
+                }
+
+                if (email_id === "") {
+                    alert("Enter Email Id")
+                    return false;
+                } else if (!email_id.match(emailRegex)) {
+
+                    alert("Enter A Valid Email ID")
+                    return false;
+                }
+
+                if (password === "") {
+                    alert("This regex will enforce these rules:\n" +
+                        "\n" +
+                        "At least one upper case English letter, (?=.*?[A-Z])\n" +
+                        "At least one lower case English letter, (?=.*?[a-z])\n" +
+                        "At least one digit, (?=.*?[0-9])\n" +
+                        "At least one special character, (?=.*?[#?!@$%^&*-])\n" +
+                        "Minimum eight in length .{8,} (with the anchors)")
+                    return false;
+                } else if (!password.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)) {
+                    alert("This regex will enforce these rules:\n" +
+                        "\n" +
+                        "At least one upper case English letter, (?=.*?[A-Z])\n" +
+                        "At least one lower case English letter, (?=.*?[a-z])\n" +
+                        "At least one digit, (?=.*?[0-9])\n" +
+                        "At least one special character, (?=.*?[#?!@$%^&*-])\n" +
+                        "Minimum eight in length .{8,} (with the anchors)")
+                    return false;
+                }
+
+                if (phone_number === "") {
+                    alert("Enter Phone Number")
+                    return false;
+                } else if (!phone_number.match(/^(\+[\d]{1,5}|0)?[7-9]\d{9}$/)) {
+
+                    alert("Enter A Valid Phone Number")
+                    return false;
+                }
+            }
+        </script>
     </head>
     <body class="lr-uth-form-body">
     <h2 class="lr-auth-form-h2">
@@ -45,44 +101,50 @@ phone_number)
     color:  #303841;
     font-family: 'Lato',serif;
 ">Create Account</h1>
-                
+
                 {% csrf_token %}
+                <p id="error_message_form"></p>
+                <input oninput="handleInputName(event)" id="auth-register-firstname" class="lr-auth-form-input"
+                       value="{{ userdetails.firstname }}" type="text" name="reg_firstname" placeholder="First Name"
+                />
+                <input oninput="handleInputName(event)" class="lr-auth-form-input" value="{{ userdetails.lastname }}"
+                       type="text" name="reg_lastname" placeholder="Last Name"/>
+                <input oninput="handleInput(event)" class="lr-auth-form-input" value="{{ userdetails.emailId }}"
+                       type="text" name="reg_emailId" placeholder="Email ID"/>
+                <input oninput="handlePassword(event)" class="lr-auth-form-input" value="{{ userdetails.password }}"
+                       type="password" name="reg_password" placeholder="Password"/>
+                <input class="lr-auth-form-input" value="{{ userdetails.date }}" type="text"
+                       onfocus="(this.type='date')" onblur="(this.type='text')"
+                       name="dateofbirth" placeholder="Date Of Birth">
+                <input class="lr-auth-form-input" value="{{ userdetails.phone_no }}" type="number"
+                       name="reg_phone_number" placeholder="Phone Number"
+                >
 
-                <input oninput="handleInputName(event)" id="auth-register-firstname"class="lr-auth-form-input" value="{{userdetails.firstname}}" type="text" name="reg_firstname" placeholder="First Name"   
-                required/>
-                <input oninput="handleInputName(event)" class="lr-auth-form-input" value="{{userdetails.lastname}}" type="text" name="reg_lastname" placeholder="Last Name" />
-                <input oninput="handleInput(event)" class="lr-auth-form-input" value="{{userdetails.emailId}}" type="text"   name="reg_emailId" placeholder="Email ID" />
-                <input oninput="handlePassword(event)" class="lr-auth-form-input" value="{{userdetails.password}}" type="password" name="reg_password" placeholder="Password" />
-                <input class="lr-auth-form-input" value="{{userdetails.date}}" type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
-                       name="dateofbirth" placeholder="Date Of Birth" >
-                <input class="lr-auth-form-input" value="{{userdetails.phone_no}}" type="number" name="reg_phone_number"  placeholder="Phone Number"
-                       >
-
-                <select class="lr-auth-form-input" id="Gender" name="Gender" >
+                <select class="lr-auth-form-input" id="Gender" name="Gender">
                     {% if userdetails.gender == 'Male' %}
-                    <option disabled>Gender</option>
-                    <option value="Male" selected="true" >Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
+                        <option disabled>Gender</option>
+                        <option value="Male" selected="true">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
                     {% elif userdetails.gender == 'Female' %}
-                    <option disabled>Gender</option>
-                    <option value="Male"  >Male</option>
-                    <option value="Female" selected="true">Female</option>
-                    <option value="Other">Other</option>
+                        <option disabled>Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female" selected="true">Female</option>
+                        <option value="Other">Other</option>
                     {% elif userdetails.gender == 'Other' %}
-                    <option disabled>Gender</option>
-                    <option value="Male"  >Male</option>
-                    <option value="Female" >Female</option>
-                    <option value="Other" selected="true">Other</option>
+                        <option disabled>Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other" selected="true">Other</option>
                     {% else %}
-                    <option selected="true" disabled>Gender</option>
-                    <option value="Male"  >Male</option>
-                    <option value="Female" >Female</option>
-                    <option value="Other" >Other</option>
+                        <option selected="true" disabled>Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
                     {% endif %}
-                    
+
                 </select>
-                <p >{{ message }}</p>
+
                 <input type="submit" class="lr-auth-form-button" value="Register"/>
                 <a href="{% url 'login' %}" class="lr-auth-form-button-screen-size-min lr-ghost" id="signIn">Sign In</a>
 
@@ -93,111 +155,109 @@ phone_number)
                 <div class="lr-overlay-panel lr-overlay-left">
                     <h1 class="lr-auth-form-h1">Welcome Back!</h1>
                     <p class="lr-auth-form-p">To catch our latest news please login with your personal info</p>
-                   
-                    
-                       
                     <a href="{% url 'login' %}" class="lr-auth-form-button lr-ghost" id="signIn">Sign In</a>
                 </div>
             </div>
         </div>
     </div>
-  {% include 'footer.html' %}
+    {% include 'footer.html' %}
 
     <script>
-      
 
-function handleInput(evt) {
-        const value = evt.target.value
-        const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-        
-        if (emailRegex.test(value.trim())) {
-            evt.target.classList.add('valid')
-            evt.target.classList.remove('invalid')
-        } else {
-            evt.target.classList.add('invalid')
-            evt.target.classList.remove('valid')
+
+        function handleInput(evt) {
+            const value = evt.target.value
+            const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+
+            if (emailRegex.test(value.trim())) {
+                evt.target.classList.add('valid')
+                evt.target.classList.remove('invalid')
+            } else {
+                evt.target.classList.add('invalid')
+                evt.target.classList.remove('valid')
+            }
+
+            if (!value) {
+                evt.target.classList.remove('invalid')
+            }
         }
 
-        if (!value) {
-            evt.target.classList.remove('invalid')
-        }
-    }
+        function handleInputName(evt) {
+            const value = evt.target.value
+            const name = /^[a-z ,.'-]+$/i
 
-    function handleInputName(evt) {
-        const value = evt.target.value
-        const name = /^[a-z ,.'-]+$/i
-        
-        if (name.test(value.trim())) {
-            evt.target.classList.add('valid')
-            evt.target.classList.remove('invalid')
-        } else {
-            evt.target.classList.add('invalid')
-            evt.target.classList.remove('valid')
-            
-        }
+            if (name.test(value.trim())) {
+                evt.target.classList.add('valid')
+                evt.target.classList.remove('invalid')
+            } else {
+                evt.target.classList.add('invalid')
+                evt.target.classList.remove('valid')
 
-        if (!value) {
-            evt.target.classList.remove('invalid')
-        }
-    }
+            }
 
-    function handlePassword(event) {
-  // Validate lowercase letters
-  var lowerCaseLetters = /[a-z]/g;
-  if(myInput.value.match(lowerCaseLetters)) {  
-    event.target.setAttribute("required",true)
-    event.classList.add("valid");
-  } else {
-    letter.classList.remove("valid");
-    letter.classList.add("invalid");
-  }
-  
-  // Validate capital letters
-  var upperCaseLetters = /[A-Z]/g;
-  if(myInput.value.match(upperCaseLetters)) {  
-    capital.classList.remove("invalid");
-    capital.classList.add("valid");
-  } else {
-    capital.classList.remove("valid");
-    capital.classList.add("invalid");
-  }
-
-  // Validate numbers
-  var numbers = /[0-9]/g;
-  if(myInput.value.match(numbers)) {  
-    number.classList.remove("invalid");
-    number.classList.add("valid");
-  } else {
-    number.classList.remove("valid");
-    number.classList.add("invalid");
-  }
-  
-  // Validate length
-  if(myInput.value.length >= 8) {
-    length.classList.remove("invalid");
-    length.classList.add("valid");
-  } else {
-    length.classList.remove("valid");
-    length.classList.add("invalid");
-  }
-}
-    // 
-    {% comment %} function onDateSubmission(event) {
-        const value = evt.target.value
-        const name = /^[a-z ,.'-]+$/i
-        
-        if value === null {
-            evt.target.classList.add('valid')
-            evt.target.classList.remove('invalid')
-        } else {
-            evt.target.classList.add('invalid')
-            evt.target.classList.remove('valid')
+            if (!value) {
+                evt.target.classList.remove('invalid')
+            }
         }
 
-        if (!value) {
-            evt.target.classList.remove('invalid')
+        function handlePassword(event) {
+            // Validate lowercase letters
+            var lowerCaseLetters = /[a-z]/g;
+            if (myInput.value.match(lowerCaseLetters)) {
+                event.target.setAttribute("required", true)
+                event.classList.add("valid");
+            } else {
+                letter.classList.remove("valid");
+                letter.classList.add("invalid");
+            }
+
+            // Validate capital letters
+            var upperCaseLetters = /[A-Z]/g;
+            if (myInput.value.match(upperCaseLetters)) {
+                capital.classList.remove("invalid");
+                capital.classList.add("valid");
+            } else {
+                capital.classList.remove("valid");
+                capital.classList.add("invalid");
+            }
+
+            // Validate numbers
+            var numbers = /[0-9]/g;
+            if (myInput.value.match(numbers)) {
+                number.classList.remove("invalid");
+                number.classList.add("valid");
+            } else {
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+            }
+
+            // Validate length
+            if (myInput.value.length >= 8) {
+                length.classList.remove("invalid");
+                length.classList.add("valid");
+            } else {
+                length.classList.remove("valid");
+                length.classList.add("invalid");
+            }
         }
-    } {% endcomment %}
+
+        //
+        {% comment %} function onDateSubmission(event) {
+            const value = evt.target.value
+            const name = /^[a-z ,.'-]+$/i
+
+            if value === null {
+                evt.target.classList.add('valid')
+                evt.target.classList.remove('invalid')
+            } else {
+                evt.target.classList.add('invalid')
+                evt.target.classList.remove('valid')
+            }
+
+            if (!value) {
+                evt.target.classList.remove('invalid')
+            }
+        } {% endcomment %}
     </script>
     </body>
     </html>

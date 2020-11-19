@@ -12,12 +12,15 @@ def article_view(request, grid_category, section, unique_id):
                        [grid_category, unique_id, section])
         row = cursor.fetchone()
         print(row)
-        article_dict = {
-            'title': row[1],
-            'image': row[2],
-            'image_link': row[3],
-            'content': row[4],
-        }
+        try:
+            article_dict = {
+                'title': row[1],
+                'image': row[2],
+                'image_link': row[3],
+                'content': row[4],
+            }
+        except TypeError:
+            return render(request, "ErrorPage.html")
     if request.session.has_key('logged_in'):
         print(request.session.has_key('logged_in'))
         dict_of_user_details = {

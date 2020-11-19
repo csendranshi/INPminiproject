@@ -54,6 +54,31 @@
             color: #eeeeee;
         }
     </style>
+    <script>
+        {#function XMLdataGet() {#}
+        {##}
+        {#    var xhttp = new XMLHttpRequest();#}
+        {#    xhttp.onreadystatechange = function () {#}
+        {#        var cityName;#}
+        {#        var temperature;#}
+        {#        var icon;#}
+        {#        if (this.readyState == 4 && this.status == 200) {#}
+        {#            const responseText = this.responseText#}
+        {#            parser = new DOMParser();#}
+        {#            xmlDoc = parser.parseFromString(responseText, "text/xml");#}
+        {#            console.log(this.responseText)#}
+        {#            cityName = xmlDoc.getElementsByTagName("category")[0].childNodes[0].nodeValue#}
+        {#            temperature = xmlDoc.getElementsByTagName("title")[0].childNodes[0].nodeValue#}
+        {#            icon = xmlDoc.getElementsByTagName("id")[0].childNodes[0].nodeValue#}
+        {#            console.log(cityName,temperature,icon)#}
+        {#        }#}
+        {#    };#}
+        {#    xhttp.open("GET", "https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/PrevPost.xml", true);#}
+        {#    xhttp.send();#}
+        {##}
+        //}
+        {#XMLdataGet()#}
+    </script>
     <div class="prev-post-user">
         <table id="prev-post-css-table">
             <thead>
@@ -73,7 +98,9 @@
                     <td>{{ pp.title }}</td>
                     <td>{{ pp.category }}</td>
                     <td>{{ pp.time_of_post }}</td>
-                    <td><a style="color: #eeeeee;" href="{% url 'article' pp.actual_category pp.section pp.news_unique_id %}">Click Here</a></td>
+                    <td><a style="color: #eeeeee;"
+                           href="{% url 'article' pp.actual_category pp.section pp.news_unique_id %}">Click Here</a>
+                    </td>
                 </tr>
 
             {% endfor %}
@@ -82,5 +109,11 @@
 
         </table>
     </div>
+    {% autoescape on %}
+
+    {% endautoescape %}
+
+
+
     {% include 'footer.html' %}
 {% endblock %}

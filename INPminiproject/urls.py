@@ -33,7 +33,6 @@ from profile_details import views as view_profile
 from technology import views as view_tech
 from users_page import views as view_users_page
 from search_news import views as view_search_news
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', view_homepage.home_view, name='home'),
@@ -54,12 +53,9 @@ urlpatterns = [
     path('article/', article_views.article_view, name='article'),
     path('userspage/', view_users_page.users_view, name='user_page'),
     path('searchnews/', view_search_news.search_view, name='search_news'),
-
     path('article/<grid_category>/<section>/<unique_id>', article_views.article_view, name='article'),
 
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-

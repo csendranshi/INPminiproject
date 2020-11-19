@@ -14,11 +14,10 @@
     <link href="{% static '/css/education.css' %}" rel="stylesheet">
     <link href="{% static '/css/health.css' %}" rel="stylesheet">
     <link href="{% static '/css/technology1.css' %}" rel="stylesheet">
-     <link href="{% static '/css/posts1.css' %}" rel="stylesheet">
+    <link href="{% static '/css/posts1.css' %}" rel="stylesheet">
 
     <link href="{% static '/css/prevpost.css' %}" rel="stylesheet">
-    <link href="{% static '/css/india1.css' %}" rel="stylesheet">
-    <link href="{% static '/css/world1.css' %}" rel="stylesheet">
+
 
     <link href="{% static '/css/india.css' %}" rel="stylesheet">
     <link href="{% static '/css/world.css' %}" rel="stylesheet">
@@ -59,12 +58,28 @@
 </div>
 
 <div id="mySidenav" class="sidenav">
-    <div style="text-align: start;">
-        <div style="
+   <div style="text-align: start;">
+
+        {% if user.profile_picture %}
+            <img style="
+
+    width: 200px;
+    height: 200px;
+    border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            object-fit: cover;
+    margin: 10px 25px;
+
+"
+                 src="{{ user.profile_picture }}" alt="">
+        {% else %}
+            <div style="
     background: rgba(255,255,255,0.3);
     width: 200px;
     height: 200px;
-    border-radius: 50%;
+     border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            object-fit: cover;
     margin: 10px auto;
     text-align: center;
     padding: 70px 0;
@@ -73,21 +88,36 @@
     color:#eeeeee;
 ">
 
-            {{ user.first_name }}
-            <br/>
-            {{ user.last_name }}
+                {{ user.first_name }}
+                <br/>
+                {{ user.last_name }}
 
 
-        </div>
+            </div>
+        {% endif %}
+
         <hr>
         <a href="javascript:void(0)" class="closebtn" onclick="closeDrawer()">&times;</a>
         <a style="margin-top:25px " href="{% url 'profile' %}"><img class="custom-icon-class-style"
                                                                     src="{% static '/assets/account.png' %}" alt="">Profile</a>
+
+        <a href="{% url 'search_news' %}"><img class="custom-icon-class-style"
+                                                                    src="{% static '/assets/searchglass.png' %}" alt="">Search News</a>
         {% if user.journal_access %}
-        <a href="{% url 'posts' %}"><img class="custom-icon-class-style" src="{% static '/assets/postnews.png' %}"
-                                         alt="">Post
-            Article</a>
-        <a href="{% url 'prevpost' %}"><img class="custom-icon-class-style" src="{% static '/assets/journal.png' %}" alt="">Previous Posts</a>
+            <a href="{% url 'posts' %}"><img class="custom-icon-class-style" src="{% static '/assets/postnews.png' %}"
+                                             alt="">Post
+                Article</a>
+            <a href="{% url 'prevpost' %}"><img class="custom-icon-class-style" src="{% static '/assets/journal.png' %}"
+                                                alt="">Previous Posts</a>
+{#               <a href="{% url 'prevpostxsl' %}"><img class="custom-icon-class-style" src="{% static '/assets/journal.png' %}"#}
+{#                                                alt="">Previous Posts</a>#}
+        {% endif %}
+
+        {% if user.admin_access %}
+            <a href="{% url 'user_page' %}"><img class="custom-icon-class-style"
+                                                 src="{% static '/assets/user-account.png' %}"
+                                                 alt="">Users</a>
+
         {% endif %}
         <a href="{% url 'logout' %}"><img class="custom-icon-class-style" src="{% static '/assets/logout.png' %}"
                                           alt="">Log Out</a>
@@ -108,18 +138,18 @@
                                           alt="">Technology</a>
     <a href="{% url 'health' %}"><img class="custom-icon-class-style" src="{% static '/assets/hospital.png' %}" alt="">Health</a>
     {% if user.suscriber_access %}
-    <a style="justify-content:flex-end;" href="javascript:void(0)" onclick="openDrawer()"><img style="margin-right: 5px;
+        <a style="justify-content:flex-end;" href="javascript:void(0)" onclick="openDrawer()"><img style="margin-right: 5px;
 
             margin-bottom: -5px;"
-                                                                                               src="{% static '/assets/profile.png' %}"
-                                                                                               alt="">Profile</a>
+                                                                                                   src="{% static '/assets/profile.png' %}"
+                                                                                                   alt="">Profile</a>
     {% else %}
-    <a href="{% url 'login' %}"><img class="custom-icon-class-style" src="{% static '/assets/pen.png' %}" alt="">Sign
-        In/Up</a>
+        <a href="{% url 'login' %}"><img class="custom-icon-class-style" src="{% static '/assets/pen.png' %}" alt="">Sign
+            In/Up</a>
     {% endif %}
     <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
 
-<hr style="height: 7px; color: #d72323; background-color: #d72323; border-color: #d72323">
+    <hr style="height: 7px; color: #d72323; background-color: #d72323; border-color: #d72323">
 
 </div>
 

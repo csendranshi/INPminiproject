@@ -3,7 +3,7 @@ import requests
 from django.db import connection
 import random
 import math
-# import mysql.connector
+
 
 
 def cell_list(prefix, get_range):
@@ -26,7 +26,7 @@ def OTPgen():
 
 def EditContent(string):
     new_string = string.replace("'", "\\'")
-    new_string = new_string.replace("\"", "\\\"")
+    # new_string = new_string.replace("\"", "\\\"")
     return new_string
 
 
@@ -123,6 +123,7 @@ def posts_view(request, *args, **kwargs):
                                         addotp])
                         print('india')
                     elif article_category.split('-')[0] == 'education':
+                        print("Entering Education")
                         cursor.execute('CALL news_database.update_education_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
                                        [article_title, article_file_picture, article_image_link,
                                         EditContent(article_content),
@@ -137,7 +138,7 @@ def posts_view(request, *args, **kwargs):
                                         addotp])
                         print('business')
                     elif article_category.split('-')[0] == 'world':
-                        cursor.execute('CALL news_database.update_world_grid("%s","%s","%s","%s","%s","%s","%s",%s)',
+                        cursor.execute('CALL news_database.update_world_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
                                        [article_title, article_file_picture, article_image_link,
                                         EditContent(article_content),
                                         dict_of_user_details['email_id'], article_category, article_section,

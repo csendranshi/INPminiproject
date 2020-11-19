@@ -30,7 +30,7 @@
 
             .profile-grid-container {
                 display: grid;
-                height: 80vh;
+                height: 800px;
                 grid-template-columns: 1fr 1fr;
                 grid-template-rows: 0.2fr 1.5fr;
                 grid-template-areas:
@@ -48,6 +48,7 @@
                 margin: 50px auto;
                 border-top-right-radius: 30px;
                 border-bottom-left-radius: 30px;
+
             }
 
 
@@ -404,6 +405,39 @@
 
     </div>
     </div>
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+                <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10"
+                        cx="65.1" cy="65.1" r="62.1"/>
+                <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round"
+                          stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+            </svg>
+            <p style="color: green;">Updated Successfully</p>
+
+        </div>
+    </div>
+    {% if registration_success %}
+        <script>
+            let modalBtn = document.getElementById("modal-btn")
+            let modal = document.querySelector(".modal")
+            let closeBtn = document.querySelector(".close-btn")
+            window.onload = function () {
+                modal.style.display = "block"
+            };
+
+            closeBtn.onclick = function () {
+                modal.style.display = "none"
+            }
+            window.onclick = function (e) {
+                if (e.target == modal) {
+                    modal.style.display = "none"
+                }
+            }
+        </script>
+
+    {% endif %}
     {% include 'footer.html' %}
     </body>
     </html>

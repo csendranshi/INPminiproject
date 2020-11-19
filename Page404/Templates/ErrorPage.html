@@ -1,0 +1,21 @@
+{% extends 'Navbar.html' %}
+{% load static %}
+
+
+
+{% block content %}
+    <style>
+        .flex-display-message {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #eeeeee;
+            font-family: Lato, serif;
+        }
+    </style>
+    <div class="flex-display-message">
+            <img width="600" src="{% static '/assets/404ErrorPage.svg' %}" alt="">
+            <h1> Not Found What You Were Searching For, You Might Find it Later!</h1>
+        </div>
+{% endblock %}

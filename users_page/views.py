@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.db import connection
+import json
 import time
 
 
@@ -34,10 +35,20 @@ def users_view(request, *args, **kwargs):
                     'pro_pic': row[5]
                 }
                 list_of_users.append(dict_of_user)
-            print(list_of_users)
+                with open('users_page_json.json', 'w') as outfile:
+                    json.dump(list_of_users, outfile)
+            outfile.close()
+
+            with open('users_page_json.json', 'r') as openfile:
+                # Reading from json file
+                json_object = json.load(openfile)
+                print(json_object)
+
+            openfile.close()
+
             print("latest-cell-1")
 
-        context_of_top_stories = {'user': dict_of_user_details, 'user_details': list_of_users}
+        context_of_top_stories = {'user': dict_of_user_details, 'user_details': json_object}
         return render(request, "users_page.html", context_of_top_stories)
 
     return render(request, "users_page.html", {})

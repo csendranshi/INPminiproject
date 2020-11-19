@@ -25,7 +25,7 @@ SECRET_KEY = '*%^bonl#^w5&ndeq)$tweo#*738@_um!g9iweffg)6v$1k#lj1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'users_page',
     'footer',
     'search_news',
-    'user_card'
+    'user_card',
+    'Page404',
 ]
 
 MIDDLEWARE = [

@@ -12,6 +12,93 @@
 </head>
 <body>
 {% block content %}
+    <style>
+        .weather-style-css {
+            width: 400px;
+            height: 100px;
+            border-top-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.13);
+            display: flex;
+            flex-direction: row;
+            color: #eeeeee;
+            padding: 10px;
+            justify-content: space-evenly;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        {# 0aa588bd8889daf2db559988cb3781c8 #}
+
+        function ChennaiWeather(string) {
+            var cityName, temperature, icon
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const responseText = this.responseText
+                    parser = new DOMParser();
+                    xmlDoc = parser.parseFromString(responseText, "text/xml");
+                    cityName = xmlDoc.getElementsByTagName("name")[0].childNodes[0].nodeValue
+                    temperature = xmlDoc.getElementsByTagName("temp_c")[0].childNodes[0].nodeValue
+                    icon = xmlDoc.getElementsByTagName("icon")[0].childNodes[0].nodeValue
+                    document.getElementById("ChennaiIcon").src = icon;
+                    document.getElementById("ChennaiTemp").innerText = temperature + "ºC";
+                    document.getElementById("ChennaiName").innerText = cityName;
+
+                }
+            };
+            xhttp.open("GET", "http://api.weatherapi.com/v1/current.xml?key=946f040cb3aa4c0f93b105344200611&q=" + string, true);
+            xhttp.send();
+
+        }
+        function KolkataWeather(string) {
+            var cityName, temperature, icon
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const responseText = this.responseText
+                    parser = new DOMParser();
+                    xmlDoc = parser.parseFromString(responseText, "text/xml");
+                    cityName = xmlDoc.getElementsByTagName("name")[0].childNodes[0].nodeValue
+                    temperature = xmlDoc.getElementsByTagName("temp_c")[0].childNodes[0].nodeValue
+                    icon = xmlDoc.getElementsByTagName("icon")[0].childNodes[0].nodeValue
+                    document.getElementById("KolkataIcon").src = icon;
+                    document.getElementById("KolkataTemp").innerText = temperature + "ºC";
+                    document.getElementById("KolkataName").innerText = cityName;
+
+                }
+            };
+            xhttp.open("GET", "http://api.weatherapi.com/v1/current.xml?key=946f040cb3aa4c0f93b105344200611&q=" + string, true);
+            xhttp.send();
+
+        }
+
+        function MumbaiWeather(string) {
+            var cityName, temperature, icon
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const responseText = this.responseText
+                    parser = new DOMParser();
+                    xmlDoc = parser.parseFromString(responseText, "text/xml");
+                    cityName = xmlDoc.getElementsByTagName("name")[0].childNodes[0].nodeValue
+                    temperature = xmlDoc.getElementsByTagName("temp_c")[0].childNodes[0].nodeValue
+                    icon = xmlDoc.getElementsByTagName("icon")[0].childNodes[0].nodeValue
+                    document.getElementById("MumbaiIcon").src = icon;
+                    document.getElementById("MumbaiTemp").innerText = temperature + "ºC";
+                    document.getElementById("MumbaiName").innerText = cityName;
+
+                }
+            };
+            xhttp.open("GET", "http://api.weatherapi.com/v1/current.xml?key=946f040cb3aa4c0f93b105344200611&q=" + string, true);
+            xhttp.send();
+
+        }
+
+        MumbaiWeather("Mumbai")
+        ChennaiWeather("Chennai")
+        KolkataWeather("Kolkata")
+    </script>
     <audio controls autoplay hidden>
         <source src="{% static '/assets/2020-07-30_-_Conspiracy_Theory_-_David_Fesliyan.mp3' %}" type="audio/ogg">
 
@@ -73,23 +160,44 @@
         </main>
         <main id="homepage-grid-main2">
             <br>
-            <!-- weather widget start --><a style="margin: 10px;" target="blank"
-                                            href="https://www.booked.net/weather/mumbai-26831"><img
-                src="https://w.bookcdn.com/weather/picture/32_26831_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
-                alt="booked.net"/></a><!-- weather widget end -->
-            <!-- weather widget start --><a style="margin: 10px;" target="_blank"
-                                            href="https://www.booked.net/weather/chennai-18036"><img
-                src="https://w.bookcdn.com/weather/picture/32_18036_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
-                alt="booked.net"/></a><!-- weather widget end -->
-            <br>
-            <!-- weather widget start --><a style="margin: 10px;" target="_blank"
-                                            href="https://www.booked.net/weather/kolkata-26871"><img
-                src="https://w.bookcdn.com/weather/picture/32_26871_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
-                alt="booked.net"/></a><!-- weather widget end -->
-            <!-- weather widget start --><a style="margin: 10px;" target="_blank"
-                                            href="https://www.booked.net/weather/new-delhi-18038"><img
-                src="https://w.bookcdn.com/weather/picture/32_18038_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"
-                alt="booked.net"/></a><!-- weather widget end -->
+            <!-- weather widget start -->
+            <div class="weather-style-css">
+                <img id="MumbaiIcon" src="" alt="">
+                <h4 style="font-family: Lato,serif;font-size: 30px;margin: 20px 0px;" id="MumbaiName"></h4>
+
+                <h3 style="font-family: Lato,serif;font-size: 30px;margin: 20px 0px;" id="MumbaiTemp"></h3>
+            </div>
+            <div class="weather-style-css">
+                <img id="ChennaiIcon" src="" alt="">
+                <h4 style="font-family: Lato,serif;font-size: 30px;margin: 20px 0px;" id="ChennaiName"></h4>
+
+                <h3 style="font-family: Lato,serif;font-size: 30px;margin: 20px 0px;" id="ChennaiTemp"></h3>
+            </div>
+              <div class="weather-style-css">
+                <img id="KolkataIcon" src="" alt="">
+                <h4 style="font-family: Lato,serif;font-size: 30px;margin: 20px 0px;" id="KolkataName"></h4>
+
+                <h3 style="font-family: Lato,serif;font-size: 30px;margin: 20px 0px;" id="KolkataTemp"></h3>
+            </div>
+            {#            <a style="margin: 10px;" target="blank"#}
+            {#               href="https://www.booked.net/weather/mumbai-26831"><img#}
+            {#                    src="https://w.bookcdn.com/weather/picture/32_26831_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"#}
+            {#                    alt="booked.net"/></a>#}
+            <!-- weather widget end -->
+            <!-- weather widget start -->
+            {#            <a style="margin: 10px;" target="_blank"#}
+            {#               href="https://www.booked.net/weather/chennai-18036"><img#}
+            {#                    src="https://w.bookcdn.com/weather/picture/32_18036_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"#}
+            {#                    alt="booked.net"/></a><!-- weather widget end -->#}
+            {#            <br>#}
+            {#            <!-- weather widget start --><a style="margin: 10px;" target="_blank"#}
+            {#                                            href="https://www.booked.net/weather/kolkata-26871"><img#}
+            {#                src="https://w.bookcdn.com/weather/picture/32_26871_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"#}
+            {#                alt="booked.net"/></a><!-- weather widget end -->#}
+            {#            <!-- weather widget start --><a style="margin: 10px;" target="_blank"#}
+            {#                                            href="https://www.booked.net/weather/new-delhi-18038"><img#}
+            {#                src="https://w.bookcdn.com/weather/picture/32_18038_1_1_e74c3c_250_c0392b_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=39781"#}
+            {#                alt="booked.net"/></a><!-- weather widget end -->#}
 
         </main>
         {# The Below is The Top Stories Scrollabel#}
@@ -102,7 +210,8 @@
                         <tr>
                             {% for top_story in top_stories %}
                                 <a style="text-decoration: none;"
-                                   href="{% url 'article' top_story.category top_story.section top_story.news_unique_id %}" id="myBtn" class="row-for-each-story">
+                                   href="{% url 'article' top_story.category top_story.section top_story.news_unique_id %}"
+                                   id="myBtn" class="row-for-each-story">
                         <span class="image-position-each-row">
                             {% if top_story.image == '' %}
                                 <img class="image-for-row" src="{{ top_story.image_link }}" alt="">
@@ -128,14 +237,30 @@
 
         <div id="homepage-content1">
 
-            {#            <div class="home-page-cont">#}
+            {% for latest_story in latest_stories %}
+                {% if latest_story.section == 'latest-cell-2' %}
+                    <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if latest_story.image != '' %}
 
-            <img class="homepage-image-css"
-                 src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/gipta_gopinath_reuters_1200x768.jpeg?ncCDhhvcujj7_uWw1NHCoiB4oFUYKcHD&size=770:433"
-                 alt="">
-            <p style="font-family: 'Lato',serif;
+                            <img class="homepage-image-css"
+
+                                 src="{{ latest_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="homepage-image-css"
+
+                                 src="{{ latest_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                        <p style="font-family: 'Lato',serif;
              " class="homepage-p-tag-css">
-                Gita Gopinath explains IMF’s growth forecast for India and the road ahead</p>
+                            {{ latest_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
         </div>
 
 
@@ -152,87 +277,212 @@
 
         {# grid main #}
         <div id="homepage-second-grid-main1" id="grid">
-            <img class="homepage-image-css"
-                 src="http://i.ndtvimg.com/i/2016-10/priyanka-chopra_640x480_71475648989.jpg" alt="">
-            <p style="font-family: 'Lato',serif;
-             " class="homepage-p-tag-css">
-                Priyanka Chopra Takes A Day Off From Quantico, Tours New York City</p>
+            {% for latest_story in latest_stories %}
+                {% if latest_story.section == 'latest-cell-3' %}
+                    <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if latest_story.image != '' %}
 
+                            <img class="homepage-image-css"
+
+                                 src="{{ latest_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="homepage-image-css"
+
+                                 src="{{ latest_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                        <p style="font-family: 'Lato',serif;
+             " class="homepage-p-tag-css">
+                            {{ latest_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
         </div>
         <div id="homepage-second-grid-main2">
-            <img class="homepage-image-css"
-                 src="https://i.ndtvimg.com/i/2016-08/pharma_650x400_81472018651.jpg" alt="">
-            <p style="font-family: 'Lato',serif;
-             " class="homepage-p-tag-css">
-                Baxter To Acquire Claris Injectables For ₹ 4,237 Crore</p>
+            {% for latest_story in latest_stories %}
+                {% if latest_story.section == 'latest-cell-4' %}
+                    <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if latest_story.image != '' %}
 
+                            <img class="homepage-image-css"
+
+                                 src="{{ latest_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="homepage-image-css"
+
+                                 src="{{ latest_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                        <p style="font-family: 'Lato',serif;
+             " class="homepage-p-tag-css">
+                            {{ latest_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
 
         </div>
         <div id="homepage-second-grid-main3">
 
             <div class="card1">
-                <div class="con">
+                {% for latest_story in latest_stories %}
+                    {% if latest_story.section == 'latest-cell-5' %}
+                        <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
+                           style="text-decoration: none;">
+                            <div class="con">
 
-                    <p>Al Jazeera Penalised for Showing Wrong Map of India, Off Air for 5 Days</p>
-                </div>
+                                <p style="text-decoration: none;color: #eeeeee;">{{ latest_story.title }}</p>
+                            </div>
+
+
+                        </a>
+
+                    {% endif %}
+
+                {% endfor %}
 
 
             </div>
 
             <div class="card1">
-                <div class="con">
+                {% for latest_story in latest_stories %}
+                    {% if latest_story.section == 'latest-cell-6' %}
+                        <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
+                           style="text-decoration: none;">
+                            <div class="con">
 
-                    <p>Former UK editor Rebekah Brooks said 'easy' to hack phones: witness</p>
-                </div>
+                                <p style="text-decoration: none;color: #eeeeee;">{{ latest_story.title }}</p>
+                            </div>
+
+
+                        </a>
+
+                    {% endif %}
+
+                {% endfor %}
             </div>
         </div>
-
 
 
         {# content 1 #}
         <div id="second-content1">
 
-            <img class="homepage-image-css"
-                 src="https://s.ndtvimg.com/images/stories/dhoni_brave_300.jpg" alt="">
-            <p style="font-family: 'Lato',serif;
-             " class="homepage-p-tag-css">
-                International news agencies boycott India-England Test series</p>
+            {% for latest_story in latest_stories %}
+                {% if latest_story.section == 'latest-cell-7' %}
+                    <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if latest_story.image != '' %}
 
+                            <img class="homepage-image-css"
+
+                                 src="{{ latest_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="homepage-image-css"
+
+                                 src="{{ latest_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                        <p style="font-family: 'Lato',serif;
+             " class="homepage-p-tag-css">
+                            {{ latest_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
 
         </div>
         {# content one end #}
         <div id="second-content2">
-            <img class="homepage-image-css"
-                 src="https://i.ndtvimg.com/mt/2013-11/Andy_Coulson_Reuters_360x270.jpg" alt="">
-            <p style="font-family: 'Lato',serif;
-             " class="homepage-p-tag-css">
-                Do his phone,' Murdoch editor told journalist hunting celebrity scoop</p>
+            {% for latest_story in latest_stories %}
+                {% if latest_story.section == 'latest-cell-8' %}
+                    <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
+                       style="text-decoration: none;">
+                        {% if latest_story.image != '' %}
 
+                            <img class="homepage-image-css"
+
+                                 src="{{ latest_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="homepage-image-css"
+
+                                 src="{{ latest_story.image_link }}"
+                                 alt="">
+                        {% endif %}
+                        <p style="font-family: 'Lato',serif;
+             " class="homepage-p-tag-css">
+                            {{ latest_story.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
 
         </div>
         {# content 2 end #}
         {# content 3 end#}
         <div id="second-content3">
             <div class="card1">
-                <div class="con">
+                {% for latest_story in latest_stories %}
+                    {% if latest_story.section == 'latest-cell-9' %}
+                        <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
+                           style="text-decoration: none;">
+                            <div class="con">
 
-                    <p>India among five most dangerous countries for journalists in 2013: report</p>
-                </div>
+                                <p style="text-decoration: none;color: #eeeeee;">{{ latest_story.title }}</p>
+                            </div>
 
+
+                        </a>
+
+                    {% endif %}
+
+                {% endfor %}
 
             </div>
 
             <div class="card1">
-                <div class="con">
+                {% for latest_story in latest_stories %}
+                    {% if latest_story.section == 'latest-cell-10' %}
+                        <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
+                           style="text-decoration: none;">
+                            <div class="con">
 
-                    <p>IOC criticises BCCI for attacking press freedom</p>
-                </div>
+                                <p style="text-decoration: none;color: #eeeeee;">{{ latest_story.title }}</p>
+                            </div>
+
+
+                        </a>
+
+                    {% endif %}
+
+                {% endfor %}
             </div>
             <div class="card1">
-                <div class="con">
+                {% for latest_story in latest_stories %}
+                    {% if latest_story.section == 'latest-cell-11' %}
+                        <a href="{% url 'article' latest_story.category latest_story.section latest_story.news_unique_id %}"
+                           style="text-decoration: none;">
+                            <div class="con">
 
-                    <p>Security head 'burnt stuff' on day News of the World shut</p>
-                </div>
+                                <p style="text-decoration: none;color: #eeeeee;">{{ latest_story.title }}</p>
+                            </div>
+
+
+                        </a>
+
+                    {% endif %}
+
+                {% endfor %}
             </div>
         </div>
 
