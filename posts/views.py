@@ -5,7 +5,6 @@ import random
 import math
 
 
-
 def cell_list(prefix, get_range):
     list_cell_string = []
     for i in get_range:
@@ -146,16 +145,19 @@ def posts_view(request, *args, **kwargs):
                         print('world')
                     elif article_category.split('-')[0] == 'technology':
                         print("Entering Technology Cursor For Execution")
-                        print(article_image_link,
-                              article_title,
-                              article_category,
-                              article_section, addotp
-                              )
                         cursor.execute(
-                            'CALL news_database.update_technology_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
+                            'CALL news_database.update_technology_grid(%s,%s,%s,%s,%s,%s,%s,%s,@STATUS1)',
                             [article_title, article_file_picture, article_image_link, article_content,
                              dict_of_user_details['email_id'], article_category, article_section,
                              addotp])
+                        cursor.execute("SELECT @STATUS1")
+                        row = cursor.fetchone()
+                        print(row)
+                        if row[0] is not None:
+                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
+                                                      'user': dict_of_user_details,
+                                                      'cell_list': dictionary_of_section_as_per_category}
+                            return render(request, 'posts.html', context_of_top_stories)
 
                         print('technology')
                     elif article_category.split('-')[0] == 'health':
