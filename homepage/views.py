@@ -28,7 +28,7 @@ def home_view(request, *args, **kwargs):
                 'news_unique_id': row[8]
             }
             list_of_latest.append(latest_dict)
-        print(list_of_latest)
+        # print(list_of_latest)
 
     top = []
     with connection.cursor() as cursor:

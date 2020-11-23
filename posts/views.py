@@ -106,6 +106,14 @@ def posts_view(request, *args, **kwargs):
                                         EditContent(article_content),
                                         dict_of_user_details['email_id'], article_category, article_section,
                                         addotp])
+                        row = cursor.fetchone()
+                        print(article_category.split('-'), row)
+                        if row is not None:
+                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
+                                                      'user': dict_of_user_details,
+                                                      'cell_list': dictionary_of_section_as_per_category}
+                            return render(request, 'posts.html', context_of_top_stories)
+
                         print("latest-cell-1")
                     elif article_category.split('-')[0] == 'latest':
                         cursor.execute('CALL news_database.update_latest_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
@@ -113,6 +121,14 @@ def posts_view(request, *args, **kwargs):
                                         EditContent(article_content),
                                         dict_of_user_details['email_id'], article_category, article_section,
                                         addotp])
+                        row = cursor.fetchone()
+                        print(article_category.split('-'), row)
+                        if row is not None:
+                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
+                                                      'user': dict_of_user_details,
+                                                      'cell_list': dictionary_of_section_as_per_category}
+                            return render(request, 'posts.html', context_of_top_stories)
+
                         print('latest')
                     elif article_category.split('-')[0] == 'india':
                         cursor.execute('CALL news_database.update_india_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
@@ -120,6 +136,14 @@ def posts_view(request, *args, **kwargs):
                                         EditContent(article_content),
                                         dict_of_user_details['email_id'], article_category, article_section,
                                         addotp])
+                        row = cursor.fetchone()
+                        print(article_category.split('-'), row)
+                        if row is not None:
+                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
+                                                      'user': dict_of_user_details,
+                                                      'cell_list': dictionary_of_section_as_per_category}
+                            return render(request, 'posts.html', context_of_top_stories)
+
                         print('india')
                     elif article_category.split('-')[0] == 'education':
                         print("Entering Education")
@@ -128,6 +152,14 @@ def posts_view(request, *args, **kwargs):
                                         EditContent(article_content),
                                         dict_of_user_details['email_id'], article_category, article_section,
                                         addotp])
+                        row = cursor.fetchone()
+                        print(article_category.split('-'), row)
+                        if row is not None:
+                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
+                                                      'user': dict_of_user_details,
+                                                      'cell_list': dictionary_of_section_as_per_category}
+                            return render(request, 'posts.html', context_of_top_stories)
+
                         print('education')
                     elif article_category.split('-')[0] == 'business':
                         cursor.execute('CALL news_database.update_business_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
@@ -135,6 +167,14 @@ def posts_view(request, *args, **kwargs):
                                         EditContent(article_content),
                                         dict_of_user_details['email_id'], article_category, article_section,
                                         addotp])
+                        row = cursor.fetchone()
+                        print(article_category.split('-'), row)
+                        if row is not None:
+                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
+                                                      'user': dict_of_user_details,
+                                                      'cell_list': dictionary_of_section_as_per_category}
+                            return render(request, 'posts.html', context_of_top_stories)
+
                         print('business')
                     elif article_category.split('-')[0] == 'world':
                         cursor.execute('CALL news_database.update_world_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
@@ -142,18 +182,25 @@ def posts_view(request, *args, **kwargs):
                                         EditContent(article_content),
                                         dict_of_user_details['email_id'], article_category, article_section,
                                         addotp])
+                        row = cursor.fetchone()
+                        print(article_category.split('-'), row)
+                        if row is not None:
+                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
+                                                      'user': dict_of_user_details,
+                                                      'cell_list': dictionary_of_section_as_per_category}
+                            return render(request, 'posts.html', context_of_top_stories)
+
                         print('world')
                     elif article_category.split('-')[0] == 'technology':
                         print("Entering Technology Cursor For Execution")
                         cursor.execute(
-                            'CALL news_database.update_technology_grid(%s,%s,%s,%s,%s,%s,%s,%s,@STATUS1)',
+                            'CALL news_database.update_technology_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
                             [article_title, article_file_picture, article_image_link, article_content,
                              dict_of_user_details['email_id'], article_category, article_section,
                              addotp])
-                        cursor.execute("SELECT @STATUS1")
                         row = cursor.fetchone()
-                        print(row)
-                        if row[0] is not None:
+                        print(article_category.split('-')[0], row)
+                        if row is not None:
                             context_of_top_stories = {"registration_success": False, "registration_failure": True,
                                                       'user': dict_of_user_details,
                                                       'cell_list': dictionary_of_section_as_per_category}
@@ -165,7 +212,15 @@ def posts_view(request, *args, **kwargs):
                                        [article_title, article_file_picture, article_image_link, article_content,
                                         dict_of_user_details['email_id'], article_category, article_section,
                                         addotp])
+                        row = cursor.fetchone()
+                        print(article_category.split('-')[0], row)
+                        if row is not None:
+                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
+                                                      'user': dict_of_user_details,
+                                                      'cell_list': dictionary_of_section_as_per_category}
+                            return render(request, 'posts.html', context_of_top_stories)
                         print('health')
+
                     else:
                         print("Un-Successfull")
 

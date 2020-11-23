@@ -122,8 +122,9 @@
 
                     <img style="width: 100%; max-width: 600px;" src="{{ article_dictionary.image }}"
                          align=left/>
-                {% else %}
+                {% elif article_dictionary.image_link %}
                     <img style="width: 100%; max-width: 600px;" src="{{ article_dictionary.image_link }}"
+                         alt="Image Not Found Error"
                          align=left/>
                 {% endif %}
 
