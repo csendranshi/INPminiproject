@@ -1,0 +1,82 @@
+.table-box-for-scrollable-text-main {
+    padding-left: 170px;
+    color: #eeeeee;
+    font-family: 'Lato',serif;
+    font-size: 20px;
+
+}
+
+.table-box-for-scrollable {
+    background: rgba(255, 255, 255, 0.13);
+
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 700px;
+    width: 440px;
+    padding: 5px;
+    margin: 20px;
+}
+
+.box-for-scrollable {
+
+    height: 90%;
+    width: 95%;
+    margin: 10px auto;
+    overflow-y: scroll;
+}
+
+.row-for-each-story {
+    height: 93px;
+    display: block;
+    padding: 10px;
+    background: #222222;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin: 10px;
+
+}
+
+.box-for-scrollable::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+.box-for-scrollable::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.13); /* color of the tracking area */
+}
+
+.box-for-scrollable::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.13); /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    border: 3px solid transparent; /* creates padding around scroll thumb */
+}
+
+.image-for-row {
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 85px;
+    position: relative;
+    height: 75px;
+}
+
+.image-position-each-row {
+    margin: 10px 2px;
+}
+
+
+.news-post-text-for-top-stories {
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    margin: -80px 0px 0px 100px;
+    /*display: inline-block;*/
+    position: relative;
+    font-size: 14px;
+    width: 250px;
+    font-family: 'Lato', Sans Serif;
+    color: #eeeeee;
+}
+
