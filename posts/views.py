@@ -64,179 +64,181 @@ def posts_view(request, *args, **kwargs):
 
         # print(binary,letter_binary)
 
-    if request.method == 'POST':
+        if request.method == 'POST':
 
-        article_image_link = request.POST.get('imageLink')
-        article_title = request.POST.get('postTitle')
-        article_category = request.POST.get('category')
-        article_section = request.POST.get('section')
-        article_content = request.POST.get('postDesc')
-        article_file_picture = request.POST.get('finalPictureValue')
-        print("THis is", article_category)
-        if article_category == '' or article_category is None:
-            message = "Choose A Category"
-            context = {"registration_success": False, 'cell_list': dictionary_of_section_as_per_category,
-                       'message': message}
-            return render(request, 'posts.html', context)
-        if article_section == '' or article_section is None:
-            message = "Choose A Category"
-            context = {"registration_success": False, 'cell_list': dictionary_of_section_as_per_category,
-                       'message': message}
-            return render(request, 'posts.html', context)
-        if article_image_link == '' and article_file_picture == '':
-            message = "Enter Image Link or Select An Image"
-            context = {"registration_success": False, 'cell_list': dictionary_of_section_as_per_category,
-                       'message': message}
-            return render(request, 'posts.html', context)
+            article_image_link = request.POST.get('imageLink')
+            article_title = request.POST.get('postTitle')
+            article_category = request.POST.get('category')
+            article_section = request.POST.get('section')
+            article_content = request.POST.get('postDesc')
+            article_file_picture = request.POST.get('finalPictureValue')
+            print("THis is", article_category)
+            if article_category == '' or article_category is None:
+                message = "Choose A Category"
+                context = {"registration_success": False, 'cell_list': dictionary_of_section_as_per_category,
+                           'message': message}
+                return render(request, 'posts.html', context)
+            if article_section == '' or article_section is None:
+                message = "Choose A Category"
+                context = {"registration_success": False, 'cell_list': dictionary_of_section_as_per_category,
+                           'message': message}
+                return render(request, 'posts.html', context)
+            if article_image_link == '' and article_file_picture == '':
+                message = "Enter Image Link or Select An Image"
+                context = {"registration_success": False, 'cell_list': dictionary_of_section_as_per_category,
+                           'message': message}
+                return render(request, 'posts.html', context)
 
-        file1 = open('textfile.txt', 'a+')
-        file1.seek(0)
-        with connection.cursor() as cursor:
-            while 1:
-                addotp = OTPgen()
-                file1.seek(0)
-                if addotp in file1.read():
-                    print("exists", addotp)
-                    continue
-                else:
-                    file1.write(addotp + "\n")
-                    # file1.write("\n")
-                    if article_category.split('-')[0] == 'latest' and article_section == 'latest-cell-1':
-                        cursor.execute('CALL news_database.latest_top_stories(%s,%s,%s,%s,%s,%s,%s,%s)',
-                                       [article_title, article_file_picture, article_image_link,
-                                        EditContent(article_content),
-                                        dict_of_user_details['email_id'], article_category, article_section,
-                                        addotp])
-                        row = cursor.fetchone()
-                        print(article_category.split('-'), row)
-                        if row is not None:
-                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
-                                                      'user': dict_of_user_details,
-                                                      'cell_list': dictionary_of_section_as_per_category}
-                            return render(request, 'posts.html', context_of_top_stories)
-
-                        print("latest-cell-1")
-                    elif article_category.split('-')[0] == 'latest':
-                        cursor.execute('CALL news_database.update_latest_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
-                                       [article_title, article_file_picture, article_image_link,
-                                        EditContent(article_content),
-                                        dict_of_user_details['email_id'], article_category, article_section,
-                                        addotp])
-                        row = cursor.fetchone()
-                        print(article_category.split('-'), row)
-                        if row is not None:
-                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
-                                                      'user': dict_of_user_details,
-                                                      'cell_list': dictionary_of_section_as_per_category}
-                            return render(request, 'posts.html', context_of_top_stories)
-
-                        print('latest')
-                    elif article_category.split('-')[0] == 'india':
-                        cursor.execute('CALL news_database.update_india_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
-                                       [article_title, article_file_picture, article_image_link,
-                                        EditContent(article_content),
-                                        dict_of_user_details['email_id'], article_category, article_section,
-                                        addotp])
-                        row = cursor.fetchone()
-                        print(article_category.split('-'), row)
-                        if row is not None:
-                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
-                                                      'user': dict_of_user_details,
-                                                      'cell_list': dictionary_of_section_as_per_category}
-                            return render(request, 'posts.html', context_of_top_stories)
-
-                        print('india')
-                    elif article_category.split('-')[0] == 'education':
-                        print("Entering Education")
-                        cursor.execute('CALL news_database.update_education_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
-                                       [article_title, article_file_picture, article_image_link,
-                                        EditContent(article_content),
-                                        dict_of_user_details['email_id'], article_category, article_section,
-                                        addotp])
-                        row = cursor.fetchone()
-                        print(article_category.split('-'), row)
-                        if row is not None:
-                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
-                                                      'user': dict_of_user_details,
-                                                      'cell_list': dictionary_of_section_as_per_category}
-                            return render(request, 'posts.html', context_of_top_stories)
-
-                        print('education')
-                    elif article_category.split('-')[0] == 'business':
-                        cursor.execute('CALL news_database.update_business_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
-                                       [article_title, article_file_picture, article_image_link,
-                                        EditContent(article_content),
-                                        dict_of_user_details['email_id'], article_category, article_section,
-                                        addotp])
-                        row = cursor.fetchone()
-                        print(article_category.split('-'), row)
-                        if row is not None:
-                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
-                                                      'user': dict_of_user_details,
-                                                      'cell_list': dictionary_of_section_as_per_category}
-                            return render(request, 'posts.html', context_of_top_stories)
-
-                        print('business')
-                    elif article_category.split('-')[0] == 'world':
-                        cursor.execute('CALL news_database.update_world_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
-                                       [article_title, article_file_picture, article_image_link,
-                                        EditContent(article_content),
-                                        dict_of_user_details['email_id'], article_category, article_section,
-                                        addotp])
-                        row = cursor.fetchone()
-                        print(article_category.split('-'), row)
-                        if row is not None:
-                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
-                                                      'user': dict_of_user_details,
-                                                      'cell_list': dictionary_of_section_as_per_category}
-                            return render(request, 'posts.html', context_of_top_stories)
-
-                        print('world')
-                    elif article_category.split('-')[0] == 'technology':
-                        print("Entering Technology Cursor For Execution")
-                        cursor.execute(
-                            'CALL news_database.update_technology_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
-                            [article_title, article_file_picture, article_image_link, article_content,
-                             dict_of_user_details['email_id'], article_category, article_section,
-                             addotp])
-                        row = cursor.fetchone()
-                        print(article_category.split('-')[0], row)
-                        if row is not None:
-                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
-                                                      'user': dict_of_user_details,
-                                                      'cell_list': dictionary_of_section_as_per_category}
-                            return render(request, 'posts.html', context_of_top_stories)
-
-                        print('technology')
-                    elif article_category.split('-')[0] == 'health':
-                        cursor.execute('CALL news_database.update_health_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
-                                       [article_title, article_file_picture, article_image_link, article_content,
-                                        dict_of_user_details['email_id'], article_category, article_section,
-                                        addotp])
-                        row = cursor.fetchone()
-                        print(article_category.split('-')[0], row)
-                        if row is not None:
-                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
-                                                      'user': dict_of_user_details,
-                                                      'cell_list': dictionary_of_section_as_per_category}
-                            return render(request, 'posts.html', context_of_top_stories)
-                        print('health')
-
+            file1 = open('textfile.txt', 'a+')
+            file1.seek(0)
+            with connection.cursor() as cursor:
+                while 1:
+                    addotp = OTPgen()
+                    file1.seek(0)
+                    if addotp in file1.read():
+                        print("exists", addotp)
+                        continue
                     else:
-                        print("Un-Successfull")
+                        file1.write(addotp + "\n")
+                        # file1.write("\n")
+                        if article_category.split('-')[0] == 'latest' and article_section == 'latest-cell-1':
+                            cursor.execute('CALL news_database.latest_top_stories(%s,%s,%s,%s,%s,%s,%s,%s)',
+                                           [article_title, article_file_picture, article_image_link,
+                                            EditContent(article_content),
+                                            dict_of_user_details['email_id'], article_category, article_section,
+                                            addotp])
+                            row = cursor.fetchone()
+                            print(article_category.split('-'), row)
+                            if row is not None:
+                                context_of_top_stories = {"registration_success": False, "registration_failure": True,
+                                                          'user': dict_of_user_details,
+                                                          'cell_list': dictionary_of_section_as_per_category}
+                                return render(request, 'posts.html', context_of_top_stories)
 
-                    context_of_top_stories = {"registration_success": True, 'user': dict_of_user_details,
-                                              'cell_list': dictionary_of_section_as_per_category}
-                    return render(request, 'posts.html', context_of_top_stories)
+                            print("latest-cell-1")
+                        elif article_category.split('-')[0] == 'latest':
+                            cursor.execute('CALL news_database.update_latest_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
+                                           [article_title, article_file_picture, article_image_link,
+                                            EditContent(article_content),
+                                            dict_of_user_details['email_id'], article_category, article_section,
+                                            addotp])
+                            row = cursor.fetchone()
+                            print(article_category.split('-'), row)
+                            if row is not None:
+                                context_of_top_stories = {"registration_success": False, "registration_failure": True,
+                                                          'user': dict_of_user_details,
+                                                          'cell_list': dictionary_of_section_as_per_category}
+                                return render(request, 'posts.html', context_of_top_stories)
 
-        print(article_image_link,
-              article_title,
-              article_category,
-              article_section,
-              )
+                            print('latest')
+                        elif article_category.split('-')[0] == 'india':
+                            cursor.execute('CALL news_database.update_india_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
+                                           [article_title, article_file_picture, article_image_link,
+                                            EditContent(article_content),
+                                            dict_of_user_details['email_id'], article_category, article_section,
+                                            addotp])
+                            row = cursor.fetchone()
+                            print(article_category.split('-'), row)
+                            if row is not None:
+                                context_of_top_stories = {"registration_success": False, "registration_failure": True,
+                                                          'user': dict_of_user_details,
+                                                          'cell_list': dictionary_of_section_as_per_category}
+                                return render(request, 'posts.html', context_of_top_stories)
 
-        print("clean")
+                            print('india')
+                        elif article_category.split('-')[0] == 'education':
+                            print("Entering Education")
+                            cursor.execute('CALL news_database.update_education_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
+                                           [article_title, article_file_picture, article_image_link,
+                                            EditContent(article_content),
+                                            dict_of_user_details['email_id'], article_category, article_section,
+                                            addotp])
+                            row = cursor.fetchone()
+                            print(article_category.split('-'), row)
+                            if row is not None:
+                                context_of_top_stories = {"registration_success": False, "registration_failure": True,
+                                                          'user': dict_of_user_details,
+                                                          'cell_list': dictionary_of_section_as_per_category}
+                                return render(request, 'posts.html', context_of_top_stories)
 
+                            print('education')
+                        elif article_category.split('-')[0] == 'business':
+                            cursor.execute('CALL news_database.update_business_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
+                                           [article_title, article_file_picture, article_image_link,
+                                            EditContent(article_content),
+                                            dict_of_user_details['email_id'], article_category, article_section,
+                                            addotp])
+                            row = cursor.fetchone()
+                            print(article_category.split('-'), row)
+                            if row is not None:
+                                context_of_top_stories = {"registration_success": False, "registration_failure": True,
+                                                          'user': dict_of_user_details,
+                                                          'cell_list': dictionary_of_section_as_per_category}
+                                return render(request, 'posts.html', context_of_top_stories)
+
+                            print('business')
+                        elif article_category.split('-')[0] == 'world':
+                            cursor.execute('CALL news_database.update_world_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
+                                           [article_title, article_file_picture, article_image_link,
+                                            EditContent(article_content),
+                                            dict_of_user_details['email_id'], article_category, article_section,
+                                            addotp])
+                            row = cursor.fetchone()
+                            print(article_category.split('-'), row)
+                            if row is not None:
+                                context_of_top_stories = {"registration_success": False, "registration_failure": True,
+                                                          'user': dict_of_user_details,
+                                                          'cell_list': dictionary_of_section_as_per_category}
+                                return render(request, 'posts.html', context_of_top_stories)
+
+                            print('world')
+                        elif article_category.split('-')[0] == 'technology':
+                            print("Entering Technology Cursor For Execution")
+                            cursor.execute(
+                                'CALL news_database.update_technology_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
+                                [article_title, article_file_picture, article_image_link, article_content,
+                                 dict_of_user_details['email_id'], article_category, article_section,
+                                 addotp])
+                            row = cursor.fetchone()
+                            print(article_category.split('-')[0], row)
+                            if row is not None:
+                                context_of_top_stories = {"registration_success": False, "registration_failure": True,
+                                                          'user': dict_of_user_details,
+                                                          'cell_list': dictionary_of_section_as_per_category}
+                                return render(request, 'posts.html', context_of_top_stories)
+
+                            print('technology')
+                        elif article_category.split('-')[0] == 'health':
+                            cursor.execute('CALL news_database.update_health_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
+                                           [article_title, article_file_picture, article_image_link, article_content,
+                                            dict_of_user_details['email_id'], article_category, article_section,
+                                            addotp])
+                            row = cursor.fetchone()
+                            print(article_category.split('-')[0], row)
+                            if row is not None:
+                                context_of_top_stories = {"registration_success": False, "registration_failure": True,
+                                                          'user': dict_of_user_details,
+                                                          'cell_list': dictionary_of_section_as_per_category}
+                                return render(request, 'posts.html', context_of_top_stories)
+                            print('health')
+
+                        else:
+                            print("Un-Successfull")
+
+                        context_of_top_stories = {"registration_success": True, 'user': dict_of_user_details,
+                                                  'cell_list': dictionary_of_section_as_per_category}
+                        return render(request, 'posts.html', context_of_top_stories)
+
+            print(article_image_link,
+                  article_title,
+                  article_category,
+                  article_section,
+                  )
+
+            print("clean")
+        context_of_top_stories = {"registration_success": False, 'user': dict_of_user_details,
+                                  'cell_list': dictionary_of_section_as_per_category}
+        return render(request, 'posts.html', context_of_top_stories)
     context_of_top_stories = {"registration_success": False,
                               'cell_list': dictionary_of_section_as_per_category}
     return render(request, 'Login.html', context_of_top_stories)
