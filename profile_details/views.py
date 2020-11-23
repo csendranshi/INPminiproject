@@ -8,7 +8,7 @@ from werkzeug.security import generate_password_hash
 
 def profile_view(request, *args, **kwargs):
     if request.session.has_key('logged_in'):
-        print("SESSION AT PROFILE VIEW",request.session.has_key('logged_in'))
+        # print("SESSION AT PROFILE VIEW",request.session.has_key('logged_in'))
         dict_of_user_details = {
             'admin_access': request.session['admin_access'],
             'journal_access': request.session['journal_access'],
@@ -24,20 +24,20 @@ def profile_view(request, *args, **kwargs):
             password1 = request.POST.get('pass1')
             password2 = request.POST.get('pass2')
             profile_picture = request.POST.get('image-data')
-            print(password1, password2, profile_picture)
+            # print(password1, password2, profile_picture)
             if profile_picture != None and profile_picture != '':
                 with connection.cursor() as cursor:
                     cursor.execute('CALL news_database.update_profile_picture(%s,%s)',
                                    [dict_of_user_details['email_id'], profile_picture])
                     time.sleep(2)
-                print("Successfully Clear")
+                # print("Successfully Clear")
             if password1 == password2 and password1 != '' and password1 != None:
                 hashed_password = generate_password_hash(password2, method="sha256")
                 with connection.cursor() as cursor:
                     cursor.execute('CALL news_database.update_password(%s,%s)',
                                    [dict_of_user_details['email_id'], hashed_password])
                     time.sleep(2)
-                print("Successfully Updated Password")
+                # print("Successfully Updated Password")
             time.sleep(2)
             with connection.cursor() as cursor:
                 time.sleep(2)

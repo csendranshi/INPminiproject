@@ -7,21 +7,17 @@
     <title>The Journalist</title>
     <link href="{% static '/css/css_auth.css' %}" rel="stylesheet">
     <link rel="icon" href="{% static '/assets/news.png' %}"/>
-    <link href="{% static '/css/index_style2.css' %}" rel="stylesheet">
+    <link href="{% static '/css/index_style1.css' %}" rel="stylesheet">
     <link href="{% static '/css/newsCard.css' %}" rel="stylesheet">
     <link href="{% static '/css/top_story.css' %}" rel="stylesheet">
     <link href="{% static '/css/business.css' %}" rel="stylesheet">
     <link href="{% static '/css/education.css' %}" rel="stylesheet">
     <link href="{% static '/css/health.css' %}" rel="stylesheet">
-    <link href="{% static '/css/technology1.css' %}" rel="stylesheet">
-    <link href="{% static '/css/posts1.css' %}" rel="stylesheet">
-
+    <link href="{% static '/css/technology.css' %}" rel="stylesheet">
+    <link href="{% static '/css/posts.css' %}" rel="stylesheet">
     <link href="{% static '/css/prevpost.css' %}" rel="stylesheet">
-
-
     <link href="{% static '/css/india.css' %}" rel="stylesheet">
     <link href="{% static '/css/world.css' %}" rel="stylesheet">
-
     <link href="{% static '/css/Footer.css' %}" rel="stylesheet">
     <link href="{% static '/css/drawer.css' %}" rel="stylesheet">
     <link href="{% static '/css/navbar.css' %}" rel="stylesheet">
@@ -99,15 +95,15 @@
         <hr>
         <a href="javascript:void(0)" class="closebtn" onclick="closeDrawer()">&times;</a>
         <a style="margin-top:25px " href="{% url 'profile' %}"><img class="custom-icon-class-style"
-                                                                    src="{% static '/assets/account.png' %}" alt="">Profile</a>
+        src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/account.png" alt="">Profile</a>
 
         <a href="{% url 'search_news' %}"><img class="custom-icon-class-style"
-                                                                    src="{% static '/assets/searchglass.png' %}" alt="">Search News</a>
+        src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/searchglass.png" alt="">Search News</a>
         {% if user.journal_access %}
-            <a href="{% url 'posts' %}"><img class="custom-icon-class-style" src="{% static '/assets/postnews.png' %}"
+            <a href="{% url 'posts' %}"><img class="custom-icon-class-style" src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/postnews.png"
                                              alt="">Post
                 Article</a>
-            <a href="{% url 'prevpost' %}"><img class="custom-icon-class-style" src="{% static '/assets/journal.png' %}"
+            <a href="{% url 'prevpost' %}"><img class="custom-icon-class-style" src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/journal.png"
                                                 alt="">Previous Posts</a>
 {#               <a href="{% url 'prevpostxsl' %}"><img class="custom-icon-class-style" src="{% static '/assets/journal.png' %}"#}
 {#                                                alt="">Previous Posts</a>#}
@@ -115,36 +111,36 @@
 
         {% if user.admin_access %}
             <a href="{% url 'user_page' %}"><img class="custom-icon-class-style"
-                                                 src="{% static '/assets/user-account.png' %}"
+                                                 src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/user-account.png"
                                                  alt="">Users</a>
 
         {% endif %}
-        <a href="{% url 'logout' %}"><img class="custom-icon-class-style" src="{% static '/assets/logout.png' %}"
+        <a href="{% url 'logout' %}"><img class="custom-icon-class-style" src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/logout.png"
                                           alt="">Log Out</a>
     </div>
 
 </div>
 
 <div class="topnav" id="myTopnav">
-    <a href="{% url 'home' %}"><img class="custom-icon-class-style" src="{% static '/assets/current.png' %}" alt="">Latest</a>
-    <a href="{% url 'india' %}"><img class="custom-icon-class-style" src="{% static '/assets/india.png' %}" alt="">India</a>
-    <a href="{% url 'education' %}"><img class="custom-icon-class-style" src="{% static '/assets/education.png' %}"
+    <a href="{% url 'home' %}"><img class="custom-icon-class-style" src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/current.png" alt="">Latest</a>
+    <a href="{% url 'india' %}"><img class="custom-icon-class-style" src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/india.png" alt="">India</a>
+    <a href="{% url 'education' %}"><img class="custom-icon-class-style" src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/education.png"
                                          alt="">Education</a>
-    <a href="{% url 'business' %}"><img class="custom-icon-class-style" src="{% static '/assets/business.png' %}"
+    <a href="{% url 'business' %}"><img class="custom-icon-class-style" src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/business.png"
                                         alt="">Business</a>
 
-    <a href="{% url 'world' %}"><img class="custom-icon-class-style" src="{% static '/assets/world.png' %}" alt="">World</a>
-    <a href="{% url 'technology' %}"><img class="custom-icon-class-style" src="{% static '/assets/connect.png' %}"
+    <a href="{% url 'world' %}"><img class="custom-icon-class-style" src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/world.png" alt="">World</a>
+    <a href="{% url 'technology' %}"><img class="custom-icon-class-style" src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/connect.png"
                                           alt="">Technology</a>
-    <a href="{% url 'health' %}"><img class="custom-icon-class-style" src="{% static '/assets/hospital.png' %}" alt="">Health</a>
+    <a href="{% url 'health' %}"><img class="custom-icon-class-style" src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/hospital.png" alt="">Health</a>
     {% if user.suscriber_access %}
         <a style="justify-content:flex-end;" href="javascript:void(0)" onclick="openDrawer()"><img style="margin-right: 5px;
 
             margin-bottom: -5px;"
-                                                                                                   src="{% static '/assets/profile.png' %}"
+                                                                                                   src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/profile.png"
                                                                                                    alt="">Profile</a>
     {% else %}
-        <a href="{% url 'login' %}"><img class="custom-icon-class-style" src="{% static '/assets/pen.png' %}" alt="">Sign
+        <a href="{% url 'login' %}"><img class="custom-icon-class-style" src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/pen.png" alt="">Sign
             In/Up</a>
     {% endif %}
     <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>

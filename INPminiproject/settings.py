@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '*%^bonl#^w5&ndeq)$tweo#*738@_um!g9iweffg)6v$1k#lj1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'search_news',
     'user_card',
     'Page404',
+    'Navbar'
 ]
 
 MIDDLEWARE = [

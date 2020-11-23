@@ -19,9 +19,9 @@ def Technology_view(request, *args, **kwargs):
                 'news_unique_id':row[8]
             }
             list_of_tech.append(tech_dict)
-        print(list_of_tech)
+        # print(list_of_tech)
     if request.session.has_key('logged_in'):
-        print(request.session.has_key('logged_in'))
+        # print(request.session.has_key('logged_in'))
         dict_of_user_details = {
             'admin_access': request.session['admin_access'],
             'journal_access': request.session['journal_access'],

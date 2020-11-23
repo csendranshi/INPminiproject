@@ -20,10 +20,10 @@ def education_view(request, *args, **kwargs):
                 'news_unique_id': row[8]
             }
             list_of_education.append(education_dict)
-        print(list_of_education)
+        # print(list_of_education)
 
     if request.session.has_key('logged_in'):
-        print(request.session.has_key('logged_in'))
+        # print(request.session.has_key('logged_in'))
         dict_of_user_details = {
             'admin_access': request.session['admin_access'],
             'journal_access': request.session['journal_access'],

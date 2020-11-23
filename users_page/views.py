@@ -6,7 +6,7 @@ import time
 
 def users_view(request, *args, **kwargs):
     if request.session.has_key('logged_in'):
-        print(request.session.has_key('logged_in'))
+        # print(request.session.has_key('logged_in'))
         dict_of_user_details = {
             'admin_access': request.session['admin_access'],
             'journal_access': request.session['journal_access'],
@@ -42,7 +42,7 @@ def users_view(request, *args, **kwargs):
             with open('users_page_json.json', 'r') as openfile:
                 # Reading from json file
                 json_object = json.load(openfile)
-                print(json_object)
+                # print(json_object)
 
             openfile.close()
 

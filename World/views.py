@@ -20,9 +20,9 @@ def world_view(request, *args, **kwargs):
                 'news_unique_id':row[8]
             }
             list_of_world.append(world_dict)
-        print(list_of_world)
+        # print(list_of_world)
     if request.session.has_key('logged_in'):
-        print(request.session.has_key('logged_in'))
+        # print(request.session.has_key('logged_in'))
         dict_of_user_details = {
             'admin_access': request.session['admin_access'],
             'journal_access': request.session['journal_access'],
