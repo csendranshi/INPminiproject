@@ -49,6 +49,7 @@ def posts_view(request, *args, **kwargs):
     }
 
     if request.session.has_key('logged_in'):
+        print("SESSION AT POSTS VIEW", request.session.has_key('logged_in'))
         dict_of_user_details = {
             'admin_access': request.session['admin_access'],
             'journal_access': request.session['journal_access'],
@@ -236,6 +237,6 @@ def posts_view(request, *args, **kwargs):
 
         print("clean")
 
-    context_of_top_stories = {"registration_success": False, 'user': dict_of_user_details,
+    context_of_top_stories = {"registration_success": False,
                               'cell_list': dictionary_of_section_as_per_category}
-    return render(request, 'posts.html', context_of_top_stories)
+    return render(request, 'Login.html', context_of_top_stories)

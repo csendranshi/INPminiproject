@@ -1,8 +1,6 @@
 {% extends 'Navbar.html' %}
 {% load static %}
 
-
-
 {% block content %}
     <style>
         .flex-display-message {
@@ -15,7 +13,8 @@
         }
     </style>
     <div class="flex-display-message">
-            <img width="600" src="{% static '/assets/404ErrorPage.svg' %}" alt="">
-            <h1> Not Found What You Were Searching For, You Might Find it Later!</h1>
-        </div>
+        <img width="600" src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/404ErrorPage.svg"
+             alt=""/>
+        <h1> Not Found What You Were Searching For, You Might Find it Later!</h1>
+    </div>
 {% endblock %}

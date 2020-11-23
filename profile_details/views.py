@@ -8,7 +8,7 @@ from werkzeug.security import generate_password_hash
 
 def profile_view(request, *args, **kwargs):
     if request.session.has_key('logged_in'):
-        print(request.session.has_key('logged_in'))
+        print("SESSION AT PROFILE VIEW",request.session.has_key('logged_in'))
         dict_of_user_details = {
             'admin_access': request.session['admin_access'],
             'journal_access': request.session['journal_access'],
@@ -79,4 +79,4 @@ def profile_view(request, *args, **kwargs):
                                   'registration_success': False}
         return render(request, "profile.html", context_of_top_stories)
 
-    return render(request, "profile.html", {'registration_success': False})
+    return render(request, "Login.html", {'registration_success': False})

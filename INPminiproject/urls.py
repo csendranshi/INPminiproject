@@ -14,9 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
+from django.views.static import serve
 
 from World import views as view_world
 from article import views as article_views
@@ -33,6 +35,10 @@ from profile_details import views as view_profile
 from technology import views as view_tech
 from users_page import views as view_users_page
 from search_news import views as view_search_news
+
+handler404 = 'Page404.views.handler404'
+handler500 = 'Page404.views.handler500'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', view_homepage.home_view, name='home'),
@@ -54,8 +60,12 @@ urlpatterns = [
     path('userspage/', view_users_page.users_view, name='user_page'),
     path('searchnews/', view_search_news.search_view, name='search_news'),
     path('article/<grid_category>/<section>/<unique_id>', article_views.article_view, name='article'),
-
+    # url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    # url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

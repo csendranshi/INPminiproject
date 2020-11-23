@@ -63,8 +63,8 @@ def auth(request):
                 #     cursor.execute('CALL news_database.insert_personal_details(%s,%s,%s,%s,%s,%s,%s)',
                 #                    [register_firstname, register_lastname, register_emailId, hashed_password,
                 #                     register_date, register_gender, register_phone_no])
-                    context = {"registration_success": True}
-                    return render(request, 'Login.html', context)
+                context = {"registration_success": True}
+                return render(request, 'Login.html', context)
 
     return render(request, 'Register.html')
 
@@ -105,7 +105,7 @@ def Login(request):
                         'last_name': request.session['last_name'],
                         'email_id': request.session['email_id'],
                         'suscriber_access': request.session['suscriber_priority'],
-                        'profile_picture':request.session['profile_picture']
+                        'profile_picture': request.session['profile_picture']
 
                     }
                     print(dict_of_user_details)
@@ -118,17 +118,17 @@ def Login(request):
 
 
 def Logout(request):
-    request.session['logged_in'] = False
-    request.session['journal_access'] = False
-    request.session['admin_access'] = False
-    request.session['suscriber_priority'] = False
+    del request.session['logged_in']
+    del request.session['journal_access']
+    del request.session['admin_access']
+    del request.session['suscriber_priority']
     dict_of_user_details = {
-        'admin_access': request.session['admin_access'],
-        'journal_access': request.session['journal_access'],
-        'logged_in': request.session['logged_in'],
+        'admin_access': 0,
+        'journal_access': 0,
+        'logged_in': False,
         'first_name': "",
         'last_name': "",
-        'suscriber_access': request.session['suscriber_priority']
+        'suscriber_access': 0
     }
     context = {'user': dict_of_user_details}
     return render(request, 'Login.html', context)
