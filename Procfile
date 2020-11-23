@@ -1,1 +1,1 @@
-web: gunicorn INPminproject.wsgi
+web: gunicorn INPminiproject.wsgi
