@@ -99,7 +99,10 @@ DATABASES = {
         'USER': 'admin',
         'PASSWORD': 'thejournalist',
         'PORT': '3306',
-        'HOST': 'thejournalistinstance.csubdeug2c1q.ap-south-1.rds.amazonaws.com'
+        'HOST': 'thejournalistinstance.csubdeug2c1q.ap-south-1.rds.amazonaws.com',
+        'OPTIONS': {
+            'sql_mode': 'traditional',
+        }
 
     }
 }
