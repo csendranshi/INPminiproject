@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.db import connection
+from django.db import connection, Error
 import json
 import time
 
@@ -20,9 +20,12 @@ def users_view(request, *args, **kwargs):
         }
 
         with connection.cursor() as cursor:
-            cursor.execute(
-                'Select first_name,last_name,admin_priority,journalist_priority,suscriber_priority,profile_picture from news_database.personal_details;')
-            rows = cursor.fetchall()
+            try:
+                cursor.execute(
+                    'Select first_name,last_name,admin_priority,journalist_priority,suscriber_priority,profile_picture from news_database.personal_details;')
+                rows = cursor.fetchall()
+            except Error as err:
+                return render(request, "ErrorPage.html", {"Error": err})
             list_of_users = []
             for row in rows:
                 dict_of_user = {
@@ -30,7 +33,6 @@ def users_view(request, *args, **kwargs):
                     'admin': row[2],
                     'suscriber': row[4],
                     'journalist': row[3],
-
                     'last_name': row[1],
                     'pro_pic': row[5]
                 }

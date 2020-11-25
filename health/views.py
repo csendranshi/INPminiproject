@@ -1,24 +1,27 @@
-from django.db import connection
+from django.db import connection, Error
 from django.shortcuts import render
 
 
 # Create your views here.
 def health_view(request, *args, **kwargs):
     with connection.cursor() as cursor:
-        cursor.execute('SELECT * from health_grid')
-        rows = cursor.fetchall()
+        try:
+            cursor.execute('SELECT * from health_grid')
+            rows = cursor.fetchall()
 
-        list_of_health = []
-        for row in rows:
-            health_dict = {
-                'section': row[0],
-                'title': row[1],
-                'image': row[2],
-                'image_link': row[3],
-                'category':row[6],
-                'news_unique_id':row[8]
-            }
-            list_of_health.append(health_dict)
+            list_of_health = []
+            for row in rows:
+                health_dict = {
+                    'section': row[0],
+                    'title': row[1],
+                    'image': row[2],
+                    'image_link': row[3],
+                    'category':row[6],
+                    'news_unique_id':row[8]
+                }
+                list_of_health.append(health_dict)
+        except Error as err:
+            return render(request, "ErrorPage.html", {"Error": err})
         # print(list_of_health)
     if request.session.has_key('logged_in'):
         # print(request.session.has_key('logged_in'))

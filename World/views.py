@@ -1,4 +1,4 @@
-from django.db import connection
+from django.db import connection, Error
 from django.shortcuts import render
 
 
@@ -6,20 +6,23 @@ from django.shortcuts import render
 
 def world_view(request, *args, **kwargs):
     with connection.cursor() as cursor:
-        cursor.execute('SELECT * from world_grid')
-        rows = cursor.fetchall()
+        try:
+            cursor.execute('SELECT * from world_grid')
+            rows = cursor.fetchall()
 
-        list_of_world = []
-        for row in rows:
-            world_dict = {
-                'section': row[0],
-                'title': row[1],
-                'image': row[2],
-                'image_link': row[3],
-                'category':row[6],
-                'news_unique_id':row[8]
-            }
-            list_of_world.append(world_dict)
+            list_of_world = []
+            for row in rows:
+                world_dict = {
+                    'section': row[0],
+                    'title': row[1],
+                    'image': row[2],
+                    'image_link': row[3],
+                    'category': row[6],
+                    'news_unique_id': row[8]
+                }
+                list_of_world.append(world_dict)
+        except Error as err:
+            return render(request, "ErrorPage.html", {"Error": err})
         # print(list_of_world)
     if request.session.has_key('logged_in'):
         # print(request.session.has_key('logged_in'))
@@ -34,7 +37,7 @@ def world_view(request, *args, **kwargs):
             'profile_picture': request.session['profile_picture']
 
         }
-        context_of_top_stories = {'user': dict_of_user_details,'world_stories': list_of_world}
+        context_of_top_stories = {'user': dict_of_user_details, 'world_stories': list_of_world}
         return render(request, "World.html", context_of_top_stories)
     context = {'world_stories': list_of_world}
     return render(request, "World.html", context)

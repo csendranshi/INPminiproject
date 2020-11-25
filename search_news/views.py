@@ -1,6 +1,6 @@
 import time
 
-from django.db import connection
+from django.db import connection, Error
 from django.shortcuts import render
 
 
@@ -34,10 +34,14 @@ def search_view(request, *args, **kwargs):
             search_text = request.POST.get('search_text')
             print("The Search Text Entered is: ", search_text)
             with connection.cursor() as cursor:
-                cursor.execute('CALL news_database.search_news(%s)',
-                               [search_text])
-                rows = cursor.fetchall()
-                print(rows)
+                try:
+                    cursor.execute('CALL news_database.search_news(%s)',
+                                   [search_text])
+                    rows = cursor.fetchall()
+                    print(rows)
+                except Error as err:
+                    return render(request, "ErrorPage.html", {"Error": err})
+
                 if rows == ():
                     context_of_top_stories = {'user': dict_of_user_details,
                                               'error_message': True}

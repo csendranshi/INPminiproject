@@ -455,15 +455,15 @@
                     <div style="color: #3a4750; font-size: 25px; margin: inherit; padding: 2%">Post an Article</div>
 
                     {% csrf_token %}
-                    <p style="color: #3a4750;">{{ message }}</p>
+                    <p style="color: #d72323;">{{ message }}</p>
                     <div id="post-main1">
                         <input
                                 {#                                oninput="loadImage()"#}
                                 id="image_link_with_text" class="posts-auth-form-input" type="text" name="imageLink"
-                                placeholder="Image Link">
+                                placeholder="Image Link" value="{{ form.image_link }}">
 
 
-                        <input class="posts-auth-form-input" type="text" name="postTitle" placeholder="Title" required>
+                        <input class="posts-auth-form-input" value="{{ form.title }}" type="text" name="postTitle" placeholder="Title" required>
 
                     </div>
 
@@ -548,9 +548,11 @@
                         {#                            {% endfor %}#}
                         {#                        </select>#}
                         <input id="drop-area" name="postPicture" class="posts-auth-form-input" type="file">
-                        <textarea class="posts-description-auth-form-input" name="postDesc" placeholder="description"
+                        <textarea class="posts-description-auth-form-input"  name="postDesc" placeholder="description"
                                   rows="10"
-                                  cols="50" title="Can Enter Break Tag,Bold Tag,String Tag" required></textarea>
+                                  cols="50" title="Can Enter Break Tag,Bold Tag,String Tag" required>
+                            {{ form.content }}
+                        </textarea>
                         <input type="submit" class="auth-form-button" value="Submit For Preview"/>
                         <input class="no-display" name="finalPictureValue" id="ToGetImageText" type="text"/>
                     </div>

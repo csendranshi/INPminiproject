@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from werkzeug.security import generate_password_hash, check_password_hash
-from django.db import connection
+from django.db import connection, Error
 from django.contrib.sessions.models import Session
 from django.template import RequestContext
 
@@ -58,11 +58,14 @@ def auth(request):
                 return render(request, 'Register.html',
                               {'message': 'Email Id Is Already Registered', 'userdetails': userdetails})
             else:
-                # with connection.cursor() as cursor:
-                #     print()
-                #     cursor.execute('CALL news_database.insert_personal_details(%s,%s,%s,%s,%s,%s,%s)',
-                #                    [register_firstname, register_lastname, register_emailId, hashed_password,
-                #                     register_date, register_gender, register_phone_no])
+                with connection.cursor() as cursor:
+                    print()
+                    try:
+                        cursor.execute('CALL news_database.insert_personal_details(%s,%s,%s,%s,%s,%s,%s)',
+                                       [register_firstname, register_lastname, register_emailId, hashed_password,
+                                        register_date, register_gender, register_phone_no])
+                    except Error as err:
+                        return render(request, "ErrorPage.html", {"Error": err})
                 context = {"registration_success": True}
                 return render(request, 'Login.html', context)
 
@@ -75,45 +78,48 @@ def Login(request):
     print(username, password)
     if username != " " and password != " " and username != None and password != None:
         with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM personal_details WHERE email_id = %s",
-                           [username])
-            row = cursor.fetchone()
-            print(row)
-            userdetails = {
-                'email': username,
-                'status': 'Invalid Credentials'
-            }
-            if row is None:
-                context = {"registration_success": False, "userdetails": userdetails}
-                return render(request, 'Login.html', context)
-            else:
-                if check_password_hash(row[4], password):
-                    messages.info(request, "Valid Credentials")
-                    request.session['logged_in'] = True
-                    request.session['journal_access'] = boolean_function(row[7])
-                    request.session['admin_access'] = boolean_function(row[6])
-                    request.session['suscriber_priority'] = boolean_function(row[8])
-                    request.session['first_name'] = row[1]
-                    request.session['last_name'] = row[2]
-                    request.session['email_id'] = row[3]
-                    request.session['profile_picture'] = row[12]
-                    dict_of_user_details = {
-                        'admin_access': request.session['admin_access'],
-                        'journal_access': request.session['journal_access'],
-                        'logged_in': request.session['logged_in'],
-                        'first_name': request.session['first_name'],
-                        'last_name': request.session['last_name'],
-                        'email_id': request.session['email_id'],
-                        'suscriber_access': request.session['suscriber_priority'],
-                        'profile_picture': request.session['profile_picture']
-
-                    }
-                    print(dict_of_user_details)
-                    context = {"registration_success": False, 'user': dict_of_user_details}
-                    return redirect('/')
-                else:
+            try:
+                cursor.execute("SELECT * FROM personal_details WHERE email_id = %s",
+                               [username])
+                row = cursor.fetchone()
+                print(row)
+                userdetails = {
+                    'email': username,
+                    'status': 'Invalid Credentials'
+                }
+                if row is None:
                     context = {"registration_success": False, "userdetails": userdetails}
                     return render(request, 'Login.html', context)
+                else:
+                    if check_password_hash(row[4], password):
+                        messages.info(request, "Valid Credentials")
+                        request.session['logged_in'] = True
+                        request.session['journal_access'] = boolean_function(row[7])
+                        request.session['admin_access'] = boolean_function(row[6])
+                        request.session['suscriber_priority'] = boolean_function(row[8])
+                        request.session['first_name'] = row[1]
+                        request.session['last_name'] = row[2]
+                        request.session['email_id'] = row[3]
+                        request.session['profile_picture'] = row[12]
+                        dict_of_user_details = {
+                            'admin_access': request.session['admin_access'],
+                            'journal_access': request.session['journal_access'],
+                            'logged_in': request.session['logged_in'],
+                            'first_name': request.session['first_name'],
+                            'last_name': request.session['last_name'],
+                            'email_id': request.session['email_id'],
+                            'suscriber_access': request.session['suscriber_priority'],
+                            'profile_picture': request.session['profile_picture']
+
+                        }
+                        print(dict_of_user_details)
+                        context = {"registration_success": False, 'user': dict_of_user_details}
+                        return redirect('/')
+                    else:
+                        context = {"registration_success": False, "userdetails": userdetails}
+                        return render(request, 'Login.html', context)
+            except Error as err:
+                return render(request, "ErrorPage.html", {"Error": err})
     return render(request, 'Login.html')
 
 

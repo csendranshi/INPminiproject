@@ -1,4 +1,4 @@
-from django.db import connection
+from django.db import connection, Error
 from django.shortcuts import render
 
 
@@ -8,19 +8,20 @@ from django.shortcuts import render
 def article_view(request, grid_category, section, unique_id):
     print("This is the ", unique_id, grid_category, section)
     with connection.cursor() as cursor:
-        cursor.execute('CALL news_database.get_the_row_with_respective_grid_section(%s,%s,%s)',
-                       [grid_category, unique_id, section])
-        row = cursor.fetchone()
-        print(row)
         try:
+            cursor.execute('CALL news_database.get_the_row_with_respective_grid_section(%s,%s,%s)',
+                           [grid_category, unique_id, section])
+            row = cursor.fetchone()
+            print(row)
+
             article_dict = {
                 'title': row[1],
                 'image': row[2],
                 'image_link': row[3],
                 'content': row[4],
             }
-        except TypeError:
-            return render(request, "ErrorPage.html")
+        except Error as err:
+            return render(request, "ErrorPage.html", {"Error": err})
     if request.session.has_key('logged_in'):
         print(request.session.has_key('logged_in'))
         dict_of_user_details = {

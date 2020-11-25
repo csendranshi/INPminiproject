@@ -1,8 +1,26 @@
 from django.shortcuts import render
-
+from django.db import connection, Error
 
 # Create your views here.
 def business_view(request, *args, **kwargs):
+    with connection.cursor() as cursor:
+        try:
+            cursor.execute('SELECT * from business_grid')
+            rows = cursor.fetchall()
+
+            list_of_business = []
+            for row in rows:
+                business_dict = {
+                    'section': row[0],
+                    'title': row[1],
+                    'image': row[2],
+                    'image_link': row[3],
+                    'category':row[6],
+                    'news_unique_id':row[8]
+                }
+                list_of_business.append(business_dict)
+        except Error as err:
+            return render(request, "ErrorPage.html", {"Error": err})
     if request.session.has_key('logged_in'):
         print(request.session.has_key('logged_in'))
         dict_of_user_details = {
@@ -16,6 +34,7 @@ def business_view(request, *args, **kwargs):
             'profile_picture': request.session['profile_picture']
 
         }
-        context_of_top_stories = {'user': dict_of_user_details}
+        context_of_top_stories = {'user': dict_of_user_details,'business_stories': list_of_business}
         return render(request, "Business.html", context_of_top_stories)
+    context = {'business_stories': list_of_business}
     return render(request, "Business.html", {})

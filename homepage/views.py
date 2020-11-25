@@ -1,4 +1,4 @@
-from django.db import connection
+from django.db import connection, Error
 from django.shortcuts import render
 import requests
 
@@ -14,25 +14,27 @@ def home_view(request, *args, **kwargs):
     # r = requests.get(top_stories).json()
 
     with connection.cursor() as cursor:
-        cursor.execute('SELECT * from latest_grid')
-        rows = cursor.fetchall()
+        try:
+            cursor.execute('SELECT * from latest_grid')
+            rows = cursor.fetchall()
 
-        list_of_latest = []
-        for row in rows:
-            latest_dict = {
-                'section': row[0],
-                'title': row[1],
-                'image': row[2],
-                'image_link': row[3],
-                'category': row[6],
-                'news_unique_id': row[8]
-            }
-            list_of_latest.append(latest_dict)
+            list_of_latest = []
+            for row in rows:
+                latest_dict = {
+                    'section': row[0],
+                    'title': row[1],
+                    'image': row[2],
+                    'image_link': row[3],
+                    'category': row[6],
+                    'news_unique_id': row[8]
+                }
+                list_of_latest.append(latest_dict)
         # print(list_of_latest)
-
+        except Error as err:
+            return render(request, "ErrorPage.html", {"Error": err})
     top = []
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM top_stories")
+        cursor.execute("SELECT * FROM news_database.top_stories order by datetime desc LIMIT 20;")
         row = cursor.fetchall()
 
     for i in row:
@@ -59,10 +61,7 @@ def home_view(request, *args, **kwargs):
             'profile_picture': request.session['profile_picture']
 
         }
-        context_of_top_stories = {'top_stories': top, 'user': dict_of_user_details,'latest_stories': list_of_latest}
+        context_of_top_stories = {'top_stories': top, 'user': dict_of_user_details, 'latest_stories': list_of_latest}
         return render(request, "index.html", context_of_top_stories)
-    context_of_top_stories = {'top_stories': top,'latest_stories': list_of_latest}
+    context_of_top_stories = {'top_stories': top, 'latest_stories': list_of_latest}
     return render(request, "index.html", context_of_top_stories)
-
-
-

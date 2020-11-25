@@ -4,232 +4,411 @@
 
 {% block content %}
 
-<div class="business-container">
-  <div id="business-main1">
-    <!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-  <div id="tradingview_e5423"></div>
-  <div class="tradingview-widget-copyright"><a href="https://in.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text"></span></a> </div>
-  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-  <script type="text/javascript">
-  new TradingView.widget(
-  {
-  "width": 700,
-  "height": 400,
-  "symbol": "NASDAQ:AAPL",
-  "interval": "D",
-  "timezone": "Etc/UTC",
-  "theme": "dark",
-  "style": "1",
-  "locale": "in",
-  "toolbar_bg": "#f1f3f6",
-  "enable_publishing": false,
-  "allow_symbol_change": true,
-  "container_id": "tradingview_e5423"
-}
-  );
-  </script>
-</div>
-<!-- TradingView Widget END -->
+    <div class="business-container">
+        <div id="business-main1">
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+                <div id="tradingview_e5423"></div>
+                <div class="tradingview-widget-copyright"><a href="https://in.tradingview.com/symbols/NASDAQ-AAPL/"
+                                                             rel="noopener" target="_blank"><span
+                        class="blue-text"></span></a></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                <script type="text/javascript">
+                    new TradingView.widget(
+                        {
+                            "width": 700,
+                            "height": 400,
+                            "symbol": "NASDAQ:AAPL",
+                            "interval": "D",
+                            "timezone": "Etc/UTC",
+                            "theme": "dark",
+                            "style": "1",
+                            "locale": "in",
+                            "toolbar_bg": "#f1f3f6",
+                            "enable_publishing": false,
+                            "allow_symbol_change": true,
+                            "container_id": "tradingview_e5423"
+                        }
+                    );
+                </script>
+            </div>
+            <!-- TradingView Widget END -->
 
 
-<!--    -->
-<!--<img class="business-image-css-main"-->
-<!--    src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/SC_PTI_1200x768.png?lS4x2mrMxx_SAYHB70Lcf6ieT9qRKwaW&size=770:433"-->
-<!--    alt="">-->
+            <!--    -->
+            <!--<img class="business-image-css-main"-->
+            <!--    src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/SC_PTI_1200x768.png?lS4x2mrMxx_SAYHB70Lcf6ieT9qRKwaW&size=770:433"-->
+            <!--    alt="">-->
 
-  </div>
-  <div id="business-main2">
+        </div>
+        <div id="business-main2">
+            {% for business_stories in business_stories %}
+                {% if business_stories.section == 'business-cell-1' %}
+                    <a href="{% url 'article' business_stories.category business_stories.section business_stories.news_unique_id %}"
+                       style="text-decoration: none">
+                        {% if business_stories.image != '' %}
 
-    <img class="business-image-css-main" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/Screenshot_2020-10-14_at_2.38._1200x768.png?rO1EDGhfMZyiZdQ7n52C726CyxGGqOV6&size=770:433" alt="">
-  </div>
-  <div id="business-content1">
-    <img class="business-image-css" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/gipta_gopinath_reuters_1200x768.jpeg?ncCDhhvcujj7_uWw1NHCoiB4oFUYKcHD&size=770:433" alt="">
-    <p style="font-family: 'Lato',serif;
-             "  class="business-p-tag-css">
-              Gita Gopinath explains IMF’s growth forecast for India and the road ahead</p>
-      </div>
-  <div id="business-content2">
-    <img class="business-image-css" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/infosys-reuters_1200x768.jpeg?AhxJNAT9fffWU2wyPFHVLLM4Wm.JIROJ&size=770:433" alt="">
-    <p style="font-family: 'Lato',serif;
-              "  class="business-p-tag-css">
-             After TCS, Infosys to roll out salary hikes, promotions</p>
+                            <img class="business-image-css-main"
+                                 src="{{ business_stories.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="business-image-css-main"
 
-  </div>
-  <div id="business-content3">
-    <img class="business-image-css" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/sensex-reuters-file_1200x768.png?GLr1S0dtsQ1sNJy.BSeTmIGS1iUrX2AF&size=770:433"
-               class="business-p-tag-css">Sensex, Nifty end higher for 10th consecutive session, bank stocks shoot up ahead of loan moratorium hearing</p>
+                                 src="{{ business_stories.image_link }}"
+                                 alt="">
+                        {% endif %}
+                        <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="business-p-tag-css">
+                            {{ business_stories.title }}</p>
+                    </a>
 
-  </div>
-  <div id="business-content4">
-    <!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
-  <div class="tradingview-widget-copyright"><a href="https://in.tradingview.com" rel="noopener" target="_blank"><span class="blue-text"></span></a> </div>
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
-  {
-  "width": "100%",
-  "height": "auto",
-  "symbolsGroups": [
-    {
-      "name": "Indices",
-      "originalName": "Indices",
-      "symbols": [
-        {
-          "name": "FOREXCOM:SPXUSD",
-          "displayName": "S&P 500"
-        },
-        {
-          "name": "FOREXCOM:NSXUSD",
-          "displayName": "Nasdaq 100"
-        },
-        {
-          "name": "FOREXCOM:DJI",
-          "displayName": "Dow 30"
-        },
-        {
-          "name": "INDEX:NKY",
-          "displayName": "Nikkei 225"
-        },
-        {
-          "name": "INDEX:DEU30",
-          "displayName": "DAX Index"
-        },
-        {
-          "name": "FOREXCOM:UKXGBP",
-          "displayName": "FTSE 100"
-        }
-      ]
-    },
-    {
-      "name": "Commodities",
-      "originalName": "Commodities",
-      "symbols": [
-        {
-          "name": "CME_MINI:ES1!",
-          "displayName": "S&P 500"
-        },
-        {
-          "name": "CME:6E1!",
-          "displayName": "Euro"
-        },
-        {
-          "name": "COMEX:GC1!",
-          "displayName": "Gold"
-        },
-        {
-          "name": "NYMEX:CL1!",
-          "displayName": "Crude Oil"
-        },
-        {
-          "name": "NYMEX:NG1!",
-          "displayName": "Natural Gas"
-        },
-        {
-          "name": "CBOT:ZC1!",
-          "displayName": "Corn"
-        }
-      ]
-    },
-    {
-      "name": "Bonds",
-      "originalName": "Bonds",
-      "symbols": [
-        {
-          "name": "CME:GE1!",
-          "displayName": "Eurodollar"
-        },
-        {
-          "name": "CBOT:ZB1!",
-          "displayName": "T-Bond"
-        },
-        {
-          "name": "CBOT:UB1!",
-          "displayName": "Ultra T-Bond"
-        },
-        {
-          "name": "EUREX:FGBL1!",
-          "displayName": "Euro Bund"
-        },
-        {
-          "name": "EUREX:FBTP1!",
-          "displayName": "Euro BTP"
-        },
-        {
-          "name": "EUREX:FGBM1!",
-          "displayName": "Euro BOBL"
-        }
-      ]
-    },
-    {
-      "name": "Forex",
-      "originalName": "Forex",
-      "symbols": [
-        {
-          "name": "FX:EURUSD"
-        },
-        {
-          "name": "FX:GBPUSD"
-        },
-        {
-          "name": "FX:USDJPY"
-        },
-        {
-          "name": "FX:USDCHF"
-        },
-        {
-          "name": "FX:AUDUSD"
-        },
-        {
-          "name": "FX:USDCAD"
-        }
-      ]
-    }
-  ],
-  "colorTheme": "dark",
-  "isTransparent": true,
-  "locale": "in"
-}
-  </script>
-</div>
-<!-- TradingView Widget END -->
-    <!--<img class="business-image-css" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/Screenshot_2020-10-14_at_1.56._1200x768.png?X95fvxbsl0AmnyBsEGGXDja_NbXF6Qd7&size=770:433" alt="">
-    <p style="font-family: 'Lato',serif;
-              columns: #eeeeee;"  class="business-p-tag-css">Loan restructuring: Only standard accounts as of March 1 can apply, says RBI</p>
--->
-  </div>
-  <div id="business-content5">
-    <img class="business-image-css" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/Screenshot_2020-10-14_at_12.44_1200x768.png?wd8coRGcROiJH4W7eayLCD3PsxoJYnWg&size=770:433" alt="">
-    <p style="font-family: 'Lato',serif;
-             "  class="business-p-tag-css">
-              India set to be overtaken by Bangladesh in per capita GDP growth: IMF</p>
+                {% endif %}
 
-  </div>
-  <div id="business-content6">
-    <img class="business-image-css" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/credit-card-851506_1920_1200x768.jpeg?rC1vpt9K87s_jkUUv_KKx43DbWoo8VLI&size=770:433" alt="">
-    <p style="font-family: 'Lato',serif;
-              "  class="business-p-tag-css">
-            Explained: Benefits of having more than one credit card
-            </p>
+            {% endfor %}
 
-  </div>
-  <div id="business-content7">
-    <img class="business-image-css" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/indian-economy-l-reuters_1200x768.jpeg?3lYBHaqdfWWGPmKcpg2mzGNAFfWgxdVA&size=770:433" alt="">
-    <p style="font-family: 'Lato',serif;
-             "  class="business-p-tag-css">
-             Indian economy will bounce back with 8.8% growth in 2021: IMF</p>
+        </div>
+        <div id="business-content1">
+            {% for business_stories in business_stories %}
+                {% if business_stories.section == 'business-cell-2' %}
+                    <a href="{% url 'article' business_stories.category business_stories.section business_stories.news_unique_id %}"
+                       style="text-decoration: none">
+                        {% if business_stories.image != '' %}
 
-  </div>
-  <div id="business-content8">
-    <img class="business-image-css" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/gst_council_meet_1200x768.jpeg?nEosOtiOC1hN08VzlBLj_76yAXPNiNlE&size=770:433" alt="">
-    <p style="font-family: 'Lato',serif;
-           "  class="business-p-tag-css">Centre allows 20 states to raise Rs 68,825 crore via open market borrowing to meet GST shortfall</p>
+                            <img class="business-image-css"
+                                 src="{{ business_stories.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="business-image-css"
+
+                                 src="{{ business_stories.image_link }}"
+                                 alt="">
+                        {% endif %}
+                        <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="business-p-tag-css">
+                            {{ business_stories.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+        </div>
+        <div id="business-content2">
+            {% for business_stories in business_stories %}
+                {% if business_stories.section == 'business-cell-3' %}
+                    <a href="{% url 'article' business_stories.category business_stories.section business_stories.news_unique_id %}"
+                       style="text-decoration: none">
+                        {% if business_stories.image != '' %}
+
+                            <img class="business-image-css"
+                                 src="{{ business_stories.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="business-image-css"
+
+                                 src="{{ business_stories.image_link }}"
+                                 alt="">
+                        {% endif %}
+                        <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="business-p-tag-css">
+                            {{ business_stories.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+        <div id="business-content3">
+            {% for business_stories in business_stories %}
+                {% if business_stories.section == 'business-cell-4' %}
+                    <a href="{% url 'article' business_stories.category business_stories.section business_stories.news_unique_id %}"
+                       style="text-decoration: none">
+                        {% if business_stories.image != '' %}
+
+                            <img class="business-image-css"
+                                 src="{{ business_stories.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="business-image-css"
+
+                                 src="{{ business_stories.image_link }}"
+                                 alt="">
+                        {% endif %}
+                        <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="business-p-tag-css">
+                            {{ business_stories.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+        <div id="business-content4">
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <div class="tradingview-widget-copyright"><a href="https://in.tradingview.com" rel="noopener"
+                                                             target="_blank"><span class="blue-text"></span></a></div>
+                <script type="text/javascript"
+                        src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+                    {
+                        "width"
+                    :
+                        "100%",
+                            "height"
+                    :
+                        "auto",
+                            "symbolsGroups"
+                    :
+                        [
+                            {
+                                "name": "Indices",
+                                "originalName": "Indices",
+                                "symbols": [
+                                    {
+                                        "name": "FOREXCOM:SPXUSD",
+                                        "displayName": "S&P 500"
+                                    },
+                                    {
+                                        "name": "FOREXCOM:NSXUSD",
+                                        "displayName": "Nasdaq 100"
+                                    },
+                                    {
+                                        "name": "FOREXCOM:DJI",
+                                        "displayName": "Dow 30"
+                                    },
+                                    {
+                                        "name": "INDEX:NKY",
+                                        "displayName": "Nikkei 225"
+                                    },
+                                    {
+                                        "name": "INDEX:DEU30",
+                                        "displayName": "DAX Index"
+                                    },
+                                    {
+                                        "name": "FOREXCOM:UKXGBP",
+                                        "displayName": "FTSE 100"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Commodities",
+                                "originalName": "Commodities",
+                                "symbols": [
+                                    {
+                                        "name": "CME_MINI:ES1!",
+                                        "displayName": "S&P 500"
+                                    },
+                                    {
+                                        "name": "CME:6E1!",
+                                        "displayName": "Euro"
+                                    },
+                                    {
+                                        "name": "COMEX:GC1!",
+                                        "displayName": "Gold"
+                                    },
+                                    {
+                                        "name": "NYMEX:CL1!",
+                                        "displayName": "Crude Oil"
+                                    },
+                                    {
+                                        "name": "NYMEX:NG1!",
+                                        "displayName": "Natural Gas"
+                                    },
+                                    {
+                                        "name": "CBOT:ZC1!",
+                                        "displayName": "Corn"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Bonds",
+                                "originalName": "Bonds",
+                                "symbols": [
+                                    {
+                                        "name": "CME:GE1!",
+                                        "displayName": "Eurodollar"
+                                    },
+                                    {
+                                        "name": "CBOT:ZB1!",
+                                        "displayName": "T-Bond"
+                                    },
+                                    {
+                                        "name": "CBOT:UB1!",
+                                        "displayName": "Ultra T-Bond"
+                                    },
+                                    {
+                                        "name": "EUREX:FGBL1!",
+                                        "displayName": "Euro Bund"
+                                    },
+                                    {
+                                        "name": "EUREX:FBTP1!",
+                                        "displayName": "Euro BTP"
+                                    },
+                                    {
+                                        "name": "EUREX:FGBM1!",
+                                        "displayName": "Euro BOBL"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Forex",
+                                "originalName": "Forex",
+                                "symbols": [
+                                    {
+                                        "name": "FX:EURUSD"
+                                    },
+                                    {
+                                        "name": "FX:GBPUSD"
+                                    },
+                                    {
+                                        "name": "FX:USDJPY"
+                                    },
+                                    {
+                                        "name": "FX:USDCHF"
+                                    },
+                                    {
+                                        "name": "FX:AUDUSD"
+                                    },
+                                    {
+                                        "name": "FX:USDCAD"
+                                    }
+                                ]
+                            }
+                        ],
+                            "colorTheme"
+                    :
+                        "dark",
+                            "isTransparent"
+                    :
+                        true,
+                            "locale"
+                    :
+                        "in"
+                    }
+                </script>
+            </div>
+            <!-- TradingView Widget END -->
+            <!--<img class="business-image-css" src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202010/Screenshot_2020-10-14_at_1.56._1200x768.png?X95fvxbsl0AmnyBsEGGXDja_NbXF6Qd7&size=770:433" alt="">
+            <p style="font-family: 'Lato',serif;
+                      columns: #eeeeee;"  class="business-p-tag-css">Loan restructuring: Only standard accounts as of March 1 can apply, says RBI</p>
+        -->
+        </div>
+        <div id="business-content5">
+            {% for business_stories in business_stories %}
+                {% if business_stories.section == 'business-cell-5' %}
+                    <a href="{% url 'article' business_stories.category business_stories.section business_stories.news_unique_id %}"
+                       style="text-decoration: none">
+                        {% if business_stories.image != '' %}
+
+                            <img class="business-image-css"
+                                 src="{{ business_stories.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="business-image-css"
+
+                                 src="{{ business_stories.image_link }}"
+                                 alt="">
+                        {% endif %}
+                        <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="business-p-tag-css">
+                            {{ business_stories.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+        </div>
+        <div id="business-content6">
+            {% for business_stories in business_stories %}
+                {% if business_stories.section == 'business-cell-6' %}
+                    <a href="{% url 'article' business_stories.category business_stories.section business_stories.news_unique_id %}"
+                       style="text-decoration: none">
+                        {% if business_stories.image != '' %}
+
+                            <img class="business-image-css"
+                                 src="{{ business_stories.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="business-image-css"
+
+                                 src="{{ business_stories.image_link }}"
+                                 alt="">
+                        {% endif %}
+                        <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="business-p-tag-css">
+                            {{ business_stories.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+        <div id="business-content7">
+            {% for business_stories in business_stories %}
+                {% if business_stories.section == 'business-cell-7' %}
+                    <a href="{% url 'article' business_stories.category business_stories.section business_stories.news_unique_id %}"
+                       style="text-decoration: none">
+                        {% if business_stories.image != '' %}
+
+                            <img class="business-image-css"
+                                 src="{{ business_stories.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="business-image-css"
+
+                                 src="{{ business_stories.image_link }}"
+                                 alt="">
+                        {% endif %}
+                        <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="business-p-tag-css">
+                            {{ business_stories.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+        </div>
+        <div id="business-content8">
+            {% for business_stories in business_stories %}
+                {% if business_stories.section == 'business-cell-8' %}
+                    <a href="{% url 'article' business_stories.category business_stories.section business_stories.news_unique_id %}"
+                       style="text-decoration: none">
+                        {% if business_stories.image != '' %}
+
+                            <img class="business-image-css"
+                                 src="{{ business_stories.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="business-image-css"
+
+                                 src="{{ business_stories.image_link }}"
+                                 alt="">
+                        {% endif %}
+                        <p style="font-family: 'Lato',serif;
+                                color:white;text-decoration: none;
+              " class="business-p-tag-css">
+                            {{ business_stories.title }}</p>
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
 
 
-  </div>
-     {% include 'footer.html' %}
+        </div>
+        {% include 'footer.html' %}
 
-</div>
+    </div>
 
 
 
