@@ -42,25 +42,25 @@
 
         </div>
         <div id="business-main2">
-            {% for business_stories in business_stories %}
-                {% if business_stories.section == 'business-cell-1' %}
-                    <a href="{% url 'article' business_stories.category business_stories.section business_stories.news_unique_id %}"
+            {% for business_story in business_stories %}
+                {% if business_story.section == 'business-cell-1' %}
+                    <a href="{% url 'article' business_story.category business_story.section business_story.news_unique_id %}"
                        style="text-decoration: none">
-                        {% if business_stories.image != '' %}
+                        {% if business_story.image != '' %}
 
                             <img class="business-image-css-main"
-                                 src="{{ business_stories.image }}"
+                                 src="{{ business_story.image }}"
                                  alt="">
                         {% else %}
                             <img class="business-image-css-main"
 
-                                 src="{{ business_stories.image_link }}"
+                                 src="{{ business_story.image_link }}"
                                  alt="">
                         {% endif %}
                         <p style="font-family: 'Lato',serif;
                                 color:white;text-decoration: none;
               " class="business-p-tag-css">
-                            {{ business_stories.title }}</p>
+                            {{ business_story.title }}</p>
                     </a>
 
                 {% endif %}
