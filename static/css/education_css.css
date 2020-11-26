@@ -110,14 +110,13 @@
     grid-template-rows: 1fr 1fr ;
     grid-template-areas:
       "education-main1 education-main1"
-      "education-main2 education-main2"
       "education-content1 education-content2"
       "education-content3 education-content4"
       "education-content5 education-content6"
       "education-content7 education-content8"
       "footer footer"
   }
-  #tech-main2{
+  #education-main2{
     display: none;
   }
 }
