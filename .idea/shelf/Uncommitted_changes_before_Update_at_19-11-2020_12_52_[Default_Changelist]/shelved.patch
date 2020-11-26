@@ -1,0 +1,1104 @@
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_05-11-2020_00_23_[Default_Changelist]/shelved.patch
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_05-11-2020_00_23_[Default_Changelist]/shelved.patch	(revision 910684e7bff4886a7d50643eb47078b3faa4cb0d)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_05-11-2020_00_23_[Default_Changelist]/shelved.patch	(revision 910684e7bff4886a7d50643eb47078b3faa4cb0d)
+@@ -1,504 +0,0 @@
+-Index: search_news/Templates/search.html
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>{% extends 'Navbar.html' %}\r\n\r\n\r\n{% block content %}\r\n    Search News\r\n    {% include 'footer.html'  %}\r\n{% endblock %}
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- search_news/Templates/search.html	(revision c5a5b95286b59c6c37e89967c20366c3a6b144a9)
+-+++ search_news/Templates/search.html	(date 1604515817086)
+-@@ -2,6 +2,124 @@
+- 
+- 
+- {% block content %}
+--    Search News
+--    {% include 'footer.html'  %}
+-+    <style>
+-+        .profile-auth-form-input {
+-+            background-color: #3a4750;
+-+            border: 1px solid #cccccc;
+-+            border-top-right-radius: 15px;
+-+            border-bottom-left-radius: 15px;
+-+            padding: 12px 15px;
+-+            margin: 10px;
+-+            width: 90%;
+-+            font-size: 20px;
+-+            color: #cccccc;
+-+        }
+-+
+-+        .profile-auth-form-input::placeholder {
+-+            color: #cccccc;
+-+        }
+-+
+-+        .profile-auth-form-input:focus {
+-+            outline: none;
+-+        }
+-+
+-+        .profile-auth-form-button {
+-+            border-top-right-radius: 15px;
+-+            border-bottom-left-radius: 15px;
+-+            border: 1px solid #eeeeee;
+-+            background-color: #3a4750;
+-+            color: #eeeeee;
+-+            font-size: 12px;
+-+            font-weight: bold;
+-+            padding: 12px 45px;
+-+            letter-spacing: 1px;
+-+            text-transform: uppercase;
+-+            transition: transform 80ms ease-in;
+-+            margin: 20px;
+-+        }
+-+
+-+        .profile-auth-form-button:active {
+-+            transform: scale(0.95);
+-+        }
+-+
+-+        .profile-auth-form-button:focus {
+-+            outline: none;
+-+        }
+-+
+-+
+-+        .admins_view_all_users {
+-+            background-color: rgba(255, 255, 255, 0.13);
+-+            color: white;
+-+            width: 300px;
+-+            margin: 30px 10px;
+-+            height: 376px;
+-+            border-top-right-radius: 25px;
+-+            border-bottom-left-radius: 25px;
+-+
+-+            display: inline-flex;
+-+
+-+            flex-direction: column;
+-+            align-items: flex-start;
+-+            padding: 10px;
+-+        }
+-+
+-+        .admins_view_all_users-image {
+-+            width: 280px;
+-+            height: 280px;
+-+            object-fit: cover;
+-+            border-top-right-radius: 25px;
+-+            border-bottom-left-radius: 25px;
+-+
+-+
+-+        }
+-+
+-+        .admins_view_all_users-image-p {
+-+            border-top-right-radius: 25px;
+-+            border-bottom-left-radius: 25px;
+-+            background-color: #3a4750;
+-+            width: 280px;
+-+            height: 120px;
+-+            padding: 10px;
+-+            font-family: Lato, serif;
+-+
+-+
+-+        }
+-+
+-+    </style>
+-+    <form method="POST">
+-+        {% csrf_token %}
+-+        <input type="text" name="search_text" placeholder="Search News" class="profile-auth-form-input">
+-+        <input type="submit" value="Search" class="profile-auth-form-button">
+-+    </form>
+-+
+-+    {% for search_story in search_stories %}
+-+         <a href="{% url 'article' search_story.category search_story.section search_story.news_unique_id %}"
+-+                       style="text-decoration: none;">
+-+        <div class="admins_view_all_users">
+-+            {% if search_story.image != '' %}
+-+
+-+                <img class="admins_view_all_users-image"
+-+
+-+                     src="{{ search_story.image }}"
+-+                     alt="">
+-+            {% else %}
+-+                <img class="admins_view_all_users-image"
+-+
+-+                     src="{{ search_story.image_link }}"
+-+                     alt="">
+-+            {% endif %}
+-+
+-+
+-+
+-+
+-+            <p class="admins_view_all_users-image-p">
+-+                {{ search_story.title }}
+-+
+-+            </p>
+-+        </div>
+-+         </a>
+-+    {% endfor %}
+-+
+-+
+-+    {% include 'footer.html' %}
+- {% endblock %}
+-\ No newline at end of file
+-Index: profile_details/Templates/profile.html
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>{% extends 'Navbar.html' %}\r\n\r\n{% load static %}\r\n\r\n{% block content %}\r\n    <!DOCTYPE html>\r\n    <html lang=\"en\">\r\n    <head>\r\n        <meta charset=\"UTF-8\">\r\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n        <script>\r\n            window.addEventListener(\"load\", function () {\r\n                document.getElementById(\"drop-area\").onchange = function (event) {\r\n                    var reader = new FileReader();\r\n                    reader.readAsDataURL(event.srcElement.files[0]);\r\n                    var me = this;\r\n                    reader.onload = function () {\r\n                        var fileContent = reader.result;\r\n\r\n                        document.getElementById(\"profile_picture\").src = String(fileContent);\r\n                        document.getElementById(\"image-data\").value = fileContent;\r\n                        {#document.getElementById(\"setArticlePicture\").value = fileContent;#}\r\n                    }\r\n                }\r\n            });\r\n        </script>\r\n\r\n        <style>\r\n\r\n\r\n            .profile-grid-container {\r\n                display: grid;\r\n                height: 800px;\r\n                grid-template-columns: 1fr 1fr;\r\n                grid-template-rows: 0.2fr 1.5fr;\r\n                grid-template-areas:\r\n                \"profile-main1  profile-main2\"\r\n                \"profile-content1  profile-content2\"\r\n                \"footer footer\";\r\n                grid-gap: 0.2rem;\r\n                font-size: 15px;\r\n                color: #fff5ea;\r\n                text-align: center;\r\n                row-gap: 20px;\r\n                column-gap: 20px;\r\n                background-color: rgba(255, 255, 255, 0.13);\r\n                width: 60%;\r\n                margin: 50px auto;\r\n                border-top-right-radius: 30px;\r\n                border-bottom-left-radius: 30px;\r\n\r\n            }\r\n\r\n\r\n            #profile-main1 {\r\n\r\n                grid-area: profile-main1;\r\n                border-top-right-radius: 20px;\r\n                border-bottom-left-radius: 20px;\r\n                padding-top: var(--main-padding);\r\n                height: 300px;\r\n                overflow: hidden;\r\n            }\r\n\r\n            #profile-main2 {\r\n\r\n                grid-area: profile-main2;\r\n                border-top-right-radius: 20px;\r\n                border-bottom-left-radius: 20px;\r\n                padding-top: var(--main-padding);\r\n                height: 300px;\r\n                overflow: hidden;\r\n            }\r\n\r\n            #profile-content1 {\r\n\r\n                grid-area: profile-content1;\r\n                border-top-right-radius: 20px;\r\n                border-bottom-left-radius: 20px;\r\n                overflow: hidden;\r\n            }\r\n\r\n            #profile-content2 {\r\n\r\n                grid-area: profile-content2;\r\n                border-top-right-radius: 20px;\r\n                border-bottom-left-radius: 20px;\r\n\r\n                overflow: hidden;\r\n            }\r\n\r\n\r\n            .name {\r\n                display: block;\r\n                font-size: 16px;\r\n                color: #eee;\r\n                margin: 15px 0 0 2%;\r\n                font-family: 'Lato', serif;\r\n            }\r\n\r\n\r\n            .gen {\r\n                font-size: 20px;\r\n                font-family: 'Lato', serif;\r\n            }\r\n\r\n            .sub {\r\n                width: 90%;\r\n                margin: 15px 0 0 5%;\r\n                font-size: 16px;\r\n                height: 40px;\r\n                background-color: #031c30;\r\n                border: 1px solid rgba(255, 255, 255, 0.13);\r\n                color: #3a4750;\r\n            }\r\n\r\n            .sub:hover {\r\n                background-color: #E94601;\r\n                color: #3a4750;\r\n            }\r\n\r\n            .profile-auth-form-input {\r\n                background-color: #3a4750;\r\n                border: 1px solid #cccccc;\r\n                border-top-right-radius: 15px;\r\n                border-bottom-left-radius: 15px;\r\n                padding: 12px 15px;\r\n                margin: 10px;\r\n                width: 90%;\r\n                font-size: 20px;\r\n                color: #cccccc;\r\n            }\r\n\r\n            .profile-auth-form-input::placeholder {\r\n                color: #cccccc;\r\n            }\r\n\r\n            .profile-auth-form-input:focus {\r\n                outline: none;\r\n            }\r\n\r\n            .profile-auth-form-button {\r\n                border-top-right-radius: 15px;\r\n                border-bottom-left-radius: 15px;\r\n                border: 1px solid #eeeeee;\r\n                background-color: #3a4750;\r\n                color: #eeeeee;\r\n                font-size: 12px;\r\n                font-weight: bold;\r\n                padding: 12px 45px;\r\n                letter-spacing: 1px;\r\n                text-transform: uppercase;\r\n                transition: transform 80ms ease-in;\r\n                margin: 20px;\r\n            }\r\n\r\n            .profile-auth-form-button:active {\r\n                transform: scale(0.95);\r\n            }\r\n\r\n            .profile-auth-form-button:focus {\r\n                outline: none;\r\n            }\r\n\r\n\r\n            /* The container */\r\n            .profile-container {\r\n                display: block;\r\n                position: relative;\r\n                padding-left: 35px;\r\n                margin-bottom: 12px;\r\n                cursor: pointer;\r\n                font-size: 22px;\r\n                -webkit-user-select: none;\r\n                -moz-user-select: none;\r\n                -ms-user-select: none;\r\n                user-select: none;\r\n            }\r\n\r\n            /* Hide the browser's default checkbox */\r\n            .profile-container input {\r\n                position: absolute;\r\n                opacity: 0;\r\n                cursor: pointer;\r\n                height: 0;\r\n                width: 0;\r\n            }\r\n\r\n            /* Create a custom checkbox */\r\n            .checkmark {\r\n                position: absolute;\r\n                top: 0;\r\n                left: 0;\r\n                height: 25px;\r\n                width: 25px;\r\n\r\n                background-color: #eee;\r\n                border: 1px solid #3a4750;\r\n                border-top-right-radius: 15px;\r\n                border-bottom-left-radius: 15px;\r\n\r\n            }\r\n\r\n            /* On mouse-over, add a grey background color */\r\n            .profile-container:hover input ~ .checkmark {\r\n                background-color: #ccc;\r\n            }\r\n\r\n            /* When the checkbox is checked, add a blue background */\r\n            .profile-container input:checked ~ .checkmark {\r\n                background-color: #d72323;\r\n            }\r\n\r\n            /* Create the checkmark/indicator (hidden when not checked) */\r\n            .checkmark:after {\r\n                content: \"\";\r\n                position: absolute;\r\n                display: none;\r\n                background-color: #eee;\r\n                border: 1px solid #3a4750;\r\n                border-top-right-radius: 15px;\r\n                border-bottom-left-radius: 15px;\r\n\r\n            }\r\n\r\n            /* Show the checkmark when checked */\r\n            .profile-container input:checked ~ .checkmark:after {\r\n                display: block;\r\n            }\r\n\r\n            /* Style the checkmark/indicator */\r\n            .profile-container .checkmark:after {\r\n                left: 9px;\r\n                top: 5px;\r\n                width: 5px;\r\n                height: 10px;\r\n\r\n                border-width: 0 3px 3px 0;\r\n                -webkit-transform: rotate(45deg);\r\n                -ms-transform: rotate(45deg);\r\n                transform: rotate(45deg);\r\n                background-color: #eee;\r\n\r\n\r\n            }\r\n\r\n            @media screen and (max-width: 800px) {\r\n                .profile-grid-container {\r\n                    display: grid;\r\n                    height: 150vh;\r\n                    grid-template-columns:  1fr;\r\n                    grid-template-rows:  0.2fr;\r\n                    grid-template-areas:\r\n                \"profile-main1\"  \"profile-main2\"\r\n                 \"profile-content2\" \"profile-content1\"\r\n                \"footer\";\r\n                    grid-gap: 0.2rem;\r\n                    width: 90%;\r\n\r\n                }\r\n            }\r\n\r\n\r\n            input[type=\"file\"] {\r\n                display: none;\r\n            }\r\n\r\n            .profile-picture-input {\r\n                width: 150px;\r\n                height: 50px;\r\n                background-color: rgba(255, 255, 255, 0.15);\r\n                display: block;\r\n                margin: auto;\r\n                border-radius: 20px;\r\n                color: #eeeeee;\r\n                font-weight: lighter;\r\n                text-align: center;\r\n                padding-top: 12px;\r\n                font-family: Lato, serif;\r\n                border: 1px dashed #eeeeee;\r\n\r\n            }\r\n        </style>\r\n    </head>\r\n    <body>\r\n\r\n    <div>\r\n\r\n        <form method=\"POST\">\r\n            {% csrf_token %}\r\n            <h1 class=\"auth-form-h1\" style=\"margin: 10px auto;color: #cccccc;font-family: 'Lato', serif;\"\r\n                align=\"center\"> Your Profile</h1>\r\n            <div class=\"profile-grid-container\">\r\n\r\n\r\n                <div id=\"profile-main1\">\r\n                    <div>\r\n                        {% if profile_details.profile_picture == None %}\r\n                            <img style=\"width: 200px;height: 200px;margin: 20px auto;\r\n                                border-top-right-radius: 15px;\r\n            border-bottom-left-radius: 15px;\r\n            object-fit: cover;background-color: #cccccc; \" id=\"profile_picture\"/>\r\n                        {% else %}\r\n                            <img src=\"{{ profile_details.profile_picture }}\" style=\"width: 200px;height: 200px;margin: 20px auto;\r\n                                border-top-right-radius: 15px;\r\n            border-bottom-left-radius: 15px;\r\n            object-fit: cover;background-color: #cccccc; \" id=\"profile_picture\"/>\r\n                        {% endif %}\r\n\r\n                        <label class=\"profile-picture-input\">\r\n                            Add Profile Picture\r\n                            <input id=\"drop-area\" type=\"file\">\r\n                            <input style=\"display: none;\" name=\"image-data\" id=\"image-data\" type=\"text\">\r\n                        </label>\r\n                    </div>\r\n\r\n\r\n                </div>\r\n\r\n\r\n                <div id=\"profile-main2\">\r\n                    <input type=\"text\" name=\"fname\" value=\"First Name:{{ profile_details.first_name }}\" readonly\r\n                           class=\"profile-auth-form-input\">\r\n\r\n                    <input type=\"text\" name=\"lname\" value=\"Last Name:{{ profile_details.last_name }} \" readonly\r\n                           class=\"profile-auth-form-input\">\r\n\r\n                    <input type=\"email\" name=\"uid\" value=\"Email Id:{{ profile_details.email_id }} \" readonly\r\n                           class=\"profile-auth-form-input\">\r\n                </div>\r\n\r\n\r\n                <div id=\"profile-content1\">\r\n                    <label class=\"name\">\r\n                        PHONE* :</label>\r\n\r\n                    <input type=\"text\" name=\"phone\" placeholder=\"Phone\" value=\"{{ profile_details.phone_no }}\"\r\n                           class=\"profile-auth-form-input\">\r\n                    <label class=\"profile-auth-form-input\" style=\"display: block;\">\r\n                        <span class=\"gen\">Gender: </span>\r\n                        {% if profile_details.gender == 'Male' %}\r\n                            <label class=\"profile-container\">Male\r\n                                <input type=\"checkbox\" checked=\"checked\" disabled>\r\n                                <span class=\"checkmark\"></span>\r\n                            </label>\r\n                            <label class=\"profile-container\">Female\r\n                                <input type=\"checkbox\" disabled>\r\n                                <span class=\"checkmark\"></span>\r\n                            </label>\r\n                        {% else %}\r\n                            <label class=\"profile-container\">Male\r\n                                <input type=\"checkbox\" disabled>\r\n                                <span class=\"checkmark\"></span>\r\n                            </label>\r\n                            <label class=\"profile-container\">Female\r\n                                <input type=\"checkbox\" checked=\"checked\" disabled>\r\n                                <span class=\"checkmark\"></span>\r\n                            </label>\r\n\r\n                        {% endif %}\r\n\r\n                    </label>\r\n                    <input class=\"profile-auth-form-button\" type=\"submit\" name=\"sb\" value=\"UPDATE PROFILE\"\r\n                           class=\"sub\">\r\n\r\n                </div>\r\n                <div id=\"profile-content2\">\r\n                    <label class=\"name\">\r\n                        PASSWORD* :</label>\r\n\r\n                    <input type=\"password\" name=\"pass1\" placeholder=\"Password\" class=\"profile-auth-form-input\">\r\n                    <input type=\"password\" name=\"pass2\" placeholder=\"Confirm Password\"\r\n                           class=\"profile-auth-form-input\">\r\n\r\n                    <label class=\"profile-auth-form-input\" style=\"display: block;\">\r\n\r\n                        <span class=\"gen\" style=\"margin-bottom:10px; \">Type of User:</span>\r\n                        {% if profile_details.journal_access == True and profile_details.suscriber_access == True %}\r\n                            <label class=\"profile-container\">Journalist\r\n                                <input type=\"checkbox\" checked=\"checked\" disabled>\r\n                                <span class=\"checkmark\"></span>\r\n                            </label>\r\n                            <label class=\"profile-container\">Subscriber\r\n                                <input type=\"checkbox\" checked=\"checked\" disabled>\r\n                                <span class=\"checkmark\"></span>\r\n                            </label>\r\n                        {% elif profile_details.suscriber_access == True %}\r\n                            <label class=\"profile-container\">Journalist\r\n                                <input type=\"checkbox\" disabled>\r\n                                <span class=\"checkmark\"></span>\r\n                            </label>\r\n                            <label class=\"profile-container\">Subscriber\r\n                                <input type=\"checkbox\" checked=\"checked\" disabled>\r\n                                <span class=\"checkmark\"></span>\r\n                            </label>\r\n\r\n                        {% endif %}\r\n                    </label>\r\n                </div>\r\n\r\n\r\n            </div>\r\n        </form>\r\n\r\n\r\n    </div>\r\n    </div>\r\n    {% include 'footer.html' %}\r\n    </body>\r\n    </html>\r\n\r\n{% endblock %}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- profile_details/Templates/profile.html	(revision c5a5b95286b59c6c37e89967c20366c3a6b144a9)
+-+++ profile_details/Templates/profile.html	(date 1604514294334)
+-@@ -405,6 +405,39 @@
+- 
+-     </div>
+-     </div>
+-+    <div class="modal">
+-+        <div class="modal-content">
+-+            <span class="close-btn">&times;</span>
+-+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+-+                <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10"
+-+                        cx="65.1" cy="65.1" r="62.1"/>
+-+                <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round"
+-+                          stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+-+            </svg>
+-+            <p style="color: green;">Updated Successfully</p>
+-+
+-+        </div>
+-+    </div>
+-+    {% if registration_success %}
+-+        <script>
+-+            let modalBtn = document.getElementById("modal-btn")
+-+            let modal = document.querySelector(".modal")
+-+            let closeBtn = document.querySelector(".close-btn")
+-+            window.onload = function () {
+-+                modal.style.display = "block"
+-+            };
+-+
+-+            closeBtn.onclick = function () {
+-+                modal.style.display = "none"
+-+            }
+-+            window.onclick = function (e) {
+-+                if (e.target == modal) {
+-+                    modal.style.display = "none"
+-+                }
+-+            }
+-+        </script>
+-+
+-+    {% endif %}
+-     {% include 'footer.html' %}
+-     </body>
+-     </html>
+-Index: technology/views.py
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>from django.db import connection\r\nfrom django.shortcuts import render\r\n\r\n\r\n# Create your views here.\r\ndef Technology_view(request, *args, **kwargs):\r\n    with connection.cursor() as cursor:\r\n        cursor.execute('SELECT * from technology_grid')\r\n        rows = cursor.fetchall()\r\n\r\n        list_of_tech = []\r\n        for row in rows:\r\n            tech_dict = {\r\n                'section': row[0],\r\n                'title': row[1],\r\n                'image': row[2],\r\n                'image_link': row[3],\r\n                'category':row[6],\r\n                'news_unique_id':row[8]\r\n            }\r\n            list_of_tech.append(tech_dict)\r\n        print(list_of_tech)\r\n    if request.session.has_key('logged_in'):\r\n        print(request.session.has_key('logged_in'))\r\n        dict_of_user_details = {\r\n            'admin_access': request.session['admin_access'],\r\n            'journal_access': request.session['journal_access'],\r\n            'logged_in': request.session['logged_in'],\r\n            'first_name': request.session['first_name'],\r\n            'last_name': request.session['last_name'],\r\n            'email_id': request.session['email_id'],\r\n            'suscriber_access': request.session['suscriber_priority'],\r\n            'profile_picture': request.session['profile_picture']\r\n\r\n        }\r\n        context_of_top_stories = {'user': dict_of_user_details, 'tech_stories': list_of_tech}\r\n        return render(request, \"technology.html\", context_of_top_stories)\r\n    context = {'tech_stories': list_of_tech}\r\n    return render(request, \"technology.html\", context)\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- technology/views.py	(revision c5a5b95286b59c6c37e89967c20366c3a6b144a9)
+-+++ technology/views.py	(date 1604514294440)
+-@@ -31,7 +31,6 @@
+-             'email_id': request.session['email_id'],
+-             'suscriber_access': request.session['suscriber_priority'],
+-             'profile_picture': request.session['profile_picture']
+--
+-         }
+-         context_of_top_stories = {'user': dict_of_user_details, 'tech_stories': list_of_tech}
+-         return render(request, "technology.html", context_of_top_stories)
+-Index: technology/Templates/technology.html
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>{% extends 'Navbar.html' %}\r\n\r\n{% load static %}\r\n\r\n{% block content %}\r\n\r\n    <div class=\"tech-container\">\r\n        <div id=\"tech-main1\">\r\n            {% for tech_story in tech_stories %}\r\n                {% if tech_story.section == 'technology-cell-1' %}\r\n                    <a href=\"{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}\"\r\n                       style=\"text-decoration: none\">\r\n                    {% if tech_story.image != '' %}\r\n\r\n                        <img class=\"tech-image-css-main\"\r\n                             src=\"{{ tech_story.image }}\"\r\n                             alt=\"\">\r\n                          {% else %}\r\n                        <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image_link }}\"\r\n                                 alt=\"\">\r\n                        {% endif %}\r\n                    </a>\r\n\r\n                {% endif %}\r\n\r\n            {% endfor %}\r\n\r\n\r\n        </div>\r\n        <div id=\"tech-main2\">\r\n            {% for tech_story in tech_stories %}\r\n                {% if tech_story.section == 'technology-cell-2' %}\r\n                    <a href=\"{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}\"\r\n                       style=\"text-decoration: none\">\r\n                        {% if tech_story.image != '' %}\r\n\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image }}\"\r\n                                 alt=\"\">\r\n                        {% else %}\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image_link }}\"\r\n                                 alt=\"\">\r\n                        {% endif %}\r\n                    </a>\r\n\r\n                {% endif %}\r\n\r\n            {% endfor %}\r\n\r\n        </div>\r\n        <div id=\"tech-content1\">\r\n             {% for tech_story in tech_stories %}\r\n                {% if tech_story.section == 'technology-cell-3' %}\r\n                    <a href=\"{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}\"\r\n                       style=\"text-decoration: none;\">\r\n                        {% if tech_story.image != '' %}\r\n\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image }}\"\r\n                                 alt=\"\">\r\n                        {% else %}\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image_link }}\"\r\n                                 alt=\"\">\r\n                        {% endif %}\r\n                      <p style=\"font-family: 'Lato',serif;\r\n                                color:white;text-decoration: none;\r\n              \" class=\"tech-p-tag-css\">\r\n               {{ tech_story.title }}</p>\r\n                    </a>\r\n\r\n                {% endif %}\r\n\r\n            {% endfor %}\r\n\r\n        </div>\r\n        <div id=\"tech-content2\">\r\n             {% for tech_story in tech_stories %}\r\n                {% if tech_story.section == 'technology-cell-4' %}\r\n                    <a href=\"{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}\"\r\n                       style=\"text-decoration: none;\">\r\n                        {% if tech_story.image != '' %}\r\n\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image }}\"\r\n                                 alt=\"\">\r\n                        {% else %}\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image_link }}\"\r\n                                 alt=\"\">\r\n                        {% endif %}\r\n                      <p style=\"font-family: 'Lato',serif;\r\n                                color:white;text-decoration: none;\r\n              \" class=\"tech-p-tag-css\">\r\n               {{ tech_story.title }}</p>\r\n                    </a>\r\n\r\n                {% endif %}\r\n\r\n            {% endfor %}\r\n\r\n        </div>\r\n        <div id=\"tech-content3\">\r\n            {% for tech_story in tech_stories %}\r\n                {% if tech_story.section == 'technology-cell-5' %}\r\n                    <a href=\"{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}\"\r\n                       style=\"text-decoration: none;\">\r\n                        {% if tech_story.image != '' %}\r\n\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image }}\"\r\n                                 alt=\"\">\r\n                        {% else %}\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image_link }}\"\r\n                                 alt=\"\">\r\n                        {% endif %}\r\n                      <p style=\"font-family: 'Lato',serif;\r\n                                color:white;text-decoration: none;\r\n              \" class=\"tech-p-tag-css\">\r\n               {{ tech_story.title }}</p>\r\n                    </a>\r\n\r\n                {% endif %}\r\n\r\n            {% endfor %}\r\n\r\n        </div>\r\n        <div id=\"tech-content4\">\r\n            {% for tech_story in tech_stories %}\r\n                {% if tech_story.section == 'technology-cell-6' %}\r\n                    <a href=\"{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}\"\r\n                       style=\"text-decoration: none;\">\r\n                        {% if tech_story.image != '' %}\r\n\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image }}\"\r\n                                 alt=\"\">\r\n                        {% else %}\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image_link }}\"\r\n                                 alt=\"\">\r\n                        {% endif %}\r\n                      <p style=\"font-family: 'Lato',serif;\r\n                                color:white;text-decoration: none;\r\n              \" class=\"tech-p-tag-css\">\r\n               {{ tech_story.title }}</p>\r\n                    </a>\r\n\r\n                {% endif %}\r\n\r\n            {% endfor %}\r\n\r\n        </div>\r\n        <div id=\"tech-content5\">\r\n           {% for tech_story in tech_stories %}\r\n                {% if tech_story.section == 'technology-cell-7' %}\r\n                    <a href=\"{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}\"\r\n                       style=\"text-decoration: none;\">\r\n                        {% if tech_story.image != '' %}\r\n\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image }}\"\r\n                                 alt=\"\">\r\n                        {% else %}\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image_link }}\"\r\n                                 alt=\"\">\r\n                        {% endif %}\r\n                      <p style=\"font-family: 'Lato',serif;\r\n                                color:white;text-decoration: none;\r\n              \" class=\"tech-p-tag-css\">\r\n               {{ tech_story.title }}</p>\r\n                    </a>\r\n\r\n                {% endif %}\r\n\r\n            {% endfor %}\r\n\r\n        </div>\r\n        <div id=\"tech-content6\">\r\n            <img class=\"tech-image-css\"\r\n                 src=\"https://i.gadgets360cdn.com/large/intel_core_i9_10980xe_angle_ndtv_1577701567067.jpg\" alt=\"\">\r\n            <p style=\"font-family: 'Lato',serif;\r\n              \" class=\"tech-p-tag-css\">\r\n                Intel 11th Gen Core ‘Rocket Lake’ Desktop CPUs With PCIe 4.0\r\n            </p>\r\n\r\n        </div>\r\n        <div id=\"tech-content7\">\r\n            <img class=\"tech-image-css\" src=\"https://i.gadgets360cdn.com/large/5G_reuters_1601871754591.jpg\" alt=\"\">\r\n            <p style=\"font-family: 'Lato',serif;\r\n              \" class=\"tech-p-tag-css\">\r\n                The Promise of 5G Wireless – Speed, Hype, Risk</p>\r\n\r\n        </div>\r\n        <div id=\"tech-content8\">\r\n            <img class=\"tech-image-css\" src=\"https://i.gadgets360cdn.com/large/iphone_11_back_image_1602673044747.jpg\"\r\n                 alt=\"\">\r\n            <p style=\"font-family: 'Lato',serif;\r\n              \" class=\"tech-p-tag-css\">iPhone 11, iPhone 11 Pro to Get Huge Price Discounts During Amazon, Flipkart\r\n                Sales</p>\r\n\r\n\r\n        </div>\r\n        {% include 'footer.html' %}\r\n    </div>\r\n\r\n\r\n\r\n{% endblock %}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- technology/Templates/technology.html	(revision c5a5b95286b59c6c37e89967c20366c3a6b144a9)
+-+++ technology/Templates/technology.html	(date 1604514294459)
+-@@ -194,28 +194,85 @@
+- 
+-         </div>
+-         <div id="tech-content6">
+--            <img class="tech-image-css"
+--                 src="https://i.gadgets360cdn.com/large/intel_core_i9_10980xe_angle_ndtv_1577701567067.jpg" alt="">
+--            <p style="font-family: 'Lato',serif;
+-+           {% for tech_story in tech_stories %}
+-+                {% if tech_story.section == 'technology-cell-8' %}
+-+                    <a href="{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}"
+-+                       style="text-decoration: none;">
+-+                        {% if tech_story.image != '' %}
+-+
+-+                            <img class="tech-image-css-main"
+-+
+-+                                 src="{{ tech_story.image }}"
+-+                                 alt="">
+-+                        {% else %}
+-+                            <img class="tech-image-css-main"
+-+
+-+                                 src="{{ tech_story.image_link }}"
+-+                                 alt="">
+-+                        {% endif %}
+-+                      <p style="font-family: 'Lato',serif;
+-+                                color:white;text-decoration: none;
+-               " class="tech-p-tag-css">
+--                Intel 11th Gen Core ‘Rocket Lake’ Desktop CPUs With PCIe 4.0
+--            </p>
+-+               {{ tech_story.title }}</p>
+-+                    </a>
+- 
+-+                {% endif %}
+-+
+-+            {% endfor %}
+-         </div>
+-         <div id="tech-content7">
+--            <img class="tech-image-css" src="https://i.gadgets360cdn.com/large/5G_reuters_1601871754591.jpg" alt="">
+--            <p style="font-family: 'Lato',serif;
+-+           {% for tech_story in tech_stories %}
+-+                {% if tech_story.section == 'technology-cell-9' %}
+-+                    <a href="{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}"
+-+                       style="text-decoration: none;">
+-+                        {% if tech_story.image != '' %}
+-+
+-+                            <img class="tech-image-css-main"
+-+
+-+                                 src="{{ tech_story.image }}"
+-+                                 alt="">
+-+                        {% else %}
+-+                            <img class="tech-image-css-main"
+-+
+-+                                 src="{{ tech_story.image_link }}"
+-+                                 alt="">
+-+                        {% endif %}
+-+                      <p style="font-family: 'Lato',serif;
+-+                                color:white;text-decoration: none;
+-               " class="tech-p-tag-css">
+--                The Promise of 5G Wireless – Speed, Hype, Risk</p>
+-+               {{ tech_story.title }}</p>
+-+                    </a>
+- 
+-+                {% endif %}
+-+
+-+            {% endfor %}
+-         </div>
+-         <div id="tech-content8">
+--            <img class="tech-image-css" src="https://i.gadgets360cdn.com/large/iphone_11_back_image_1602673044747.jpg"
+--                 alt="">
+--            <p style="font-family: 'Lato',serif;
+--              " class="tech-p-tag-css">iPhone 11, iPhone 11 Pro to Get Huge Price Discounts During Amazon, Flipkart
+--                Sales</p>
+-+           {% for tech_story in tech_stories %}
+-+                {% if tech_story.section == 'technology-cell-10' %}
+-+                    <a href="{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}"
+-+                       style="text-decoration: none;">
+-+                        {% if tech_story.image != '' %}
+-+
+-+                            <img class="tech-image-css-main"
+-+
+-+                                 src="{{ tech_story.image }}"
+-+                                 alt="">
+-+                        {% else %}
+-+                            <img class="tech-image-css-main"
+-+
+-+                                 src="{{ tech_story.image_link }}"
+-+                                 alt="">
+-+                        {% endif %}
+-+                      <p style="font-family: 'Lato',serif;
+-+                                color:white;text-decoration: none;
+-+              " class="tech-p-tag-css">
+-+               {{ tech_story.title }}</p>
+-+                    </a>
+- 
+-+                {% endif %}
+-+
+-+            {% endfor %}
+- 
+-         </div>
+-         {% include 'footer.html' %}
+-Index: search_news/views.py
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>from django.shortcuts import render\r\n\r\n\r\n# Create your views here.\r\ndef search_view(request, *args, **kwargs):\r\n    if request.session.has_key('logged_in'):\r\n        print(request.session.has_key('logged_in'))\r\n        dict_of_user_details = {\r\n            'admin_access': request.session['admin_access'],\r\n            'journal_access': request.session['journal_access'],\r\n            'logged_in': request.session['logged_in'],\r\n            'first_name': request.session['first_name'],\r\n            'last_name': request.session['last_name'],\r\n            'email_id': request.session['email_id'],\r\n            'suscriber_access': request.session['suscriber_priority'],\r\n            'profile_picture': request.session['profile_picture']\r\n\r\n        }\r\n        context_of_top_stories = {'user': dict_of_user_details}\r\n        return render(request, \"search.html\", context_of_top_stories)\r\n    return render(request, \"search.html\", {})\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- search_news/views.py	(revision c5a5b95286b59c6c37e89967c20366c3a6b144a9)
+-+++ search_news/views.py	(date 1604515985164)
+-@@ -1,3 +1,6 @@
+-+import time
+-+
+-+from django.db import connection
+- from django.shortcuts import render
+- 
+- 
+-@@ -16,6 +19,26 @@
+-             'profile_picture': request.session['profile_picture']
+- 
+-         }
+--        context_of_top_stories = {'user': dict_of_user_details}
+--        return render(request, "search.html", context_of_top_stories)
+-+        if request.method == 'POST':
+-+            search_text = request.POST.get('search_text')
+-+            print("The Search Text Entered is: ", search_text)
+-+            with connection.cursor() as cursor:
+-+                cursor.execute('CALL news_database.search_news(%s)',
+-+                               [search_text])
+-+                rows = cursor.fetchall()
+-+                print(rows)
+-+                list_of_stories = []
+-+                for row in rows:
+-+                    stories_dict = {
+-+                        'section': row[4],
+-+                        'title': row[5],
+-+                        'image': row[1],
+-+                        'image_link': row[2],
+-+                        'category': row[3],
+-+                        'news_unique_id': row[0]
+-+                    }
+-+                    list_of_stories.append(stories_dict)
+-+
+-+            context_of_top_stories = {'user': dict_of_user_details, 'search_stories': list_of_stories}
+-+            return render(request, "search.html", context_of_top_stories)
+-     return render(request, "search.html", {})
+-Index: textfile.txt
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>0542248074\r\n1004188893\r\n2782791442\r\n6247573665\r\n7056971327\r\n1840741714\r\n4797641066\r\n5351150639\r\n3389147856\r\n3853252383\r\n9561895746\r\n8810836426\r\n2206289173\r\n5703944253\r\n5468414010\r\n7098984697\r\n9881191351\r\n8075062988\r\n8394653199\r\n4254150887\r\n91763413\r\n06308044\r\n44959606\r\n01433143\r\n18206838\r\n71668670\r\n35974595\r\n74683898\r\n47609267\r\n80973937\r\n77370128\r\n28812187\r\n93916173\r\n32601791\r\n19328701\r\n15653136\r\n23306166\r\n79676204\r\n16628232\r\n51431947\r\n52725894\r\n47128937\r\n64686745\r\n69684573\r\n97558564\r\n15370055\r\n30661020\r\n88642409\r\n81326528\r\n02912387\r\n08367865\r\n49798658\r\n70876087\r\n12507681\r\n02647744\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- textfile.txt	(revision c5a5b95286b59c6c37e89967c20366c3a6b144a9)
+-+++ textfile.txt	(date 1604514294428)
+-@@ -49,6 +49,9 @@
+- 81326528
+- 02912387
+- 08367865
+-+61898750
+-+88497813
+-+51538676
+- 49798658
+- 70876087
+- 12507681
+-Index: profile_details/views.py
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>from django.shortcuts import render\r\nfrom django.db import connection\r\nimport time\r\n\r\n# Create your views here.\r\nfrom werkzeug.security import generate_password_hash\r\n\r\n\r\ndef profile_view(request, *args, **kwargs):\r\n    if request.session.has_key('logged_in'):\r\n        print(request.session.has_key('logged_in'))\r\n        dict_of_user_details = {\r\n            'admin_access': request.session['admin_access'],\r\n            'journal_access': request.session['journal_access'],\r\n            'logged_in': request.session['logged_in'],\r\n            'first_name': request.session['first_name'],\r\n            'last_name': request.session['last_name'],\r\n            'email_id': request.session['email_id'],\r\n            'suscriber_access': request.session['suscriber_priority'],\r\n            'profile_picture': request.session['profile_picture']\r\n\r\n        }\r\n        if request.method == 'POST':\r\n            password1 = request.POST.get('pass1')\r\n            password2 = request.POST.get('pass2')\r\n            profile_picture = request.POST.get('image-data')\r\n            print(password1, password2, profile_picture)\r\n            if profile_picture != None and profile_picture !='':\r\n                with connection.cursor() as cursor:\r\n                    cursor.execute('CALL news_database.update_profile_picture(%s,%s)',\r\n                                   [dict_of_user_details['email_id'], profile_picture])\r\n                    time.sleep(2)\r\n                print(\"Successfully Clear\")\r\n            if password1 == password2 and password1 != '' and password1 !=None:\r\n                hashed_password = generate_password_hash(password2, method=\"sha256\")\r\n                with connection.cursor() as cursor:\r\n                    cursor.execute('CALL news_database.update_password(%s,%s)',\r\n                                   [dict_of_user_details['email_id'], hashed_password])\r\n                    time.sleep(2)\r\n                print(\"Successfully Updated Password\")\r\n        with connection.cursor() as cursor:\r\n            cursor.execute(\"SELECT * FROM personal_details WHERE email_id=%s\",\r\n                           [dict_of_user_details['email_id']])\r\n            row = cursor.fetchone()\r\n\r\n            profile_details = {\r\n                'first_name': request.session['first_name'],\r\n                'last_name': request.session['last_name'],\r\n                'email_id': request.session['email_id'],\r\n                'journal_access': request.session['journal_access'],\r\n                'suscriber_access': request.session['suscriber_priority'],\r\n                'gender': row[9],\r\n                'phone_no': row[10],\r\n                'profile_picture': row[12]\r\n            }\r\n\r\n        context_of_top_stories = {'user': dict_of_user_details, 'profile_details': profile_details}\r\n        return render(request, \"profile.html\", context_of_top_stories)\r\n\r\n    return render(request, \"profile.html\", {})\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- profile_details/views.py	(revision c5a5b95286b59c6c37e89967c20366c3a6b144a9)
+-+++ profile_details/views.py	(date 1604514294364)
+-@@ -25,19 +25,40 @@
+-             password2 = request.POST.get('pass2')
+-             profile_picture = request.POST.get('image-data')
+-             print(password1, password2, profile_picture)
+--            if profile_picture != None and profile_picture !='':
+-+            if profile_picture != None and profile_picture != '':
+-                 with connection.cursor() as cursor:
+-                     cursor.execute('CALL news_database.update_profile_picture(%s,%s)',
+-                                    [dict_of_user_details['email_id'], profile_picture])
+-                     time.sleep(2)
+-                 print("Successfully Clear")
+--            if password1 == password2 and password1 != '' and password1 !=None:
+-+            if password1 == password2 and password1 != '' and password1 != None:
+-                 hashed_password = generate_password_hash(password2, method="sha256")
+-                 with connection.cursor() as cursor:
+-                     cursor.execute('CALL news_database.update_password(%s,%s)',
+-                                    [dict_of_user_details['email_id'], hashed_password])
+-                     time.sleep(2)
+-                 print("Successfully Updated Password")
+-+            time.sleep(2)
+-+            with connection.cursor() as cursor:
+-+                time.sleep(2)
+-+                cursor.execute("SELECT * FROM personal_details WHERE email_id=%s",
+-+                               [dict_of_user_details['email_id']])
+-+                row = cursor.fetchone()
+-+
+-+                profile_details = {
+-+                    'first_name': request.session['first_name'],
+-+                    'last_name': request.session['last_name'],
+-+                    'email_id': request.session['email_id'],
+-+                    'journal_access': request.session['journal_access'],
+-+                    'suscriber_access': request.session['suscriber_priority'],
+-+                    'gender': row[9],
+-+                    'phone_no': row[10],
+-+                    'profile_picture': row[12]
+-+                }
+-+
+-+                context_of_top_stories = {'user': dict_of_user_details, 'profile_details': profile_details,
+-+                                          'registration_success': True}
+-+                return render(request, "profile.html", context_of_top_stories)
+-         with connection.cursor() as cursor:
+-             cursor.execute("SELECT * FROM personal_details WHERE email_id=%s",
+-                            [dict_of_user_details['email_id']])
+-@@ -54,7 +75,8 @@
+-                 'profile_picture': row[12]
+-             }
+- 
+--        context_of_top_stories = {'user': dict_of_user_details, 'profile_details': profile_details}
+-+        context_of_top_stories = {'user': dict_of_user_details, 'profile_details': profile_details,
+-+                                  'registration_success': False}
+-         return render(request, "profile.html", context_of_top_stories)
+- 
+--    return render(request, "profile.html", {})
+-+    return render(request, "profile.html", {'registration_success': False})
+-Index: templates/Navbar.html
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>{% load static %}\r\n\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n    <title>The Journalist</title>\r\n    <link href=\"{% static '/css/css_auth.css' %}\" rel=\"stylesheet\">\r\n    <link rel=\"icon\" href=\"{% static '/assets/news.png' %}\"/>\r\n    <link href=\"{% static '/css/index_style2.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/newsCard.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/top_story.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/business.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/education.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/health.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/technology1.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/posts1.css' %}\" rel=\"stylesheet\">\r\n\r\n    <link href=\"{% static '/css/prevpost.css' %}\" rel=\"stylesheet\">\r\n\r\n\r\n    <link href=\"{% static '/css/india.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/world.css' %}\" rel=\"stylesheet\">\r\n\r\n    <link href=\"{% static '/css/Footer.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/drawer.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/navbar.css' %}\" rel=\"stylesheet\">\r\n\r\n    <link href=\"https://fonts.googleapis.com/css2?family=Lato&display=swap\" rel=\"stylesheet\">\r\n    <link href=\"https://fonts.googleapis.com/css2?family=Cinzel&display=swap\" rel=\"stylesheet\">\r\n\r\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>\r\n    <style>\r\n        .custom-icon-class-style {\r\n            margin-right: 5px;\r\n            margin-bottom: -2px;\r\n        }\r\n    </style>\r\n\r\n</head>\r\n<body style=\"\r\n background-color: #303841;\r\n \">\r\n\r\n<div style=\"\r\n        width: 100%;\r\n        height:50px;\r\n        padding: 20px;\r\n        border-radius: 10px;\r\n        margin-bottom: 20px;\r\n        text-align: center;\" class=\"header-class\">\r\n    <h1\r\n            style=\"margin-top: -12px;\r\n        font-family: 'Cinzel', serif;\r\n        color:  #eeeeee;\r\n        \">The Journalist</h1>\r\n</div>\r\n\r\n<div id=\"mySidenav\" class=\"sidenav\">\r\n   <div style=\"text-align: start;\">\r\n\r\n        {% if user.profile_picture %}\r\n            <img style=\"\r\n\r\n    width: 200px;\r\n    height: 200px;\r\n    border-top-right-radius: 15px;\r\n            border-bottom-left-radius: 15px;\r\n            object-fit: cover;\r\n    margin: 10px 25px;\r\n\r\n\"\r\n                 src=\"{{ user.profile_picture }}\" alt=\"\">\r\n        {% else %}\r\n            <div style=\"\r\n    background: rgba(255,255,255,0.3);\r\n    width: 200px;\r\n    height: 200px;\r\n     border-top-right-radius: 15px;\r\n            border-bottom-left-radius: 15px;\r\n            object-fit: cover;\r\n    margin: 10px auto;\r\n    text-align: center;\r\n    padding: 70px 0;\r\n    font-family: 'Inter', sans-serif;\r\n    font-size: 20px;\r\n    color:#eeeeee;\r\n\">\r\n\r\n                {{ user.first_name }}\r\n                <br/>\r\n                {{ user.last_name }}\r\n\r\n\r\n            </div>\r\n        {% endif %}\r\n\r\n        <hr>\r\n        <a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeDrawer()\">&times;</a>\r\n        <a style=\"margin-top:25px \" href=\"{% url 'profile' %}\"><img class=\"custom-icon-class-style\"\r\n                                                                    src=\"{% static '/assets/account.png' %}\" alt=\"\">Profile</a>\r\n\r\n        <a href=\"{% url 'search_news' %}\"><img class=\"custom-icon-class-style\"\r\n                                                                    src=\"{% static '/assets/account.png' %}\" alt=\"\">Search News</a>\r\n        {% if user.journal_access %}\r\n            <a href=\"{% url 'posts' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/postnews.png' %}\"\r\n                                             alt=\"\">Post\r\n                Article</a>\r\n            <a href=\"{% url 'prevpost' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/journal.png' %}\"\r\n                                                alt=\"\">Previous Posts</a>\r\n        {% endif %}\r\n\r\n        {% if user.admin_access %}\r\n            <a href=\"{% url 'user_page' %}\"><img class=\"custom-icon-class-style\"\r\n                                                 src=\"{% static '/assets/user-account.png' %}\"\r\n                                                 alt=\"\">Users</a>\r\n\r\n        {% endif %}\r\n        <a href=\"{% url 'logout' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/logout.png' %}\"\r\n                                          alt=\"\">Log Out</a>\r\n    </div>\r\n\r\n</div>\r\n\r\n<div class=\"topnav\" id=\"myTopnav\">\r\n    <a href=\"{% url 'home' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/current.png' %}\" alt=\"\">Latest</a>\r\n    <a href=\"{% url 'india' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/india.png' %}\" alt=\"\">India</a>\r\n    <a href=\"{% url 'education' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/education.png' %}\"\r\n                                         alt=\"\">Education</a>\r\n    <a href=\"{% url 'business' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/business.png' %}\"\r\n                                        alt=\"\">Business</a>\r\n\r\n    <a href=\"{% url 'world' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/world.png' %}\" alt=\"\">World</a>\r\n    <a href=\"{% url 'technology' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/connect.png' %}\"\r\n                                          alt=\"\">Technology</a>\r\n    <a href=\"{% url 'health' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/hospital.png' %}\" alt=\"\">Health</a>\r\n    {% if user.suscriber_access %}\r\n        <a style=\"justify-content:flex-end;\" href=\"javascript:void(0)\" onclick=\"openDrawer()\"><img style=\"margin-right: 5px;\r\n\r\n            margin-bottom: -5px;\"\r\n                                                                                                   src=\"{% static '/assets/profile.png' %}\"\r\n                                                                                                   alt=\"\">Profile</a>\r\n    {% else %}\r\n        <a href=\"{% url 'login' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/pen.png' %}\" alt=\"\">Sign\r\n            In/Up</a>\r\n    {% endif %}\r\n    <a href=\"javascript:void(0);\" style=\"font-size:15px;\" class=\"icon\" onclick=\"myFunction()\">&#9776;</a>\r\n\r\n    <hr style=\"height: 7px; color: #d72323; background-color: #d72323; border-color: #d72323\">\r\n\r\n</div>\r\n\r\n</body>\r\n{% block content %}\r\n\r\n{% endblock %}\r\n\r\n\r\n<script src=\"{% static '/js/script.js' %}\"></script>\r\n<script>\r\n    function myFunction() {\r\n        var x = document.getElementById(\"myTopnav\");\r\n        if (x.className === \"topnav\") {\r\n            x.className += \" responsive\";\r\n        } else {\r\n            x.className = \"topnav\";\r\n        }\r\n    }\r\n\r\n\r\n    function openDrawer() {\r\n        document.getElementById(\"mySidenav\").style.width = \"250px\";\r\n    }\r\n\r\n    function closeDrawer() {\r\n        document.getElementById(\"mySidenav\").style.width = \"0\";\r\n    }\r\n</script>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- templates/Navbar.html	(revision c5a5b95286b59c6c37e89967c20366c3a6b144a9)
+-+++ templates/Navbar.html	(date 1604514294450)
+-@@ -102,7 +102,7 @@
+-                                                                     src="{% static '/assets/account.png' %}" alt="">Profile</a>
+- 
+-         <a href="{% url 'search_news' %}"><img class="custom-icon-class-style"
+--                                                                    src="{% static '/assets/account.png' %}" alt="">Search News</a>
+-+                                                                    src="{% static '/assets/searchglass.png' %}" alt="">Search News</a>
+-         {% if user.journal_access %}
+-             <a href="{% url 'posts' %}"><img class="custom-icon-class-style" src="{% static '/assets/postnews.png' %}"
+-                                              alt="">Post
+-Index: posts/textfile.txt
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>772436\r\n943333\r\n944088\r\n\r\n1426866781\r\n7917131705\r\n9185275797\r\n\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- posts/textfile.txt	(revision c5a5b95286b59c6c37e89967c20366c3a6b144a9)
+-+++ posts/textfile.txt	(date 1604514478633)
+-@@ -1,8 +1,33 @@
+- 772436
+- 943333
+- 944088
+--
+--1426866781
+--7917131705
+--9185275797
+--
+-+2321901
+-+2647744
+-+2912387
+-+8367865
+-+12507681
+-+15370055
+-+15653136
+-+16628232
+-+19328701
+-+23148946
+-+30661020
+-+32601791
+-+47128937
+-+49798658
+-+51034873
+-+51431947
+-+51538676
+-+52725894
+-+61898750
+-+64686745
+-+69684573
+-+70876087
+-+81326528
+-+88497813
+-+88642409
+-+97558564
+-+542248074
+-+1004188893
+-+1840741714
+-+2147483647
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_17_45__Default_Changelist_.xml
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_17_45__Default_Changelist_.xml	(revision 910684e7bff4886a7d50643eb47078b3faa4cb0d)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_17_45__Default_Changelist_.xml	(revision 910684e7bff4886a7d50643eb47078b3faa4cb0d)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_04-11-2020_17_45_[Default_Changelist]" date="1604492137285" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_17_45_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 04-11-2020 17:45 [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_22_24_[Default_Changelist]/shelved.patch
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_22_24_[Default_Changelist]/shelved.patch	(revision 910684e7bff4886a7d50643eb47078b3faa4cb0d)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_22_24_[Default_Changelist]/shelved.patch	(revision 910684e7bff4886a7d50643eb47078b3faa4cb0d)
+@@ -1,48 +0,0 @@
+-Index: homepage/views.py
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>from django.db import connection\r\nfrom django.shortcuts import render\r\nimport requests\r\n\r\n\r\ndef boolean_function(s):\r\n    return True if s == 1 else False\r\n\r\n\r\n# Create your views here.\r\ndef home_view(request, *args, **kwargs):\r\n    # top_stories = \"https://newsapi.org/v2/top-headlines?country=in&apiKey=95c4ed43f7644dc8a05175665cd04b7a\"\r\n    # # 95c4ed43f7644dc8a05175665cd04b7a - api key\r\n    # r = requests.get(top_stories).json()\r\n    top = []\r\n    with connection.cursor() as cursor:\r\n        cursor.execute(\"SELECT * FROM top_stories\")\r\n        row = cursor.fetchall()\r\n\r\n    for i in row:\r\n        top_story = {\r\n            'id':i[8],\r\n            'title': i[1],\r\n            'image':i[2],\r\n            'image_link': i[3],\r\n            'section': i[7],\r\n            'category': i[6],\r\n            'news_unique_id': i[8]\r\n        }\r\n        top.append(top_story)\r\n    if request.session.has_key('logged_in'):\r\n        print(request.session.has_key('logged_in'))\r\n        dict_of_user_details = {\r\n            'admin_access': request.session['admin_access'],\r\n            'journal_access': request.session['journal_access'],\r\n            'logged_in': request.session['logged_in'],\r\n            'first_name': request.session['first_name'],\r\n            'last_name': request.session['last_name'],\r\n            'email_id': request.session['email_id'],\r\n            'suscriber_access': request.session['suscriber_priority'],\r\n            'profile_picture':request.session['profile_picture']\r\n\r\n        }\r\n        context_of_top_stories = {'top_stories': top, 'user': dict_of_user_details}\r\n        return render(request, \"index.html\", context_of_top_stories)\r\n    context_of_top_stories = {'top_stories': top}\r\n    return render(request, \"index.html\", context_of_top_stories)\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- homepage/views.py	(revision d397df1ffb72f1cf09175d68482474fc3b3a8ea8)
+-+++ homepage/views.py	(date 1604506786862)
+-@@ -19,9 +19,9 @@
+- 
+-     for i in row:
+-         top_story = {
+--            'id':i[8],
+-+            'id': i[8],
+-             'title': i[1],
+--            'image':i[2],
+-+            'image': i[2],
+-             'image_link': i[3],
+-             'section': i[7],
+-             'category': i[6],
+-@@ -38,7 +38,7 @@
+-             'last_name': request.session['last_name'],
+-             'email_id': request.session['email_id'],
+-             'suscriber_access': request.session['suscriber_priority'],
+--            'profile_picture':request.session['profile_picture']
+-+            'profile_picture': request.session['profile_picture']
+- 
+-         }
+-         context_of_top_stories = {'top_stories': top, 'user': dict_of_user_details}
+-Index: posts/views.py
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>from django.shortcuts import render, redirect\r\nimport requests\r\nfrom django.db import connection\r\nimport random\r\nimport math\r\n\r\n\r\n\r\ndef cell_list(prefix, get_range):\r\n    list_cell_string = []\r\n    for i in get_range:\r\n        cell_string = prefix + \"-cell-\"\r\n        cell_string += str(i)\r\n        list_cell_string.append(cell_string)\r\n    return list_cell_string\r\n\r\n\r\ndef OTPgen():\r\n    nums = '0123456789'\r\n    otp = \"\"\r\n\r\n    for i in range(8):\r\n        otp += nums[math.floor(random.random() * 10)]\r\n    return otp\r\n\r\n\r\ndef EditContent(string):\r\n    new_string = string.replace(\"'\", \"\\\\'\")\r\n    new_string = new_string.replace(\"\\\"\", \"\\\\\\\"\")\r\n    return new_string\r\n\r\n\r\ndef posts_view(request, *args, **kwargs):\r\n    global dict_of_user_details\r\n    latest_cell = cell_list('latest', range(1, 12))\r\n    health_cell = cell_list('health', range(1, 10))\r\n    world_cell = cell_list('world', range(1, 11))\r\n    business_cell = cell_list('business', range(1, 9))\r\n    tech_cell = cell_list('technology', range(1, 11))\r\n    edu_cell = cell_list('education', range(1, 9))\r\n    india_cell = cell_list('india', range(1, 11))\r\n    dictionary_of_section_as_per_category = {\r\n        'latest': latest_cell,\r\n        'health': health_cell,\r\n        'world': world_cell,\r\n        'business': business_cell,\r\n        'technology': tech_cell,\r\n        'education': edu_cell,\r\n        'india': india_cell\r\n    }\r\n\r\n    if request.session.has_key('logged_in'):\r\n        dict_of_user_details = {\r\n            'admin_access': request.session['admin_access'],\r\n            'journal_access': request.session['journal_access'],\r\n            'logged_in': request.session['logged_in'],\r\n            'first_name': request.session['first_name'],\r\n            'last_name': request.session['last_name'],\r\n            'email_id': request.session['email_id'],\r\n            'suscriber_access': request.session['suscriber_priority'],\r\n            'profile_picture': request.session['profile_picture']\r\n\r\n        }\r\n\r\n        # print(binary,letter_binary)\r\n\r\n    if request.method == 'POST':\r\n\r\n        article_image_link = request.POST.get('imageLink')\r\n        article_title = request.POST.get('postTitle')\r\n        article_category = request.POST.get('category')\r\n        article_section = request.POST.get('section')\r\n        article_content = request.POST.get('postDesc')\r\n        article_file_picture = request.POST.get('finalPictureValue')\r\n        print(\"THis is\", article_category)\r\n        if article_category == '' or article_category is None:\r\n            message = \"Choose A Category\"\r\n            context = {\"registration_success\": False, 'cell_list': dictionary_of_section_as_per_category,\r\n                       'message': message}\r\n            return render(request, 'posts.html', context)\r\n        if article_section == '' or article_section is None:\r\n            message = \"Choose A Category\"\r\n            context = {\"registration_success\": False, 'cell_list': dictionary_of_section_as_per_category,\r\n                       'message': message}\r\n            return render(request, 'posts.html', context)\r\n        if article_image_link == '' and article_file_picture == '':\r\n            message = \"Enter Image Link or Select An Image\"\r\n            context = {\"registration_success\": False, 'cell_list': dictionary_of_section_as_per_category,\r\n                       'message': message}\r\n            return render(request, 'posts.html', context)\r\n\r\n        file1 = open('textfile.txt', 'a+')\r\n        file1.seek(0)\r\n        with connection.cursor() as cursor:\r\n            while 1:\r\n                addotp = OTPgen()\r\n                file1.seek(0)\r\n                if addotp in file1.read():\r\n                    print(\"exists\", addotp)\r\n                    continue\r\n                else:\r\n                    file1.write(addotp + \"\\n\")\r\n                    # file1.write(\"\\n\")\r\n                    if article_category.split('-')[0] == 'latest' and article_section == 'latest-cell-1':\r\n                        cursor.execute('CALL news_database.latest_top_stories(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print(\"latest-cell-1\")\r\n                    elif article_category.split('-')[0] == 'latest':\r\n                        cursor.execute('CALL news_database.update_latest_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('latest')\r\n                    elif article_category.split('-')[0] == 'india':\r\n                        cursor.execute('CALL news_database.update_india_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('india')\r\n                    elif article_category.split('-')[0] == 'education':\r\n                        cursor.execute('CALL news_database.update_education_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('education')\r\n                    elif article_category.split('-')[0] == 'business':\r\n                        cursor.execute('CALL news_database.update_business_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('business')\r\n                    elif article_category.split('-')[0] == 'world':\r\n                        cursor.execute('CALL news_database.update_world_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('world')\r\n                    elif article_category.split('-')[0] == 'technology':\r\n                        print(\"Entering Technology Cursor For Execution\")\r\n                        print(article_image_link,\r\n                              article_title,\r\n                              article_category,\r\n                              article_section, addotp\r\n                              )\r\n                        cursor.execute(\r\n                            'CALL news_database.update_technology_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                            [article_title, article_file_picture, article_image_link, article_content,\r\n                             dict_of_user_details['email_id'], article_category, article_section,\r\n                             addotp])\r\n\r\n                        print('technology')\r\n                    elif article_category.split('-')[0] == 'health':\r\n                        cursor.execute('CALL news_database.update_health_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link, article_content,\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('health')\r\n                    else:\r\n                        print(\"Un-Successfull\")\r\n\r\n                    context_of_top_stories = {\"registration_success\": True, 'user': dict_of_user_details,\r\n                                              'cell_list': dictionary_of_section_as_per_category}\r\n                    return render(request, 'posts.html', context_of_top_stories)\r\n\r\n        print(article_image_link,\r\n              article_title,\r\n              article_category,\r\n              article_section,\r\n              )\r\n\r\n        print(\"clean\")\r\n\r\n    context_of_top_stories = {\"registration_success\": False, 'user': dict_of_user_details,\r\n                              'cell_list': dictionary_of_section_as_per_category}\r\n    return render(request, 'posts.html', context_of_top_stories)\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- posts/views.py	(revision d397df1ffb72f1cf09175d68482474fc3b3a8ea8)
+-+++ posts/views.py	(date 1604506646975)
+-@@ -26,7 +26,7 @@
+- 
+- def EditContent(string):
+-     new_string = string.replace("'", "\\'")
+--    new_string = new_string.replace("\"", "\\\"")
+-+    # new_string = new_string.replace("\"", "\\\"")
+-     return new_string
+- 
+- 
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_23_54_[Default_Changelist]/shelved.patch
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_23_54_[Default_Changelist]/shelved.patch	(revision 910684e7bff4886a7d50643eb47078b3faa4cb0d)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_23_54_[Default_Changelist]/shelved.patch	(revision 910684e7bff4886a7d50643eb47078b3faa4cb0d)
+@@ -1,385 +0,0 @@
+-Index: search_news/Templates/search.html
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>{% extends 'Navbar.html' %}\r\n\r\n\r\n{% block content %}\r\n    Search News\r\n    {% include 'footer.html'  %}\r\n{% endblock %}
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- search_news/Templates/search.html	(revision 458c08e812afe75e0d04042d1a468268abdc0549)
+-+++ search_news/Templates/search.html	(date 1604513586832)
+-@@ -2,6 +2,55 @@
+- 
+- 
+- {% block content %}
+--    Search News
+--    {% include 'footer.html'  %}
+-+    <style>
+-+        .profile-auth-form-input {
+-+            background-color: #3a4750;
+-+            border: 1px solid #cccccc;
+-+            border-top-right-radius: 15px;
+-+            border-bottom-left-radius: 15px;
+-+            padding: 12px 15px;
+-+            margin: 10px;
+-+            width: 90%;
+-+            font-size: 20px;
+-+            color: #cccccc;
+-+        }
+-+
+-+        .profile-auth-form-input::placeholder {
+-+            color: #cccccc;
+-+        }
+-+
+-+        .profile-auth-form-input:focus {
+-+            outline: none;
+-+        }
+-+
+-+        .profile-auth-form-button {
+-+            border-top-right-radius: 15px;
+-+            border-bottom-left-radius: 15px;
+-+            border: 1px solid #eeeeee;
+-+            background-color: #3a4750;
+-+            color: #eeeeee;
+-+            font-size: 12px;
+-+            font-weight: bold;
+-+            padding: 12px 45px;
+-+            letter-spacing: 1px;
+-+            text-transform: uppercase;
+-+            transition: transform 80ms ease-in;
+-+            margin: 20px;
+-+        }
+-+
+-+        .profile-auth-form-button:active {
+-+            transform: scale(0.95);
+-+        }
+-+
+-+        .profile-auth-form-button:focus {
+-+            outline: none;
+-+        }
+-+
+-+    </style>
+-+    <form action="POST">
+-+        {% csrf_token %}
+-+        <input type="text" name="search_text" placeholder="Search News" class="profile-auth-form-input">
+-+        <input type="submit" value="Search" class="profile-auth-form-button">
+-+    </form>
+-+    {% include 'footer.html' %}
+- {% endblock %}
+-\ No newline at end of file
+-Index: profile_details/Templates/profile.html
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>{% extends 'Navbar.html' %}\r\n\r\n{% load static %}\r\n\r\n{% block content %}\r\n    <!DOCTYPE html>\r\n    <html lang=\"en\">\r\n    <head>\r\n        <meta charset=\"UTF-8\">\r\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n        <script>\r\n            window.addEventListener(\"load\", function () {\r\n                document.getElementById(\"drop-area\").onchange = function (event) {\r\n                    var reader = new FileReader();\r\n                    reader.readAsDataURL(event.srcElement.files[0]);\r\n                    var me = this;\r\n                    reader.onload = function () {\r\n                        var fileContent = reader.result;\r\n\r\n                        document.getElementById(\"profile_picture\").src = String(fileContent);\r\n                        document.getElementById(\"image-data\").value = fileContent;\r\n                        {#document.getElementById(\"setArticlePicture\").value = fileContent;#}\r\n                    }\r\n                }\r\n            });\r\n        </script>\r\n\r\n        <style>\r\n\r\n\r\n            .profile-grid-container {\r\n                display: grid;\r\n                height: 800px;\r\n                grid-template-columns: 1fr 1fr;\r\n                grid-template-rows: 0.2fr 1.5fr;\r\n                grid-template-areas:\r\n                \"profile-main1  profile-main2\"\r\n                \"profile-content1  profile-content2\"\r\n                \"footer footer\";\r\n                grid-gap: 0.2rem;\r\n                font-size: 15px;\r\n                color: #fff5ea;\r\n                text-align: center;\r\n                row-gap: 20px;\r\n                column-gap: 20px;\r\n                background-color: rgba(255, 255, 255, 0.13);\r\n                width: 60%;\r\n                margin: 50px auto;\r\n                border-top-right-radius: 30px;\r\n                border-bottom-left-radius: 30px;\r\n\r\n            }\r\n\r\n\r\n            #profile-main1 {\r\n\r\n                grid-area: profile-main1;\r\n                border-top-right-radius: 20px;\r\n                border-bottom-left-radius: 20px;\r\n                padding-top: var(--main-padding);\r\n                height: 300px;\r\n                overflow: hidden;\r\n            }\r\n\r\n            #profile-main2 {\r\n\r\n                grid-area: profile-main2;\r\n                border-top-right-radius: 20px;\r\n                border-bottom-left-radius: 20px;\r\n                padding-top: var(--main-padding);\r\n                height: 300px;\r\n                overflow: hidden;\r\n            }\r\n\r\n            #profile-content1 {\r\n\r\n                grid-area: profile-content1;\r\n                border-top-right-radius: 20px;\r\n                border-bottom-left-radius: 20px;\r\n                overflow: hidden;\r\n            }\r\n\r\n            #profile-content2 {\r\n\r\n                grid-area: profile-content2;\r\n                border-top-right-radius: 20px;\r\n                border-bottom-left-radius: 20px;\r\n\r\n                overflow: hidden;\r\n            }\r\n\r\n\r\n            .name {\r\n                display: block;\r\n                font-size: 16px;\r\n                color: #eee;\r\n                margin: 15px 0 0 2%;\r\n                font-family: 'Lato', serif;\r\n            }\r\n\r\n\r\n            .gen {\r\n                font-size: 20px;\r\n                font-family: 'Lato', serif;\r\n            }\r\n\r\n            .sub {\r\n                width: 90%;\r\n                margin: 15px 0 0 5%;\r\n                font-size: 16px;\r\n                height: 40px;\r\n                background-color: #031c30;\r\n                border: 1px solid rgba(255, 255, 255, 0.13);\r\n                color: #3a4750;\r\n            }\r\n\r\n            .sub:hover {\r\n                background-color: #E94601;\r\n                color: #3a4750;\r\n            }\r\n\r\n            .profile-auth-form-input {\r\n                background-color: #3a4750;\r\n                border: 1px solid #cccccc;\r\n                border-top-right-radius: 15px;\r\n                border-bottom-left-radius: 15px;\r\n                padding: 12px 15px;\r\n                margin: 10px;\r\n                width: 90%;\r\n                font-size: 20px;\r\n                color: #cccccc;\r\n            }\r\n\r\n            .profile-auth-form-input::placeholder {\r\n                color: #cccccc;\r\n            }\r\n\r\n            .profile-auth-form-input:focus {\r\n                outline: none;\r\n            }\r\n\r\n            .profile-auth-form-button {\r\n                border-top-right-radius: 15px;\r\n                border-bottom-left-radius: 15px;\r\n                border: 1px solid #eeeeee;\r\n                background-color: #3a4750;\r\n                color: #eeeeee;\r\n                font-size: 12px;\r\n                font-weight: bold;\r\n                padding: 12px 45px;\r\n                letter-spacing: 1px;\r\n                text-transform: uppercase;\r\n                transition: transform 80ms ease-in;\r\n                margin: 20px;\r\n            }\r\n\r\n            .profile-auth-form-button:active {\r\n                transform: scale(0.95);\r\n            }\r\n\r\n            .profile-auth-form-button:focus {\r\n                outline: none;\r\n            }\r\n\r\n\r\n            /* The container */\r\n            .profile-container {\r\n                display: block;\r\n                position: relative;\r\n                padding-left: 35px;\r\n                margin-bottom: 12px;\r\n                cursor: pointer;\r\n                font-size: 22px;\r\n                -webkit-user-select: none;\r\n                -moz-user-select: none;\r\n                -ms-user-select: none;\r\n                user-select: none;\r\n            }\r\n\r\n            /* Hide the browser's default checkbox */\r\n            .profile-container input {\r\n                position: absolute;\r\n                opacity: 0;\r\n                cursor: pointer;\r\n                height: 0;\r\n                width: 0;\r\n            }\r\n\r\n            /* Create a custom checkbox */\r\n            .checkmark {\r\n                position: absolute;\r\n                top: 0;\r\n                left: 0;\r\n                height: 25px;\r\n                width: 25px;\r\n\r\n                background-color: #eee;\r\n                border: 1px solid #3a4750;\r\n                border-top-right-radius: 15px;\r\n                border-bottom-left-radius: 15px;\r\n\r\n            }\r\n\r\n            /* On mouse-over, add a grey background color */\r\n            .profile-container:hover input ~ .checkmark {\r\n                background-color: #ccc;\r\n            }\r\n\r\n            /* When the checkbox is checked, add a blue background */\r\n            .profile-container input:checked ~ .checkmark {\r\n                background-color: #d72323;\r\n            }\r\n\r\n            /* Create the checkmark/indicator (hidden when not checked) */\r\n            .checkmark:after {\r\n                content: \"\";\r\n                position: absolute;\r\n                display: none;\r\n                background-color: #eee;\r\n                border: 1px solid #3a4750;\r\n                border-top-right-radius: 15px;\r\n                border-bottom-left-radius: 15px;\r\n\r\n            }\r\n\r\n            /* Show the checkmark when checked */\r\n            .profile-container input:checked ~ .checkmark:after {\r\n                display: block;\r\n            }\r\n\r\n            /* Style the checkmark/indicator */\r\n            .profile-container .checkmark:after {\r\n                left: 9px;\r\n                top: 5px;\r\n                width: 5px;\r\n                height: 10px;\r\n\r\n                border-width: 0 3px 3px 0;\r\n                -webkit-transform: rotate(45deg);\r\n                -ms-transform: rotate(45deg);\r\n                transform: rotate(45deg);\r\n                background-color: #eee;\r\n\r\n\r\n            }\r\n\r\n            @media screen and (max-width: 800px) {\r\n                .profile-grid-container {\r\n                    display: grid;\r\n                    height: 150vh;\r\n                    grid-template-columns:  1fr;\r\n                    grid-template-rows:  0.2fr;\r\n                    grid-template-areas:\r\n                \"profile-main1\"  \"profile-main2\"\r\n                 \"profile-content2\" \"profile-content1\"\r\n                \"footer\";\r\n                    grid-gap: 0.2rem;\r\n                    width: 90%;\r\n\r\n                }\r\n            }\r\n\r\n\r\n            input[type=\"file\"] {\r\n                display: none;\r\n            }\r\n\r\n            .profile-picture-input {\r\n                width: 150px;\r\n                height: 50px;\r\n                background-color: rgba(255, 255, 255, 0.15);\r\n                display: block;\r\n                margin: auto;\r\n                border-radius: 20px;\r\n                color: #eeeeee;\r\n                font-weight: lighter;\r\n                text-align: center;\r\n                padding-top: 12px;\r\n                font-family: Lato, serif;\r\n                border: 1px dashed #eeeeee;\r\n\r\n            }\r\n        </style>\r\n    </head>\r\n    <body>\r\n\r\n    <div>\r\n\r\n        <form method=\"POST\">\r\n            {% csrf_token %}\r\n            <h1 class=\"auth-form-h1\" style=\"margin: 10px auto;color: #cccccc;font-family: 'Lato', serif;\"\r\n                align=\"center\"> Your Profile</h1>\r\n            <div class=\"profile-grid-container\">\r\n\r\n\r\n                <div id=\"profile-main1\">\r\n                    <div>\r\n                        {% if profile_details.profile_picture == None %}\r\n                            <img style=\"width: 200px;height: 200px;margin: 20px auto;\r\n                                border-top-right-radius: 15px;\r\n            border-bottom-left-radius: 15px;\r\n            object-fit: cover;background-color: #cccccc; \" id=\"profile_picture\"/>\r\n                        {% else %}\r\n                            <img src=\"{{ profile_details.profile_picture }}\" style=\"width: 200px;height: 200px;margin: 20px auto;\r\n                                border-top-right-radius: 15px;\r\n            border-bottom-left-radius: 15px;\r\n            object-fit: cover;background-color: #cccccc; \" id=\"profile_picture\"/>\r\n                        {% endif %}\r\n\r\n                        <label class=\"profile-picture-input\">\r\n                            Add Profile Picture\r\n                            <input id=\"drop-area\" type=\"file\">\r\n                            <input style=\"display: none;\" name=\"image-data\" id=\"image-data\" type=\"text\">\r\n                        </label>\r\n                    </div>\r\n\r\n\r\n                </div>\r\n\r\n\r\n                <div id=\"profile-main2\">\r\n                    <input type=\"text\" name=\"fname\" value=\"First Name:{{ profile_details.first_name }}\" readonly\r\n                           class=\"profile-auth-form-input\">\r\n\r\n                    <input type=\"text\" name=\"lname\" value=\"Last Name:{{ profile_details.last_name }} \" readonly\r\n                           class=\"profile-auth-form-input\">\r\n\r\n                    <input type=\"email\" name=\"uid\" value=\"Email Id:{{ profile_details.email_id }} \" readonly\r\n                           class=\"profile-auth-form-input\">\r\n                </div>\r\n\r\n\r\n                <div id=\"profile-content1\">\r\n                    <label class=\"name\">\r\n                        PHONE* :</label>\r\n\r\n                    <input type=\"text\" name=\"phone\" placeholder=\"Phone\" value=\"{{ profile_details.phone_no }}\"\r\n                           class=\"profile-auth-form-input\">\r\n                    <label class=\"profile-auth-form-input\" style=\"display: block;\">\r\n                        <span class=\"gen\">Gender: </span>\r\n                        {% if profile_details.gender == 'Male' %}\r\n                            <label class=\"profile-container\">Male\r\n                                <input type=\"checkbox\" checked=\"checked\" disabled>\r\n                                <span class=\"checkmark\"></span>\r\n                            </label>\r\n                            <label class=\"profile-container\">Female\r\n                                <input type=\"checkbox\" disabled>\r\n                                <span class=\"checkmark\"></span>\r\n                            </label>\r\n                        {% else %}\r\n                            <label class=\"profile-container\">Male\r\n                                <input type=\"checkbox\" disabled>\r\n                                <span class=\"checkmark\"></span>\r\n                            </label>\r\n                            <label class=\"profile-container\">Female\r\n                                <input type=\"checkbox\" checked=\"checked\" disabled>\r\n                                <span class=\"checkmark\"></span>\r\n                            </label>\r\n\r\n                        {% endif %}\r\n\r\n                    </label>\r\n                    <input class=\"profile-auth-form-button\" type=\"submit\" name=\"sb\" value=\"UPDATE PROFILE\"\r\n                           class=\"sub\">\r\n\r\n                </div>\r\n                <div id=\"profile-content2\">\r\n                    <label class=\"name\">\r\n                        PASSWORD* :</label>\r\n\r\n                    <input type=\"password\" name=\"pass1\" placeholder=\"Password\" class=\"profile-auth-form-input\">\r\n                    <input type=\"password\" name=\"pass2\" placeholder=\"Confirm Password\"\r\n                           class=\"profile-auth-form-input\">\r\n\r\n                    <label class=\"profile-auth-form-input\" style=\"display: block;\">\r\n\r\n                        <span class=\"gen\" style=\"margin-bottom:10px; \">Type of User:</span>\r\n                        {% if profile_details.journal_access == True and profile_details.suscriber_access == True %}\r\n                            <label class=\"profile-container\">Journalist\r\n                                <input type=\"checkbox\" checked=\"checked\" disabled>\r\n                                <span class=\"checkmark\"></span>\r\n                            </label>\r\n                            <label class=\"profile-container\">Subscriber\r\n                                <input type=\"checkbox\" checked=\"checked\" disabled>\r\n                                <span class=\"checkmark\"></span>\r\n                            </label>\r\n                        {% elif profile_details.suscriber_access == True %}\r\n                            <label class=\"profile-container\">Journalist\r\n                                <input type=\"checkbox\" disabled>\r\n                                <span class=\"checkmark\"></span>\r\n                            </label>\r\n                            <label class=\"profile-container\">Subscriber\r\n                                <input type=\"checkbox\" checked=\"checked\" disabled>\r\n                                <span class=\"checkmark\"></span>\r\n                            </label>\r\n\r\n                        {% endif %}\r\n                    </label>\r\n                </div>\r\n\r\n\r\n            </div>\r\n        </form>\r\n\r\n\r\n    </div>\r\n    </div>\r\n    {% include 'footer.html' %}\r\n    </body>\r\n    </html>\r\n\r\n{% endblock %}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- profile_details/Templates/profile.html	(revision 458c08e812afe75e0d04042d1a468268abdc0549)
+-+++ profile_details/Templates/profile.html	(date 1604510133324)
+-@@ -405,6 +405,39 @@
+- 
+-     </div>
+-     </div>
+-+    <div class="modal">
+-+        <div class="modal-content">
+-+            <span class="close-btn">&times;</span>
+-+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+-+                <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10"
+-+                        cx="65.1" cy="65.1" r="62.1"/>
+-+                <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round"
+-+                          stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+-+            </svg>
+-+            <p style="color: green;">Updated Successfully</p>
+-+
+-+        </div>
+-+    </div>
+-+    {% if registration_success %}
+-+        <script>
+-+            let modalBtn = document.getElementById("modal-btn")
+-+            let modal = document.querySelector(".modal")
+-+            let closeBtn = document.querySelector(".close-btn")
+-+            window.onload = function () {
+-+                modal.style.display = "block"
+-+            };
+-+
+-+            closeBtn.onclick = function () {
+-+                modal.style.display = "none"
+-+            }
+-+            window.onclick = function (e) {
+-+                if (e.target == modal) {
+-+                    modal.style.display = "none"
+-+                }
+-+            }
+-+        </script>
+-+
+-+    {% endif %}
+-     {% include 'footer.html' %}
+-     </body>
+-     </html>
+-Index: profile_details/views.py
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>from django.shortcuts import render\r\nfrom django.db import connection\r\nimport time\r\n\r\n# Create your views here.\r\nfrom werkzeug.security import generate_password_hash\r\n\r\n\r\ndef profile_view(request, *args, **kwargs):\r\n    if request.session.has_key('logged_in'):\r\n        print(request.session.has_key('logged_in'))\r\n        dict_of_user_details = {\r\n            'admin_access': request.session['admin_access'],\r\n            'journal_access': request.session['journal_access'],\r\n            'logged_in': request.session['logged_in'],\r\n            'first_name': request.session['first_name'],\r\n            'last_name': request.session['last_name'],\r\n            'email_id': request.session['email_id'],\r\n            'suscriber_access': request.session['suscriber_priority'],\r\n            'profile_picture': request.session['profile_picture']\r\n\r\n        }\r\n        if request.method == 'POST':\r\n            password1 = request.POST.get('pass1')\r\n            password2 = request.POST.get('pass2')\r\n            profile_picture = request.POST.get('image-data')\r\n            print(password1, password2, profile_picture)\r\n            if profile_picture != None and profile_picture !='':\r\n                with connection.cursor() as cursor:\r\n                    cursor.execute('CALL news_database.update_profile_picture(%s,%s)',\r\n                                   [dict_of_user_details['email_id'], profile_picture])\r\n                    time.sleep(2)\r\n                print(\"Successfully Clear\")\r\n            if password1 == password2 and password1 != '' and password1 !=None:\r\n                hashed_password = generate_password_hash(password2, method=\"sha256\")\r\n                with connection.cursor() as cursor:\r\n                    cursor.execute('CALL news_database.update_password(%s,%s)',\r\n                                   [dict_of_user_details['email_id'], hashed_password])\r\n                    time.sleep(2)\r\n                print(\"Successfully Updated Password\")\r\n        with connection.cursor() as cursor:\r\n            cursor.execute(\"SELECT * FROM personal_details WHERE email_id=%s\",\r\n                           [dict_of_user_details['email_id']])\r\n            row = cursor.fetchone()\r\n\r\n            profile_details = {\r\n                'first_name': request.session['first_name'],\r\n                'last_name': request.session['last_name'],\r\n                'email_id': request.session['email_id'],\r\n                'journal_access': request.session['journal_access'],\r\n                'suscriber_access': request.session['suscriber_priority'],\r\n                'gender': row[9],\r\n                'phone_no': row[10],\r\n                'profile_picture': row[12]\r\n            }\r\n\r\n        context_of_top_stories = {'user': dict_of_user_details, 'profile_details': profile_details}\r\n        return render(request, \"profile.html\", context_of_top_stories)\r\n\r\n    return render(request, \"profile.html\", {})\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- profile_details/views.py	(revision 458c08e812afe75e0d04042d1a468268abdc0549)
+-+++ profile_details/views.py	(date 1604511250024)
+-@@ -25,19 +25,40 @@
+-             password2 = request.POST.get('pass2')
+-             profile_picture = request.POST.get('image-data')
+-             print(password1, password2, profile_picture)
+--            if profile_picture != None and profile_picture !='':
+-+            if profile_picture != None and profile_picture != '':
+-                 with connection.cursor() as cursor:
+-                     cursor.execute('CALL news_database.update_profile_picture(%s,%s)',
+-                                    [dict_of_user_details['email_id'], profile_picture])
+-                     time.sleep(2)
+-                 print("Successfully Clear")
+--            if password1 == password2 and password1 != '' and password1 !=None:
+-+            if password1 == password2 and password1 != '' and password1 != None:
+-                 hashed_password = generate_password_hash(password2, method="sha256")
+-                 with connection.cursor() as cursor:
+-                     cursor.execute('CALL news_database.update_password(%s,%s)',
+-                                    [dict_of_user_details['email_id'], hashed_password])
+-                     time.sleep(2)
+-                 print("Successfully Updated Password")
+-+            time.sleep(2)
+-+            with connection.cursor() as cursor:
+-+                time.sleep(2)
+-+                cursor.execute("SELECT * FROM personal_details WHERE email_id=%s",
+-+                               [dict_of_user_details['email_id']])
+-+                row = cursor.fetchone()
+-+
+-+                profile_details = {
+-+                    'first_name': request.session['first_name'],
+-+                    'last_name': request.session['last_name'],
+-+                    'email_id': request.session['email_id'],
+-+                    'journal_access': request.session['journal_access'],
+-+                    'suscriber_access': request.session['suscriber_priority'],
+-+                    'gender': row[9],
+-+                    'phone_no': row[10],
+-+                    'profile_picture': row[12]
+-+                }
+-+
+-+                context_of_top_stories = {'user': dict_of_user_details, 'profile_details': profile_details,
+-+                                          'registration_success': True}
+-+                return render(request, "profile.html", context_of_top_stories)
+-         with connection.cursor() as cursor:
+-             cursor.execute("SELECT * FROM personal_details WHERE email_id=%s",
+-                            [dict_of_user_details['email_id']])
+-@@ -54,7 +75,8 @@
+-                 'profile_picture': row[12]
+-             }
+- 
+--        context_of_top_stories = {'user': dict_of_user_details, 'profile_details': profile_details}
+-+        context_of_top_stories = {'user': dict_of_user_details, 'profile_details': profile_details,
+-+                                  'registration_success': False}
+-         return render(request, "profile.html", context_of_top_stories)
+- 
+--    return render(request, "profile.html", {})
+-+    return render(request, "profile.html", {'registration_success': False})
+-Index: search_news/views.py
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>from django.shortcuts import render\r\n\r\n\r\n# Create your views here.\r\ndef search_view(request, *args, **kwargs):\r\n    if request.session.has_key('logged_in'):\r\n        print(request.session.has_key('logged_in'))\r\n        dict_of_user_details = {\r\n            'admin_access': request.session['admin_access'],\r\n            'journal_access': request.session['journal_access'],\r\n            'logged_in': request.session['logged_in'],\r\n            'first_name': request.session['first_name'],\r\n            'last_name': request.session['last_name'],\r\n            'email_id': request.session['email_id'],\r\n            'suscriber_access': request.session['suscriber_priority'],\r\n            'profile_picture': request.session['profile_picture']\r\n\r\n        }\r\n        context_of_top_stories = {'user': dict_of_user_details}\r\n        return render(request, \"search.html\", context_of_top_stories)\r\n    return render(request, \"search.html\", {})\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- search_news/views.py	(revision 458c08e812afe75e0d04042d1a468268abdc0549)
+-+++ search_news/views.py	(date 1604513588986)
+-@@ -1,3 +1,6 @@
+-+import time
+-+
+-+from django.db import connection
+- from django.shortcuts import render
+- 
+- 
+-@@ -16,6 +19,14 @@
+-             'profile_picture': request.session['profile_picture']
+- 
+-         }
+-+        if request.method == 'POST':
+-+            search_text = request.POST.get('search_text')
+-+            print("The Search Text Entered is: ", search_text)
+-+            with connection.cursor() as cursor:
+-+                cursor.execute('CALL news_database.search_news(%s)',
+-+                               [search_text])
+-+                rows = cursor.fetchall()
+-+                print(rows)
+-         context_of_top_stories = {'user': dict_of_user_details}
+-         return render(request, "search.html", context_of_top_stories)
+-     return render(request, "search.html", {})
+-Index: textfile.txt
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>0542248074\r\n1004188893\r\n2782791442\r\n6247573665\r\n7056971327\r\n1840741714\r\n4797641066\r\n5351150639\r\n3389147856\r\n3853252383\r\n9561895746\r\n8810836426\r\n2206289173\r\n5703944253\r\n5468414010\r\n7098984697\r\n9881191351\r\n8075062988\r\n8394653199\r\n4254150887\r\n91763413\r\n06308044\r\n44959606\r\n01433143\r\n18206838\r\n71668670\r\n35974595\r\n74683898\r\n47609267\r\n80973937\r\n77370128\r\n28812187\r\n93916173\r\n32601791\r\n19328701\r\n15653136\r\n23306166\r\n79676204\r\n16628232\r\n51431947\r\n52725894\r\n47128937\r\n64686745\r\n69684573\r\n97558564\r\n15370055\r\n30661020\r\n88642409\r\n81326528\r\n02912387\r\n08367865\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- textfile.txt	(revision 458c08e812afe75e0d04042d1a468268abdc0549)
+-+++ textfile.txt	(date 1604512389581)
+-@@ -49,3 +49,6 @@
+- 81326528
+- 02912387
+- 08367865
+-+61898750
+-+88497813
+-+51538676
+-Index: technology/views.py
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>from django.db import connection\r\nfrom django.shortcuts import render\r\n\r\n\r\n# Create your views here.\r\ndef Technology_view(request, *args, **kwargs):\r\n    with connection.cursor() as cursor:\r\n        cursor.execute('SELECT * from technology_grid')\r\n        rows = cursor.fetchall()\r\n\r\n        list_of_tech = []\r\n        for row in rows:\r\n            tech_dict = {\r\n                'section': row[0],\r\n                'title': row[1],\r\n                'image': row[2],\r\n                'image_link': row[3],\r\n                'category':row[6],\r\n                'news_unique_id':row[8]\r\n            }\r\n            list_of_tech.append(tech_dict)\r\n        print(list_of_tech)\r\n    if request.session.has_key('logged_in'):\r\n        print(request.session.has_key('logged_in'))\r\n        dict_of_user_details = {\r\n            'admin_access': request.session['admin_access'],\r\n            'journal_access': request.session['journal_access'],\r\n            'logged_in': request.session['logged_in'],\r\n            'first_name': request.session['first_name'],\r\n            'last_name': request.session['last_name'],\r\n            'email_id': request.session['email_id'],\r\n            'suscriber_access': request.session['suscriber_priority'],\r\n            'profile_picture': request.session['profile_picture']\r\n\r\n        }\r\n        context_of_top_stories = {'user': dict_of_user_details, 'tech_stories': list_of_tech}\r\n        return render(request, \"technology.html\", context_of_top_stories)\r\n    context = {'tech_stories': list_of_tech}\r\n    return render(request, \"technology.html\", context)\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- technology/views.py	(revision 458c08e812afe75e0d04042d1a468268abdc0549)
+-+++ technology/views.py	(date 1604512027321)
+-@@ -31,7 +31,6 @@
+-             'email_id': request.session['email_id'],
+-             'suscriber_access': request.session['suscriber_priority'],
+-             'profile_picture': request.session['profile_picture']
+--
+-         }
+-         context_of_top_stories = {'user': dict_of_user_details, 'tech_stories': list_of_tech}
+-         return render(request, "technology.html", context_of_top_stories)
+-Index: templates/Navbar.html
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>{% load static %}\r\n\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n    <title>The Journalist</title>\r\n    <link href=\"{% static '/css/css_auth.css' %}\" rel=\"stylesheet\">\r\n    <link rel=\"icon\" href=\"{% static '/assets/news.png' %}\"/>\r\n    <link href=\"{% static '/css/index_style2.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/newsCard.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/top_story.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/business.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/education.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/health.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/technology1.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/posts1.css' %}\" rel=\"stylesheet\">\r\n\r\n    <link href=\"{% static '/css/prevpost.css' %}\" rel=\"stylesheet\">\r\n\r\n\r\n    <link href=\"{% static '/css/india.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/world.css' %}\" rel=\"stylesheet\">\r\n\r\n    <link href=\"{% static '/css/Footer.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/drawer.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/navbar.css' %}\" rel=\"stylesheet\">\r\n\r\n    <link href=\"https://fonts.googleapis.com/css2?family=Lato&display=swap\" rel=\"stylesheet\">\r\n    <link href=\"https://fonts.googleapis.com/css2?family=Cinzel&display=swap\" rel=\"stylesheet\">\r\n\r\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>\r\n    <style>\r\n        .custom-icon-class-style {\r\n            margin-right: 5px;\r\n            margin-bottom: -2px;\r\n        }\r\n    </style>\r\n\r\n</head>\r\n<body style=\"\r\n background-color: #303841;\r\n \">\r\n\r\n<div style=\"\r\n        width: 100%;\r\n        height:50px;\r\n        padding: 20px;\r\n        border-radius: 10px;\r\n        margin-bottom: 20px;\r\n        text-align: center;\" class=\"header-class\">\r\n    <h1\r\n            style=\"margin-top: -12px;\r\n        font-family: 'Cinzel', serif;\r\n        color:  #eeeeee;\r\n        \">The Journalist</h1>\r\n</div>\r\n\r\n<div id=\"mySidenav\" class=\"sidenav\">\r\n   <div style=\"text-align: start;\">\r\n\r\n        {% if user.profile_picture %}\r\n            <img style=\"\r\n\r\n    width: 200px;\r\n    height: 200px;\r\n    border-top-right-radius: 15px;\r\n            border-bottom-left-radius: 15px;\r\n            object-fit: cover;\r\n    margin: 10px 25px;\r\n\r\n\"\r\n                 src=\"{{ user.profile_picture }}\" alt=\"\">\r\n        {% else %}\r\n            <div style=\"\r\n    background: rgba(255,255,255,0.3);\r\n    width: 200px;\r\n    height: 200px;\r\n     border-top-right-radius: 15px;\r\n            border-bottom-left-radius: 15px;\r\n            object-fit: cover;\r\n    margin: 10px auto;\r\n    text-align: center;\r\n    padding: 70px 0;\r\n    font-family: 'Inter', sans-serif;\r\n    font-size: 20px;\r\n    color:#eeeeee;\r\n\">\r\n\r\n                {{ user.first_name }}\r\n                <br/>\r\n                {{ user.last_name }}\r\n\r\n\r\n            </div>\r\n        {% endif %}\r\n\r\n        <hr>\r\n        <a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeDrawer()\">&times;</a>\r\n        <a style=\"margin-top:25px \" href=\"{% url 'profile' %}\"><img class=\"custom-icon-class-style\"\r\n                                                                    src=\"{% static '/assets/account.png' %}\" alt=\"\">Profile</a>\r\n\r\n        <a href=\"{% url 'search_news' %}\"><img class=\"custom-icon-class-style\"\r\n                                                                    src=\"{% static '/assets/account.png' %}\" alt=\"\">Search News</a>\r\n        {% if user.journal_access %}\r\n            <a href=\"{% url 'posts' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/postnews.png' %}\"\r\n                                             alt=\"\">Post\r\n                Article</a>\r\n            <a href=\"{% url 'prevpost' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/journal.png' %}\"\r\n                                                alt=\"\">Previous Posts</a>\r\n        {% endif %}\r\n\r\n        {% if user.admin_access %}\r\n            <a href=\"{% url 'user_page' %}\"><img class=\"custom-icon-class-style\"\r\n                                                 src=\"{% static '/assets/user-account.png' %}\"\r\n                                                 alt=\"\">Users</a>\r\n\r\n        {% endif %}\r\n        <a href=\"{% url 'logout' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/logout.png' %}\"\r\n                                          alt=\"\">Log Out</a>\r\n    </div>\r\n\r\n</div>\r\n\r\n<div class=\"topnav\" id=\"myTopnav\">\r\n    <a href=\"{% url 'home' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/current.png' %}\" alt=\"\">Latest</a>\r\n    <a href=\"{% url 'india' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/india.png' %}\" alt=\"\">India</a>\r\n    <a href=\"{% url 'education' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/education.png' %}\"\r\n                                         alt=\"\">Education</a>\r\n    <a href=\"{% url 'business' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/business.png' %}\"\r\n                                        alt=\"\">Business</a>\r\n\r\n    <a href=\"{% url 'world' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/world.png' %}\" alt=\"\">World</a>\r\n    <a href=\"{% url 'technology' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/connect.png' %}\"\r\n                                          alt=\"\">Technology</a>\r\n    <a href=\"{% url 'health' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/hospital.png' %}\" alt=\"\">Health</a>\r\n    {% if user.suscriber_access %}\r\n        <a style=\"justify-content:flex-end;\" href=\"javascript:void(0)\" onclick=\"openDrawer()\"><img style=\"margin-right: 5px;\r\n\r\n            margin-bottom: -5px;\"\r\n                                                                                                   src=\"{% static '/assets/profile.png' %}\"\r\n                                                                                                   alt=\"\">Profile</a>\r\n    {% else %}\r\n        <a href=\"{% url 'login' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/pen.png' %}\" alt=\"\">Sign\r\n            In/Up</a>\r\n    {% endif %}\r\n    <a href=\"javascript:void(0);\" style=\"font-size:15px;\" class=\"icon\" onclick=\"myFunction()\">&#9776;</a>\r\n\r\n    <hr style=\"height: 7px; color: #d72323; background-color: #d72323; border-color: #d72323\">\r\n\r\n</div>\r\n\r\n</body>\r\n{% block content %}\r\n\r\n{% endblock %}\r\n\r\n\r\n<script src=\"{% static '/js/script.js' %}\"></script>\r\n<script>\r\n    function myFunction() {\r\n        var x = document.getElementById(\"myTopnav\");\r\n        if (x.className === \"topnav\") {\r\n            x.className += \" responsive\";\r\n        } else {\r\n            x.className = \"topnav\";\r\n        }\r\n    }\r\n\r\n\r\n    function openDrawer() {\r\n        document.getElementById(\"mySidenav\").style.width = \"250px\";\r\n    }\r\n\r\n    function closeDrawer() {\r\n        document.getElementById(\"mySidenav\").style.width = \"0\";\r\n    }\r\n</script>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- templates/Navbar.html	(revision 458c08e812afe75e0d04042d1a468268abdc0549)
+-+++ templates/Navbar.html	(date 1604511313784)
+-@@ -102,7 +102,7 @@
+-                                                                     src="{% static '/assets/account.png' %}" alt="">Profile</a>
+- 
+-         <a href="{% url 'search_news' %}"><img class="custom-icon-class-style"
+--                                                                    src="{% static '/assets/account.png' %}" alt="">Search News</a>
+-+                                                                    src="{% static '/assets/searchglass.png' %}" alt="">Search News</a>
+-         {% if user.journal_access %}
+-             <a href="{% url 'posts' %}"><img class="custom-icon-class-style" src="{% static '/assets/postnews.png' %}"
+-                                              alt="">Post
+-Index: technology/Templates/technology.html
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>{% extends 'Navbar.html' %}\r\n\r\n{% load static %}\r\n\r\n{% block content %}\r\n\r\n    <div class=\"tech-container\">\r\n        <div id=\"tech-main1\">\r\n            {% for tech_story in tech_stories %}\r\n                {% if tech_story.section == 'technology-cell-1' %}\r\n                    <a href=\"{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}\"\r\n                       style=\"text-decoration: none\">\r\n                    {% if tech_story.image != '' %}\r\n\r\n                        <img class=\"tech-image-css-main\"\r\n                             src=\"{{ tech_story.image }}\"\r\n                             alt=\"\">\r\n                          {% else %}\r\n                        <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image_link }}\"\r\n                                 alt=\"\">\r\n                        {% endif %}\r\n                    </a>\r\n\r\n                {% endif %}\r\n\r\n            {% endfor %}\r\n\r\n\r\n        </div>\r\n        <div id=\"tech-main2\">\r\n            {% for tech_story in tech_stories %}\r\n                {% if tech_story.section == 'technology-cell-2' %}\r\n                    <a href=\"{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}\"\r\n                       style=\"text-decoration: none\">\r\n                        {% if tech_story.image != '' %}\r\n\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image }}\"\r\n                                 alt=\"\">\r\n                        {% else %}\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image_link }}\"\r\n                                 alt=\"\">\r\n                        {% endif %}\r\n                    </a>\r\n\r\n                {% endif %}\r\n\r\n            {% endfor %}\r\n\r\n        </div>\r\n        <div id=\"tech-content1\">\r\n             {% for tech_story in tech_stories %}\r\n                {% if tech_story.section == 'technology-cell-3' %}\r\n                    <a href=\"{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}\"\r\n                       style=\"text-decoration: none;\">\r\n                        {% if tech_story.image != '' %}\r\n\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image }}\"\r\n                                 alt=\"\">\r\n                        {% else %}\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image_link }}\"\r\n                                 alt=\"\">\r\n                        {% endif %}\r\n                      <p style=\"font-family: 'Lato',serif;\r\n                                color:white;text-decoration: none;\r\n              \" class=\"tech-p-tag-css\">\r\n               {{ tech_story.title }}</p>\r\n                    </a>\r\n\r\n                {% endif %}\r\n\r\n            {% endfor %}\r\n\r\n        </div>\r\n        <div id=\"tech-content2\">\r\n             {% for tech_story in tech_stories %}\r\n                {% if tech_story.section == 'technology-cell-4' %}\r\n                    <a href=\"{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}\"\r\n                       style=\"text-decoration: none;\">\r\n                        {% if tech_story.image != '' %}\r\n\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image }}\"\r\n                                 alt=\"\">\r\n                        {% else %}\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image_link }}\"\r\n                                 alt=\"\">\r\n                        {% endif %}\r\n                      <p style=\"font-family: 'Lato',serif;\r\n                                color:white;text-decoration: none;\r\n              \" class=\"tech-p-tag-css\">\r\n               {{ tech_story.title }}</p>\r\n                    </a>\r\n\r\n                {% endif %}\r\n\r\n            {% endfor %}\r\n\r\n        </div>\r\n        <div id=\"tech-content3\">\r\n            {% for tech_story in tech_stories %}\r\n                {% if tech_story.section == 'technology-cell-5' %}\r\n                    <a href=\"{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}\"\r\n                       style=\"text-decoration: none;\">\r\n                        {% if tech_story.image != '' %}\r\n\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image }}\"\r\n                                 alt=\"\">\r\n                        {% else %}\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image_link }}\"\r\n                                 alt=\"\">\r\n                        {% endif %}\r\n                      <p style=\"font-family: 'Lato',serif;\r\n                                color:white;text-decoration: none;\r\n              \" class=\"tech-p-tag-css\">\r\n               {{ tech_story.title }}</p>\r\n                    </a>\r\n\r\n                {% endif %}\r\n\r\n            {% endfor %}\r\n\r\n        </div>\r\n        <div id=\"tech-content4\">\r\n            {% for tech_story in tech_stories %}\r\n                {% if tech_story.section == 'technology-cell-6' %}\r\n                    <a href=\"{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}\"\r\n                       style=\"text-decoration: none;\">\r\n                        {% if tech_story.image != '' %}\r\n\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image }}\"\r\n                                 alt=\"\">\r\n                        {% else %}\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image_link }}\"\r\n                                 alt=\"\">\r\n                        {% endif %}\r\n                      <p style=\"font-family: 'Lato',serif;\r\n                                color:white;text-decoration: none;\r\n              \" class=\"tech-p-tag-css\">\r\n               {{ tech_story.title }}</p>\r\n                    </a>\r\n\r\n                {% endif %}\r\n\r\n            {% endfor %}\r\n\r\n        </div>\r\n        <div id=\"tech-content5\">\r\n           {% for tech_story in tech_stories %}\r\n                {% if tech_story.section == 'technology-cell-7' %}\r\n                    <a href=\"{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}\"\r\n                       style=\"text-decoration: none;\">\r\n                        {% if tech_story.image != '' %}\r\n\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image }}\"\r\n                                 alt=\"\">\r\n                        {% else %}\r\n                            <img class=\"tech-image-css-main\"\r\n\r\n                                 src=\"{{ tech_story.image_link }}\"\r\n                                 alt=\"\">\r\n                        {% endif %}\r\n                      <p style=\"font-family: 'Lato',serif;\r\n                                color:white;text-decoration: none;\r\n              \" class=\"tech-p-tag-css\">\r\n               {{ tech_story.title }}</p>\r\n                    </a>\r\n\r\n                {% endif %}\r\n\r\n            {% endfor %}\r\n\r\n        </div>\r\n        <div id=\"tech-content6\">\r\n            <img class=\"tech-image-css\"\r\n                 src=\"https://i.gadgets360cdn.com/large/intel_core_i9_10980xe_angle_ndtv_1577701567067.jpg\" alt=\"\">\r\n            <p style=\"font-family: 'Lato',serif;\r\n              \" class=\"tech-p-tag-css\">\r\n                Intel 11th Gen Core ‘Rocket Lake’ Desktop CPUs With PCIe 4.0\r\n            </p>\r\n\r\n        </div>\r\n        <div id=\"tech-content7\">\r\n            <img class=\"tech-image-css\" src=\"https://i.gadgets360cdn.com/large/5G_reuters_1601871754591.jpg\" alt=\"\">\r\n            <p style=\"font-family: 'Lato',serif;\r\n              \" class=\"tech-p-tag-css\">\r\n                The Promise of 5G Wireless – Speed, Hype, Risk</p>\r\n\r\n        </div>\r\n        <div id=\"tech-content8\">\r\n            <img class=\"tech-image-css\" src=\"https://i.gadgets360cdn.com/large/iphone_11_back_image_1602673044747.jpg\"\r\n                 alt=\"\">\r\n            <p style=\"font-family: 'Lato',serif;\r\n              \" class=\"tech-p-tag-css\">iPhone 11, iPhone 11 Pro to Get Huge Price Discounts During Amazon, Flipkart\r\n                Sales</p>\r\n\r\n\r\n        </div>\r\n        {% include 'footer.html' %}\r\n    </div>\r\n\r\n\r\n\r\n{% endblock %}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- technology/Templates/technology.html	(revision 458c08e812afe75e0d04042d1a468268abdc0549)
+-+++ technology/Templates/technology.html	(date 1604512053134)
+-@@ -194,28 +194,85 @@
+- 
+-         </div>
+-         <div id="tech-content6">
+--            <img class="tech-image-css"
+--                 src="https://i.gadgets360cdn.com/large/intel_core_i9_10980xe_angle_ndtv_1577701567067.jpg" alt="">
+--            <p style="font-family: 'Lato',serif;
+-+           {% for tech_story in tech_stories %}
+-+                {% if tech_story.section == 'technology-cell-8' %}
+-+                    <a href="{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}"
+-+                       style="text-decoration: none;">
+-+                        {% if tech_story.image != '' %}
+-+
+-+                            <img class="tech-image-css-main"
+-+
+-+                                 src="{{ tech_story.image }}"
+-+                                 alt="">
+-+                        {% else %}
+-+                            <img class="tech-image-css-main"
+-+
+-+                                 src="{{ tech_story.image_link }}"
+-+                                 alt="">
+-+                        {% endif %}
+-+                      <p style="font-family: 'Lato',serif;
+-+                                color:white;text-decoration: none;
+-               " class="tech-p-tag-css">
+--                Intel 11th Gen Core ‘Rocket Lake’ Desktop CPUs With PCIe 4.0
+--            </p>
+-+               {{ tech_story.title }}</p>
+-+                    </a>
+- 
+-+                {% endif %}
+-+
+-+            {% endfor %}
+-         </div>
+-         <div id="tech-content7">
+--            <img class="tech-image-css" src="https://i.gadgets360cdn.com/large/5G_reuters_1601871754591.jpg" alt="">
+--            <p style="font-family: 'Lato',serif;
+-+           {% for tech_story in tech_stories %}
+-+                {% if tech_story.section == 'technology-cell-9' %}
+-+                    <a href="{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}"
+-+                       style="text-decoration: none;">
+-+                        {% if tech_story.image != '' %}
+-+
+-+                            <img class="tech-image-css-main"
+-+
+-+                                 src="{{ tech_story.image }}"
+-+                                 alt="">
+-+                        {% else %}
+-+                            <img class="tech-image-css-main"
+-+
+-+                                 src="{{ tech_story.image_link }}"
+-+                                 alt="">
+-+                        {% endif %}
+-+                      <p style="font-family: 'Lato',serif;
+-+                                color:white;text-decoration: none;
+-               " class="tech-p-tag-css">
+--                The Promise of 5G Wireless – Speed, Hype, Risk</p>
+-+               {{ tech_story.title }}</p>
+-+                    </a>
+- 
+-+                {% endif %}
+-+
+-+            {% endfor %}
+-         </div>
+-         <div id="tech-content8">
+--            <img class="tech-image-css" src="https://i.gadgets360cdn.com/large/iphone_11_back_image_1602673044747.jpg"
+--                 alt="">
+--            <p style="font-family: 'Lato',serif;
+--              " class="tech-p-tag-css">iPhone 11, iPhone 11 Pro to Get Huge Price Discounts During Amazon, Flipkart
+--                Sales</p>
+-+           {% for tech_story in tech_stories %}
+-+                {% if tech_story.section == 'technology-cell-10' %}
+-+                    <a href="{% url 'article' tech_story.category tech_story.section tech_story.news_unique_id %}"
+-+                       style="text-decoration: none;">
+-+                        {% if tech_story.image != '' %}
+-+
+-+                            <img class="tech-image-css-main"
+-+
+-+                                 src="{{ tech_story.image }}"
+-+                                 alt="">
+-+                        {% else %}
+-+                            <img class="tech-image-css-main"
+-+
+-+                                 src="{{ tech_story.image_link }}"
+-+                                 alt="">
+-+                        {% endif %}
+-+                      <p style="font-family: 'Lato',serif;
+-+                                color:white;text-decoration: none;
+-+              " class="tech-p-tag-css">
+-+               {{ tech_story.title }}</p>
+-+                    </a>
+- 
+-+                {% endif %}
+-+
+-+            {% endfor %}
+- 
+-         </div>
+-         {% include 'footer.html' %}
+-Index: posts/textfile.txt
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>772436\r\n943333\r\n944088\r\n\r\n1426866781\r\n7917131705\r\n9185275797\r\n\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- posts/textfile.txt	(revision 458c08e812afe75e0d04042d1a468268abdc0549)
+-+++ posts/textfile.txt	(date 1604514197777)
+-@@ -5,4 +5,4 @@
+- 1426866781
+- 7917131705
+- 9185275797
+--
+-+23148946
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_17_45_[Default_Changelist]/shelved.patch
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_17_45_[Default_Changelist]/shelved.patch	(revision 910684e7bff4886a7d50643eb47078b3faa4cb0d)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_17_45_[Default_Changelist]/shelved.patch	(revision 910684e7bff4886a7d50643eb47078b3faa4cb0d)
+@@ -1,80 +0,0 @@
+-Index: templates/Navbar.html
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>{% load static %}\r\n\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n    <title>The Journalist</title>\r\n    <link href=\"{% static '/css/css_auth.css' %}\" rel=\"stylesheet\">\r\n    <link rel=\"icon\" href=\"{% static '/assets/news.png' %}\"/>\r\n    <link href=\"{% static '/css/index_style2.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/newsCard.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/top_story.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/business.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/education.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/health.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/technology1.css' %}\" rel=\"stylesheet\">\r\n     <link href=\"{% static '/css/posts1.css' %}\" rel=\"stylesheet\">\r\n<<<<<<< HEAD\r\n    <link href=\"{% static '/css/prevpost.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/india1.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/world1.css' %}\" rel=\"stylesheet\">\r\n=======\r\n    <link href=\"{% static '/css/india.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/world.css' %}\" rel=\"stylesheet\">\r\n>>>>>>> fb31c2b3c39794cfb014ec324a522efe4f314049\r\n    <link href=\"{% static '/css/Footer.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/drawer.css' %}\" rel=\"stylesheet\">\r\n    <link href=\"{% static '/css/navbar.css' %}\" rel=\"stylesheet\">\r\n\r\n    <link href=\"https://fonts.googleapis.com/css2?family=Lato&display=swap\" rel=\"stylesheet\">\r\n    <link href=\"https://fonts.googleapis.com/css2?family=Cinzel&display=swap\" rel=\"stylesheet\">\r\n\r\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>\r\n    <style>\r\n        .custom-icon-class-style {\r\n            margin-right: 5px;\r\n            margin-bottom: -2px;\r\n        }\r\n    </style>\r\n\r\n</head>\r\n<body style=\"\r\n background-color: #303841;\r\n \">\r\n\r\n<div style=\"\r\n        width: 100%;\r\n        height:50px;\r\n        padding: 20px;\r\n        border-radius: 10px;\r\n        margin-bottom: 20px;\r\n        text-align: center;\" class=\"header-class\">\r\n    <h1\r\n            style=\"margin-top: -12px;\r\n        font-family: 'Cinzel', serif;\r\n        color:  #eeeeee;\r\n        \">The Journalist</h1>\r\n</div>\r\n\r\n<div id=\"mySidenav\" class=\"sidenav\">\r\n    <div style=\"text-align: start;\">\r\n        <div style=\"\r\n    background: rgba(255,255,255,0.3);\r\n    width: 200px;\r\n    height: 200px;\r\n    border-radius: 50%;\r\n    margin: 10px auto;\r\n    text-align: center;\r\n    padding: 70px 0;\r\n    font-family: 'Inter', sans-serif;\r\n    font-size: 20px;\r\n    color:#eeeeee;\r\n\">\r\n\r\n            {{ user.first_name }}\r\n            <br/>\r\n            {{ user.last_name }}\r\n\r\n\r\n        </div>\r\n        <hr>\r\n        <a href=\"javascript:void(0)\" class=\"closebtn\" onclick=\"closeDrawer()\">&times;</a>\r\n        <a style=\"margin-top:25px \" href=\"{% url 'profile' %}\"><img class=\"custom-icon-class-style\"\r\n                                                                    src=\"{% static '/assets/account.png' %}\" alt=\"\">Profile</a>\r\n        {% if user.journal_access %}\r\n        <a href=\"{% url 'posts' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/postnews.png' %}\"\r\n                                         alt=\"\">Post\r\n            Article</a>\r\n        <a href=\"{% url 'prevpost' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/journal.png' %}\" alt=\"\">Previous Posts</a>\r\n        {% endif %}\r\n        <a href=\"{% url 'logout' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/logout.png' %}\"\r\n                                          alt=\"\">Log Out</a>\r\n    </div>\r\n\r\n</div>\r\n\r\n<div class=\"topnav\" id=\"myTopnav\">\r\n    <a href=\"{% url 'home' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/current.png' %}\" alt=\"\">Latest</a>\r\n    <a href=\"{% url 'india' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/india.png' %}\" alt=\"\">India</a>\r\n    <a href=\"{% url 'education' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/education.png' %}\"\r\n                                         alt=\"\">Education</a>\r\n    <a href=\"{% url 'business' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/business.png' %}\"\r\n                                        alt=\"\">Business</a>\r\n\r\n    <a href=\"{% url 'world' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/world.png' %}\" alt=\"\">World</a>\r\n    <a href=\"{% url 'technology' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/connect.png' %}\"\r\n                                          alt=\"\">Technology</a>\r\n    <a href=\"{% url 'health' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/hospital.png' %}\" alt=\"\">Health</a>\r\n    {% if user.suscriber_access %}\r\n    <a style=\"justify-content:flex-end;\" href=\"javascript:void(0)\" onclick=\"openDrawer()\"><img style=\"margin-right: 5px;\r\n\r\n            margin-bottom: -5px;\"\r\n                                                                                               src=\"{% static '/assets/profile.png' %}\"\r\n                                                                                               alt=\"\">Profile</a>\r\n    {% else %}\r\n    <a href=\"{% url 'login' %}\"><img class=\"custom-icon-class-style\" src=\"{% static '/assets/pen.png' %}\" alt=\"\">Sign\r\n        In/Up</a>\r\n    {% endif %}\r\n    <a href=\"javascript:void(0);\" style=\"font-size:15px;\" class=\"icon\" onclick=\"myFunction()\">&#9776;</a>\r\n\r\n<hr style=\"height: 7px; color: #d72323; background-color: #d72323; border-color: #d72323\">\r\n\r\n</div>\r\n\r\n</body>\r\n{% block content %}\r\n\r\n{% endblock %}\r\n\r\n\r\n<script src=\"{% static '/js/script.js' %}\"></script>\r\n<script>\r\n    function myFunction() {\r\n        var x = document.getElementById(\"myTopnav\");\r\n        if (x.className === \"topnav\") {\r\n            x.className += \" responsive\";\r\n        } else {\r\n            x.className = \"topnav\";\r\n        }\r\n    }\r\n\r\n\r\n    function openDrawer() {\r\n        document.getElementById(\"mySidenav\").style.width = \"250px\";\r\n    }\r\n\r\n    function closeDrawer() {\r\n        document.getElementById(\"mySidenav\").style.width = \"0\";\r\n    }\r\n</script>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- templates/Navbar.html	(revision 3d9442f8181bad229d8879b7fa6a71ce3026dc4f)
+-+++ templates/Navbar.html	(date 1604489833781)
+-@@ -15,14 +15,13 @@
+-     <link href="{% static '/css/health.css' %}" rel="stylesheet">
+-     <link href="{% static '/css/technology1.css' %}" rel="stylesheet">
+-      <link href="{% static '/css/posts1.css' %}" rel="stylesheet">
+--<<<<<<< HEAD
+-+
+-     <link href="{% static '/css/prevpost.css' %}" rel="stylesheet">
+--    <link href="{% static '/css/india1.css' %}" rel="stylesheet">
+--    <link href="{% static '/css/world1.css' %}" rel="stylesheet">
+--=======
+-+
+-+
+-     <link href="{% static '/css/india.css' %}" rel="stylesheet">
+-     <link href="{% static '/css/world.css' %}" rel="stylesheet">
+-->>>>>>> fb31c2b3c39794cfb014ec324a522efe4f314049
+-+
+-     <link href="{% static '/css/Footer.css' %}" rel="stylesheet">
+-     <link href="{% static '/css/drawer.css' %}" rel="stylesheet">
+-     <link href="{% static '/css/navbar.css' %}" rel="stylesheet">
+-Index: posts/views.py
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>from django.shortcuts import render, redirect\r\nimport requests\r\nfrom django.db import connection\r\nimport random\r\nimport math\r\nimport mysql.connector\r\n\r\n\r\ndef cell_list(prefix, get_range):\r\n    list_cell_string = []\r\n    for i in get_range:\r\n        cell_string = prefix + \"-cell-\"\r\n        cell_string += str(i)\r\n        list_cell_string.append(cell_string)\r\n    return list_cell_string\r\n\r\n\r\ndef OTPgen():\r\n    nums = '0123456789'\r\n    otp = \"\"\r\n\r\n    for i in range(8):\r\n        otp += nums[math.floor(random.random() * 10)]\r\n    return otp\r\n\r\n\r\ndef EditContent(string):\r\n    new_string = string.replace(\"'\", \"\\\\'\")\r\n    new_string = new_string.replace(\"\\\"\", \"\\\\\\\"\")\r\n    return new_string\r\n\r\n\r\ndef posts_view(request, *args, **kwargs):\r\n    global dict_of_user_details\r\n    latest_cell = cell_list('latest', range(1, 12))\r\n    health_cell = cell_list('health', range(1, 10))\r\n    world_cell = cell_list('world', range(1, 11))\r\n    business_cell = cell_list('business', range(1, 9))\r\n    tech_cell = cell_list('technology', range(1, 11))\r\n    edu_cell = cell_list('education', range(1, 9))\r\n    india_cell = cell_list('india', range(1, 11))\r\n    dictionary_of_section_as_per_category = {\r\n        'latest': latest_cell,\r\n        'health': health_cell,\r\n        'world': world_cell,\r\n        'business': business_cell,\r\n        'technology': tech_cell,\r\n        'education': edu_cell,\r\n        'india': india_cell\r\n    }\r\n\r\n    if request.session.has_key('logged_in'):\r\n        dict_of_user_details = {\r\n            'admin_access': request.session['admin_access'],\r\n            'journal_access': request.session['journal_access'],\r\n            'logged_in': request.session['logged_in'],\r\n            'first_name': request.session['first_name'],\r\n            'last_name': request.session['last_name'],\r\n            'email_id': request.session['email_id'],\r\n            'suscriber_access': request.session['suscriber_priority'],\r\n            'profile_picture': request.session['profile_picture']\r\n\r\n        }\r\n\r\n        # print(binary,letter_binary)\r\n\r\n    if request.method == 'POST':\r\n\r\n        article_image_link = request.POST.get('imageLink')\r\n        article_title = request.POST.get('postTitle')\r\n        article_category = request.POST.get('category')\r\n        article_section = request.POST.get('section')\r\n        article_content = request.POST.get('postDesc')\r\n        article_file_picture = request.POST.get('finalPictureValue')\r\n        print(\"THis is\", article_category)\r\n        if article_category == '' or article_category is None:\r\n            message = \"Choose A Category\"\r\n            context = {\"registration_success\": False, 'cell_list': dictionary_of_section_as_per_category,\r\n                       'message': message}\r\n            return render(request, 'posts.html', context)\r\n        if article_section == '' or article_section is None:\r\n            message = \"Choose A Category\"\r\n            context = {\"registration_success\": False, 'cell_list': dictionary_of_section_as_per_category,\r\n                       'message': message}\r\n            return render(request, 'posts.html', context)\r\n        if article_image_link == '' and article_file_picture == '':\r\n            message = \"Enter Image Link or Select An Image\"\r\n            context = {\"registration_success\": False, 'cell_list': dictionary_of_section_as_per_category,\r\n                       'message': message}\r\n            return render(request, 'posts.html', context)\r\n\r\n        file1 = open('textfile.txt', 'a+')\r\n        file1.seek(0)\r\n        with connection.cursor() as cursor:\r\n            while 1:\r\n                addotp = OTPgen()\r\n                file1.seek(0)\r\n                if addotp in file1.read():\r\n                    print(\"exists\", addotp)\r\n                    continue\r\n                else:\r\n                    file1.write(addotp + \"\\n\")\r\n                    # file1.write(\"\\n\")\r\n                    if article_category.split('-')[0] == 'latest' and article_section == 'latest-cell-1':\r\n                        cursor.execute('CALL news_database.latest_top_stories(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print(\"latest-cell-1\")\r\n                    elif article_category.split('-')[0] == 'latest':\r\n                        cursor.execute('CALL news_database.update_latest_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('latest')\r\n                    elif article_category.split('-')[0] == 'india':\r\n                        cursor.execute('CALL news_database.update_india_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('india')\r\n                    elif article_category.split('-')[0] == 'education':\r\n                        cursor.execute('CALL news_database.update_education_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('education')\r\n                    elif article_category.split('-')[0] == 'business':\r\n                        cursor.execute('CALL news_database.update_business_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('business')\r\n                    elif article_category.split('-')[0] == 'world':\r\n                        cursor.execute('CALL news_database.update_world_grid(\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('world')\r\n                    elif article_category.split('-')[0] == 'technology':\r\n                        print(\"Entering Technology Cursor For Execution\")\r\n                        print(article_image_link,\r\n                              article_title,\r\n                              article_category,\r\n                              article_section, addotp\r\n                              )\r\n                        cursor.execute(\r\n                            'CALL news_database.update_technology_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                            [article_title, article_file_picture, article_image_link, article_content,\r\n                             dict_of_user_details['email_id'], article_category, article_section,\r\n                             addotp])\r\n\r\n                        print('technology')\r\n                    elif article_category.split('-')[0] == 'health':\r\n                        cursor.execute('CALL news_database.update_health_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link, article_content,\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('health')\r\n                    else:\r\n                        print(\"Un-Successfull\")\r\n\r\n                    context_of_top_stories = {\"registration_success\": True, 'user': dict_of_user_details,\r\n                                              'cell_list': dictionary_of_section_as_per_category}\r\n                    return render(request, 'posts.html', context_of_top_stories)\r\n\r\n        print(article_image_link,\r\n              article_title,\r\n              article_category,\r\n              article_section,\r\n              )\r\n\r\n        print(\"clean\")\r\n\r\n    context_of_top_stories = {\"registration_success\": False, 'user': dict_of_user_details,\r\n                              'cell_list': dictionary_of_section_as_per_category}\r\n    return render(request, 'posts.html', context_of_top_stories)\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- posts/views.py	(revision 3d9442f8181bad229d8879b7fa6a71ce3026dc4f)
+-+++ posts/views.py	(date 1604491909900)
+-@@ -3,7 +3,7 @@
+- from django.db import connection
+- import random
+- import math
+--import mysql.connector
+-+
+- 
+- 
+- def cell_list(prefix, get_range):
+-Index: .idea/misc.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"Python 3.8 (djangoProject)\" project-jdk-type=\"Python SDK\" />\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- .idea/misc.xml	(revision 3d9442f8181bad229d8879b7fa6a71ce3026dc4f)
+-+++ .idea/misc.xml	(date 1604489834224)
+-@@ -1,4 +1,4 @@
+- <?xml version="1.0" encoding="UTF-8"?>
+- <project version="4">
+--  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (djangoProject)" project-jdk-type="Python SDK" />
+-+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.7" project-jdk-type="Python SDK" />
+- </project>
+-\ No newline at end of file
+-Index: .idea/INPminiproject.iml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"PYTHON_MODULE\" version=\"4\">\r\n  <component name=\"FacetManager\">\r\n    <facet type=\"django\" name=\"Django\">\r\n      <configuration>\r\n        <option name=\"rootFolder\" value=\"$MODULE_DIR$\" />\r\n        <option name=\"settingsModule\" value=\"INPminiproject/settings.py\" />\r\n        <option name=\"manageScript\" value=\"$MODULE_DIR$/manage.py\" />\r\n        <option name=\"environment\" value=\"&lt;map/&gt;\" />\r\n        <option name=\"doNotUseTestRunner\" value=\"false\" />\r\n        <option name=\"trackFilePattern\" value=\"migrations\" />\r\n      </configuration>\r\n    </facet>\r\n  </component>\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\" />\r\n    <orderEntry type=\"jdk\" jdkName=\"Python 3.8 (djangoProject)\" jdkType=\"Python SDK\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n  <component name=\"PyDocumentationSettings\">\r\n    <option name=\"format\" value=\"PLAIN\" />\r\n    <option name=\"myDocStringFormat\" value=\"Plain\" />\r\n  </component>\r\n  <component name=\"TemplatesService\">\r\n    <option name=\"TEMPLATE_CONFIGURATION\" value=\"Django\" />\r\n    <option name=\"TEMPLATE_FOLDERS\">\r\n      <list>\r\n        <option value=\"$MODULE_DIR$/posts/templates\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n</module>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- .idea/INPminiproject.iml	(revision 3d9442f8181bad229d8879b7fa6a71ce3026dc4f)
+-+++ .idea/INPminiproject.iml	(date 1604489834166)
+-@@ -14,7 +14,7 @@
+-   </component>
+-   <component name="NewModuleRootManager">
+-     <content url="file://$MODULE_DIR$" />
+--    <orderEntry type="jdk" jdkName="Python 3.8 (djangoProject)" jdkType="Python SDK" />
+-+    <orderEntry type="jdk" jdkName="Python 3.7" jdkType="Python SDK" />
+-     <orderEntry type="sourceFolder" forTests="false" />
+-   </component>
+-   <component name="PyDocumentationSettings">
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_23_54__Default_Changelist_.xml
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_23_54__Default_Changelist_.xml	(revision 910684e7bff4886a7d50643eb47078b3faa4cb0d)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_23_54__Default_Changelist_.xml	(revision 910684e7bff4886a7d50643eb47078b3faa4cb0d)
+@@ -1,9 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_04-11-2020_23_54_[Default_Changelist]" date="1604514294676" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_23_54_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 04-11-2020 23:54 [Default Changelist]" />
+-  <binary>
+-    <option name="BEFORE_PATH" />
+-    <option name="AFTER_PATH" value="static/assets/searchglass.png" />
+-    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_23_54_[Default_Changelist]/searchglass.png" />
+-  </binary>
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_05-11-2020_00_23__Default_Changelist_.xml
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_05-11-2020_00_23__Default_Changelist_.xml	(revision 910684e7bff4886a7d50643eb47078b3faa4cb0d)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_05-11-2020_00_23__Default_Changelist_.xml	(revision 910684e7bff4886a7d50643eb47078b3faa4cb0d)
+@@ -1,9 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_05-11-2020_00_23_[Default_Changelist]" date="1604516030440" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05-11-2020_00_23_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 05-11-2020 00:23 [Default Changelist]" />
+-  <binary>
+-    <option name="BEFORE_PATH" />
+-    <option name="AFTER_PATH" value="static/assets/searchglass.png" />
+-    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05-11-2020_00_23_[Default_Changelist]/searchglass.png" />
+-  </binary>
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_22_24__Default_Changelist_.xml
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_22_24__Default_Changelist_.xml	(revision 910684e7bff4886a7d50643eb47078b3faa4cb0d)
++++ .idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_22_24__Default_Changelist_.xml	(revision 910684e7bff4886a7d50643eb47078b3faa4cb0d)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_04-11-2020_22_24_[Default_Changelist]" date="1604508881666" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04-11-2020_22_24_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 04-11-2020 22:24 [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: posts/views.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from django.shortcuts import render, redirect\r\nimport requests\r\nfrom django.db import connection\r\nimport random\r\nimport math\r\n\r\n\r\n\r\ndef cell_list(prefix, get_range):\r\n    list_cell_string = []\r\n    for i in get_range:\r\n        cell_string = prefix + \"-cell-\"\r\n        cell_string += str(i)\r\n        list_cell_string.append(cell_string)\r\n    return list_cell_string\r\n\r\n\r\ndef OTPgen():\r\n    nums = '0123456789'\r\n    otp = \"\"\r\n\r\n    for i in range(8):\r\n        otp += nums[math.floor(random.random() * 10)]\r\n    return otp\r\n\r\n\r\ndef EditContent(string):\r\n    new_string = string.replace(\"'\", \"\\\\'\")\r\n    # new_string = new_string.replace(\"\\\"\", \"\\\\\\\"\")\r\n    return new_string\r\n\r\n\r\ndef posts_view(request, *args, **kwargs):\r\n    global dict_of_user_details\r\n    latest_cell = cell_list('latest', range(1, 12))\r\n    health_cell = cell_list('health', range(1, 10))\r\n    world_cell = cell_list('world', range(1, 11))\r\n    business_cell = cell_list('business', range(1, 9))\r\n    tech_cell = cell_list('technology', range(1, 11))\r\n    edu_cell = cell_list('education', range(1, 9))\r\n    india_cell = cell_list('india', range(1, 11))\r\n    dictionary_of_section_as_per_category = {\r\n        'latest': latest_cell,\r\n        'health': health_cell,\r\n        'world': world_cell,\r\n        'business': business_cell,\r\n        'technology': tech_cell,\r\n        'education': edu_cell,\r\n        'india': india_cell\r\n    }\r\n\r\n    if request.session.has_key('logged_in'):\r\n        dict_of_user_details = {\r\n            'admin_access': request.session['admin_access'],\r\n            'journal_access': request.session['journal_access'],\r\n            'logged_in': request.session['logged_in'],\r\n            'first_name': request.session['first_name'],\r\n            'last_name': request.session['last_name'],\r\n            'email_id': request.session['email_id'],\r\n            'suscriber_access': request.session['suscriber_priority'],\r\n            'profile_picture': request.session['profile_picture']\r\n\r\n        }\r\n\r\n        # print(binary,letter_binary)\r\n\r\n    if request.method == 'POST':\r\n\r\n        article_image_link = request.POST.get('imageLink')\r\n        article_title = request.POST.get('postTitle')\r\n        article_category = request.POST.get('category')\r\n        article_section = request.POST.get('section')\r\n        article_content = request.POST.get('postDesc')\r\n        article_file_picture = request.POST.get('finalPictureValue')\r\n        print(\"THis is\", article_category)\r\n        if article_category == '' or article_category is None:\r\n            message = \"Choose A Category\"\r\n            context = {\"registration_success\": False, 'cell_list': dictionary_of_section_as_per_category,\r\n                       'message': message}\r\n            return render(request, 'posts.html', context)\r\n        if article_section == '' or article_section is None:\r\n            message = \"Choose A Category\"\r\n            context = {\"registration_success\": False, 'cell_list': dictionary_of_section_as_per_category,\r\n                       'message': message}\r\n            return render(request, 'posts.html', context)\r\n        if article_image_link == '' and article_file_picture == '':\r\n            message = \"Enter Image Link or Select An Image\"\r\n            context = {\"registration_success\": False, 'cell_list': dictionary_of_section_as_per_category,\r\n                       'message': message}\r\n            return render(request, 'posts.html', context)\r\n\r\n        file1 = open('textfile.txt', 'a+')\r\n        file1.seek(0)\r\n        with connection.cursor() as cursor:\r\n            while 1:\r\n                addotp = OTPgen()\r\n                file1.seek(0)\r\n                if addotp in file1.read():\r\n                    print(\"exists\", addotp)\r\n                    continue\r\n                else:\r\n                    file1.write(addotp + \"\\n\")\r\n                    # file1.write(\"\\n\")\r\n                    if article_category.split('-')[0] == 'latest' and article_section == 'latest-cell-1':\r\n                        cursor.execute('CALL news_database.latest_top_stories(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print(\"latest-cell-1\")\r\n                    elif article_category.split('-')[0] == 'latest':\r\n                        cursor.execute('CALL news_database.update_latest_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('latest')\r\n                    elif article_category.split('-')[0] == 'india':\r\n                        cursor.execute('CALL news_database.update_india_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('india')\r\n                    elif article_category.split('-')[0] == 'education':\r\n                        cursor.execute('CALL news_database.update_education_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('education')\r\n                    elif article_category.split('-')[0] == 'business':\r\n                        cursor.execute('CALL news_database.update_business_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('business')\r\n                    elif article_category.split('-')[0] == 'world':\r\n                        cursor.execute('CALL news_database.update_world_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('world')\r\n                    elif article_category.split('-')[0] == 'technology':\r\n                        print(\"Entering Technology Cursor For Execution\")\r\n                        print(article_image_link,\r\n                              article_title,\r\n                              article_category,\r\n                              article_section, addotp\r\n                              )\r\n                        cursor.execute(\r\n                            'CALL news_database.update_technology_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                            [article_title, article_file_picture, article_image_link, article_content,\r\n                             dict_of_user_details['email_id'], article_category, article_section,\r\n                             addotp])\r\n\r\n                        print('technology')\r\n                    elif article_category.split('-')[0] == 'health':\r\n                        cursor.execute('CALL news_database.update_health_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link, article_content,\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('health')\r\n                    else:\r\n                        print(\"Un-Successfull\")\r\n\r\n                    context_of_top_stories = {\"registration_success\": True, 'user': dict_of_user_details,\r\n                                              'cell_list': dictionary_of_section_as_per_category}\r\n                    return render(request, 'posts.html', context_of_top_stories)\r\n\r\n        print(article_image_link,\r\n              article_title,\r\n              article_category,\r\n              article_section,\r\n              )\r\n\r\n        print(\"clean\")\r\n\r\n    context_of_top_stories = {\"registration_success\": False, 'user': dict_of_user_details,\r\n                              'cell_list': dictionary_of_section_as_per_category}\r\n    return render(request, 'posts.html', context_of_top_stories)\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- posts/views.py	(revision 910684e7bff4886a7d50643eb47078b3faa4cb0d)
++++ posts/views.py	(date 1604544286861)
+@@ -5,7 +5,6 @@
+ import math
+ 
+ 
+-
+ def cell_list(prefix, get_range):
+     list_cell_string = []
+     for i in get_range:

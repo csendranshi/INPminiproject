@@ -1,0 +1,293 @@
+Index: homepage/views.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from django.db import connection\r\nfrom django.shortcuts import render\r\nimport requests\r\n\r\n\r\ndef boolean_function(s):\r\n    return True if s == 1 else False\r\n\r\n\r\n# Create your views here.\r\ndef home_view(request, *args, **kwargs):\r\n    # top_stories = \"https://newsapi.org/v2/top-headlines?country=in&apiKey=95c4ed43f7644dc8a05175665cd04b7a\"\r\n    # # 95c4ed43f7644dc8a05175665cd04b7a - api key\r\n    # r = requests.get(top_stories).json()\r\n\r\n    with connection.cursor() as cursor:\r\n        cursor.execute('SELECT * from latest_grid')\r\n        rows = cursor.fetchall()\r\n\r\n        list_of_latest = []\r\n        for row in rows:\r\n            latest_dict = {\r\n                'section': row[0],\r\n                'title': row[1],\r\n                'image': row[2],\r\n                'image_link': row[3],\r\n                'category': row[6],\r\n                'news_unique_id': row[8]\r\n            }\r\n            list_of_latest.append(latest_dict)\r\n        print(list_of_latest)\r\n\r\n    top = []\r\n    with connection.cursor() as cursor:\r\n        cursor.execute(\"SELECT * FROM top_stories\")\r\n        row = cursor.fetchall()\r\n\r\n    for i in row:\r\n        top_story = {\r\n            'id': i[8],\r\n            'title': i[1],\r\n            'image': i[2],\r\n            'image_link': i[3],\r\n            'section': i[7],\r\n            'category': i[6],\r\n            'news_unique_id': i[8]\r\n        }\r\n        top.append(top_story)\r\n    if request.session.has_key('logged_in'):\r\n        print(request.session.has_key('logged_in'))\r\n        dict_of_user_details = {\r\n            'admin_access': request.session['admin_access'],\r\n            'journal_access': request.session['journal_access'],\r\n            'logged_in': request.session['logged_in'],\r\n            'first_name': request.session['first_name'],\r\n            'last_name': request.session['last_name'],\r\n            'email_id': request.session['email_id'],\r\n            'suscriber_access': request.session['suscriber_priority'],\r\n            'profile_picture': request.session['profile_picture']\r\n\r\n        }\r\n        context_of_top_stories = {'top_stories': top, 'user': dict_of_user_details,'latest_stories': list_of_latest}\r\n        return render(request, \"index.html\", context_of_top_stories)\r\n    context_of_top_stories = {'top_stories': top,'latest_stories': list_of_latest}\r\n    return render(request, \"index.html\", context_of_top_stories)\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- homepage/views.py	(revision ab2b1c9cc60cd36489653ba1ae1c82cdef8dca34)
++++ homepage/views.py	(date 1605792066578)
+@@ -28,7 +28,7 @@
+                 'news_unique_id': row[8]
+             }
+             list_of_latest.append(latest_dict)
+-        print(list_of_latest)
++
+ 
+     top = []
+     with connection.cursor() as cursor:
+Index: posts/views.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from django.shortcuts import render, redirect\r\nimport requests\r\nfrom django.db import connection\r\nimport random\r\nimport math\r\n\r\n\r\ndef cell_list(prefix, get_range):\r\n    list_cell_string = []\r\n    for i in get_range:\r\n        cell_string = prefix + \"-cell-\"\r\n        cell_string += str(i)\r\n        list_cell_string.append(cell_string)\r\n    return list_cell_string\r\n\r\n\r\ndef OTPgen():\r\n    nums = '0123456789'\r\n    otp = \"\"\r\n\r\n    for i in range(8):\r\n        otp += nums[math.floor(random.random() * 10)]\r\n    return otp\r\n\r\n\r\ndef EditContent(string):\r\n    new_string = string.replace(\"'\", \"\\\\'\")\r\n    # new_string = new_string.replace(\"\\\"\", \"\\\\\\\"\")\r\n    return new_string\r\n\r\n\r\ndef posts_view(request, *args, **kwargs):\r\n    global dict_of_user_details\r\n    latest_cell = cell_list('latest', range(1, 12))\r\n    health_cell = cell_list('health', range(1, 10))\r\n    world_cell = cell_list('world', range(1, 11))\r\n    business_cell = cell_list('business', range(1, 9))\r\n    tech_cell = cell_list('technology', range(1, 11))\r\n    edu_cell = cell_list('education', range(1, 11))\r\n    india_cell = cell_list('india', range(1, 11))\r\n    dictionary_of_section_as_per_category = {\r\n        'latest': latest_cell,\r\n        'health': health_cell,\r\n        'world': world_cell,\r\n        'business': business_cell,\r\n        'technology': tech_cell,\r\n        'education': edu_cell,\r\n        'india': india_cell\r\n    }\r\n\r\n    if request.session.has_key('logged_in'):\r\n        dict_of_user_details = {\r\n            'admin_access': request.session['admin_access'],\r\n            'journal_access': request.session['journal_access'],\r\n            'logged_in': request.session['logged_in'],\r\n            'first_name': request.session['first_name'],\r\n            'last_name': request.session['last_name'],\r\n            'email_id': request.session['email_id'],\r\n            'suscriber_access': request.session['suscriber_priority'],\r\n            'profile_picture': request.session['profile_picture']\r\n\r\n        }\r\n\r\n        # print(binary,letter_binary)\r\n\r\n    if request.method == 'POST':\r\n\r\n        article_image_link = request.POST.get('imageLink')\r\n        article_title = request.POST.get('postTitle')\r\n        article_category = request.POST.get('category')\r\n        article_section = request.POST.get('section')\r\n        article_content = request.POST.get('postDesc')\r\n        article_file_picture = request.POST.get('finalPictureValue')\r\n        print(\"THis is\", article_category)\r\n        if article_category == '' or article_category is None:\r\n            message = \"Choose A Category\"\r\n            context = {\"registration_success\": False, 'cell_list': dictionary_of_section_as_per_category,\r\n                       'message': message}\r\n            return render(request, 'posts.html', context)\r\n        if article_section == '' or article_section is None:\r\n            message = \"Choose A Category\"\r\n            context = {\"registration_success\": False, 'cell_list': dictionary_of_section_as_per_category,\r\n                       'message': message}\r\n            return render(request, 'posts.html', context)\r\n        if article_image_link == '' and article_file_picture == '':\r\n            message = \"Enter Image Link or Select An Image\"\r\n            context = {\"registration_success\": False, 'cell_list': dictionary_of_section_as_per_category,\r\n                       'message': message}\r\n            return render(request, 'posts.html', context)\r\n\r\n        file1 = open('textfile.txt', 'a+')\r\n        file1.seek(0)\r\n        with connection.cursor() as cursor:\r\n            while 1:\r\n                addotp = OTPgen()\r\n                file1.seek(0)\r\n                if addotp in file1.read():\r\n                    print(\"exists\", addotp)\r\n                    continue\r\n                else:\r\n                    file1.write(addotp + \"\\n\")\r\n                    # file1.write(\"\\n\")\r\n                    if article_category.split('-')[0] == 'latest' and article_section == 'latest-cell-1':\r\n                        cursor.execute('CALL news_database.latest_top_stories(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print(\"latest-cell-1\")\r\n                    elif article_category.split('-')[0] == 'latest':\r\n                        cursor.execute('CALL news_database.update_latest_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('latest')\r\n                    elif article_category.split('-')[0] == 'india':\r\n                        cursor.execute('CALL news_database.update_india_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('india')\r\n                    elif article_category.split('-')[0] == 'education':\r\n                        print(\"Entering Education\")\r\n                        cursor.execute('CALL news_database.update_education_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('education')\r\n                    elif article_category.split('-')[0] == 'business':\r\n                        cursor.execute('CALL news_database.update_business_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('business')\r\n                    elif article_category.split('-')[0] == 'world':\r\n                        cursor.execute('CALL news_database.update_world_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link,\r\n                                        EditContent(article_content),\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('world')\r\n                    elif article_category.split('-')[0] == 'technology':\r\n                        print(\"Entering Technology Cursor For Execution\")\r\n                        cursor.execute(\r\n                            'CALL news_database.update_technology_grid(%s,%s,%s,%s,%s,%s,%s,%s,@STATUS1)',\r\n                            [article_title, article_file_picture, article_image_link, article_content,\r\n                             dict_of_user_details['email_id'], article_category, article_section,\r\n                             addotp])\r\n                        cursor.execute(\"SELECT @STATUS1\")\r\n                        row = cursor.fetchone()\r\n                        print(row)\r\n                        if row[0] is not None:\r\n                            context_of_top_stories = {\"registration_success\": False, \"registration_failure\": True,\r\n                                                      'user': dict_of_user_details,\r\n                                                      'cell_list': dictionary_of_section_as_per_category}\r\n                            return render(request, 'posts.html', context_of_top_stories)\r\n\r\n                        print('technology')\r\n                    elif article_category.split('-')[0] == 'health':\r\n                        cursor.execute('CALL news_database.update_health_grid(%s,%s,%s,%s,%s,%s,%s,%s)',\r\n                                       [article_title, article_file_picture, article_image_link, article_content,\r\n                                        dict_of_user_details['email_id'], article_category, article_section,\r\n                                        addotp])\r\n                        print('health')\r\n                    else:\r\n                        print(\"Un-Successfull\")\r\n\r\n                    context_of_top_stories = {\"registration_success\": True, 'user': dict_of_user_details,\r\n                                              'cell_list': dictionary_of_section_as_per_category}\r\n                    return render(request, 'posts.html', context_of_top_stories)\r\n\r\n        print(article_image_link,\r\n              article_title,\r\n              article_category,\r\n              article_section,\r\n              )\r\n\r\n        print(\"clean\")\r\n\r\n    context_of_top_stories = {\"registration_success\": False, 'user': dict_of_user_details,\r\n                              'cell_list': dictionary_of_section_as_per_category}\r\n    return render(request, 'posts.html', context_of_top_stories)\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- posts/views.py	(revision ab2b1c9cc60cd36489653ba1ae1c82cdef8dca34)
++++ posts/views.py	(date 1605789540458)
+@@ -101,47 +101,95 @@
+                     file1.write(addotp + "\n")
+                     # file1.write("\n")
+                     if article_category.split('-')[0] == 'latest' and article_section == 'latest-cell-1':
+-                        cursor.execute('CALL news_database.latest_top_stories(%s,%s,%s,%s,%s,%s,%s,%s)',
++                        cursor.execute('CALL news_database.latest_top_stories(%s,%s,%s,%s,%s,%s,%s,%s,@STATUS1)',
+                                        [article_title, article_file_picture, article_image_link,
+                                         EditContent(article_content),
+                                         dict_of_user_details['email_id'], article_category, article_section,
+                                         addotp])
++                        cursor.execute("SELECT @STATUS1")
++                        row = cursor.fetchone()
++                        print(row)
++                        if row[0] is not None:
++                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
++                                                      'user': dict_of_user_details,
++                                                      'cell_list': dictionary_of_section_as_per_category}
++                            return render(request, 'posts.html', context_of_top_stories)
+                         print("latest-cell-1")
+                     elif article_category.split('-')[0] == 'latest':
+-                        cursor.execute('CALL news_database.update_latest_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
++                        cursor.execute('CALL news_database.update_latest_grid(%s,%s,%s,%s,%s,%s,%s,%s,@STATUS1)',
+                                        [article_title, article_file_picture, article_image_link,
+                                         EditContent(article_content),
+                                         dict_of_user_details['email_id'], article_category, article_section,
+                                         addotp])
++                        cursor.execute("SELECT @STATUS1")
++                        row = cursor.fetchone()
++                        print(row)
++                        if row[0] is not None:
++                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
++                                                      'user': dict_of_user_details,
++                                                      'cell_list': dictionary_of_section_as_per_category}
++                            return render(request, 'posts.html', context_of_top_stories)
+                         print('latest')
+                     elif article_category.split('-')[0] == 'india':
+-                        cursor.execute('CALL news_database.update_india_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
++                        cursor.execute('CALL news_database.update_india_grid(%s,%s,%s,%s,%s,%s,%s,%s,@STATUS1)',
+                                        [article_title, article_file_picture, article_image_link,
+                                         EditContent(article_content),
+                                         dict_of_user_details['email_id'], article_category, article_section,
+                                         addotp])
++                        cursor.execute("SELECT @STATUS1")
++                        row = cursor.fetchone()
++                        print(row)
++                        if row[0] is not None:
++                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
++                                                      'user': dict_of_user_details,
++                                                      'cell_list': dictionary_of_section_as_per_category}
++                            return render(request, 'posts.html', context_of_top_stories)
+                         print('india')
+                     elif article_category.split('-')[0] == 'education':
+                         print("Entering Education")
+-                        cursor.execute('CALL news_database.update_education_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
++                        cursor.execute('CALL news_database.update_education_grid(%s,%s,%s,%s,%s,%s,%s,%s,@STATUS1)',
+                                        [article_title, article_file_picture, article_image_link,
+                                         EditContent(article_content),
+                                         dict_of_user_details['email_id'], article_category, article_section,
+                                         addotp])
++                        cursor.execute("SELECT @STATUS1")
++                        row = cursor.fetchone()
++                        print(row)
++                        if row[0] is not None:
++                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
++                                                      'user': dict_of_user_details,
++                                                      'cell_list': dictionary_of_section_as_per_category}
++                            return render(request, 'posts.html', context_of_top_stories)
+                         print('education')
+                     elif article_category.split('-')[0] == 'business':
+-                        cursor.execute('CALL news_database.update_business_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
++                        cursor.execute('CALL news_database.update_business_grid(%s,%s,%s,%s,%s,%s,%s,%s,@STATUS1)',
+                                        [article_title, article_file_picture, article_image_link,
+                                         EditContent(article_content),
+                                         dict_of_user_details['email_id'], article_category, article_section,
+                                         addotp])
++                        cursor.execute("SELECT @STATUS1")
++                        row = cursor.fetchone()
++                        print(row)
++                        if row[0] is not None:
++                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
++                                                      'user': dict_of_user_details,
++                                                      'cell_list': dictionary_of_section_as_per_category}
++                            return render(request, 'posts.html', context_of_top_stories)
+                         print('business')
+                     elif article_category.split('-')[0] == 'world':
+-                        cursor.execute('CALL news_database.update_world_grid(%s,%s,%s,%s,%s,%s,%s,%s)',
++                        cursor.execute('CALL news_database.update_world_grid(%s,%s,%s,%s,%s,%s,%s,%s,@STATUS1)',
+                                        [article_title, article_file_picture, article_image_link,
+                                         EditContent(article_content),
+                                         dict_of_user_details['email_id'], article_category, article_section,
+                                         addotp])
++                        cursor.execute("SELECT @STATUS1")
++                        row = cursor.fetchone()
++                        print(row)
++                        if row[0] is not None:
++                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
++                                                      'user': dict_of_user_details,
++                                                      'cell_list': dictionary_of_section_as_per_category}
++                            return render(request, 'posts.html', context_of_top_stories)
+                         print('world')
+                     elif article_category.split('-')[0] == 'technology':
+                         print("Entering Technology Cursor For Execution")
+@@ -165,10 +213,21 @@
+                                        [article_title, article_file_picture, article_image_link, article_content,
+                                         dict_of_user_details['email_id'], article_category, article_section,
+                                         addotp])
++                        cursor.execute("SELECT @STATUS1")
++                        row = cursor.fetchone()
++                        print(row)
++                        if row[0] is not None:
++                            context_of_top_stories = {"registration_success": False, "registration_failure": True,
++                                                      'user': dict_of_user_details,
++                                                      'cell_list': dictionary_of_section_as_per_category}
++                            return render(request, 'posts.html', context_of_top_stories)
+                         print('health')
+                     else:
+                         print("Un-Successfull")
+-
++                        context_of_top_stories = {"registration_success": False, "registration_failure": True,
++                                                  'user': dict_of_user_details,
++                                                  'cell_list': dictionary_of_section_as_per_category}
++                        return render(request, 'posts.html', context_of_top_stories)
+                     context_of_top_stories = {"registration_success": True, 'user': dict_of_user_details,
+                                               'cell_list': dictionary_of_section_as_per_category}
+                     return render(request, 'posts.html', context_of_top_stories)
+Index: templates/XMLFILES/reuben211999_gmail_comPrevPost.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\r\n\r\n<?xml-stylesheet type=\"text/xml\" href=\"#stylesheet\"?>\r\n\r\n<!DOCTYPE catelog [\r\n\r\n        <!ATTLIST xsl:stylesheet\r\n\r\n                id    ID  #REQUIRED>\r\n\r\n        ]>\r\n\r\n<prevpost>\r\n\r\n    <xsl:stylesheet id=\"stylesheet\" version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\r\n\r\n        <xsl:template match=\"/\">\r\n\r\n            <html>\r\n\r\n                <head>\r\n\r\n                    <style>\r\n\r\n                        html,body{\r\n\r\n                        background-color: #303841;\r\n\r\n                        font-family:serif;\r\n\r\n                        }\r\n\r\n                        .prev-post-user {\r\n\r\n                        width: 100%;\r\n\r\n                        background-color: #222222;\r\n\r\n                        margin: 50px auto;\r\n\r\n                        border-radius: 10px;\r\n\r\n                        }\r\n\r\n\r\n                        #prev-post-css-table {\r\n\r\n\r\n                        margin: auto;\r\n\r\n                        width: 100%;\r\n\r\n                        border-spacing: 2px;\r\n\r\n\r\n\r\n                        }\r\n\r\n\r\n                        #prev-post-css-table tr {\r\n\r\n                        color: #303841;\r\n\r\n                        text-align: center;\r\n\r\n                        background-color: rgba(48, 56, 65, 0.8);\r\n\r\n\r\n\r\n                        }\r\n\r\n\r\n                        #prev-post-css-table tr:nth-child(even) {\r\n\r\n                        background-color: rgba(48, 56, 65, 0.9);\r\n\r\n                        }\r\n\r\n\r\n                        #prev-post-css-table thead th {\r\n\r\n\r\n                        color: #eeeeee;\r\n\r\n                        background-color: #3a4750;\r\n\r\n                        text-align: center;\r\n\r\n                        text-transform: uppercase;\r\n\r\n                        font-weight: bold;\r\n\r\n                        font-family: 'Lato', serif;\r\n\r\n                        padding: 10px;\r\n\r\n                        border-radius: 8px;\r\n\r\n\r\n                        }\r\n\r\n\r\n                        #prev-post-css-table td {\r\n\r\n                        border-radius: 8px;\r\n\r\n                        padding: 10px;\r\n\r\n                        font-family: 'Lato', serif;\r\n\r\n                        color: #eeeeee;\r\n\r\n                        }\r\n\r\n                    </style>\r\n\r\n                </head>\r\n\r\n                <body>\r\n\r\n                    <div class=\"prev-post-user\">\r\n\r\n                                            <h2 style=\"margin:50px 40%;color:#eeeeee;\">User's Previous Post's</h2>\r\n\r\n\r\n                        <table id=\"prev-post-css-table\">\r\n\r\n                            <thead>\r\n\r\n                                <th>id</th>\r\n\r\n                                <th>title</th>\r\n\r\n                                <th>category</th>\r\n\r\n                                <th>posted at</th>\r\n\r\n                                <th>Section</th>\r\n\r\n\r\n\r\n                            </thead>\r\n\r\n                            <xsl:for-each select=\"prevpost/singlepost\">\r\n\r\n                                <tr>\r\n\r\n                                    <td>\r\n\r\n                                        <xsl:value-of select=\"id\"/>\r\n\r\n                                    </td>\r\n\r\n                                    <td>\r\n\r\n                                        <xsl:value-of select=\"title\"/>\r\n\r\n                                    </td>\r\n\r\n                                    <td>\r\n\r\n                                        <xsl:value-of select=\"category\"/>\r\n\r\n                                    </td>\r\n\r\n                                    <td>\r\n\r\n                                        <xsl:value-of select=\"timeofpost\"/>\r\n\r\n                                    </td>\r\n\r\n                                    <td>\r\n\r\n                                        <xsl:value-of select=\"section\"/>\r\n\r\n                                    </td>\r\n\r\n\r\n\r\n                                </tr>\r\n\r\n                            </xsl:for-each>\r\n\r\n                        </table>\r\n\r\n                    </div>\r\n\r\n\r\n                </body>\r\n\r\n            </html>\r\n\r\n        </xsl:template>\r\n\r\n    </xsl:stylesheet>\r\n<singlepost>\r\n<id>772436</id>\r\n<title>\"Generations Of Corruption...\": PM Modi After Sonia Gandhi's Comment On Democracy</title>\r\n<category>latest</category>\r\n<timeofpost>2020-10-27 16:26:41</timeofpost>\r\n<section>latest-cell-1</section>\r\n</singlepost>\r\n<singlepost>\r\n<id>943333</id>\r\n<title>iPhone 12, iPhone 12 Pro Users May Need to Re-Enable COVID-19 Contact Tracing When Switching: Report</title>\r\n<category>technology</category>\r\n<timeofpost>2020-10-27 16:54:08</timeofpost>\r\n<section>technology-cell-1</section>\r\n</singlepost>\r\n<singlepost>\r\n<id>944088</id>\r\n<title>Airtel Posts Highest-Ever Quarterly Revenue on Higher Tariffs, Data Usage</title>\r\n<category>technology</category>\r\n<timeofpost>2020-10-27 16:55:50</timeofpost>\r\n<section>technology-cell-2</section>\r\n</singlepost>\r\n<singlepost>\r\n<id>15653136</id>\r\n<title>PlayStation 5: Price, Release Date, DualSense Controller, Games, Specs, and More</title>\r\n<category>technology</category>\r\n<timeofpost>2020-11-04 06:05:59</timeofpost>\r\n<section>technology-cell-7</section>\r\n</singlepost>\r\n<singlepost>\r\n<id>19328701</id>\r\n<title>Among Us Has Rolled Out an Update to Let Players Vote Anonymously, Friendlists and Bigger Servers Co</title>\r\n<category>technology</category>\r\n<timeofpost>2020-11-04 06:03:31</timeofpost>\r\n<section>technology-cell-6</section>\r\n</singlepost>\r\n<singlepost>\r\n<id>25599549</id>\r\n<title>India's active covid cases fall to 5.20 lakh after 54,157 recoveries in a day</title>\r\n<category>latest</category>\r\n<timeofpost>2020-11-06 04:57:37</timeofpost>\r\n<section>latest-cell-5</section>\r\n</singlepost>\r\n<singlepost>\r\n<id>28716964</id>\r\n<title>WhatsApp payments: How to setup, send and receive money</title>\r\n<category>latest</category>\r\n<timeofpost>2020-11-06 05:03:54</timeofpost>\r\n<section>latest-cell-6</section>\r\n</singlepost>\r\n<singlepost>\r\n<id>32443158</id>\r\n<title>Scientists From IITs, IISc Among Swarnajayanti Fellowship 2019-20 Winners</title>\r\n<category>education</category>\r\n<timeofpost>2020-11-13 07:52:05</timeofpost>\r\n<section>education-cell-1</section>\r\n</singlepost>\r\n<singlepost>\r\n<id>32601791</id>\r\n<title>Google Chrome Gets Second Security Patch for Critical Zero-Day Bug in Two Weeks</title>\r\n<category>technology</category>\r\n<timeofpost>2020-11-04 04:38:40</timeofpost>\r\n<section>technology-cell-5</section>\r\n</singlepost>\r\n<singlepost>\r\n<id>51538676</id>\r\n<title>Logitech MX Keys Wireless Keyboard With 10-Day Battery Life, Multi-Platform Connectivity Launched in</title>\r\n<category>technology</category>\r\n<timeofpost>2020-11-04 17:53:09</timeofpost>\r\n<section>technology-cell-10</section>\r\n</singlepost>\r\n<singlepost>\r\n<id>61898750</id>\r\n<title>MagSafe Duo Wireless Charger Reportedly Spotted on Koreaâ\u0080\u0099s NRRA Site</title>\r\n<category>technology</category>\r\n<timeofpost>2020-11-04 17:44:55</timeofpost>\r\n<section>technology-cell-8</section>\r\n</singlepost>\r\n<singlepost>\r\n<id>88497813</id>\r\n<title>Facebook, YouTube, TikTok, Others Fined Over $1 Million Each for Not Appointing a Turkey Representat</title>\r\n<category>technology</category>\r\n<timeofpost>2020-11-04 17:50:23</timeofpost>\r\n<section>technology-cell-9</section>\r\n</singlepost>\r\n<singlepost>\r\n<id>542248074</id>\r\n<title>Ahead Of Top Court Pollution Hearing, Executive Order For Permanent Body</title>\r\n<category>latest</category>\r\n<timeofpost>2020-10-29 03:58:09</timeofpost>\r\n<section>latest-cell-1</section>\r\n</singlepost>\r\n<singlepost>\r\n<id>1004188893</id>\r\n<title>A 'protracted crisis' predicted and other global headlines</title>\r\n<category>world</category>\r\n<timeofpost>2020-11-03 11:48:08</timeofpost>\r\n<section>world-cell-3</section>\r\n</singlepost>\r\n<singlepost>\r\n<id>1840741714</id>\r\n<title>Samsung One UI 3.0 key features listed; roll out to begin soon</title>\r\n<category>technology</category>\r\n<timeofpost>2020-11-04 02:23:42</timeofpost>\r\n<section>technology-cell-4</section>\r\n</singlepost>\r\n<singlepost>\r\n<id>2147483647</id>\r\n<title>Apple iPad Air 2020 review: This is a smaller iPad Pro</title>\r\n<category>technology</category>\r\n<timeofpost>2020-11-04 02:01:17</timeofpost>\r\n<section>technology-cell-3</section>\r\n</singlepost>\r\n</prevpost>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+--- templates/XMLFILES/reuben211999_gmail_comPrevPost.xml	(revision ab2b1c9cc60cd36489653ba1ae1c82cdef8dca34)
++++ templates/XMLFILES/reuben211999_gmail_comPrevPost.xml	(date 1605799028322)
+@@ -215,11 +215,25 @@
+ <section>technology-cell-2</section>
+ </singlepost>
+ <singlepost>
++<id>7263482</id>
++<title>Uber Looks to Partner With Other Self-Driving Companies, CEO Dara Khosrowshahi Says</title>
++<category>technology</category>
++<timeofpost>2020-11-19 06:59:11</timeofpost>
++<section>technology-cell-8</section>
++</singlepost>
++<singlepost>
+ <id>15653136</id>
+ <title>PlayStation 5: Price, Release Date, DualSense Controller, Games, Specs, and More</title>
+ <category>technology</category>
+ <timeofpost>2020-11-04 06:05:59</timeofpost>
+ <section>technology-cell-7</section>
++</singlepost>
++<singlepost>
++<id>16377884</id>
++<title>India's Active COVID-19 Cases Remain Below 10% Of Total Caseload: Centre</title>
++<category>technology</category>
++<timeofpost>2020-11-19 09:45:31</timeofpost>
++<section>technology-cell-5</section>
+ </singlepost>
+ <singlepost>
+ <id>19328701</id>
+@@ -241,6 +255,20 @@
+ <category>latest</category>
+ <timeofpost>2020-11-06 05:03:54</timeofpost>
+ <section>latest-cell-6</section>
++</singlepost>
++<singlepost>
++<id>30441985</id>
++<title>India's Active COVID-19 Cases Remain Below 10% Of Total Caseload: Centre</title>
++<category>technology</category>
++<timeofpost>2020-11-19 09:47:49</timeofpost>
++<section>technology-cell-5</section>
++</singlepost>
++<singlepost>
++<id>31204993</id>
++<title>Apple to pay $113m to settle iPhone 'batterygate'</title>
++<category>technology</category>
++<timeofpost>2020-11-19 09:54:53</timeofpost>
++<section>technology-cell-5</section>
+ </singlepost>
+ <singlepost>
+ <id>32443158</id>
+@@ -265,10 +293,17 @@
+ </singlepost>
+ <singlepost>
+ <id>61898750</id>
+-<title>MagSafe Duo Wireless Charger Reportedly Spotted on Koreaâs NRRA Site</title>
++<title>MagSafe Duo Wireless Charger Reportedly Spotted on Koreas NRRA Site</title>
+ <category>technology</category>
+ <timeofpost>2020-11-04 17:44:55</timeofpost>
+ <section>technology-cell-8</section>
++</singlepost>
++<singlepost>
++<id>71567833</id>
++<title>India's Active COVID-19 Cases Remain Below 10% Of Total Caseload: Centre</title>
++<category>technology</category>
++<timeofpost>2020-11-19 09:49:24</timeofpost>
++<section>technology-cell-5</section>
+ </singlepost>
+ <singlepost>
+ <id>88497813</id>
+@@ -276,6 +311,13 @@
+ <category>technology</category>
+ <timeofpost>2020-11-04 17:50:23</timeofpost>
+ <section>technology-cell-9</section>
++</singlepost>
++<singlepost>
++<id>89177958</id>
++<title>Apple to pay $113m to settle iPhone 'batterygate'</title>
++<category>technology</category>
++<timeofpost>2020-11-19 09:53:40</timeofpost>
++<section>technology-cell-5</section>
+ </singlepost>
+ <singlepost>
+ <id>542248074</id>
+Index: .idea/INPminiproject.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"PYTHON_MODULE\" version=\"4\">\r\n  <component name=\"FacetManager\">\r\n    <facet type=\"django\" name=\"Django\">\r\n      <configuration>\r\n        <option name=\"rootFolder\" value=\"$MODULE_DIR$\" />\r\n        <option name=\"settingsModule\" value=\"INPminiproject/settings.py\" />\r\n        <option name=\"manageScript\" value=\"$MODULE_DIR$/manage.py\" />\r\n        <option name=\"environment\" value=\"&lt;map/&gt;\" />\r\n        <option name=\"doNotUseTestRunner\" value=\"false\" />\r\n        <option name=\"trackFilePattern\" value=\"migrations\" />\r\n      </configuration>\r\n    </facet>\r\n  </component>\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\" />\r\n    <orderEntry type=\"jdk\" jdkName=\"Python 3.8 (PythonProj)\" jdkType=\"Python SDK\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n  <component name=\"PyDocumentationSettings\">\r\n    <option name=\"format\" value=\"PLAIN\" />\r\n    <option name=\"myDocStringFormat\" value=\"Plain\" />\r\n  </component>\r\n  <component name=\"TemplatesService\">\r\n    <option name=\"TEMPLATE_CONFIGURATION\" value=\"Django\" />\r\n    <option name=\"TEMPLATE_FOLDERS\">\r\n      <list>\r\n        <option value=\"$MODULE_DIR$/posts/templates\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/INPminiproject.iml	(revision ab2b1c9cc60cd36489653ba1ae1c82cdef8dca34)
++++ .idea/INPminiproject.iml	(date 1605789571263)
+@@ -14,7 +14,7 @@
+   </component>
+   <component name="NewModuleRootManager">
+     <content url="file://$MODULE_DIR$" />
+-    <orderEntry type="jdk" jdkName="Python 3.8 (PythonProj)" jdkType="Python SDK" />
++    <orderEntry type="jdk" jdkName="Python 3.8 (djangoProject)" jdkType="Python SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+   <component name="PyDocumentationSettings">
+Index: search_news/views.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import time\r\n\r\nfrom django.db import connection\r\nfrom django.shortcuts import render\r\n\r\n\r\n# Create your views here.\r\ndef search_view(request, *args, **kwargs):\r\n    if request.session.has_key('logged_in'):\r\n        print(request.session.has_key('logged_in'))\r\n        dict_of_user_details = {\r\n            'admin_access': request.session['admin_access'],\r\n            'journal_access': request.session['journal_access'],\r\n            'logged_in': request.session['logged_in'],\r\n            'first_name': request.session['first_name'],\r\n            'last_name': request.session['last_name'],\r\n            'email_id': request.session['email_id'],\r\n            'suscriber_access': request.session['suscriber_priority'],\r\n            'profile_picture': request.session['profile_picture']\r\n\r\n        }\r\n        if request.method == 'POST':\r\n            search_text = request.POST.get('search_text')\r\n            print(\"The Search Text Entered is: \", search_text)\r\n            with connection.cursor() as cursor:\r\n                cursor.execute('CALL news_database.search_news(%s)',\r\n                               [search_text])\r\n                rows = cursor.fetchall()\r\n                print(rows)\r\n                if rows == ():\r\n                    context_of_top_stories = {'user': dict_of_user_details,\r\n                                              'error_message': True}\r\n                    return render(request, \"search.html\", context_of_top_stories)\r\n                list_of_stories = []\r\n                for row in rows:\r\n                    stories_dict = {\r\n                        'section': row[4],\r\n                        'title': row[5],\r\n                        'image': row[1],\r\n                        'image_link': row[2],\r\n                        'category': row[3],\r\n                        'news_unique_id': row[0]\r\n                    }\r\n                    list_of_stories.append(stories_dict)\r\n\r\n            context_of_top_stories = {'user': dict_of_user_details, 'search_stories': list_of_stories,\r\n                                      'show_search_svg': False}\r\n            return render(request, \"search.html\", context_of_top_stories)\r\n    return render(request, \"search.html\", {'show_search_svg': True})\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- search_news/views.py	(revision ab2b1c9cc60cd36489653ba1ae1c82cdef8dca34)
++++ search_news/views.py	(date 1605788523711)
+@@ -6,6 +6,18 @@
+ 
+ # Create your views here.
+ def search_view(request, *args, **kwargs):
++    print(request.session.has_key('logged_in'))
++    dict_of_user_details = {
++        'admin_access': request.session['admin_access'],
++        'journal_access': request.session['journal_access'],
++        'logged_in': request.session['logged_in'],
++        'first_name': request.session['first_name'],
++        'last_name': request.session['last_name'],
++        'email_id': request.session['email_id'],
++        'suscriber_access': request.session['suscriber_priority'],
++        'profile_picture': request.session['profile_picture']
++
++    }
+     if request.session.has_key('logged_in'):
+         print(request.session.has_key('logged_in'))
+         dict_of_user_details = {
+@@ -46,4 +58,4 @@
+             context_of_top_stories = {'user': dict_of_user_details, 'search_stories': list_of_stories,
+                                       'show_search_svg': False}
+             return render(request, "search.html", context_of_top_stories)
+-    return render(request, "search.html", {'show_search_svg': True})
++    return render(request, "search.html", {'show_search_svg': True,'user': dict_of_user_details})
