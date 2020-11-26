@@ -4,19 +4,39 @@
 
 {% block content %}
 
-   <div class="education-container">
+    <style>
+        @media (max-width: 650px) {
+            .education-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+                grid-template-areas:
+      "education-main1 education-main1"
+      "education-content1 education-content2"
+      "education-content3 education-content4"
+      "education-content5 education-content6"
+      "education-content7 education-content8"
+      "footer footer"
+            }
+
+            #education-main2 {
+                display: none;
+            }
+        }
+    </style>
+    <div class="education-container">
         <div id="education-main1">
             {% for education_story in education_stories %}
                 {% if education_story.section == 'education-cell-1' %}
                     <a href="{% url 'article' education_story.category education_story.section education_story.news_unique_id %}"
                        style="text-decoration: none">
-                    {% if education_story.image != '' %}
+                        {% if education_story.image != '' %}
 
-                        <img class="education-image-css-main"
-                             src="{{ education_story.image }}"
-                             alt="">
-                          {% else %}
-                        <img class="education-image-css-main"
+                            <img class="education-image-css-main"
+                                 src="{{ education_story.image }}"
+                                 alt="">
+                        {% else %}
+                            <img class="education-image-css-main"
 
                                  src="{{ education_story.image_link }}"
                                  alt="">
@@ -54,7 +74,7 @@
 
         </div>
         <div id="education-content1">
-             {% for education_story in education_stories %}
+            {% for education_story in education_stories %}
                 {% if education_story.section == 'education-cell-3' %}
                     <a href="{% url 'article' education_story.category education_story.section education_story.news_unique_id %}"
                        style="text-decoration: none;">
@@ -70,10 +90,10 @@
                                  src="{{ education_story.image_link }}"
                                  alt="">
                         {% endif %}
-                      <p style="font-family: 'Lato',serif;
+                        <p style="font-family: 'Lato',serif;
                                 color:white;text-decoration: none;
               " class="education-p-tag-css">
-               {{ education_story.title }}</p>
+                            {{ education_story.title }}</p>
                     </a>
 
                 {% endif %}
@@ -82,7 +102,7 @@
 
         </div>
         <div id="education-content2">
-             {% for education_story in education_stories %}
+            {% for education_story in education_stories %}
                 {% if education_story.section == 'education-cell-4' %}
                     <a href="{% url 'article' education_story.category education_story.section education_story.news_unique_id %}"
                        style="text-decoration: none;">
@@ -98,10 +118,10 @@
                                  src="{{ education_story.image_link }}"
                                  alt="">
                         {% endif %}
-                      <p style="font-family: 'Lato',serif;
+                        <p style="font-family: 'Lato',serif;
                                 color:white;text-decoration: none;
               " class="education-p-tag-css">
-               {{ education_story.title }}</p>
+                            {{ education_story.title }}</p>
                     </a>
 
                 {% endif %}
@@ -126,10 +146,10 @@
                                  src="{{ education_story.image_link }}"
                                  alt="">
                         {% endif %}
-                      <p style="font-family: 'Lato',serif;
+                        <p style="font-family: 'Lato',serif;
                                 color:white;text-decoration: none;
               " class="education-p-tag-css">
-               {{ education_story.title }}</p>
+                            {{ education_story.title }}</p>
                     </a>
 
                 {% endif %}
@@ -154,10 +174,10 @@
                                  src="{{ education_story.image_link }}"
                                  alt="">
                         {% endif %}
-                      <p style="font-family: 'Lato',serif;
+                        <p style="font-family: 'Lato',serif;
                                 color:white;text-decoration: none;
               " class="education-p-tag-css">
-               {{ education_story.title }}</p>
+                            {{ education_story.title }}</p>
                     </a>
 
                 {% endif %}
@@ -166,7 +186,7 @@
 
         </div>
         <div id="education-content5">
-           {% for education_story in education_stories %}
+            {% for education_story in education_stories %}
                 {% if education_story.section == 'education-cell-7' %}
                     <a href="{% url 'article' education_story.category education_story.section education_story.news_unique_id %}"
                        style="text-decoration: none;">
@@ -182,10 +202,10 @@
                                  src="{{ education_story.image_link }}"
                                  alt="">
                         {% endif %}
-                      <p style="font-family: 'Lato',serif;
+                        <p style="font-family: 'Lato',serif;
                                 color:white;text-decoration: none;
               " class="education-p-tag-css">
-               {{ education_story.title }}</p>
+                            {{ education_story.title }}</p>
                     </a>
 
                 {% endif %}
@@ -210,10 +230,10 @@
                                  src="{{ education_story.image_link }}"
                                  alt="">
                         {% endif %}
-                      <p style="font-family: 'Lato',serif;
+                        <p style="font-family: 'Lato',serif;
                                 color:white;text-decoration: none;
               " class="education-p-tag-css">
-               {{ education_story.title }}</p>
+                            {{ education_story.title }}</p>
                     </a>
 
                 {% endif %}
@@ -222,7 +242,7 @@
 
         </div>
         <div id="education-content7">
-             {% for education_story in education_stories %}
+            {% for education_story in education_stories %}
                 {% if education_story.section == 'education-cell-9' %}
                     <a href="{% url 'article' education_story.category education_story.section education_story.news_unique_id %}"
                        style="text-decoration: none;">
@@ -238,10 +258,10 @@
                                  src="{{ education_story.image_link }}"
                                  alt="">
                         {% endif %}
-                      <p style="font-family: 'Lato',serif;
+                        <p style="font-family: 'Lato',serif;
                                 color:white;text-decoration: none;
               " class="education-p-tag-css">
-               {{ education_story.title }}</p>
+                            {{ education_story.title }}</p>
                     </a>
 
                 {% endif %}
@@ -250,7 +270,7 @@
 
         </div>
         <div id="education-content8">
-             {% for education_story in education_stories %}
+            {% for education_story in education_stories %}
                 {% if education_story.section == 'education-cell-10' %}
                     <a href="{% url 'article' education_story.category education_story.section education_story.news_unique_id %}"
                        style="text-decoration: none;">
@@ -266,10 +286,10 @@
                                  src="{{ education_story.image_link }}"
                                  alt="">
                         {% endif %}
-                      <p style="font-family: 'Lato',serif;
+                        <p style="font-family: 'Lato',serif;
                                 color:white;text-decoration: none;
               " class="education-p-tag-css">
-               {{ education_story.title }}</p>
+                            {{ education_story.title }}</p>
                     </a>
 
                 {% endif %}
