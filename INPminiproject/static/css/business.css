@@ -114,6 +114,7 @@
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
       "business-main1 business-main1"
+      "business-main2 business-main2"
       "business-content1 business-content2"
       "business-content3 business-content4"
       "business-content5 business-content6"
