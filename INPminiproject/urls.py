@@ -60,7 +60,7 @@ urlpatterns = [
     path('searchnews/', view_search_news.search_view, name='search_news'),
     path('article/<grid_category>/<section>/<unique_id>', article_views.article_view, name='article'),
     # url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-    # url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+    # url(r'^static/(?P<path>.*)$', serve, {'document_roo': settings.STATIC_ROOT}),
 ]
 
 if settings.DEBUG:

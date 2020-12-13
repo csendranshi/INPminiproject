@@ -11,9 +11,21 @@
             color: #eeeeee;
             font-family: Lato, serif;
         }
+
+        .flex-display-message > img {
+            width: 50%;
+        }
+
+
+        @media (max-width: 600px) {
+            .flex-display-message > img {
+                width: 80%;
+            }
+        }
     </style>
     <div class="flex-display-message">
-        <img width="600" src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/404ErrorPage.svg"
+        <img width="50%"
+             src="https://myawsbucketreuben.s3.ap-south-1.amazonaws.com/thejournalist/404ErrorPage.svg"
              alt=""/>
         {% if Error %}
             {{ Error }}
