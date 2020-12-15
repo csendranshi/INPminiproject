@@ -4,6 +4,9 @@
 
 ![Landing Page](landing_page.png)
 
+> #### Like what you see ?
+> > ### Give the repo a ⭐
+
 ### Table of Contents
 - Latest
 - India
@@ -41,8 +44,6 @@
 - **Privacy** : Only location is tracked(if the user permits)
 - **Responsive** : Interoperability over wide range of devices
 
-> ### Like what you see ?
-> > ### Give the repo a ⭐
 
 ### Steps to run the project
 1. Migrating the files to model DB 
