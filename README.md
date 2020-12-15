@@ -1,7 +1,5 @@
 # The Journalist
- ### Web App using the tech stack
- HTML, CSS, JS, Ajax, JSON, APIs, XML, XSL, Django, SQL
-
+ ### **Dynamic News Portal** - *Stay Updated*
 ![Landing Page](landing_page.png)
 
 > #### Like what you see ?
