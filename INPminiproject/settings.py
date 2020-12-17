@@ -12,10 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 import sys
 from pathlib import Path
-import django_heroku
 
-
-django_heroku.settings(locals())
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -67,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'INPminiproject.urls'
@@ -94,32 +92,18 @@ WSGI_APPLICATION = 'INPminiproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 #
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'news_database',
-        'USER': 'admin',
-        'PASSWORD': 'thejournalist',
+        'USER': 'root',
+        'PASSWORD': '12345',
         'PORT': '3306',
-        'HOST': 'thejournalistinstance.csubdeug2c1q.ap-south-1.rds.amazonaws.com',
-        'OPTIONS': {
-            'sql_mode': 'traditional',
-        }
+        'HOST': '127.0.0.1'
 
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'news_database',
-#         'USER': 'root',
-#         'PASSWORD': '12345',
-#         'PORT': '3306',
-#         'HOST': '127.0.0.1'
-#
-#     }
-# }
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -155,7 +139,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
@@ -164,3 +147,4 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
