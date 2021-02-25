@@ -4,10 +4,6 @@ from django.shortcuts import render
 from .GenerateXML import GenerateXML
 
 
-
-
-
-
 def prevpostxsl(request, *args, **kwargs):
     return HttpResponse(open('./templates/PrevPost.xml').read())
 
@@ -27,26 +23,27 @@ def prevpost_view(request, *args, **kwargs):
             'profile_picture': request.session['profile_picture']
 
         }
-        GenerateXML(dict_of_user_details['email_id'])
-        # with connection.cursor() as cursor:
-        #     cursor.execute('CALL news_database.get_the_previous_posts_of_user(%s)', [dict_of_user_details['email_id']])
-        #     rows = cursor.fetchall()
-        # list_of_prev_posts = []
-        # for post in rows:
-        #     prev_posts = {
-        #         'actual_category': post[2],
-        #         'category': post[2].split('-')[0],
-        #         'title': post[1],
-        #         'news_unique_id': post[0],
-        #         'time_of_post': post[3],
-        #         'section': post[4]
-        #     }
-        #     list_of_prev_posts.append(prev_posts)
+        # GenerateXML(dict_of_user_details['email_id'])
+        with connection.cursor() as cursor:
+            cursor.execute('CALL news_database.get_the_previous_posts_of_user(%s)', [dict_of_user_details['email_id']])
+            rows = cursor.fetchall()
+        list_of_prev_posts = []
+        for post in rows:
+            prev_posts = {
+                'actual_category': post[2],
+                'category': post[2].split('-')[0],
+                'title': post[1],
+                'news_unique_id': post[0],
+                'time_of_post': post[3],
+                'section': post[4]
+            }
+            list_of_prev_posts.append(prev_posts)
+        return render(request, "prevpost.html", context={"prev_post": list_of_prev_posts, 'user': dict_of_user_details})
         #
         # context_of_top_stories = {'user': dict_of_user_details, 'prev_post': list_of_prev_posts}
-        # return render(request, "prevpost.html", context_of_top_stories)
-        email_id = dict_of_user_details['email_id'].replace("@", "_")
-        email_id = email_id.replace(".", "_")
-        return HttpResponse(open(f'./templates/XMLFILES/{email_id}PrevPost.xml').read(), content_type="text/xml")
+        # # return render(request, "prevpost.html", context_of_top_stories)
+        # email_id = dict_of_user_details['email_id'].replace("@", "_")
+        # # email_id = email_id.replace(".", "_")
+        # return HttpResponse(open(f'./templates/XMLFILES/{email_id}PrevPost.xml').read(), content_type="text/xml")
 
     return render(request, "index.html")
