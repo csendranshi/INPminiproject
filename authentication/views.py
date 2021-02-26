@@ -36,9 +36,23 @@ def auth(request):
         'date': register_date,
         'phone_no': register_phone_no,
     }
+    print(userdetails)
     if request.method == 'POST':
+        if register_firstname is None or register_firstname == "":
+            return render(request, 'Register.html', {'message': 'Enter your First Name', 'userdetails': userdetails})
+        if register_lastname is None or register_lastname == "":
+            return render(request, 'Register.html', {'message': 'Enter your Last Name', 'userdetails': userdetails})
+        if register_emailId is None or register_emailId == "":
+            return render(request, 'Register.html', {'message': 'Enter your Email ID', 'userdetails': userdetails})
+        if register_password is None or register_password == "":
+            return render(request, 'Register.html', {'message': 'Enter your Password', 'userdetails': userdetails})
+        if register_date is None or register_date == "":
+            return render(request, 'Register.html', {'message': 'Please Select A Date', 'userdetails': userdetails})
+        if register_phone_no is None or register_phone_no == "":
+            return render(request, 'Register.html', {'message': 'Please Enter a Phone Number', 'userdetails': userdetails})
         if register_gender is None:
             return render(request, 'Register.html', {'message': 'Select A Gender', 'userdetails': userdetails})
+
         if register_emailId != "" and register_firstname != "" and register_lastname != "" and register_password != "" and register_date != "":
             hashed_password = generate_password_hash(register_password, method="sha256")
             print(register_firstname, register_lastname, register_emailId, hashed_password,
@@ -59,7 +73,7 @@ def auth(request):
                               {'message': 'Email Id Is Already Registered', 'userdetails': userdetails})
             else:
                 with connection.cursor() as cursor:
-                    print()
+                    print("ENTERED SUBMISSION")
                     try:
                         cursor.execute('CALL news_database.insert_personal_details(%s,%s,%s,%s,%s,%s,%s)',
                                        [register_firstname, register_lastname, register_emailId, hashed_password,

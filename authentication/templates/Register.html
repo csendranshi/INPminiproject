@@ -94,7 +94,7 @@
     </h2>
     <div class="lr-container right-panel-active" id="container">
         <div class="lr-form-container lr-sign-up-container">
-            <form class="lr-auth-form-form" name="auth-register" onsubmit="validateForm()" method="POST">
+            <form class="lr-auth-form-form" name="auth-register" method="POST">
                 <h1 style="
     font-weight: bold;
     margin: 0px auto;
@@ -103,7 +103,7 @@
 ">Create Account</h1>
 
                 {% csrf_token %}
-                <p id="error_message_form"></p>
+                <p style="color:red;font-family: 'Lato', serif !important; ">{{ message }}</p>
                 <input oninput="handleInputName(event)" id="auth-register-firstname" class="lr-auth-form-input"
                        value="{{ userdetails.firstname }}" type="text" name="reg_firstname" placeholder="First Name"
                 />
