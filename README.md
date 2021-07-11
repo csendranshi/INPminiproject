@@ -54,7 +54,7 @@
 
    `python manage.py runserver`
 
- ### Acknowledments
+ ### Acknowledgements
 - [Reuben Coutinho](https://www.linkedin.com/in/reuben-c-b89ba295)
 - [Anshika Gupta](https://www.linkedin.com/in/anshikagupta08/)
 - [Ankita Tripathi]()
